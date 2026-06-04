@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>디자인 시스템 — 김진현 포트폴리오</title>
+<meta name="description" content="포트폴리오 사이트의 색·타이포그래피·간격·그리드·컴포넌트·모션을 정리한 디자인 시스템 문서." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='52' fill='%23FAF8F4' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ── 색 ── */
+    --paper:#FAF8F4; --paper-2:#F1EDE5; --card:#FFFFFF;
+    --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
+    --line:#E5E0D5; --line-strong:#D6D0C2;
+    --navy:#0C3C60; --gold:#B98B2E;
+    /* 프로젝트 정체성 색 */
+    --t-navy:#0C3C60; --t-dark:#211C16; --t-green:#14564A; --t-blue:#13287A; --t-bronze:#4B3D2C; --t-indigo:#1C2E70;
+    /* ── 글꼴 ── */
+    --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+    --sans-en:'Inter Tight','Pretendard Variable',system-ui,sans-serif;
+    --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    /* ── 간격 스케일 (4px 기준) ── */
+    --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+    --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:6rem; --sp-10:8rem;
+    /* ── 레이아웃 ── */
+    --wrap:1180px;
+    --gutter:clamp(1.25rem,5vw,3.5rem);
+    --col-gap:clamp(.75rem,1.4vw,1.125rem);
+    --section-y:clamp(5rem,12vh,9rem);
+    /* ── 모서리 ── */
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+    /* ── 그림자 · 모션 ── */
+    --shadow:0 18px 40px -22px rgba(0,0,0,.5);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.7;
+    word-break:keep-all; overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit; text-decoration:none}
+  button{font:inherit; cursor:pointer}
+  ::selection{background:var(--navy); color:#fff}
+  .mono{font-family:var(--mono); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-faint)}
+  .serif{font-family:var(--serif)}
+
+  /* ── 이중 언어 ── */
+  body.lang-en{font-family:var(--sans-en); word-break:normal}
+  body.lang-ko .en{display:none !important}
+  body.lang-en .ko{display:none !important}
+  body.lang-en .hero h1{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; line-height:1.08}
+
+  /* ── 상단바 (GNB) — index.html과 동일한 브랜드·링크·토글 ── */
+  .top{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+       padding:var(--sp-3) var(--gutter); background:color-mix(in srgb,var(--paper) 86%, transparent); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line)}
+  .brand{display:flex; flex-direction:column; gap:.35rem; line-height:1.2; text-decoration:none}
+  .brand b{font-family:var(--mono); font-weight:500; font-size:.82rem; letter-spacing:.16em}
+  .brand span{font-size:.7rem; color:var(--ink-faint)}
+  .top-r{display:flex; align-items:center; gap:clamp(.7rem,2vw,1.5rem)}
+  .nav-link{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none}
+  .nav-link:hover{color:var(--ink)}
+
+  /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 ── */
+  .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
+  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} }
+  .toc{position:sticky; top:84px; padding-top:var(--sp-9); display:flex; flex-direction:column; gap:.2rem}
+  .toc .lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem; padding-left:.7rem}
+  .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; padding:.3rem 0 .3rem .7rem; display:flex; gap:.5rem; border-left:2px solid transparent; transition:.18s}
+  .toc a:hover{color:var(--ink)}
+  .toc a.active{color:var(--ink); font-weight:600; border-left-color:var(--navy)}
+  .toc a i{font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); font-style:normal}
+  .toc a.active i{color:var(--navy)}
+
+  main{padding:var(--sp-9) 0 var(--sp-10); min-width:0}
+  .hero{margin-bottom:var(--sp-9)}
+  .hero .eyebrow{margin-bottom:var(--sp-5)}
+  .hero h1{font-family:var(--sans); font-weight:700; letter-spacing:-.03em; line-height:1.12; font-size:clamp(2.2rem,5vw,3.6rem); max-width:18ch}
+  .hero p{margin-top:var(--sp-5); color:var(--ink-soft); max-width:54ch; font-size:1.08rem}
+  .hero .meta{margin-top:var(--sp-5); font-family:var(--mono); font-size:.7rem; color:var(--ink-faint); letter-spacing:.04em}
+
+  section.sec{padding:var(--sp-9) 0; border-top:1px solid var(--line)}
+  .sec-h{display:flex; align-items:baseline; gap:var(--sp-4); margin-bottom:var(--sp-6)}
+  .sec-h .num{font-family:var(--mono); font-size:.72rem; color:var(--navy); letter-spacing:.1em}
+  .sec-h h2{font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:clamp(1.5rem,2.6vw,2rem)}
+  .sec-h h2 em{font-family:var(--serif); font-style:italic; font-weight:400; color:var(--ink-faint); font-size:.7em; margin-left:.4rem}
+  .lead{color:var(--ink-soft); max-width:60ch; margin-bottom:var(--sp-6); line-height:1.75}
+  .lead b{color:var(--ink); font-weight:600}
+  h3.blk{font-size:1.05rem; font-weight:600; margin:var(--sp-7) 0 var(--sp-4); letter-spacing:-.01em}
+  h3.blk:first-of-type{margin-top:0}
+
+  /* 토큰 칩 */
+  .tok{font-family:var(--mono); font-size:.72rem; background:var(--paper-2); border:1px solid var(--line-strong); border-radius:6px; padding:.12rem .4rem; color:var(--ink); cursor:copy; transition:.15s; white-space:nowrap}
+  .tok:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .val{font-family:var(--mono); font-size:.72rem; color:var(--ink-faint)}
+
+  /* 색 스와치 */
+  .swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:var(--sp-4)}
+  .sw{border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; background:var(--card)}
+  .sw .chip{height:84px}
+  .sw .meta{padding:.7rem .8rem}
+  .sw .meta .row{display:flex; justify-content:space-between; align-items:center; gap:.5rem; margin-bottom:.25rem}
+  .sw .use{font-size:.82rem; color:var(--ink-soft); line-height:1.45}
+  .tones{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:var(--sp-3); margin-top:var(--sp-4)}
+  .tone{border-radius:var(--r-md); padding:var(--sp-5) var(--sp-4); color:#fff; min-height:92px; display:flex; flex-direction:column; justify-content:flex-end; gap:.2rem}
+  .tone b{font-size:.95rem} .tone span{font-family:var(--mono); font-size:.62rem; opacity:.85; letter-spacing:.04em}
+
+  /* 타이포 표본 */
+  .type-row{padding:var(--sp-5) 0; border-top:1px solid var(--line); display:grid; grid-template-columns:1fr 230px; gap:var(--sp-4); align-items:baseline}
+  @media(max-width:680px){ .type-row{grid-template-columns:1fr; gap:var(--sp-2)} }
+  .type-row:first-of-type{border-top:0}
+  .type-spec{font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); line-height:1.7}
+  .type-spec b{display:block; color:var(--ink); font-family:var(--sans); font-weight:600; font-size:.8rem; letter-spacing:0; text-transform:none; margin-bottom:.2rem}
+  .fonts{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:var(--sp-4)}
+  .font-card{border:1px solid var(--line); border-radius:var(--r-md); padding:var(--sp-5); background:var(--card)}
+  .font-card .big{font-size:2.4rem; line-height:1; margin-bottom:var(--sp-3)}
+  .font-card .nm{font-weight:600; font-size:.95rem} .font-card .use{font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; line-height:1.45}
+
+  /* 간격 바 */
+  .sp-row{display:grid; grid-template-columns:90px 1fr; gap:var(--sp-4); align-items:center; padding:.5rem 0}
+  .sp-bar{height:16px; background:var(--navy); border-radius:3px}
+  .sp-row .info{display:flex; gap:.6rem; align-items:baseline; flex-wrap:wrap}
+  .sp-row .use{color:var(--ink-soft); font-size:.85rem}
+
+  /* 그리드 데모 */
+  .grid-demo{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--col-gap); margin:var(--sp-4) 0}
+  .grid-demo .cell{background:color-mix(in srgb,var(--navy) 12%,var(--paper)); border:1px solid color-mix(in srgb,var(--navy) 22%,var(--paper)); border-radius:6px; height:46px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.6rem; color:var(--navy)}
+  .span6{grid-column:span 6} .span3{grid-column:span 3}
+  .ruler{display:flex; gap:var(--sp-4); flex-wrap:wrap; margin-top:var(--sp-4)}
+  .ruler .item{font-family:var(--mono); font-size:.68rem; color:var(--ink-soft); border:1px solid var(--line-strong); border-radius:var(--r-pill); padding:.35rem .7rem}
+
+  /* 데모 컨테이너 */
+  .demo{border:1px dashed var(--line-strong); border-radius:var(--r-md); padding:var(--sp-6); background:color-mix(in srgb,var(--card) 60%, var(--paper)); margin-bottom:var(--sp-3)}
+  .demo.dark{background:var(--ink); border-color:#333}
+  .cap{font-family:var(--mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:var(--sp-4)}
+
+  /* radius/line/elevation 데모 */
+  .rad-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:var(--sp-4)}
+  .rad{background:var(--card); border:1px solid var(--line-strong); height:90px; display:flex; align-items:flex-end; padding:.5rem; font-family:var(--mono); font-size:.62rem; color:var(--ink-faint)}
+
+  /* ───── 실제 포폴 컴포넌트 (라이브 예시) ───── */
+  .tag{font-family:var(--mono); font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); border:1px solid var(--line-strong); border-radius:var(--r-pill); padding:.3rem .65rem}
+  .row-wrap{display:flex; flex-wrap:wrap; gap:var(--sp-2)}
+  .wp-spec span{font-family:var(--mono); font-size:.63rem; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.3); border-radius:var(--r-pill); padding:.26rem .6rem}
+  .flow{display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-2); margin-top:var(--sp-2)}
+  .flow b{font-family:var(--mono); font-size:.64rem; font-weight:500; letter-spacing:.05em; text-transform:uppercase; color:var(--ink); background:var(--paper-2); border:1px solid var(--line-strong); border-radius:6px; padding:.32rem .55rem}
+  .flow i{color:var(--ink-faint); font-style:normal; font-size:.8rem}
+  .lang{display:inline-flex; border:1px solid var(--line-strong); border-radius:var(--r-pill); overflow:hidden}
+  .lang button{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; padding:.3rem .56rem; background:transparent; border:0; color:var(--ink-faint)}
+  .lang button.on{background:var(--ink); color:var(--paper)}
+  .dots{display:flex; gap:.85rem}
+  .dots button{width:9px; height:9px; border-radius:50%; border:1px solid var(--ink-faint); background:transparent; padding:0; transition:.25s}
+  .dots button.on{background:var(--ink); border-color:var(--ink); transform:scale(1.25)}
+  .wcard{position:relative; border-radius:var(--r-lg); overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:var(--sp-4); min-height:190px; padding:var(--sp-5); color:#fff; max-width:320px; background:#14564A}
+  .wcard .wc-top{display:flex; justify-content:space-between; align-items:flex-start; gap:var(--sp-3); font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; opacity:.92}
+  .wcard .wc-bot{display:flex; flex-direction:column}
+  .wcard h3{font-size:1.5rem; font-weight:600; letter-spacing:-.01em; display:flex; align-items:center; gap:.5rem; white-space:nowrap}
+  .wcard .one{margin-top:.35rem; font-size:.92rem; line-height:1.45; opacity:.92; max-width:34ch}
+  .group-label{display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap; padding-bottom:var(--sp-3); border-bottom:1px solid var(--line)}
+  .group-label b{font-size:1rem; font-weight:700; letter-spacing:-.01em}
+  .group-label > span{font-size:.9rem; color:var(--ink-soft)}
+  .metrics{display:flex; flex-wrap:wrap; gap:var(--sp-6) var(--sp-7); border-top:1px solid var(--line); padding-top:var(--sp-6)}
+  .metric-b .v{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1; letter-spacing:-.01em}
+  .metric-b .v.navy{color:var(--navy)}
+  .metric-b .l{margin-top:.5rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
+  .compare{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); max-width:560px}
+  @media(max-width:560px){.compare{grid-template-columns:1fr}}
+  .compare .col{border:1px solid var(--line); border-radius:var(--r-md); padding:1rem 1.15rem; background:var(--card)}
+  .compare .col.to{border-color:var(--navy); background:color-mix(in srgb,var(--navy) 4%, var(--card))}
+  .compare h6{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.6rem}
+  .compare .col.to h6{color:var(--navy)}
+  .compare ol{list-style:none; counter-reset:s; display:flex; flex-direction:column; gap:.34rem}
+  .compare li{font-size:.9rem; color:var(--ink-soft); counter-increment:s; display:flex; gap:.55rem; align-items:baseline}
+  .compare li::before{content:counter(s); font-family:var(--mono); font-size:.66rem; color:var(--ink-faint)}
+  .compare .col.to li{color:var(--ink)}
+  .fill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem; color:var(--gold); border:1px dashed var(--gold); border-radius:var(--r-sm); padding:.5rem .75rem; background:color-mix(in srgb,var(--gold) 9%,var(--paper))}
+  .fill::before{content:"✎"}
+
+  /* keep-all 비교 데모 */
+  .kb{display:flex; flex-wrap:wrap; gap:var(--sp-4)}
+  .kb .box{width:200px; max-width:100%; border:1px solid var(--line); border-radius:var(--r-md); padding:var(--sp-4); background:var(--card)}
+  .kb .box h6{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem}
+  .kb .bad{word-break:break-all}
+  .kb .good{word-break:keep-all}
+  .kb .bad h6{color:#B4503A} .kb .good h6{color:var(--navy)}
+
+  .note{margin-top:var(--sp-4); font-size:.88rem; color:var(--ink-soft); border-left:2px solid var(--gold); padding-left:var(--sp-4); line-height:1.6}
+
+  footer{border-top:1px solid var(--line); padding:var(--sp-8) var(--gutter); text-align:center; font-family:var(--mono); font-size:.66rem; color:var(--ink-faint); letter-spacing:.06em}
+
+  #toast{position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:.7rem; letter-spacing:.04em; padding:.6rem 1rem; border-radius:var(--r-pill); opacity:0; transition:.25s; pointer-events:none}
+  #toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body class="lang-ko">
+
+<header class="top">
+  <a class="brand" href="index.html"><b>KIM JINHYEON</b><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+  <div class="top-r">
+    <a class="nav-link" href="index.html"><span class="ko">← 포트폴리오</span><span class="en">← Portfolio</span></a>
+    <span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span>
+  </div>
+</header>
+
+<div class="shell">
+  <!-- 목차 -->
+  <nav class="toc">
+    <span class="lbl"><span class="ko">목차</span><span class="en">Contents</span></span>
+    <a href="#principles"><i>00</i> <span class="ko">원칙</span><span class="en">Principles</span></a>
+    <a href="#color"><i>01</i> <span class="ko">색</span><span class="en">Color</span></a>
+    <a href="#type"><i>02</i> <span class="ko">타이포그래피</span><span class="en">Typography</span></a>
+    <a href="#space"><i>03</i> <span class="ko">간격</span><span class="en">Spacing</span></a>
+    <a href="#layout"><i>04</i> <span class="ko">레이아웃·그리드</span><span class="en">Layout &amp; grid</span></a>
+    <a href="#shape"><i>05</i> <span class="ko">모서리·선·그림자</span><span class="en">Shape &amp; lines</span></a>
+    <a href="#motion"><i>06</i> <span class="ko">모션</span><span class="en">Motion</span></a>
+    <a href="#components"><i>07</i> <span class="ko">컴포넌트</span><span class="en">Components</span></a>
+    <a href="#voice"><i>08</i> <span class="ko">보이스</span><span class="en">Voice</span></a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <p class="eyebrow mono">Design System · 2026</p>
+      <h1><span class="ko">디자인도 감이 아니라, 규칙으로.</span><span class="en">Design by rules,<br>not by gut.</span></h1>
+      <p><span class="ko">색, 글자, 간격, 그리드, 컴포넌트, 움직임을 한곳에 정리했습니다. 이 값들은 모두 <b>토큰(token)</b>으로 저장돼 있어서, 한 곳만 바꾸면 사이트 전체가 같이 바뀝니다. 그래서 디자인이 매번 달라지지 않고 늘 같은 규칙 위에서 움직여요.</span><span class="en">Color, type, spacing, grid, components, motion — gathered in one place. Every value lives as a <b>token</b>, so changing it once updates the whole site. The design never drifts; it always moves on the same set of rules.</span></p>
+      <p class="meta"><span class="ko">단일 소스 · index.html 의 </span><span class="en">Single source · </span><span class="tok">:root</span><span class="ko"> · 토큰 칩을 누르면 이름이 복사됩니다</span><span class="en"> in index.html · click any chip to copy its name</span></p>
+    </div>
+
+    <!-- 00 원칙 -->
+    <section class="sec" id="principles">
+      <div class="sec-h"><span class="num">00</span><h2><span class="ko">원칙</span><span class="en">Principles</span> <em class="ko">principles</em></h2></div>
+      <p class="lead"><span class="ko">큰 결정 네 가지입니다. 세부 규칙은 전부 여기서 따라 나옵니다.</span><span class="en">Four big decisions. Every detailed rule follows from these.</span></p>
+      <h3 class="blk"><span class="ko">1 · 덜어내는 에디토리얼</span><span class="en">1 · Editorial, pared back</span></h3>
+      <p class="lead"><span class="ko">장식보다 여백과 위계로 말합니다. 색은 거의 흑백에 가깝게 쓰고, 강조는 네이비·골드 두 가지로만. 화면이 비어 보여도 그게 의도입니다.</span><span class="en">It speaks through whitespace and hierarchy, not ornament. Color stays near black-and-white; emphasis comes from just two — navy and gold. If a screen looks empty, that's intentional.</span></p>
+      <h3 class="blk"><span class="ko">2 · 한국어를 먼저 생각한 타이포</span><span class="en">2 · Typography that thinks in Korean first</span></h3>
+      <p class="lead"><span class="ko">줄바꿈이 단어 중간에서 끊기지 않도록 <b>keep-all</b>을 기본으로 둡니다. 한글은 Pretendard, 영문 제목은 Fraunces로 각 언어가 가장 자연스러운 모습이 되게 합니다.</span><span class="en"><b>keep-all</b> is the default so lines never break mid-word. Korean runs in Pretendard, English headings in Fraunces — each language at its most natural.</span></p>
+      <h3 class="blk"><span class="ko">3 · 4px 그리드 위의 간격</span><span class="en">3 · Spacing on a 4px grid</span></h3>
+      <p class="lead"><span class="ko">모든 여백은 4px의 배수입니다. 눈대중으로 띄우지 않고 정해진 스케일(<span class="tok">--sp-1</span>~<span class="tok">--sp-10</span>)에서 고릅니다. 그래서 화면마다 리듬이 일정해요.</span><span class="en">Every margin is a multiple of 4px. Nothing is spaced by eye — values come from a fixed scale (<span class="tok">--sp-1</span>–<span class="tok">--sp-10</span>), so the rhythm stays even across screens.</span></p>
+      <h3 class="blk"><span class="ko">4 · 이중 언어, 하나의 구조</span><span class="en">4 · Two languages, one structure</span></h3>
+      <p class="lead"><span class="ko">KO/EN을 토글로 전환하지만 레이아웃·간격·컴포넌트는 똑같습니다. 언어가 바뀌어도 같은 집 안에 있는 느낌을 유지합니다.</span><span class="en">KO/EN switch by toggle, but layout, spacing, and components stay identical. Change the language and you're still in the same house.</span></p>
+    </section>
+
+    <!-- 01 색 -->
+    <section class="sec" id="color">
+      <div class="sec-h"><span class="num">01</span><h2><span class="ko">색</span><span class="en">Color</span> <em class="ko">color</em></h2></div>
+      <p class="lead"><span class="ko">바탕은 따뜻한 오프화이트, 글자는 검정에 가까운 잉크. 강조는 <b>네이비</b>(링크·핵심 수치)와 <b>골드</b>(채울 자리 표시) 둘뿐입니다. 회색은 세 단계로 나눠 위계를 만듭니다.</span><span class="en">A warm off-white ground, near-black ink for text. Emphasis is just two: <b>navy</b> (links, key numbers) and <b>gold</b> (placeholders to fill). Grey comes in three steps to build hierarchy.</span></p>
+      <h3 class="blk"><span class="ko">기본 팔레트</span><span class="en">Base palette</span></h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#FAF8F4"></div><div class="meta"><div class="row"><span class="tok">--paper</span><span class="val">#FAF8F4</span></div><div class="use"><span class="ko">전체 배경. 따뜻한 종이 톤.</span><span class="en">Page background. Warm paper tone.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#F1EDE5"></div><div class="meta"><div class="row"><span class="tok">--paper-2</span><span class="val">#F1EDE5</span></div><div class="use"><span class="ko">한 단계 들어간 면. 카드 안쪽·구분 띠.</span><span class="en">One step in. Inside cards, divider bands.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#FFFFFF; box-shadow:inset 0 0 0 1px #E5E0D5"></div><div class="meta"><div class="row"><span class="tok">--card</span><span class="val">#FFFFFF</span></div><div class="use"><span class="ko">카드·칩 등 떠 있는 면.</span><span class="en">Raised surfaces — cards, chips.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#1B1A17"></div><div class="meta"><div class="row"><span class="tok">--ink</span><span class="val">#1B1A17</span></div><div class="use"><span class="ko">본문·제목 글자. 어두운 섹션 배경.</span><span class="en">Body &amp; heading text. Dark section backgrounds.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#56534B"></div><div class="meta"><div class="row"><span class="tok">--ink-soft</span><span class="val">#56534B</span></div><div class="use"><span class="ko">보조 본문. 설명 문장.</span><span class="en">Secondary text. Descriptions.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#8C877C"></div><div class="meta"><div class="row"><span class="tok">--ink-faint</span><span class="val">#8C877C</span></div><div class="use"><span class="ko">메타·라벨·캡션. 가장 약한 글자.</span><span class="en">Meta, labels, captions. The faintest text.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#E5E0D5"></div><div class="meta"><div class="row"><span class="tok">--line</span><span class="val">#E5E0D5</span></div><div class="use"><span class="ko">얇은 구분선·섹션 경계.</span><span class="en">Thin dividers, section edges.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#D6D0C2"></div><div class="meta"><div class="row"><span class="tok">--line-strong</span><span class="val">#D6D0C2</span></div><div class="use"><span class="ko">칩·카드 테두리. 조금 더 또렷한 선.</span><span class="en">Chip &amp; card borders. A bit more defined.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#0C3C60"></div><div class="meta"><div class="row"><span class="tok">--navy</span><span class="val">#0C3C60</span></div><div class="use"><span class="ko">강조 1. 링크·활성·핵심 수치.</span><span class="en">Accent 1. Links, active state, key numbers.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#B98B2E"></div><div class="meta"><div class="row"><span class="tok">--gold</span><span class="val">#B98B2E</span></div><div class="use"><span class="ko">강조 2. "채울 자리"(미정 수치) 전용.</span><span class="en">Accent 2. Reserved for placeholders (TBD numbers).</span></div></div></div>
+      </div>
+      <h3 class="blk"><span class="ko">프로젝트 정체성 색</span><span class="en">Project identity colors</span></h3>
+      <p class="lead"><span class="ko">케이스마다 색 하나를 줘서 페이지를 구분합니다. 작업 페이지의 헤더 배경에 쓰입니다.</span><span class="en">Each case gets one color to set its page apart. Used on the work-page header background.</span></p>
+      <div class="tones">
+        <div class="tone" style="background:#0C3C60"><b>RaiLink</b><span>--t-navy · #0C3C60</span></div>
+        <div class="tone" style="background:#211C16"><b>deokhong</b><span>--t-dark · #211C16</span></div>
+        <div class="tone" style="background:#14564A"><b>OPENPATH</b><span>--t-green · #14564A</span></div>
+        <div class="tone" style="background:#13287A"><b>Samsung</b><span>--t-blue · #13287A</span></div>
+        <div class="tone" style="background:#4B3D2C"><b>Genesis</b><span>--t-bronze · #4B3D2C</span></div>
+        <div class="tone" style="background:#1C2E70"><b>Korail-talk</b><span>--t-indigo · #1C2E70</span></div>
+      </div>
+      <p class="note"><span class="ko">접근성: 잉크(#1B1A17)와 페이퍼(#FAF8F4)의 대비는 약 15:1로 본문에 충분합니다. 어두운 배경 위 네이비는 잘 안 보여서, 그 경우엔 밝은 네이비 <span class="val">#7FB2D8</span>로 바꿔 씁니다.</span><span class="en">Accessibility: ink (#1B1A17) on paper (#FAF8F4) is about 15:1 contrast — plenty for body text. Navy reads poorly on dark backgrounds, so there it switches to a lighter navy <span class="val">#7FB2D8</span>.</span></p>
+    </section>
+
+    <!-- 02 타이포 -->
+    <section class="sec" id="type">
+      <div class="sec-h"><span class="num">02</span><h2><span class="ko">타이포그래피</span><span class="en">Typography</span> <em class="ko">type</em></h2></div>
+      <p class="lead"><span class="ko">글꼴 네 개가 역할을 나눠 맡습니다. 한글 본문·제목은 Pretendard, 영문 제목은 세리프인 Fraunces, 숫자·라벨·메타는 고정폭 JetBrains Mono입니다.</span><span class="en">Four typefaces split the roles. Korean body and headings in Pretendard, English headings in the serif Fraunces, and numbers, labels, and meta in monospaced JetBrains Mono.</span></p>
+      <div class="fonts">
+        <div class="font-card"><div class="big" style="font-family:var(--sans)">가나다 Aa</div><div class="nm">Pretendard</div><div class="use"><span class="ko">한글 본문·제목. 시스템의 기본 글꼴.</span><span class="en">Korean body &amp; headings. The system default.</span></div></div>
+        <div class="font-card"><div class="big serif" style="font-style:italic">Aa Bb</div><div class="nm">Fraunces</div><div class="use"><span class="ko">영문 디스플레이(제목·인용). 에디토리얼한 인상.</span><span class="en">English display (titles, quotes). An editorial feel.</span></div></div>
+        <div class="font-card"><div class="big" style="font-family:var(--sans-en)">Aa Bb</div><div class="nm">Inter Tight</div><div class="use"><span class="ko">영문 본문. 토글이 EN일 때 기본.</span><span class="en">English body. Default when the toggle is EN.</span></div></div>
+        <div class="font-card"><div class="big mono" style="font-size:2rem; letter-spacing:0; color:var(--ink)">123 Aa</div><div class="nm">JetBrains Mono</div><div class="use"><span class="ko">숫자·라벨·메타·태그. 대문자+자간으로.</span><span class="en">Numbers, labels, meta, tags. Uppercase with letter-spacing.</span></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">크기 스케일</span><span class="en">Size scale</span></h3>
+      <p class="lead"><span class="ko">화면 크기에 따라 늘었다 줄도록 <span class="tok">clamp()</span>로 잡았습니다. 큰 제목일수록 변화 폭이 큽니다.</span><span class="en">Set with <span class="tok">clamp()</span> so sizes grow and shrink with the screen. The bigger the heading, the wider the range.</span></p>
+      <div>
+        <div class="type-row"><div style="font-family:var(--sans); font-weight:700; letter-spacing:-.03em; line-height:1.1; font-size:clamp(2.4rem,5vw,3.4rem)"><span class="ko">영향력의 스케일</span><span class="en serif" style="font-weight:500">Impact at scale</span></div><div class="type-spec"><b>Display / Hero</b>clamp(2.6 → 5.4rem)<br>Pretendard 700 · KO<br>Fraunces 500 · EN</div></div>
+        <div class="type-row"><div style="font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:1.9rem"><span class="ko">작업 제목</span><span class="en">Case title</span></div><div class="type-spec"><b>Case title</b>clamp(2.4 → 4.2rem)<br><span class="ko">위계 2</span><span class="en">Level 2</span></div></div>
+        <div class="type-row"><div style="font-weight:500; font-size:1.5rem; line-height:1.4"><span class="ko">한 줄로 핵심을 말하는 문장.</span><span class="en">One line that says the core.</span></div><div class="type-spec"><b>Essence / Lead</b>clamp(1.3 → 1.9rem)<br><span class="ko">케이스 한 줄 요약</span><span class="en">One-line case summary</span></div></div>
+        <div class="type-row"><div style="font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:1.5rem"><span class="ko">섹션 제목</span><span class="en">Section title</span></div><div class="type-spec"><b>Section H2</b>clamp(1.5 → 2.1rem)</div></div>
+        <div class="type-row"><div style="font-size:1.1rem; line-height:1.72"><span class="ko">본문입니다. 실제 케이스 설명에 쓰는 크기예요. 한 줄이 너무 길지 않게 폭을 62자 정도로 제한합니다.</span><span class="en">Body text. The size used in real case write-ups. Line width is capped around 62 characters so lines never run too long.</span></div><div class="type-spec"><b>Body</b>1.1rem / line-height 1.72<br><span class="ko">측정 폭 max 62ch</span><span class="en">measure max 62ch</span></div></div>
+        <div class="type-row"><div class="mono" style="color:var(--ink)">META · LABEL · 2026</div><div class="type-spec"><b>Mono label</b>.66–.72rem<br><span class="ko">대문자 · 자간 .1em</span><span class="en">uppercase · tracking .1em</span></div></div>
+        <div class="type-row"><div class="serif" style="font-size:2.4rem; font-weight:500; color:var(--navy)">3.4×</div><div class="type-spec"><b>Metric number</b>Fraunces · <span class="ko">핵심 수치</span><span class="en">key figures</span><br><span class="ko">네이비 강조</span><span class="en">navy emphasis</span></div></div>
+      </div>
+      <p class="note"><span class="ko">읽기 규칙: 본문 줄 길이는 <span class="tok">max-width:62ch</span>로 제한하고, 줄간은 1.7 안팎. 한글 가독성을 위해 행간을 영문보다 살짝 넉넉히 둡니다.</span><span class="en">Reading rules: cap body line length at <span class="tok">max-width:62ch</span>, line-height around 1.7. Korean gets slightly more leading than English for readability.</span></p>
+    </section>
+
+    <!-- 03 간격 -->
+    <section class="sec" id="space">
+      <div class="sec-h"><span class="num">03</span><h2><span class="ko">간격</span><span class="en">Spacing</span> <em class="ko">spacing</em></h2></div>
+      <p class="lead"><span class="ko">모든 여백은 <b>4px의 배수</b>입니다. 아래 스케일에서만 값을 고르기 때문에, 컴포넌트 안쪽 여백부터 섹션 사이 간격까지 같은 리듬으로 맞춰집니다.</span><span class="en">Every margin is a multiple of <b>4px</b>. Values come only from the scale below, so everything from padding inside a component to the gap between sections shares one rhythm.</span></p>
+      <div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-1</span></div><div><div class="sp-bar" style="width:4px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-2</span></div><div><div class="sp-bar" style="width:8px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-3</span></div><div><div class="sp-bar" style="width:12px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-4</span></div><div><div class="sp-bar" style="width:16px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-5</span></div><div><div class="sp-bar" style="width:24px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-6</span></div><div><div class="sp-bar" style="width:32px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-7</span></div><div><div class="sp-bar" style="width:48px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-8</span></div><div><div class="sp-bar" style="width:64px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-9</span></div><div><div class="sp-bar" style="width:96px"></div></div></div>
+        <div class="sp-row"><div class="info" style="display:block"><span class="tok">--sp-10</span></div><div><div class="sp-bar" style="width:128px"></div></div></div>
+      </div>
+      <h3 class="blk"><span class="ko">언제 무엇을 쓰나</span><span class="en">When to use what</span></h3>
+      <p class="lead">
+        <span class="tok">--sp-2</span> <span class="ko">칩·태그 사이</span><span class="en">between chips &amp; tags</span> · &nbsp;
+        <span class="tok">--sp-4</span> <span class="ko">작은 요소 간격</span><span class="en">small element gaps</span> · &nbsp;
+        <span class="tok">--sp-5</span> <span class="ko">카드 안쪽 여백</span><span class="en">card padding</span> · &nbsp;
+        <span class="tok">--sp-6</span> <span class="ko">블록 사이</span><span class="en">between blocks</span> · &nbsp;
+        <span class="tok">--sp-7</span> <span class="ko">문단 묶음 사이</span><span class="en">between paragraph groups</span> · &nbsp;
+        <span class="tok">--sp-8</span> <span class="ko">큰 묶음 사이</span><span class="en">between large groups</span> · &nbsp;
+        <span class="tok">--sp-9~10</span> <span class="ko">화면(섹션) 사이.</span><span class="en">between screens (sections).</span>
+      </p>
+      <p class="note"><span class="ko">실제 예: 하단 태그(칩)는 위 <span class="tok">--sp-6</span>, 아래 <span class="tok">--sp-7</span>의 여백을 둬서 구분선과 붙지 않게 했습니다. 칩 사이 간격은 <span class="tok">--sp-2</span>.</span><span class="en">In practice: the footer tags (chips) sit with <span class="tok">--sp-6</span> above and <span class="tok">--sp-7</span> below so they never touch the divider. Gap between chips is <span class="tok">--sp-2</span>.</span></p>
+    </section>
+
+    <!-- 04 레이아웃 -->
+    <section class="sec" id="layout">
+      <div class="sec-h"><span class="num">04</span><h2><span class="ko">레이아웃·그리드</span><span class="en">Layout &amp; grid</span> <em class="ko">layout</em></h2></div>
+      <p class="lead"><span class="ko">콘텐츠는 가운데 정렬된 최대 <b>1180px</b> 폭 안에서 흐릅니다. 좌우 여백(거터)과 12칸 그리드, 섹션 리듬이 모두 토큰으로 정해져 있습니다.</span><span class="en">Content flows inside a centered max width of <b>1180px</b>. Side gutters, the 12-column grid, and section rhythm are all defined by tokens.</span></p>
+      <div class="ruler">
+        <span class="item"><span class="ko">컨테이너</span><span class="en">Container</span> <span class="tok">--wrap</span> 1180px</span>
+        <span class="item"><span class="ko">페이지 여백</span><span class="en">Page gutter</span> <span class="tok">--gutter</span> 20→56px</span>
+        <span class="item"><span class="ko">그리드 거터</span><span class="en">Grid gutter</span> <span class="tok">--col-gap</span> 12→18px</span>
+        <span class="item"><span class="ko">섹션 리듬</span><span class="en">Section rhythm</span> <span class="tok">--section-y</span> 80→144px</span>
+      </div>
+      <h3 class="blk"><span class="ko">12칸 그리드</span><span class="en">12-column grid</span></h3>
+      <p class="lead"><span class="ko">작업 인덱스 카드가 올라가는 격자입니다. 직접 만든 사이드 프로젝트는 6칸(<span class="tok">span 6</span>), 회사 케이스는 3칸(<span class="tok">span 3</span>)을 차지합니다.</span><span class="en">The grid the work-index cards sit on. Solo side projects take 6 columns (<span class="tok">span 6</span>), company cases take 3 (<span class="tok">span 3</span>).</span></p>
+      <div class="grid-demo">
+        <div class="cell">1</div><div class="cell">2</div><div class="cell">3</div><div class="cell">4</div><div class="cell">5</div><div class="cell">6</div><div class="cell">7</div><div class="cell">8</div><div class="cell">9</div><div class="cell">10</div><div class="cell">11</div><div class="cell">12</div>
+      </div>
+      <div class="grid-demo">
+        <div class="cell span6" style="background:color-mix(in srgb,var(--navy) 16%,var(--paper))"><span class="ko">span 6 — 사이드</span><span class="en">span 6 — solo</span></div>
+        <div class="cell span6" style="background:color-mix(in srgb,var(--navy) 16%,var(--paper))"><span class="ko">span 6 — 사이드</span><span class="en">span 6 — solo</span></div>
+        <div class="cell span3">span 3</div><div class="cell span3">span 3</div><div class="cell span3">span 3</div><div class="cell span3">span 3</div>
+      </div>
+      <h3 class="blk"><span class="ko">반응형 기준점</span><span class="en">Responsive breakpoints</span></h3>
+      <p class="lead"><span class="ko">화면이 좁아지면 단계적으로 단을 줄입니다.</span><span class="en">As the screen narrows, columns collapse in stages.</span></p>
+      <div class="ruler">
+        <span class="item">880px — <span class="ko">문서 목차 접힘</span><span class="en">doc TOC collapses</span></span>
+        <span class="item">860px — <span class="ko">작업 카드 1단</span><span class="en">work cards to 1 column</span></span>
+        <span class="item">820px — <span class="ko">소개·역량 1단</span><span class="en">about &amp; skills to 1 column</span></span>
+        <span class="item">760px — <span class="ko">임팩트 2단</span><span class="en">impact to 2 columns</span></span>
+        <span class="item">700px — <span class="ko">상단 메뉴·도트 숨김</span><span class="en">nav menu &amp; dots hidden</span></span>
+        <span class="item">640px — <span class="ko">비교/AB 블록 1단</span><span class="en">compare/AB blocks to 1 column</span></span>
+      </div>
+    </section>
+
+    <!-- 05 모서리·선·그림자 -->
+    <section class="sec" id="shape">
+      <div class="sec-h"><span class="num">05</span><h2><span class="ko">모서리·선·그림자</span><span class="en">Shape &amp; lines</span> <em class="ko">shape</em></h2></div>
+      <h3 class="blk"><span class="ko">둥근 모서리</span><span class="en">Rounded corners</span></h3>
+      <p class="lead"><span class="ko">요소 크기에 따라 네 단계로 씁니다. 작을수록 덜 둥글게.</span><span class="en">Four steps by element size. The smaller it is, the less rounded.</span></p>
+      <div class="rad-grid">
+        <div class="rad" style="border-radius:8px">--r-sm · 8px</div>
+        <div class="rad" style="border-radius:12px">--r-md · 12px</div>
+        <div class="rad" style="border-radius:16px">--r-lg · 16px</div>
+        <div class="rad" style="border-radius:999px">--r-pill · 999px</div>
+      </div>
+      <p class="note"><span class="ko">쓰임: 작은 블록·뱃지 <span class="tok">--r-sm</span>, 비교/AB 카드 <span class="tok">--r-md</span>, 작업 카드·이미지 <span class="tok">--r-lg</span>, 칩·토글·버튼 <span class="tok">--r-pill</span>.</span><span class="en">Use: small blocks &amp; badges <span class="tok">--r-sm</span>, compare/AB cards <span class="tok">--r-md</span>, work cards &amp; images <span class="tok">--r-lg</span>, chips, toggles &amp; buttons <span class="tok">--r-pill</span>.</span></p>
+      <h3 class="blk"><span class="ko">선</span><span class="en">Lines</span></h3>
+      <p class="lead"><span class="ko">선은 두 종류. 섹션을 가르는 얇은 <span class="tok">--line</span>, 카드 테두리처럼 조금 또렷한 <span class="tok">--line-strong</span>. 모두 1px입니다.</span><span class="en">Two kinds of line: thin <span class="tok">--line</span> to divide sections, slightly stronger <span class="tok">--line-strong</span> for card borders. Both are 1px.</span></p>
+      <div class="demo" style="padding:0">
+        <div style="border-bottom:1px solid var(--line); padding:var(--sp-4); font-size:.9rem; color:var(--ink-soft)"><span class="ko">위/아래를 <span class="tok">--line</span> 으로 가른 모습</span><span class="en">Top/bottom split with <span class="tok">--line</span></span></div>
+        <div style="padding:var(--sp-4)"><span style="display:inline-block; border:1px solid var(--line-strong); border-radius:var(--r-md); padding:.6rem 1rem; font-size:.9rem"><span class="ko">--line-strong 테두리</span><span class="en">--line-strong border</span></span></div>
+      </div>
+      <h3 class="blk"><span class="ko">그림자</span><span class="en">Shadow</span></h3>
+      <p class="lead"><span class="ko">그림자는 거의 안 씁니다. 작업 카드에 마우스를 올렸을 때만 살짝 떠오르는 정도.</span><span class="en">Shadow is rarely used — just a slight lift when you hover a work card.</span></p>
+      <div class="demo"><div style="background:var(--card); border-radius:var(--r-lg); box-shadow:var(--shadow); width:220px; height:90px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.66rem; color:var(--ink-faint)">--shadow (hover)</div></div>
+    </section>
+
+    <!-- 06 모션 -->
+    <section class="sec" id="motion">
+      <div class="sec-h"><span class="num">06</span><h2><span class="ko">모션</span><span class="en">Motion</span> <em class="ko">motion</em></h2></div>
+      <p class="lead"><span class="ko">움직임은 거들 뿐, 주인공이 아닙니다. 같은 이징 <span class="tok">--ease</span> 하나로 통일해 일관된 느낌을 줍니다.</span><span class="en">Motion supports; it's never the star. One shared easing, <span class="tok">--ease</span>, keeps everything feeling consistent.</span></p>
+      <h3 class="blk"><span class="ko">패턴</span><span class="en">Patterns</span></h3>
+      <p class="lead">
+        <span class="ko"><b>등장(reveal)</b> — 스크롤로 보일 때 22px 아래에서 떠오르며 0.8초 페이드인. 한 묶음은 0.08초씩 시차(d1~d4)를 둡니다.<br>
+        <b>숫자 카운트업</b> — 임팩트 수치가 0에서 목표값까지 1.1초에 차오릅니다(ease-out).<br>
+        <b>스냅 스크롤</b> — 홈은 화면 단위로 부드럽게 멈춥니다(<span class="tok">scroll-snap-type: y proximity</span>).<br>
+        <b>호버</b> — 카드는 4px 떠오르고, 화살표·링크는 0.2~0.35초 전환.</span>
+        <span class="en"><b>Reveal</b> — on scroll into view, elements rise 22px and fade in over 0.8s. Items in a group stagger by 0.08s (d1–d4).<br>
+        <b>Count-up</b> — impact numbers climb from 0 to target over 1.1s (ease-out).<br>
+        <b>Snap scroll</b> — the home settles screen by screen (<span class="tok">scroll-snap-type: y proximity</span>).<br>
+        <b>Hover</b> — cards lift 4px; arrows and links transition over 0.2–0.35s.</span>
+      </p>
+      <p class="note"><span class="ko">접근성: <span class="tok">prefers-reduced-motion</span>을 켠 사용자에겐 애니메이션과 스냅을 끕니다. 움직임에 민감한 사람을 위한 기본 배려입니다.</span><span class="en">Accessibility: for users with <span class="tok">prefers-reduced-motion</span> on, animation and snap are turned off — a default courtesy for motion-sensitive people.</span></p>
+    </section>
+
+    <!-- 07 컴포넌트 -->
+    <section class="sec" id="components">
+      <div class="sec-h"><span class="num">07</span><h2><span class="ko">컴포넌트</span><span class="en">Components</span> <em class="ko">components</em></h2></div>
+      <p class="lead"><span class="ko">위 토큰들로 조립한 실제 부품입니다. 아래는 사이트에서 그대로 쓰는 모습이에요.</span><span class="en">Real parts assembled from the tokens above. Below is exactly how they appear on the site.</span></p>
+
+      <h3 class="blk"><span class="ko">태그 / 칩</span><span class="en">Tag / chip</span></h3>
+      <div class="demo"><div class="cap">.tag — <span class="ko">기술·역할 키워드</span><span class="en">tech &amp; role keywords</span></div><div class="row-wrap"><span class="tag">Campaign</span><span class="tag">One-page</span><span class="tag">Copywriting</span><span class="tag">Next.js</span></div></div>
+
+      <h3 class="blk"><span class="ko">스펙 칩 (어두운 헤더용)</span><span class="en">Spec chip (for dark headers)</span></h3>
+      <div class="demo dark"><div class="cap" style="color:rgba(255,255,255,.5)">.wp-spec — <span class="ko">작업 페이지 헤더의 팀·역할</span><span class="en">team &amp; role in work-page headers</span></div><div class="row-wrap"><span style="font-family:var(--mono); font-size:.63rem; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.26rem .6rem"><span class="ko">단독 그로스 PM</span><span class="en">Sole Growth PM</span></span><span style="font-family:var(--mono); font-size:.63rem; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.26rem .6rem"><span class="ko">팀 6명</span><span class="en">Team of 6</span></span><span style="font-family:var(--mono); font-size:.63rem; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.26rem .6rem">GA4</span></div></div>
+
+      <h3 class="blk"><span class="ko">프로세스 흐름</span><span class="en">Process flow</span></h3>
+      <div class="demo"><div class="cap">.flow — <span class="ko">사고 과정·단계</span><span class="en">thinking steps</span></div><div class="flow"><b>Problem</b><i>→</i><b>Hypothesis</b><i>→</i><b>Experiment</b><i>→</i><b>Validation</b></div></div>
+
+      <h3 class="blk"><span class="ko">언어 토글 · 네비 도트</span><span class="en">Language toggle · nav dots</span></h3>
+      <div class="demo"><div class="cap">.lang / .dots — <span class="ko">상태 표시</span><span class="en">state indicators</span></div><div style="display:flex; gap:var(--sp-6); align-items:center"><span class="lang"><button class="on">KO</button><button>EN</button></span><span class="dots"><button class="on"></button><button></button><button></button><button></button><button></button></span></div></div>
+
+      <h3 class="blk"><span class="ko">작업 카드</span><span class="en">Work card</span></h3>
+      <div class="demo"><div class="cap"><span class="ko">.wcard — 상단 라벨 / 하단 제목·한 줄. 큰 숫자는 박지 않음(아래 임팩트 수치가 전담)</span><span class="en">.wcard — top label / bottom title &amp; one-liner. No big numbers (impact stats below handle that)</span></div>
+        <div class="wcard"><div class="wc-top"><span>Product Manager</span><span>2023</span></div><div class="wc-bot"><h3>OPENPATH →</h3><div class="one"><span class="ko">신규 교육 플랫폼을 만들고, 결제 전환을 3.4배로.</span><span class="en">Built a new edtech platform, lifted payment conversion 3.4×.</span></div></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">그룹 라벨</span><span class="en">Group label</span></h3>
+      <div class="demo"><div class="cap"><span class="ko">.group-label — 작업을 묶는 머리말 (직접 만든 것 / 회사에서)</span><span class="en">.group-label — heading that groups work (solo / company)</span></div>
+        <p class="group-label"><b><span class="ko">직접 만든 것</span><span class="en">Built solo</span></b><span><span class="ko">0→1, 기획부터 개발까지 혼자</span><span class="en">0→1, from planning to code, alone</span></span></p>
+      </div>
+
+      <h3 class="blk"><span class="ko">임팩트 수치</span><span class="en">Impact numbers</span></h3>
+      <div class="demo"><div class="cap">.metrics / .metric-b — <span class="ko">결과 강조</span><span class="en">result emphasis</span></div>
+        <div class="metrics"><div class="metric-b"><div class="v">3×</div><div class="l"><span class="ko">가입 전환</span><span class="en">sign-up</span></div></div><div class="metric-b"><div class="v navy">3.4×</div><div class="l"><span class="ko">결제 전환</span><span class="en">payment</span></div></div><div class="metric-b"><div class="v">N=7,130</div><div class="l"><span class="ko">31일 A/B 표본</span><span class="en">31-day A/B sample</span></div></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">비교 블록 (AS-IS / TO-BE)</span><span class="en">Compare block (AS-IS / TO-BE)</span></h3>
+      <div class="demo"><div class="cap">.compare — <span class="ko">전·후 또는 두 안 비교</span><span class="en">before/after or two options</span></div>
+        <div class="compare"><div class="col"><h6>AS-IS</h6><ol><li><span class="ko">기기 선택</span><span class="en">Device</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li></ol></div><div class="col to"><h6>TO-BE</h6><ol><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 완료</span><span class="en">Done</span></li></ol></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">채울 자리</span><span class="en">Placeholder</span></h3>
+      <div class="demo"><div class="cap"><span class="ko">.fill — 아직 못 채운 실측 수치 표시(골드 점선)</span><span class="en">.fill — marks real numbers not yet filled (gold dashed)</span></div><span class="fill"><span class="ko">방문자 · 인스타 유입 · 득표 — 직접 채우기</span><span class="en">visitors · referrals · votes — fill in</span></span></div>
+
+      <h3 class="blk"><span class="ko">섹션 제목 패턴</span><span class="en">Section-heading pattern</span></h3>
+      <div class="demo"><div class="cap"><span class="ko">번호(mono) + 제목 — 일관된 섹션 머리</span><span class="en">number (mono) + title — consistent section heads</span></div>
+        <div style="display:flex; align-items:baseline; gap:var(--sp-4)"><span class="mono" style="color:var(--navy)">01</span><span style="font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:1.6rem"><span class="ko">프로젝트</span><span class="en">Projects</span></span></div>
+      </div>
+    </section>
+
+    <!-- 08 보이스 -->
+    <section class="sec" id="voice">
+      <div class="sec-h"><span class="num">08</span><h2><span class="ko">보이스</span><span class="en">Voice</span> <em class="ko">voice</em></h2></div>
+      <p class="lead"><span class="ko">디자인만큼 글도 시스템입니다. 케이스는 늘 같은 흐름으로, 쉬운 문장으로 씁니다.</span><span class="en">Writing is as much a system as design. Cases always follow the same flow, in plain sentences.</span></p>
+      <h3 class="blk"><span class="ko">케이스 구조</span><span class="en">Case structure</span></h3>
+      <div class="flow"><b><span class="ko">문제 (맥락+근본원인)</span><span class="en">Problem (context + root cause)</span></b><i>→</i><b><span class="ko">접근 (가설·트레이드오프)</span><span class="en">Approach (hypothesis &amp; trade-offs)</span></b><i>→</i><b><span class="ko">실행</span><span class="en">Execution</span></b><i>→</i><b><span class="ko">결과·배움</span><span class="en">Result &amp; learning</span></b></div>
+      <p class="lead" style="margin-top:var(--sp-4)"><span class="ko">증상이 아니라 진짜 원인을 짚고, 왜 그 결정을 했는지 논리를 보여주고, 무엇이 증명됐는지로 닫습니다. 불릿 대신 자연스럽게 이어지는 문단으로요.</span><span class="en">Name the real cause, not the symptom; show the logic behind each decision; close with what was proven. In flowing paragraphs, not bullets.</span></p>
+
+      <h3 class="blk"><span class="ko">한국어 줄바꿈 (keep-all)</span><span class="en">Korean line breaks (keep-all)</span></h3>
+      <p class="lead"><span class="ko">단어가 줄 끝에서 쪼개지면 읽기 흐름이 나빠집니다. <span class="tok">word-break:keep-all</span>로 어절(띄어쓰기) 단위로만 끊기게 합니다.</span><span class="en">When a word splits at the line end, reading stumbles. <span class="tok">word-break:keep-all</span> breaks only at spaces (between words).</span></p>
+      <div class="kb">
+        <div class="box bad"><h6>✕ <span class="ko">기본</span><span class="en">Default</span> (break-all)</h6>서비스 기획자는 영향력의 스케일을 좇습니다.</div>
+        <div class="box good"><h6>✓ keep-all</h6>서비스 기획자는 영향력의 스케일을 좇습니다.</div>
+      </div>
+      <p class="note"><span class="ko">왼쪽은 단어 중간에서 끊기고, 오른쪽은 띄어쓰기 단위로 깔끔하게 넘어갑니다. 제목은 여기에 <span class="tok">text-wrap:balance</span>를 더해 줄 길이를 고르게 맞춥니다.</span><span class="en">Left breaks mid-word; right wraps cleanly at spaces. Headings add <span class="tok">text-wrap:balance</span> on top to even out line lengths. (The sample stays in Korean — it's what keep-all is for.)</span></p>
+
+      <h3 class="blk"><span class="ko">이중 언어</span><span class="en">Two languages</span></h3>
+      <p class="lead"><span class="ko">KO/EN을 같은 자리에 두고 토글로 바꿉니다. 한국어는 Pretendard, 영어 제목은 Fraunces 세리프로 — 같은 내용도 각 언어에 맞는 표정을 갖습니다.</span><span class="en">KO and EN live in the same spot, swapped by toggle. Korean in Pretendard, English headings in Fraunces serif — the same content wears the right face for each language.</span></p>
+    </section>
+  </main>
+</div>
+
+<footer>© 2026 Kim Jinhyeon · Design System v1 · <span class="ko">단일 소스: index.html</span><span class="en">single source: index.html</span></footer>
+<div id="toast">복사됨</div>
+
+<script>
+(function(){
+  // 언어 토글 (포트폴리오와 'lang' 키 공유 — 페이지 이동해도 유지)
+  var body=document.body, doc=document.documentElement;
+  var koBtn=document.getElementById('ko-btn'), enBtn=document.getElementById('en-btn');
+  function setLang(l){
+    var en=(l==='en');
+    body.classList.toggle('lang-en', en);
+    body.classList.toggle('lang-ko', !en);
+    doc.lang = en ? 'en' : 'ko';
+    koBtn.classList.toggle('on', !en);
+    enBtn.classList.toggle('on', en);
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  var saved='ko'; try{ saved = localStorage.getItem('lang') || 'ko'; }catch(e){}
+  setLang(saved);
+  koBtn.onclick=function(){ setLang('ko'); };
+  enBtn.onclick=function(){ setLang('en'); };
+
+  // 토큰 칩 클릭 → 이름 복사
+  var toast=document.getElementById('toast'), t;
+  document.querySelectorAll('.tok').forEach(function(el){
+    el.addEventListener('click', function(){
+      var txt=el.textContent.trim();
+      try{ navigator.clipboard.writeText(txt); }catch(e){}
+      toast.textContent = txt + (body.classList.contains('lang-en') ? ' copied' : ' 복사됨');
+      toast.classList.add('show');
+      clearTimeout(t); t=setTimeout(function(){ toast.classList.remove('show'); },1200);
+    });
+  });
+
+  // 목차 스크롤-스파이: 지금 보고 있는 섹션을 목차에서 강조
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var spyMap = {};
+  tocLinks.forEach(function(a){ spyMap[a.getAttribute('href').slice(1)] = a; });
+  var spySections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  function spy(){
+    if(!spySections.length) return;
+    var line = window.innerHeight * 0.3, current = spySections[0].id;
+    spySections.forEach(function(s){ if(s.getBoundingClientRect().top <= line) current = s.id; });
+    tocLinks.forEach(function(a){ a.classList.toggle('active', a === spyMap[current]); });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('resize', spy);
+  spy();
+})();
+</script>
+</body>
+</html>
