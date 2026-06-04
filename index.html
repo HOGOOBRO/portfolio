@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>김진현 — 서비스 기획자 · Kim Jinhyeon</title>
+<meta name="description" content="영향력의 스케일을 좇는 서비스 기획자 김진현. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23FAF8F4' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FAF8F4; --paper-2:#F1EDE5; --card:#FFFFFF;
+    --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
+    --line:#E5E0D5; --line-strong:#D6D0C2;
+    --navy:#0C3C60; --gold:#B98B2E;
+    --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+    --sans-en:'Inter Tight','Pretendard Variable',system-ui,sans-serif;
+    --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --wrap:1180px;
+    /* ── spacing scale (4px base) ── */
+    --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+    --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:6rem; --sp-10:8rem;
+    /* ── layout: page gutter · grid gutter · section rhythm ── */
+    --gutter:clamp(1.25rem,5vw,3.5rem);
+    --col-gap:clamp(.75rem,1.4vw,1.125rem);
+    --section-y:clamp(5rem,12vh,9rem);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.7;
+    word-break:keep-all; overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  body.lang-en{font-family:var(--sans-en); word-break:normal}
+  ::selection{background:var(--navy); color:#fff}
+  a{color:inherit; text-decoration:none}
+  button{font:inherit; cursor:pointer}
+  .ko-only{} .en-only{}
+  body.lang-ko .en{display:none !important}
+  body.lang-en .ko{display:none !important}
+
+  .mono{font-family:var(--mono); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-faint)}
+  .serif{font-family:var(--serif)}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); width:100%}
+
+  /* balanced, meaning-unit wrapping for headings & lead text (KR) */
+  h1,h2,h3,.lead,.essence,.balance{text-wrap:balance}
+  .lead,.copy{text-wrap:pretty}
+
+  /* ── top bar ── */
+  .top{position:fixed; inset:0 0 auto 0; z-index:80; display:flex; align-items:center; justify-content:space-between;
+       padding:var(--sp-3) var(--gutter); transition:background .3s, border-color .3s; border-bottom:1px solid transparent}
+  .top.solid{background:color-mix(in srgb,var(--paper) 86%, transparent); backdrop-filter:saturate(140%) blur(10px); border-bottom-color:var(--line)}
+  .brand{display:flex; flex-direction:column; gap:.35rem; line-height:1.2}
+  .brand b{font-family:var(--mono); font-weight:500; font-size:.82rem; letter-spacing:.16em}
+  .brand span{font-size:.7rem; color:var(--ink-faint)}
+  .top-r{display:flex; align-items:center; gap:clamp(.7rem,2vw,1.5rem)}
+  .nav-link{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+  .nav-link:hover{color:var(--ink)}
+  .clock{font-family:var(--mono); font-size:.7rem; color:var(--ink-faint); white-space:nowrap}
+  .lang{display:inline-flex; border:1px solid var(--line-strong); border-radius:999px; overflow:hidden}
+  .lang button{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; padding:.3rem .56rem; background:transparent; border:0; color:var(--ink-faint)}
+  .lang button.on{background:var(--ink); color:var(--paper)}
+  @media(max-width:700px){ .hide-sm{display:none} }
+
+  /* ── views ── */
+  .view{display:none}
+  body.mode-home #view-home{display:block}
+  body.mode-work #view-work{display:block}
+  body.mode-home{overflow:hidden}
+
+  #view-home{height:100dvh; overflow-y:auto; scroll-snap-type:y proximity}
+  .panel{min-height:100dvh; display:flex; flex-direction:column; justify-content:center;
+         scroll-snap-align:start; padding:var(--sp-9) 0 var(--sp-7); position:relative}
+  @media (prefers-reduced-motion:reduce){ #view-home{scroll-snap-type:none; scroll-behavior:auto} }
+
+  /* nav dots */
+  .dots{position:fixed; right:max(1rem,2vw); top:50%; transform:translateY(-50%); z-index:70; display:flex; flex-direction:column; gap:.85rem}
+  body.mode-work .dots{display:none}
+  .dots button{width:9px; height:9px; border-radius:50%; border:1px solid var(--ink-faint); background:transparent; padding:0; transition:.25s}
+  .dots button.on{background:var(--ink); border-color:var(--ink); transform:scale(1.25)}
+  @media(max-width:700px){ .dots{display:none} }
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1; transform:none}
+  .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1; transform:none} }
+
+  /* ── hero panel ── */
+  #p-hero .eyebrow{margin-bottom:1.6rem}
+  .hero-h{font-weight:700; letter-spacing:-.03em; line-height:1.12; font-size:clamp(2.6rem,7vw,5.4rem); max-width:15ch}
+  body.lang-en .hero-h{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; line-height:1.04}
+  .hero-sub{margin-top:1.6rem; font-size:clamp(1.05rem,1.8vw,1.3rem); color:var(--ink-soft); max-width:42ch; line-height:1.6}
+  .scroll-cue{position:absolute; left:50%; bottom:2rem; transform:translateX(-50%); font-family:var(--mono); font-size:.64rem; letter-spacing:.2em; color:var(--ink-faint); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem}
+  .scroll-cue i{width:1px; height:34px; background:var(--line-strong); position:relative; overflow:hidden}
+  .scroll-cue i::after{content:""; position:absolute; inset:0; background:var(--ink); animation:cue 1.8s ease-in-out infinite}
+  @keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+  /* ── impact panel ── */
+  #p-impact{background:var(--ink); color:var(--paper); scroll-snap-align:start}
+  #p-impact .eyebrow{color:rgba(250,248,244,.55)}
+  .imp-h{font-family:var(--serif); font-weight:400; font-size:clamp(1.7rem,3.4vw,2.6rem); line-height:1.25; max-width:20ch; margin-bottom:2.6rem}
+  body.lang-ko .imp-h{font-family:var(--sans); font-weight:600}
+  .imp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; border-top:1px solid rgba(250,248,244,.2); padding-top:2rem}
+  @media(max-width:760px){.imp-grid{grid-template-columns:repeat(2,1fr); gap:1.6rem 1.4rem}}
+  .imp .v{font-family:var(--serif); font-weight:500; font-size:clamp(2.4rem,6vw,4rem); line-height:1; letter-spacing:-.02em}
+  .imp .v.navy{color:#7FB2D8}
+  .imp .l{margin-top:.7rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(250,248,244,.6); line-height:1.5}
+  .imp-foot{margin-top:2.6rem; font-size:clamp(1rem,1.6vw,1.18rem); color:rgba(250,248,244,.85); max-width:44ch; line-height:1.6}
+
+  /* ── work index panel ── */
+  #p-work .sec-h{display:flex; align-items:baseline; gap:1rem; margin-bottom:1.8rem}
+  .sec-h .ix{font-family:var(--mono); font-size:.7rem; color:var(--ink-faint)}
+  .sec-h h2{font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,2.6vw,2.1rem)}
+  body.lang-ko .sec-h h2{font-family:var(--sans); font-weight:700; letter-spacing:-.02em}
+  .work-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--col-gap)}
+  .sec-note{color:var(--ink-soft); font-size:1rem; max-width:54ch; margin:-.4rem 0 var(--sp-6); line-height:1.65}
+  .group-label{display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap; margin:0 0 var(--sp-4); padding-bottom:var(--sp-3); border-bottom:1px solid var(--line)}
+  .group-label b{font-size:1rem; font-weight:700; letter-spacing:-.01em}
+  .group-label > span{font-size:.9rem; color:var(--ink-soft)}
+  .work-grid + .group-label{margin-top:var(--sp-6)}
+  .wcard{position:relative; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end;
+         min-height:230px; padding:var(--sp-5); color:#fff; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; isolation:isolate; gap:var(--sp-4)}
+  .wcard{justify-content:space-between}
+  .wcard:hover{transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(0,0,0,.5)}
+  .wcard.lg{grid-column:span 6}
+  .wcard.sm{grid-column:span 3; min-height:200px}
+  @media(max-width:860px){ .wcard.lg{grid-column:span 12} .wcard.sm{grid-column:span 6} }
+  @media(max-width:520px){ .wcard.sm{grid-column:span 12; min-height:150px} }
+  .wcard .bg{position:absolute; inset:0; z-index:-2; background-size:cover; background-position:center}
+  .wcard .scrim{position:absolute; inset:0; z-index:-1}
+  .wcard .wc-top{display:flex; justify-content:space-between; align-items:flex-start; gap:var(--sp-3); font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; opacity:.92}
+  .wcard .wc-bot{display:flex; flex-direction:column}
+  .wcard h3{font-size:1.5rem; font-weight:600; letter-spacing:-.01em; display:flex; align-items:center; gap:.5rem; white-space:nowrap}
+  .wcard.lg h3{font-size:1.9rem}
+  .wcard.sm h3{font-size:1.3rem}
+  body.lang-en .wcard h3{font-family:var(--serif); font-weight:500}
+  .wcard .one{margin-top:.35rem; font-size:.92rem; line-height:1.45; opacity:.92; max-width:34ch}
+  .wcard .metric{font-family:var(--serif); font-weight:500; font-size:2rem; line-height:1; margin-bottom:.2rem}
+  .wcard .arrow{font-family:var(--mono); font-size:.95rem; opacity:0; transform:translateX(-5px); transition:.25s}
+  .wcard:hover .arrow{opacity:1; transform:none}
+
+  /* ── about panel ── */
+  #p-about{background:var(--paper-2)}
+  .about-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(2rem,5vw,4.5rem); align-items:center}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr; gap:2.4rem}}
+  .about-lead{font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,2.8vw,2.1rem); line-height:1.32}
+  body.lang-ko .about-lead{font-family:var(--sans); font-weight:600; letter-spacing:-.02em; line-height:1.4}
+  .about-lead em{font-style:italic; color:var(--navy)}
+  body.lang-ko .about-lead em{font-style:normal}
+  .about-copy{margin-top:1.2rem; color:var(--ink-soft); line-height:1.75; max-width:46ch}
+  .about-copy b{color:var(--ink); font-weight:600}
+  .tl{display:grid; grid-template-columns:5rem 1fr; gap:1rem; padding:1rem 0; border-top:1px solid var(--line-strong)}
+  .tl:first-child{border-top:0}
+  .tl .yr{font-family:var(--mono); font-size:.72rem; color:var(--navy)}
+  .tl h5{font-size:1rem; font-weight:600}
+  .tl p{color:var(--ink-soft); font-size:.9rem; line-height:1.5; margin-top:.2rem}
+
+  /* ── contact panel ── */
+  #p-contact{background:var(--ink); color:var(--paper)}
+  .ct-h{font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5vw,3.6rem); line-height:1.08; max-width:16ch; letter-spacing:-.01em}
+  body.lang-ko .ct-h{font-family:var(--sans); font-weight:600; letter-spacing:-.02em}
+  .ct-links{margin-top:2.6rem; display:grid; grid-template-columns:repeat(2,minmax(0,250px)); gap:1rem 3rem}
+  .ct{display:flex; flex-direction:column; gap:.15rem; padding:.85rem 0; border-top:1px solid rgba(250,248,244,.2)}
+  .ct small{font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(250,248,244,.5)}
+  .ct a,.ct span{font-size:1.05rem; color:var(--paper); transition:.2s}
+  .ct a:hover{opacity:.7}
+  .ct .note{font-family:var(--mono); font-size:.6rem; color:#D9B25A}
+  .ct-foot{margin-top:3rem; font-family:var(--mono); font-size:.66rem; color:rgba(250,248,244,.5); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+
+  /* ── work page ── */
+  #view-work{padding-bottom:0}
+  .wp{display:none}
+  .wp.show{display:block; animation:fade .5s ease}
+  @keyframes fade{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}
+  .wp-hero{color:#fff; padding:var(--sp-10) 0 var(--sp-7); position:relative; overflow:hidden}
+  .wp-hero .wrap{position:relative; z-index:1}
+  .back{display:inline-flex; align-items:center; gap:.4rem; font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.8); margin-bottom:2.2rem}
+  .back:hover{color:#fff}
+  .wp-kicker{font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; opacity:.85}
+  .wp-title{font-size:clamp(2.4rem,6vw,4.2rem); font-weight:700; letter-spacing:-.03em; line-height:1.04; margin:.5rem 0 .8rem}
+  body.lang-en .wp-title{font-family:var(--serif); font-weight:500; letter-spacing:-.01em}
+  .wp-meta{font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; opacity:.85}
+  .wp-essence{font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.4; max-width:24ch; margin-top:1.8rem; font-weight:500}
+  body.lang-en .wp-essence{font-family:var(--serif); font-weight:400; font-style:italic; max-width:30ch}
+  .wp-figure{margin-top:2.4rem; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.04); max-width:560px}
+  .wp-figure img{display:block; width:100%; height:auto}
+
+  .wp-body{padding:clamp(var(--sp-7),7vw,var(--sp-9)) 0}
+  .wp-sections{display:grid; gap:clamp(var(--sp-6),4vw,var(--sp-8)); max-width:760px}
+  .wp-sec h4{font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.7rem}
+  .wp-sec p{font-size:1.1rem; line-height:1.72; color:var(--ink); max-width:62ch}
+  .wp-sec p b{font-weight:600}
+  .wp-sec p.dim{color:var(--ink-soft)}
+  .metrics{margin-top:var(--sp-8); display:flex; flex-wrap:wrap; gap:var(--sp-6) var(--sp-7); border-top:1px solid var(--line); padding-top:var(--sp-6)}
+  .metric-b .v{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1; letter-spacing:-.01em}
+  .metric-b .v.navy{color:var(--navy)}
+  .metric-b .l{margin-top:.5rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
+  .fill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem; color:var(--gold); border:1px dashed var(--gold); border-radius:8px; padding:.5rem .75rem; background:color-mix(in srgb,var(--gold) 9%,var(--paper))}
+  .fill::before{content:"✎"}
+  .wp-tags{margin:var(--sp-6) 0 var(--sp-7); display:flex; flex-wrap:wrap; gap:var(--sp-2)}
+  .tag{font-family:var(--mono); font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); border:1px solid var(--line-strong); border-radius:999px; padding:.3rem .65rem}
+  .wp-nav{border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:var(--sp-4); padding:var(--sp-7) 0 var(--sp-9)}
+  .wp-nav a{display:flex; flex-direction:column; gap:.2rem; font-size:1.15rem; font-weight:600}
+  .wp-nav a small{font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); font-weight:400}
+  .wp-nav a.next{text-align:right; margin-left:auto}
+  .wp-nav a:hover{color:var(--navy)}
+
+  /* spec row, process flow, compare */
+  .wp-spec{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.45rem}
+  .wp-spec span{font-family:var(--mono); font-size:.63rem; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.26rem .6rem}
+  .flow{display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-2); margin-top:var(--sp-2)}
+  .flow b{font-family:var(--mono); font-size:.64rem; font-weight:500; letter-spacing:.05em; text-transform:uppercase; color:var(--ink); background:var(--paper-2); border:1px solid var(--line-strong); border-radius:6px; padding:.32rem .55rem}
+  .flow i{color:var(--ink-faint); font-style:normal; font-size:.8rem}
+  .compare{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); margin-top:var(--sp-2)}
+  @media(max-width:640px){.compare{grid-template-columns:1fr}}
+  .compare .col{border:1px solid var(--line); border-radius:12px; padding:1rem 1.15rem; background:var(--card)}
+  .compare .col.to{border-color:var(--navy); background:color-mix(in srgb,var(--navy) 4%, var(--card))}
+  .compare h6{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.6rem}
+  .compare .col.to h6{color:var(--navy)}
+  .compare ol{list-style:none; counter-reset:s; display:flex; flex-direction:column; gap:.34rem}
+  .compare li{font-size:.9rem; color:var(--ink-soft); counter-increment:s; display:flex; gap:.55rem; align-items:baseline}
+  .compare li::before{content:counter(s); font-family:var(--mono); font-size:.66rem; color:var(--ink-faint)}
+  .compare .col.to li{color:var(--ink)}
+  .ab{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); margin-top:var(--sp-2)}
+  @media(max-width:640px){.ab{grid-template-columns:1fr}}
+  .ab .col{border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem}
+  .ab .col.win{border-color:var(--navy); background:color-mix(in srgb,var(--navy) 4%, var(--card))}
+  .ab .tag-ab{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
+  .ab .col.win .tag-ab{color:var(--navy)}
+  .ab .row{display:flex; justify-content:space-between; gap:1rem; padding:.4rem 0; border-top:1px solid var(--line); font-size:.92rem}
+  .ab .row:first-of-type{border-top:0; margin-top:.4rem}
+  .ab .row b{font-family:var(--serif); font-weight:500}
+
+  /* tones */
+  .t-navy .wp-hero{background:#0C3C60}
+  .t-dark .wp-hero{background:#211C16}
+  .t-green .wp-hero{background:#14564A}
+  .t-blue .wp-hero{background:#13287A}
+  .t-bronze .wp-hero{background:#4B3D2C}
+  .t-indigo .wp-hero{background:#1C2E70}
+  .wp-hero::after{content:""; position:absolute; right:-12%; top:-40%; width:60%; height:180%; background:radial-gradient(closest-side, rgba(255,255,255,.10), transparent 70%); z-index:0}
+</style>
+</head>
+<body class="lang-ko mode-home">
+
+<header class="top" id="top">
+  <a class="brand" href="#/" data-home><b>KIM JINHYEON</b><span class="ko">서비스 기획자 · 서울</span><span class="en">Service Designer · Seoul</span></a>
+  <div class="top-r">
+    <a class="nav-link hide-sm" href="#/" data-home><span class="ko">홈</span><span class="en">Home</span></a>
+    <a class="nav-link hide-sm" href="#/" data-scroll="p-work"><span class="ko">작업</span><span class="en">Work</span></a>
+    <a class="nav-link hide-sm" href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+    <span class="clock hide-sm" id="clock">SEOUL</span>
+    <span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span>
+  </div>
+</header>
+
+<!-- ════════════════ HOME ════════════════ -->
+<main id="view-home" class="view">
+  <aside class="dots" id="dots">
+    <button data-go="p-hero" class="on" aria-label="Intro"></button>
+    <button data-go="p-impact" aria-label="Impact"></button>
+    <button data-go="p-work" aria-label="Work"></button>
+    <button data-go="p-about" aria-label="About"></button>
+    <button data-go="p-contact" aria-label="Contact"></button>
+  </aside>
+
+  <!-- hero -->
+  <section class="panel" id="p-hero"><div class="wrap">
+    <p class="eyebrow mono rv">Service Designer · Seoul · 2026</p>
+    <h1 class="hero-h rv d1">
+      <span class="ko">승무원에서 카페 사장,<br>그리고 서비스 기획자.</span>
+      <span class="en">Cabin crew, café owner,<br>then service designer.</span>
+    </h1>
+    <p class="hero-sub rv d2">
+      <span class="ko">회사에선 글로벌 기업 웹사이트를 기획하고,<br>틈틈이 제 서비스도 직접 만듭니다.</span>
+      <span class="en">At work I plan global enterprise websites,<br>and build my own on the side.</span>
+    </p>
+  </div>
+  <div class="scroll-cue"><span class="ko">스크롤</span><span class="en">Scroll</span><i></i></div>
+  </section>
+
+  <!-- impact -->
+  <section class="panel" id="p-impact"><div class="wrap">
+    <p class="eyebrow mono rv"><span class="ko">감이 아니라, 근거로</span><span class="en">Evidence over instinct</span></p>
+    <h2 class="imp-h rv d1"><span class="ko">카페 매출부터 100개국 서비스까지,<br>문제는 달라도 결정의 기준은 같았습니다.</span><span class="en">From café revenue to a service in 100 countries — the problems differed, but how I decided didn't.</span></h2>
+    <div class="imp-grid">
+      <div class="imp rv d1"><div class="v"><span class="num" data-to="6.5" data-dec="1" data-suffix="×">6.5×</span></div><div class="l"><span class="ko">카페 월매출 · 5개월</span><span class="en">Café revenue · 5 months</span></div></div>
+      <div class="imp rv d2"><div class="v navy"><span class="num" data-to="3.4" data-dec="1" data-suffix="×">3.4×</span></div><div class="l"><span class="ko">결제 전환 · OPENPATH</span><span class="en">Payment conv. · OPENPATH</span></div></div>
+      <div class="imp rv d3"><div class="v"><span class="num" data-to="100" data-dec="0" data-suffix="+">100+</span></div><div class="l"><span class="ko">가입 경험 통일 · Samsung Care+</span><span class="en">markets unified · Samsung Care+</span></div></div>
+      <div class="imp rv d4"><div class="v serif">NOW</div><div class="l"><span class="ko">LG B2B 글로벌 사이트 · 기획 중</span><span class="en">LG B2B global site · in progress</span></div></div>
+    </div>
+    <p class="imp-foot rv d2"><span class="ko">카페와 OPENPATH에서는 광고를 A/B로 시험해 답을 찾았고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해 가입 여정을 다시 설계했어요. 도구는 달랐지만, 감이 아니라 근거로 정한다는 원칙은 같았습니다.</span><span class="en">At the café and OPENPATH I A/B-tested ads to find the answer; at Samsung Care+ I used data to see where people actually decide, and rebuilt the sign-up journey. The tools differed — the principle didn't: decide from evidence, not instinct.</span></p>
+  </div></section>
+
+  <!-- work index -->
+  <section class="panel" id="p-work"><div class="wrap">
+    <div class="sec-h rv"><span class="ix">01</span><h2><span class="ko">프로젝트</span><span class="en">Work</span></h2></div>
+    <p class="sec-note rv"><span class="ko">직접 만든 서비스 둘, 회사에서 맡은 프로젝트 넷.</span><span class="en">Two products I built myself, four I led at work.</span></p>
+
+    <p class="group-label rv"><b><span class="ko">직접 만든 것</span><span class="en">Built solo</span></b><span><span class="ko">0→1, 기획부터 개발까지 혼자</span><span class="en">0→1, from planning to code, alone</span></span></p>
+    <div class="work-grid">
+      <a class="wcard lg rv" href="#/railink" style="background:#0C3C60">
+        <div class="wc-top"><span><span class="ko">근무 스케줄 앱</span><span class="en">Schedule app</span></span><span>2025 →</span></div>
+        <div class="wc-bot"><h3>RaiLink <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">교대 근무자가 동료와 쉬는 날을 맞춰 보는 앱.</span><span class="en">An app for shift workers to line up days off with colleagues.</span></p></div>
+      </a>
+      <a class="wcard lg rv d1" href="#/deokhong">
+        <div class="bg" style="background-image:url('https://deokhong.com/images/hero.png')"></div>
+        <div class="scrim" style="background:linear-gradient(180deg,rgba(20,16,12,.55),rgba(20,16,12,.18) 42%,rgba(20,16,12,.88))"></div>
+        <div class="wc-top"><span><span class="ko">선거 캠페인 사이트</span><span class="en">Campaign site</span></span><span>2026</span></div>
+        <div class="wc-bot"><h3>deokhong.com <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">무소속 후보의 캠페인을 한 페이지로<br>— 결과는 당선.</span><span class="en">An independent's whole campaign in one page<br>— and he won.</span></p></div>
+      </a>
+    </div>
+
+    <p class="group-label rv"><b><span class="ko">회사에서</span><span class="en">At work</span></b><span><span class="ko">기획·PM으로 맡은 프로젝트</span><span class="en">projects I led as planner &amp; PM</span></span></p>
+    <div class="work-grid">
+      <a class="wcard sm rv" href="#/openpath" style="background:#14564A">
+        <div class="wc-top"><span>Product Manager</span><span>2023</span></div>
+        <div class="wc-bot"><h3>OPENPATH <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">신규 교육 플랫폼을 만들고, 결제 전환을 3.4배로.</span><span class="en">Built a new edtech platform; payment conversion 3.4×.</span></p></div>
+      </a>
+      <a class="wcard sm rv d1" href="#/samsung" style="background:#13287A">
+        <div class="wc-top"><span>UX 기획 · 듀오톤</span><span>2023–24</span></div>
+        <div class="wc-bot"><h3>Samsung Care+ <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">나라마다 다르던 가입 여정을 100여 개국 하나로.</span><span class="en">A country-by-country sign-up, unified across 100+ markets.</span></p></div>
+      </a>
+      <a class="wcard sm rv d2" href="#/genesis" style="background:#4B3D2C">
+        <div class="wc-top"><span>UX 기획 · 이탈리아 마켓</span><span>2025</span></div>
+        <div class="wc-bot"><h3>Genesis <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">반복되던 법적 문구를 골라 쓰는 시스템으로.</span><span class="en">Repeated legal copy, turned into a reusable system.</span></p></div>
+      </a>
+      <a class="wcard sm rv d3" href="#/korail" style="background:#1C2E70">
+        <div class="wc-top"><span>UX 리서치 · 듀오톤</span><span>2024</span></div>
+        <div class="wc-bot"><h3>Korail-talk <span class="arrow">→</span></h3>
+          <p class="one"><span class="ko">한 화면에 몰린 예약을 네 단계로 정리.</span><span class="en">A crowded one-screen booking, re-split into four steps.</span></p></div>
+      </a>
+    </div>
+  </div></section>
+
+  <!-- about -->
+  <section class="panel" id="p-about"><div class="wrap">
+    <div class="about-grid">
+      <div class="rv">
+        <p class="about-lead"><span class="ko">거쳐 온 자리는 다 달랐지만,<br><em>결정하는 방식은 늘 같았어요.</em></span><span class="en">The roles were all different,<br><em>but how I decided never changed.</em></span></p>
+        <p class="about-copy"><span class="ko">제주항공 승무원으로 사회생활을 시작했어요. 카페를 공동 창업하면서는 마케팅을 책이 아니라 매출로 배웠습니다 — 네이버 광고를 A/B로 시험하고 잘 되는 쪽에 집중해, 5개월 만에 월매출을 <b>6.5배</b>로 키웠죠. IT로 옮긴 뒤엔 문제에 따라 방법을 바꿨어요. OPENPATH에서는 가설을 A/B로 검증해 결제 전환을 <b>3.4배</b>로 올렸고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해, 나라마다 다르던 가입 여정을 <b>100여 개국</b> 하나로 정리했습니다. 지금은 Genesis 유럽을 거쳐 LG의 B2B 글로벌 사이트를 기획하고 있습니다.</span><span class="en">I started my career as cabin crew at Jeju Air. Co-founding a café, I learned marketing not from books but from revenue — A/B-testing Naver ads and doubling down on what worked grew monthly sales <b>6.5×</b> in five months. In software I changed the method to fit the problem: at OPENPATH I validated a hypothesis with an A/B test and lifted payment conversion <b>3.4×</b>; at Samsung Care+ I used data to see where people actually decide, and unified a country-by-country sign-up across <b>100+ markets</b>. Now, after the Genesis EU site, I'm planning LG's B2B global site.</span></p>
+        <p class="about-copy" style="margin-top:1.1rem"><span class="ko"><b>그 외 —</b> Sketch·XD로 흩어져 있던 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch와 Surfit에 디자인·기획 글을 꾸준히 발행합니다.</span><span class="en"><b>Also —</b> I consolidated a scattered Sketch/XD design system into one Figma library, and write on design and planning at Brunch and Surfit.</span></p>
+      </div>
+      <div class="rv d1">
+        <div class="tl"><div class="yr">2019–21</div><div><h5><span class="ko">제주항공 · 객실 승무원</span><span class="en">Jeju Air · Cabin Crew</span></h5><p><span class="ko">2년간 국내·국제선 비행.</span><span class="en">Two years on domestic and international flights.</span></p></div></div>
+        <div class="tl"><div class="yr">2022–23</div><div><h5><span class="ko">ex WHITE · 카페 공동 창업</span><span class="en">ex WHITE · Café co-founder</span></h5><p><span class="ko">광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위.</span><span class="en">Ad A/B → 6.5× revenue · #3 on Naver Place.</span></p></div></div>
+        <div class="tl"><div class="yr">2023–25</div><div><h5><span class="ko">듀오톤 · PM·UX 기획</span><span class="en">Duotone · PM · UX</span></h5><p><span class="ko">신규 교육 플랫폼 출시 · Samsung Care+ 가입 여정 표준화 · Korail 사용성 테스트.</span><span class="en">Launched a new edtech platform · standardized Samsung Care+ sign-up · Korail usability tests.</span></p></div></div>
+        <div class="tl"><div class="yr">2025 –</div><div><h5><span class="ko">Concentrix Catalyst · UX 기획</span><span class="en">Concentrix Catalyst · UX</span></h5><p><span class="ko">Genesis 유럽(이탈리아 마켓) 론칭 · 현재 LG B2B 글로벌 사이트 기획.</span><span class="en">Launched Genesis EU (Italy market) · now planning LG's B2B global site.</span></p></div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- contact -->
+  <section class="panel" id="p-contact"><div class="wrap">
+    <p class="eyebrow mono rv" style="color:rgba(250,248,244,.55); margin-bottom:1.3rem; letter-spacing:.22em">Design less, solve more</p>
+    <h2 class="ct-h rv"><span class="ko">다음 문제를<br>함께 풀고 싶습니다.</span><span class="en">Let's solve<br>the next problem together.</span></h2>
+    <div class="ct-links rv d1">
+      <div class="ct"><small>Email</small><a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a></div>
+      <div class="ct"><small>Writing</small><a href="https://brunch.co.kr" target="_blank" rel="noopener">Brunch <span class="note">· URL 교체</span></a></div>
+      <div class="ct"><small>Build · RaiLink</small><a href="https://railink.app" target="_blank" rel="noopener">railink.app ↗</a></div>
+      <div class="ct"><small>Build · Campaign</small><a href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com ↗</a></div>
+      <div class="ct"><small><span class="ko">디자인 시스템</span><span class="en">Design system</span></small><a href="design-system.html"><span class="ko">보러 가기 →</span><span class="en">View →</span></a></div>
+    </div>
+    <div class="ct-foot rv d2"><span>© 2026 Kim Jinhyeon</span><span class="ko">서울에서</span><span class="en">From Seoul</span></div>
+  </div></section>
+</main>
+
+<!-- ════════════════ WORK PAGES ════════════════ -->
+<main id="view-work" class="view">
+
+  <!-- RAILINK -->
+  <article class="wp t-navy" id="work-railink" data-work="railink">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">직접 만든 것 · 1인 빌드</span><span class="en">Solo build</span></p>
+      <h1 class="wp-title">RaiLink</h1>
+      <p class="wp-meta"><span class="ko">기획·UX·디자인·프론트엔드 · 2025 →</span><span class="en">Strategy · UX · Design · Front-end · 2025 →</span></p>
+      <p class="wp-essence"><span class="ko">근무표가 제각각인 사람끼리, 같이 쉬는 날을 어떻게 찾지?</span><span class="en">When everyone works different shifts, how do you ever find a day off together?</span></p>
+      <figure class="wp-figure"><img src="https://railink.app/og-image.png" alt="RaiLink" loading="lazy" /></figure>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">문제</span><span class="en">Problem</span></h4><p><span class="ko">교대 근무는 달력이 매달 새로 짜입니다. 그래서 같은 팀이어도 친구와 쉬는 날이 언제 겹치는지 알려면, 서로 근무표를 캡처해서 한 장씩 눈으로 대조해야 했어요. 저도 승무원 때 매번 그랬고, 약속을 잡으려다 지쳐 포기한 적이 많았습니다. 곰곰이 보면 문제는 '일정이 안 맞는 것'이 아니었어요. 맞는 날은 분명히 있는데, 그걸 찾는 데 드는 품이 너무 컸다는 게 진짜 문제였습니다.</span><span class="en">Shift work rewrites the calendar every month. So even on one team, finding when your days off overlap with a friend's meant screenshotting each other's rosters and comparing them line by line. I did exactly that as cabin crew, and often gave up on plans out of sheer hassle. Looked at closely, the problem wasn't that schedules clashed — overlapping free days clearly existed. The real problem was that the effort to find them was too high.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">접근</span><span class="en">Approach</span></h4><p><span class="ko">그래서 질문을 바꿨습니다. '누가 언제 일하나'가 아니라 '우리가 언제 같이 비나'를 보여주면 된다고요. 핵심은 비교라는 행위 자체를 없애는 것이었어요. 사람마다 색을 정하고 모두의 근무·휴무를 같은 달력 위에 겹쳐 두면, 비는 날은 굳이 찾지 않아도 저절로 드러납니다. 사용자가 머릿속으로 하던 대조를, 화면이 대신하게 만든 거죠.</span><span class="en">So I reframed the question — from "who works when" to "when are we all free." The point was to remove the act of comparing altogether. Give each person a color, stack everyone's work and days off on one calendar, and the free days surface on their own, no cross-checking needed. The screen does the comparison the user used to run in their head.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">실행</span><span class="en">What I built</span></h4><p><span class="ko">여기서부터는 군더더기를 덜어내는 일이었습니다. 비교할 사람을 묶는 그룹, 한눈에 들어오는 색 구분, '이번 달 근무 25일·휴무 5일' 같은 요약, 그리고 처음 들어온 사람도 빈 화면을 만나지 않도록 데모 계정을 미리 채워 뒀어요. 기획부터 UX·디자인·프론트엔드까지 혼자 만들었고, 설치 없이 바로 쓰도록 PWA로 배포했습니다.</span><span class="en">From there it was about stripping friction away. A group to bundle the people you compare, color coding that reads instantly, a summary like "25 work days, 5 off this month," and a pre-filled demo account so first-timers never hit a blank screen. I built it all solo — planning, UX, design, front-end — and shipped it as a PWA so there's nothing to install.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">결과</span><span class="en">Impact</span></h4><p class="dim"><span class="ko">지금은 실제 교대 근무자들이 쓰는 도구로 살아 있습니다. 작은 불편을 끝까지 파고들어, 문제 정의부터 출시까지 직접 해낸 프로젝트예요 — 기획자도 제품을 끝까지 만들 수 있다는 걸 보여줍니다.</span><span class="en">It's live and used by real shift workers today. I took one small frustration all the way — from defining the problem to shipping it — proof that a planner can carry a product end to end.</span></p>
+      <div class="metrics"><span class="fill"><span class="ko">활성 유저 · 리텐션 · 그룹 수 — 직접 채우기</span><span class="en">active users · retention · groups — fill in</span></span></div></div>
+    </div>
+    <div class="wp-tags"><span class="tag">0→1</span><span class="tag">Solo build</span><span class="tag">PWA</span><span class="tag">Scheduling</span><span class="tag">React</span></div>
+    <div class="wp-nav"><a class="prev" href="#/korail"><small><span class="ko">이전</span><span class="en">Prev</span></small>Korail-talk</a><a class="next" href="#/deokhong"><small><span class="ko">다음</span><span class="en">Next</span></small>deokhong.com</a></div>
+    </div></div>
+  </article>
+
+  <!-- DEOKHONG -->
+  <article class="wp t-dark" id="work-deokhong" data-work="deokhong">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">직접 만든 것 · 1인 빌드</span><span class="en">Solo build</span></p>
+      <h1 class="wp-title">deokhong.com</h1>
+      <p class="wp-meta"><span class="ko">기획·정보구조·카피·디자인·퍼블리싱 · 2026</span><span class="en">Strategy · IA · Copy · Design · Publishing · 2026</span></p>
+      <p class="wp-essence"><span class="ko">조직도 예산도 없는 무소속 후보, 온라인에서 어떻게 알릴까.</span><span class="en">An independent candidate with no party and no budget — how do you get the word out online?</span></p>
+      <figure class="wp-figure"><img src="assets/deokhong-detail.png" alt="deokhong.com 디자인" loading="lazy" onerror="this.onerror=null;this.src='https://deokhong.com/images/hero.png'" /></figure>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">문제</span><span class="en">Problem</span></h4><p><span class="ko">2026년 지방선거, 제주 조천읍에 출마한 무소속 도의원 후보였습니다. 정당 후보는 현수막도, 조직도, 콜센터도 갖추고 시작하지만 무소속에겐 그게 전부 없어요. 가진 건 후보의 38년 행정 경력과 '말보다 실천'이라는 메시지뿐이었죠. 그래서 풀어야 할 문제는 분명했습니다. 짧은 선거 기간 동안, 적은 비용으로, 이름을 처음 듣는 유권자에게도 '이 사람이 누구고 왜 찍어야 하는지'를 한 번에 납득시키는 것.</span><span class="en">2026 local elections — an independent council candidate in Jocheon, Jeju. Party candidates start with banners, an organization, even a call center; an independent has none of it. All we had was the candidate's 38 years in public administration and a message: action over words. So the problem was clear — in a short campaign, on a small budget, make even a first-time voter grasp who he is and why to vote for him, in one pass.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">구조 — 훑어도 남게</span><span class="en">Structure</span></h4><p><span class="ko">사람들은 선거 사이트를 정독하지 않습니다. 그래서 '읽게 만들기'가 아니라 '훑어도 남게 만들기'를 택했어요. 위에서 아래로 내려가는 동안 자연스럽게 설득되도록 순서를 짰습니다. 맨 위는 기호·슬로건과 선거까지 남은 시간으로 '지금 정해야 한다'는 긴장을 주는 자리예요. 이어지는 6대 정책은 무엇을 할 사람인지, 약력 타임라인은 믿을 만한 사람인지를 보여 줍니다. 주민 증언이 '남들도 인정한다'는 확신을 더하고, 마지막 보도자료가 '실재하는 후보'라는 신뢰로 마무리합니다.</span><span class="en">People don't study campaign sites, so instead of "make them read," I aimed for "make it stick at a glance." I ordered one page to persuade as you scroll. The top creates urgency — ballot number, slogan, a countdown to the vote. Below it, six policy pillars say what he'll do, while a career timeline shows he's credible. Resident testimony adds social proof, and a press feed closes the case that he's a real, covered candidate.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">실행</span><span class="en">Execution</span></h4><p><span class="ko">카피는 표준어 대신 제주 방언('한번 써 봅서!')으로 풀어, 지역 사람에게 옆집 어른의 말처럼 들리게 했습니다. 구현은 유세 현장에서 공유되는 링크라 대부분 휴대폰으로 열린다는 전제로, 모바일을 먼저 설계하고 PC를 맞췄어요. 카카오톡·인스타그램에 붙어도 깨지지 않도록 OG 이미지와 메타까지 직접 챙겼고요. 정보구조·카피·디자인·퍼블리싱·SEO를 전부 혼자, Next.js로 만들었습니다.</span><span class="en">The copy uses Jeju dialect ("han-beon sseo bopseo!") instead of standard Korean, so to locals it sounds like the elder next door. Since the link gets shared on the trail and opens mostly on phones, I designed mobile first and fit desktop to it, and handled the OG image and metadata myself so it wouldn't break in KakaoTalk or Instagram. IA, copy, design, publishing, SEO — all solo, in Next.js.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">결과</span><span class="en">Impact</span></h4><p class="dim"><span class="ko">선거 기간 내내 캠페인의 공식 디지털 거점이었고, 보도자료와 SNS가 모두 이 한 페이지로 모였습니다. 그리고 후보는 이번 지방선거에서 <b>당선됐어요.</b> 같은 사이트는 지금 당선인의 공식 페이지로 이어지고 있습니다.</span><span class="en">It was the campaign's official digital hub throughout the race, with press and social all pointing back to this one page. And the candidate <b>won the seat</b> — the same site now lives on as the elected member's official page.</span></p>
+      <div class="metrics"><span class="fill"><span class="ko">방문자 · 인스타 유입 수치 — 직접 채우기</span><span class="en">visitor &amp; referral numbers — fill in</span></span></div></div>
+    </div>
+    <div class="wp-tags"><span class="tag">Campaign</span><span class="tag">One-page</span><span class="tag">Copywriting</span><span class="tag">Next.js</span></div>
+    <div class="wp-nav"><a class="prev" href="#/railink"><small><span class="ko">이전</span><span class="en">Prev</span></small>RaiLink</a><a class="next" href="#/openpath"><small><span class="ko">다음</span><span class="en">Next</span></small>OPENPATH</a></div>
+    </div></div>
+  </article>
+
+  <!-- OPENPATH -->
+  <article class="wp t-green" id="work-openpath" data-work="openpath">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">듀오톤 · Product Manager</span><span class="en">Duotone · Product Manager</span></p>
+      <h1 class="wp-title">OPENPATH</h1>
+      <p class="wp-meta"><span class="ko">IT 교육 플랫폼 0→1 · 2023.06–12</span><span class="en">Edtech platform 0→1 · 2023.06–12</span></p>
+      <div class="wp-spec"><span class="ko">단독 그로스 PM</span><span class="en">Sole Growth PM</span><span class="ko">팀 6명 · PM2·강사2·디자인2</span><span class="en">Team of 6</span><span>GA4</span></div>
+      <p class="wp-essence"><span class="ko">"무료 강의를 써본 사람이 결제한다" — 이 가설을 31일간 검증했습니다.</span><span class="en">"People who try a free lesson convert" — a hypothesis I tested over 31 days.</span></p>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">문제 — 트래픽은 있는데 전환이 없다</span><span class="en">Problem — traffic, no conversion</span></h4><p><span class="ko">신규 IT 교육 플랫폼의 0→1을 단독 PM으로 맡았습니다. 광고를 돌리니 사람은 들어왔어요. 2023년 8월 2주 동안 <b>2,550명</b>. 그런데 대부분 그냥 나갔습니다. 퍼널을 AARRR로 끊어 보니 막힌 곳은 유입이 아니라 그다음이었어요. <b>가입 전환 5%, 결제 전환 1.6%.</b> 트래픽을 더 사는 건 밑 빠진 독에 물 붓기였고, 진짜 풀어야 할 곳은 들어온 사람을 붙잡는 Activation 단계였습니다.</span><span class="en">I led the 0→1 of a new edtech platform as sole PM. Ads brought people in — <b>2,550</b> over two weeks in Aug 2023 — but most just left. Cutting the funnel with AARRR, the blockage wasn't acquisition; it was everything after: <b>5% sign-up, 1.6% payment.</b> Buying more traffic was pouring water into a leaky bucket. The real thing to fix was Activation — holding the people who already arrived.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">가설 — 광고가 아니라 경험</span><span class="en">Hypothesis</span></h4><p><span class="ko">흔한 답은 '광고 소재를 더 잘 만들자'입니다. 하지만 클릭률은 이미 나쁘지 않았어요. 그래서 질문을 뒤집었습니다. 들어온 사람이 결제까지 안 가는 이유가 관심이 부족해서가 아니라, 제품을 충분히 겪어보지 못해서라면? 무료 강의를 한 번이라도 들어본 사람은 가치를 머리로 이해한 게 아니라 몸으로 느꼈을 테니 결제로 이어질 거라고 봤습니다. 가설을 두 줄로 좁혔어요.</span><span class="en">The usual answer is "make better ads." But click-through was already fine. So I flipped the question: what if people don't convert for lack of interest, but because they never really experienced the product? Someone who takes even one free lesson has <em>felt</em> the value, not just understood it — so they should convert. I narrowed it to two claims.</span></p>
+      <div class="flow"><b><span class="ko">① 무료 강의는 가입을 유도한다</span><span class="en">① free lessons drive sign-up</span></b><b><span class="ko">② 수강 경험은 결제로 이어진다</span><span class="en">② the experience drives payment</span></b></div></div>
+      <div class="wp-sec"><h4><span class="ko">실험 — 31일 A/B</span><span class="en">Experiment — 31-day A/B</span></h4><p><span class="ko">검증은 단순하게 설계했습니다. Meta 광고를 두 갈래로 나눠, 한쪽(A)은 일반적인 서비스 소개로, 다른 쪽(B)은 무료 강의 자체를 미끼로 유입을 받았어요. <b>2023년 10월, 31일간, 7,130명</b>을 GA4 이벤트로 추적했고, 두 집단의 유일한 차이는 '제품을 먼저 경험했는가'였습니다.</span><span class="en">I kept the test simple. I split Meta ads two ways — group A entered through a standard service pitch, group B through the free lesson itself as the hook. <b>31 days, N=7,130</b> (Oct 2023), tracked via GA4. The only difference between the groups was whether they'd experienced the product first.</span></p>
+      <div class="flow"><b>Problem</b><i>→</i><b>Hypothesis</b><i>→</i><b>Experiment</b><i>→</i><b>Validation</b></div></div>
+      <div class="wp-sec"><h4><span class="ko">결과 — 경험이 전환을 만들었다</span><span class="en">Result — experience converts</span></h4><p><span class="ko">결과는 가설대로였습니다. 무료 강의를 거쳐 들어온 B 집단이 가입과 결제 모두 크게 앞섰어요.</span><span class="en">The result matched the hypothesis — group B, entering through the free lesson, led on both sign-up and payment.</span></p>
+      <div class="ab">
+        <div class="col"><div class="tag-ab">A · <span class="ko">일반 유입</span><span class="en">standard</span></div>
+          <div class="row"><span class="ko">방문자</span><span class="en">visitors</span><b>4,650</b></div>
+          <div class="row"><span class="ko">가입 전환</span><span class="en">sign-up</span><b>5.0%</b></div>
+          <div class="row"><span class="ko">결제 전환</span><span class="en">payment</span><b>3.2%</b></div>
+        </div>
+        <div class="col win"><div class="tag-ab">B · <span class="ko">무료 강의 유입</span><span class="en">free-lesson</span></div>
+          <div class="row"><span class="ko">방문자</span><span class="en">visitors</span><b>2,480</b></div>
+          <div class="row"><span class="ko">가입 전환</span><span class="en">sign-up</span><b>15.0%</b></div>
+          <div class="row"><span class="ko">결제 전환</span><span class="en">payment</span><b>10.9%</b></div>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric-b"><div class="v">3×</div><div class="l"><span class="ko">가입 전환 (5.0→15.0%)</span><span class="en">sign-up (5.0→15.0%)</span></div></div>
+        <div class="metric-b"><div class="v navy">3.4×</div><div class="l"><span class="ko">결제 전환 (3.2→10.9%)</span><span class="en">payment (3.2→10.9%)</span></div></div>
+      </div>
+      <p class="dim" style="margin-top:var(--sp-5)"><span class="ko">'경험이 전환을 만든다'가 숫자로 증명된 거죠. 이 결과를 근거로 광고 소재와 무료 강의 동선(랜딩)을 다시 짰고, 네이티브 앱·OPEN WIKI·ALIVE CONTENT(영상 소재)로 이어 붙였습니다. 예산을 늘리는 대신, 같은 예산을 '경험을 먼저 주는' 쪽으로 옮긴 의사결정이었습니다.</span><span class="en">"Experience drives conversion," proven in numbers. I used it to rebuild the ad creative and the free-lesson landing flow, then carried it into the native app, OPEN WIKI, and ALIVE CONTENT. The decision wasn't to spend more — it was to move the same budget toward giving people the experience first.</span></p>
+      </div>
+    </div>
+    <div class="wp-tags"><span class="tag">Product Manager</span><span class="tag">AARRR</span><span class="tag">A/B Test</span><span class="tag">GA4</span><span class="tag">Growth</span></div>
+    <div class="wp-nav"><a class="prev" href="#/deokhong"><small><span class="ko">이전</span><span class="en">Prev</span></small>deokhong.com</a><a class="next" href="#/samsung"><small><span class="ko">다음</span><span class="en">Next</span></small>Samsung Care+</a></div>
+    </div></div>
+  </article>
+
+  <!-- SAMSUNG -->
+  <article class="wp t-blue" id="work-samsung" data-work="samsung">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">듀오톤 · UX 기획·디자인</span><span class="en">Duotone · UX Design</span></p>
+      <h1 class="wp-title">Samsung Care+</h1>
+      <p class="wp-meta"><span class="ko">글로벌 구매 여정 표준화 · 2023.10–2024.05</span><span class="en">Global purchase-journey standardization · 2023.10–2024.05</span></p>
+      <div class="wp-spec"><span class="ko">UX 디자이너 4인 팀</span><span class="en">Team of 4 UX designers</span><span class="ko">100+ 마켓</span><span class="en">100+ markets</span></div>
+      <p class="wp-essence"><span class="ko">나라마다 다르던 가입 여정을, 100여 개국 하나의 표준으로.</span><span class="en">One sign-up standard across 100+ markets, replacing flows that differed by country.</span></p>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">문제 — 사려 해도 보이질 않는다</span><span class="en">Problem — hard to find, harder to get</span></h4><p><span class="ko">삼성 케어 플러스는 좋은 상품이었지만, 사용자 입장에선 두 번 막혔습니다. 첫째, <b>어디서 사야 하는지</b>가 안 보였어요. 둘째, 정작 가입이 가능한 기기인지조차 <b>옵션을 끝까지 다 고른 뒤에야</b> 알 수 있었습니다. 자격이 안 되는 사람도 여섯 단계를 다 걷고 나서야 '안 됩니다'를 만난 거죠. 게다가 이 경험이 KR·US·UK·FR·DE처럼 나라마다 달라서, 사용자도 헤매고 운영도 매번 따로 관리해야 했습니다.</span><span class="en">Samsung Care+ was a good product, but users hit two walls. First, <b>where to buy it wasn't visible</b>. Second, whether their device was even eligible only became clear <b>after picking every option</b> — so ineligible users walked all six steps just to meet a "no." And the experience differed by country (KR, US, UK, FR, DE…), so users got lost and operations had to be managed separately each time.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">인사이트 — 결정은 어디서 일어나나</span><span class="en">Insight — where decisions happen</span></h4><p><span class="ko">백 개가 넘는 마켓을 한 번에 손볼 수는 없으니, '어디를 고치면 가장 크게 움직이나'부터 찾았습니다. 어느 판매 경로에서 가장 많이 가입하는지 데이터를 보니, 실제 구매 결정이 모이는 곳은 <b>제품 단독(Standalone) 페이지</b>였어요. 결론은 단순해졌습니다. 결정이 일어나는 그 페이지를, 가장 짧고 분명하게 만들면 된다. <span style="white-space:nowrap">(24년 7월 누적 — Retail 34.1% · B2B 33.7% · Standalone 16.7% · eStore 8.1%)</span></span><span class="en">You can't rework 100+ markets at once, so I started with "where does a fix move the needle most?" Looking at which sales channel drove the most sign-ups, decisions concentrated on the <b>standalone product page</b>. That made the conclusion simple: take the page where decisions happen, and make it the shortest, clearest one. (Jul '24 cumulative — Retail 34.1% · B2B 33.7% · Standalone 16.7% · eStore 8.1%.)</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">결정 — 맥락대로 입구를 나누고, 확인을 앞으로</span><span class="en">Decision — split entry, check first</span></h4><p><span class="ko">두 가지를 바꿨습니다. 먼저 입구를 사용자 맥락에 맞게 갈랐어요. 이미 망가진 기기를 고치려는 사람(보상 청구)은 <b>SUPPORT</b>로, 새로 보장을 사려는 사람(신규 구매)은 <b>SHOP</b>으로. 목적이 다른데 같은 문으로 들여보내니 길을 잃었던 거니까요. 그다음, 가입 가능 여부 확인을 맨 앞으로 끌어왔습니다. 자격을 먼저 거르면, 안 되는 사람은 시간을 버리지 않고 바로 빠지고 되는 사람만 끝까지 갑니다.</span><span class="en">I changed two things. First, I split the entry by context: someone fixing an already-broken device (a claim) goes to <b>SUPPORT</b>, someone buying new coverage (a purchase) goes to <b>SHOP</b> — different goals forced through one door is what got them lost. Second, I pulled the eligibility check to the very front. Filter eligibility first, and ineligible users drop off without wasting time, while only the eligible ones go all the way.</span></p>
+      <div class="compare">
+        <div class="col"><h6>AS-IS · Hard to find</h6><ol><li>GNB</li><li><span class="ko">기기 선택</span><span class="en">Device</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 가능 여부 확인</span><span class="en">Eligibility</span></li></ol></div>
+        <div class="col to"><h6>TO-BE · Right there</h6><ol><li>GNB</li><li><span class="ko">가입 가능 여부 확인</span><span class="en">Eligibility</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 완료</span><span class="en">Done</span></li></ol></div>
+      </div></div>
+      <div class="wp-sec"><h4><span class="ko">결과</span><span class="en">Impact</span></h4><p class="dim"><span class="ko">화면을 더하지 않고 순서만 바로잡았는데, 사용자가 헤매는 구간과 운영이 매번 손보던 부담이 동시에 줄었습니다.</span><span class="en">I didn't add screens — I fixed the order — and that cut both where users got lost and what operations had to touch every time.</span></p>
+      <div class="metrics">
+        <div class="metric-b"><div class="v">100+</div><div class="l"><span class="ko">개국 단일 표준</span><span class="en">markets, one standard</span></div></div>
+        <div class="metric-b"><div class="v navy">10 → 6</div><div class="l"><span class="ko">가입 단계</span><span class="en">sign-up steps</span></div></div>
+        <div class="metric-b"><div class="v">6 → 3</div><div class="l"><span class="ko">페이지</span><span class="en">pages</span></div></div>
+      </div></div>
+    </div>
+    <div class="wp-tags"><span class="tag">UX Design</span><span class="tag">Global</span><span class="tag">Information Architecture</span><span class="tag">Flow</span></div>
+    <div class="wp-nav"><a class="prev" href="#/openpath"><small><span class="ko">이전</span><span class="en">Prev</span></small>OPENPATH</a><a class="next" href="#/genesis"><small><span class="ko">다음</span><span class="en">Next</span></small>Genesis</a></div>
+    </div></div>
+  </article>
+
+  <!-- GENESIS -->
+  <article class="wp t-bronze" id="work-genesis" data-work="genesis">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">Concentrix Catalyst · UX 기획</span><span class="en">Concentrix Catalyst · UX</span></p>
+      <h1 class="wp-title">Genesis <span class="ko">유럽</span><span class="en">EU</span></h1>
+      <p class="wp-meta"><span class="ko">이탈리아 마켓 단독 오너 · 2025.08–12</span><span class="en">Italy market owner · 2025.08–12</span></p>
+      <div class="wp-spec"><span class="ko">팀 9명 · 개발4·디자인2·PM1·기획2</span><span class="en">Team of 9</span><span class="ko">이탈리아 단독</span><span class="en">Italy, solo owner</span><span class="ko">프랑크푸르트 현지</span><span class="en">On-site, Frankfurt</span></div>
+      <p class="wp-essence"><span class="ko">매번 새로 쓰던 법적 문구를, 골라 쓰는 시스템으로.</span><span class="en">Legal copy that was rewritten every time, turned into a system you pick from.</span></p>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">맥락 — 마켓마다 기준이 다르다</span><span class="en">Context — every market differs</span></h4><p><span class="ko">제네시스 유럽 4개국 롤아웃에서 <b>이탈리아 마켓 구축을 단독</b>으로 맡아 일정대로 론칭했고, EU 롤아웃에서는 Forms 테스트와 GV80 PIP 기획도 함께 했습니다. 실무는 독일 프랑크푸르트에서 현지로 진행했어요. 사이트 틀은 이미 있었지만, 그대로 복사하면 되는 일이 아니었습니다. 마켓마다 법·규제, 콘텐츠, 운영 방식이 전부 달랐거든요. 그중에서도 손이 가장 많이 가던 건 법적 디스클레이머였습니다.</span><span class="en">In Genesis' four-market EU rollout I <b>owned the Italy build</b> and launched it on schedule, and also handled Forms testing and the GV80 PIP in the wider rollout — working on-site in Frankfurt. The site shell already existed, but you couldn't just copy it: every market had its own legal, regulatory, content, and operational rules. The part that ate the most time was legal disclaimers.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">결정 — 디스클레이머를 운영 시스템으로</span><span class="en">Decision — disclaimers as a system</span></h4><p><span class="ko">디스클레이머는 페이지마다 흩어져 있었고, 문구가 조금만 바뀌어도 모든 페이지를 일일이 고치고 법무 검토를 다시 받아야 했습니다. 저는 이걸 '콘텐츠를 잘 쓰는 문제'가 아니라 '운영 구조의 문제'로 봤어요. 사람이 매번 반복하는 일은 더 잘하게 만들 게 아니라, 시스템이 대신하게 만들어야 하니까요. 그래서 디스클레이머를 <b>AEM 콘텐츠 프래그먼트</b>로 묶었습니다. 페이지 유형별로 필요한 고지를 미리 정의해 두고, 운영자가 가져다 쓰고, 한 번 고치면 전체에 반영되도록요.</span><span class="en">Disclaimers were scattered across pages, and changing even a phrase meant editing every page by hand and re-running legal review. I treated this not as a "write better copy" problem but as an operations-structure problem — work a human repeats every time shouldn't be made easier for the human; it should be handed to the system. So I consolidated disclaimers into <b>AEM Content Fragments</b>: define the right notice per page type once, let operators pull it in, and change it once to update everywhere.</span></p>
+      <div class="compare">
+        <div class="col"><h6>Before</h6><ol><li><span class="ko">페이지마다 개별 작성</span><span class="en">Written per page</span></li><li><span class="ko">고지 변경 시 전 페이지 수작업</span><span class="en">Manual edits across pages</span></li><li><span class="ko">매번 법무 재검토</span><span class="en">Legal re-review each time</span></li></ol></div>
+        <div class="col to"><h6>After</h6><ol><li><span class="ko">페이지 유형별 기준 정립</span><span class="en">Standard by page type</span></li><li><span class="ko">골라서 재사용</span><span class="en">Select &amp; reuse</span></li><li><span class="ko">변경은 시스템 단위 일괄</span><span class="en">Update once, everywhere</span></li></ol></div>
+      </div></div>
+      <div class="wp-sec"><h4><span class="ko">의미</span><span class="en">Why it matters</span></h4><p class="dim"><span class="ko">겉으로는 작은 변화지만, 일하는 방식이 바뀌었습니다. 매번 반복하던 <b>활동</b>을 한 번 정의하면 재사용되는 <b>시스템</b>으로 옮긴 거예요. 이런 변화는 페이지가 늘수록, 마켓이 늘수록 더 크게 돌아옵니다. (정량 임팩트는 비공개라 구조 전환으로 적습니다.)</span><span class="en">It looks small, but the way of working changed: repeated <b>activity</b> became a <b>system</b> defined once and reused. That kind of change compounds — the more pages and markets, the bigger it pays back. (Quantitative impact is confidential, so I describe it as a structural shift.)</span></p></div>
+    </div>
+    <div class="wp-tags"><span class="tag">AEM</span><span class="tag">Content Fragment</span><span class="tag">EU Rollout</span><span class="tag">Frankfurt</span></div>
+    <div class="wp-nav"><a class="prev" href="#/samsung"><small><span class="ko">이전</span><span class="en">Prev</span></small>Samsung Care+</a><a class="next" href="#/korail"><small><span class="ko">다음</span><span class="en">Next</span></small>Korail-talk</a></div>
+    </div></div>
+  </article>
+
+  <!-- KORAIL -->
+  <article class="wp t-indigo" id="work-korail" data-work="korail">
+    <div class="wp-hero"><div class="wrap">
+      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <p class="wp-kicker"><span class="ko">듀오톤 · UX 기획·디자인</span><span class="en">Duotone · UX Design</span></p>
+      <h1 class="wp-title">Korail-talk</h1>
+      <p class="wp-meta"><span class="ko">MaaS 렌터카 예약 흐름·UX 개선 · 2024.01–02</span><span class="en">MaaS car-rental flow & UX · 2024.01–02</span></p>
+      <div class="wp-spec"><span class="ko">UT 모더레이터</span><span class="en">UT moderator</span><span class="ko">20–60대 사용성 테스트</span><span class="en">Usability test, ages 20–60</span></div>
+      <p class="wp-essence"><span class="ko">다 한 화면에 넣었더니, 조건은 건너뛰고 차부터 고르더라고요.</span><span class="en">Everything on one screen — so people picked a car before setting the conditions.</span></p>
+    </div></div>
+    <div class="wp-body"><div class="wrap"><div class="wp-sections">
+      <div class="wp-sec"><h4><span class="ko">리서치 — 세 가지로 교차 검증</span><span class="en">Research — triangulated</span></h4><p><span class="ko">추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 휴리스틱 평가로 화면의 문제 지점을 짚고, 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, 세 방법 모두 같은 곳을 가리켰습니다.</span><span class="en">To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A heuristic pass to mark problem spots, eye-tracking heatmaps and gaze paths to see where people actually looked first, and interviews to hear why. I designed and moderated it myself across ages 20–60 — and all three pointed to the same place.</span></p>
+      <div class="flow"><b><span class="ko">휴리스틱 평가</span><span class="en">Heuristic</span></b><i>→</i><b><span class="ko">아이트래킹</span><span class="en">Eye-tracking</span></b><i>→</i><b><span class="ko">인터뷰</span><span class="en">Interview</span></b></div></div>
+      <div class="wp-sec"><h4><span class="ko">발견 — 기능은 있는데 흐름이 끊겼다</span><span class="en">Finding — features, broken flow</span></h4><p><span class="ko">렌터카 예약은 기능이 없어서가 아니라, 순서가 꼬여서 막혀 있었습니다. 차량 리스트와 대여 조건(장소·일정)이 한 화면에 같이 놓여 있다 보니, <b>사람들이 조건을 놓친 채 차부터</b> 봤어요. 조건 없이 고른 차라 뒤에서 다시 어긋나고, 흐름이 거기서 끊겼습니다. 정리하면 세 가지였어요.</span><span class="en">The booking wasn't blocked by missing features — it was blocked by a tangled order. With the car list and rental conditions (place, dates) on one screen, <b>people skipped the conditions and went straight to cars.</b> A car chosen without conditions clashed later, and the flow broke right there. Three problems stood out.</span></p>
+      <p class="dim"><span class="ko"><b>①</b> 먼저 보여야 할 대여 조건이 시각적으로 강조되지 않았다. <b>②</b> 설명 없는 정보는 믿고 쓰기 어려웠다. <b>③</b> 입력해도 다음 단계로 어떻게 가는지 보이지 않았다.</span><span class="en"><b>①</b> The conditions that should lead weren't visually emphasized. <b>②</b> Unexplained info was hard to trust. <b>③</b> After input, the next step wasn't visible.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">제안 — 한 화면, 하나의 결정</span><span class="en">Proposal — one screen, one decision</span></h4><p><span class="ko">해법은 화면을 더하는 게 아니라 결정을 쪼개는 것이었습니다. 한 화면에 몰려 있던 입력을 <b>장소 → 날짜 → 차량 → 옵션</b> 네 단계로 나눠, 화면마다 하나씩만 고르게 했어요. 조건을 먼저 정하면 그게 차량을 고르는 기준이 되니, 사용자가 순서를 고민할 일이 사라집니다. 같은 기능을, 자연스럽게 따라가는 흐름으로 다시 세운 제안이었습니다.</span><span class="en">The fix wasn't to add screens but to split decisions. I broke the crowded single screen into four steps — <b>place → date → car → options</b> — one choice per screen. Set the conditions first and they become the frame for choosing a car, so there's no order left to puzzle over. Same features, rebuilt into a flow the user naturally follows.</span></p>
+      <div class="compare">
+        <div class="col"><h6>AS-IS · Everything at once</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">렌터카 진입</span><span class="en">Enter rental</span></li><li><span class="ko">조건 설정</span><span class="en">Conditions</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">일정 설정</span><span class="en">Dates</span></li><li><span class="ko">조건 재설정</span><span class="en">Conditions again</span></li></ol></div>
+        <div class="col to"><h6>TO-BE · A simpler way</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">일정 선택</span><span class="en">Dates</span></li><li><span class="ko">차량 선택</span><span class="en">Car</span></li></ol></div>
+      </div>
+      <p class="dim" style="margin-top:var(--sp-5)"><span class="ko">추측이 아니라 세 갈래 근거가 같은 곳을 가리켰기에, 무엇을 어떻게 고칠지가 분명했습니다. 여기서 얻은 '한 화면엔 하나의 결정'은 이후 다른 화면을 설계할 때도 제 기준이 됐어요.</span><span class="en">Because three independent methods pointed to the same place, what to fix — and how — was unambiguous. "One decision per screen" became a principle I carried into every screen after.</span></p></div>
+    </div>
+    <div class="wp-tags"><span class="tag">User Testing</span><span class="tag">Moderating</span><span class="tag">Eye-tracking</span><span class="tag">Heuristics</span><span class="tag">Flow Redesign</span></div>
+    <div class="wp-nav"><a class="prev" href="#/genesis"><small><span class="ko">이전</span><span class="en">Prev</span></small>Genesis</a><a class="next" href="#/railink"><small><span class="ko">다음</span><span class="en">Next</span></small>RaiLink</a></div>
+    </div></div>
+  </article>
+</main>
+
+<script>
+(function(){
+  var body=document.body, doc=document.documentElement;
+  var koBtn=document.getElementById('ko-btn'), enBtn=document.getElementById('en-btn');
+
+  function setLang(l){
+    var en = (l==='en');
+    body.classList.toggle('lang-en', en);
+    body.classList.toggle('lang-ko', !en);
+    doc.lang = en ? 'en' : 'ko';
+    koBtn.classList.toggle('on', !en);
+    enBtn.classList.toggle('on', en);
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  var saved='ko'; try{ saved = localStorage.getItem('lang') || 'ko'; }catch(e){}
+  setLang(saved);
+  koBtn.onclick=function(){ setLang('ko'); };
+  enBtn.onclick=function(){ setLang('en'); };
+
+  var works=['railink','deokhong','openpath','samsung','genesis','korail'];
+  var homeEl=document.getElementById('view-home');
+  var top=document.getElementById('top');
+
+  function runReveal(scope){
+    var els=scope.querySelectorAll('.rv');
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:0.14});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  function countUp(){
+    var nums=document.querySelectorAll('#p-impact .num');
+    nums.forEach(function(el){
+      if(el.dataset.done) return; el.dataset.done='1';
+      var to=parseFloat(el.dataset.to), dec=parseInt(el.dataset.dec||'0',10), suf=el.dataset.suffix||'';
+      var start=null, dur=1100;
+      function step(t){
+        if(!start) start=t;
+        var p=Math.min((t-start)/dur,1);
+        var e=1-Math.pow(1-p,3);
+        el.textContent=(to*e).toFixed(dec)+suf;
+        if(p<1) requestAnimationFrame(step); else el.textContent=to.toFixed(dec)+suf;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // dots + impact trigger + topbar
+  var panels=['p-hero','p-impact','p-work','p-about','p-contact'];
+  var dotBtns=document.querySelectorAll('#dots button');
+  var panelIO=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var id=e.target.id, i=panels.indexOf(id);
+        dotBtns.forEach(function(b,bi){ b.classList.toggle('on', bi===i); });
+        top.classList.toggle('solid', id!=='p-hero');
+        if(id==='p-impact') countUp();
+      }
+    });
+  },{threshold:0.55});
+  panels.forEach(function(id){ var el=document.getElementById(id); if(el) panelIO.observe(el); });
+
+  dotBtns.forEach(function(b){
+    b.onclick=function(){ var el=document.getElementById(b.dataset.go); if(el) el.scrollIntoView({behavior:'smooth'}); };
+  });
+
+  // router
+  function showHome(scrollToId){
+    body.classList.remove('mode-work'); body.classList.add('mode-home');
+    if(scrollToId){ var t=document.getElementById(scrollToId); if(t) t.scrollIntoView(); }
+    else { homeEl.scrollTop=0; top.classList.remove('solid'); }
+  }
+  function showWork(id){
+    document.querySelectorAll('.wp').forEach(function(w){ w.classList.remove('show'); });
+    var el=document.querySelector('.wp[data-work="'+id+'"]');
+    if(!el){ location.hash='#/'; return; }
+    el.classList.add('show');
+    body.classList.remove('mode-home'); body.classList.add('mode-work');
+    top.classList.add('solid');
+    window.scrollTo(0,0);
+    runReveal(el);
+  }
+  function route(){
+    var h=(location.hash||'').replace(/^#\/?/,'');
+    if(works.indexOf(h)>=0){ showWork(h); }
+    else { showHome(); }
+  }
+  window.addEventListener('hashchange', route);
+
+  // home/scroll links
+  document.addEventListener('click', function(ev){
+    var a=ev.target.closest('a'); if(!a) return;
+    if(a.hasAttribute('data-home')){ ev.preventDefault(); if(location.hash && location.hash!=='#/'){ location.hash='#/'; } else { showHome(); } return; }
+    if(a.hasAttribute('data-scroll')){ ev.preventDefault(); var id=a.getAttribute('data-scroll'); if(location.hash && location.hash!=='#/'){ location.hash='#/'; setTimeout(function(){ showHome(id); },60); } else { showHome(id); } }
+  });
+
+  // clock
+  var clock=document.getElementById('clock');
+  function tick(){ try{ clock.textContent=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Seoul'})+' SEOUL'; }catch(e){ clock.textContent='SEOUL'; } }
+  tick(); setInterval(tick,1000);
+
+  // init
+  runReveal(homeEl);
+  route();
+})();
+</script>
+</body>
+</html>
