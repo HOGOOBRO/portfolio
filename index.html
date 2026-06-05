@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>김진현 — 서비스 기획자 · Kim Jinhyeon</title>
 <meta name="description" content="영향력의 스케일을 좇는 서비스 기획자 김진현. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
+<!-- Open Graph / 카카오·페북 공유 카드 -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hogoobro.github.io/portfolio/" />
+<meta property="og:title" content="김진현 — 서비스 기획자 · Kim Jinhyeon" />
+<meta property="og:description" content="영향력의 스케일을 좇는 서비스 기획자. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
+<meta property="og:image" content="https://hogoobro.github.io/portfolio/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="김진현 — 서비스 기획자 · Kim Jinhyeon" />
+<meta name="twitter:description" content="영향력의 스케일을 좇는 서비스 기획자." />
+<meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.png" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23FAF8F4' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +28,7 @@
     --paper:#FAF8F4; --paper-2:#F1EDE5; --card:#FFFFFF;
     --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
     --line:#E5E0D5; --line-strong:#D6D0C2;
-    --navy:#0C3C60; --gold:#B98B2E;
+    --navy:#0C3C60; --navy-lite:#7FB2D8; --gold:#B98B2E;
     --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
     --sans-en:'Inter Tight','Pretendard Variable',system-ui,sans-serif;
     --serif:'Fraunces','Pretendard Variable',Georgia,serif;
@@ -111,7 +124,7 @@
   .imp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; border-top:1px solid rgba(250,248,244,.2); padding-top:2rem}
   @media(max-width:760px){.imp-grid{grid-template-columns:repeat(2,1fr); gap:1.6rem 1.4rem}}
   .imp .v{font-family:var(--serif); font-weight:500; font-size:clamp(2.4rem,6vw,4rem); line-height:1; letter-spacing:-.02em}
-  .imp .v.navy{color:#7FB2D8}
+  .imp .v.navy{color:var(--navy-lite)}
   .imp .l{margin-top:.7rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(250,248,244,.6); line-height:1.5}
   .imp-foot{margin-top:2.6rem; font-size:clamp(1rem,1.6vw,1.18rem); color:rgba(250,248,244,.85); max-width:44ch; line-height:1.6}
 
@@ -203,6 +216,20 @@
   .metric-b .v{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1; letter-spacing:-.01em}
   .metric-b .v.navy{color:var(--navy)}
   .metric-b .l{margin-top:.5rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
+  .insight{margin-top:var(--sp-6)}
+  .insight .ilead{font-size:1.1rem; line-height:1.72; color:var(--ink-soft); max-width:62ch; margin-bottom:var(--sp-5)}
+  .insight .ilead b{color:var(--ink); font-weight:600}
+  .ibar{display:grid; grid-template-columns:104px 1fr 66px; gap:var(--sp-4); align-items:center; margin:.5rem 0; max-width:560px}
+  .ibar .lab{font-family:var(--mono); font-size:.68rem; color:var(--ink-soft); text-align:right; line-height:1.25}
+  .ibar .track{height:26px; background:var(--paper-2); border-radius:6px; overflow:hidden}
+  .ibar .track .bf{height:100%; border-radius:6px; background:var(--line-strong); width:0; transition:width 1.2s cubic-bezier(.2,.7,.2,1) .15s}
+  .insight.in .ibar .track .bf{width:var(--bw)}
+  .ibar.key .track .bf{background:var(--navy)}
+  .ibar .val{font-family:var(--serif); font-size:1.15rem; color:var(--ink-soft)}
+  .ibar.key .val{color:var(--navy); font-weight:500}
+  .ibar .val small{font-family:var(--mono); font-size:.58rem; color:var(--ink-faint); margin-left:.12rem}
+  .insight .ikicker{margin-top:var(--sp-5); font-size:.98rem; font-weight:500; color:var(--ink); line-height:1.6; border-left:2px solid var(--gold); padding-left:var(--sp-4); max-width:52ch}
+  @media (prefers-reduced-motion:reduce){ .ibar .track .bf{transition:none} }
   .fill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem; color:var(--gold); border:1px dashed var(--gold); border-radius:8px; padding:.5rem .75rem; background:color-mix(in srgb,var(--gold) 9%,var(--paper))}
   .fill::before{content:"✎"}
   .wp-tags{margin:var(--sp-6) 0 var(--sp-7); display:flex; flex-wrap:wrap; gap:var(--sp-2)}
@@ -352,7 +379,7 @@
       <div class="rv">
         <p class="about-lead"><span class="ko">거쳐 온 자리는 다 달랐지만,<br><em>결정하는 방식은 늘 같았어요.</em></span><span class="en">The roles were all different,<br><em>but how I decided never changed.</em></span></p>
         <p class="about-copy"><span class="ko">제주항공 승무원으로 사회생활을 시작했어요. 카페를 공동 창업하면서는 마케팅을 책이 아니라 매출로 배웠습니다 — 네이버 광고를 A/B로 시험하고 잘 되는 쪽에 집중해, 5개월 만에 월매출을 <b>6.5배</b>로 키웠죠. IT로 옮긴 뒤엔 문제에 따라 방법을 바꿨어요. OPENPATH에서는 가설을 A/B로 검증해 결제 전환을 <b>3.4배</b>로 올렸고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해, 나라마다 다르던 가입 여정을 <b>100여 개국</b> 하나로 정리했습니다. 지금은 Genesis 유럽을 거쳐 LG의 B2B 글로벌 사이트를 기획하고 있습니다.</span><span class="en">I started my career as cabin crew at Jeju Air. Co-founding a café, I learned marketing not from books but from revenue — A/B-testing Naver ads and doubling down on what worked grew monthly sales <b>6.5×</b> in five months. In software I changed the method to fit the problem: at OPENPATH I validated a hypothesis with an A/B test and lifted payment conversion <b>3.4×</b>; at Samsung Care+ I used data to see where people actually decide, and unified a country-by-country sign-up across <b>100+ markets</b>. Now, after the Genesis EU site, I'm planning LG's B2B global site.</span></p>
-        <p class="about-copy" style="margin-top:1.1rem"><span class="ko"><b>그 외 —</b> Sketch·XD로 흩어져 있던 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch와 Surfit에 디자인·기획 글을 꾸준히 발행합니다.</span><span class="en"><b>Also —</b> I consolidated a scattered Sketch/XD design system into one Figma library, and write on design and planning at Brunch and Surfit.</span></p>
+        <p class="about-copy" style="margin-top:1.1rem"><span class="ko"><b>그 외 —</b> Sketch·XD로 흩어져 있던 삼성 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch에 디자인 관련 글을 발행했습니다.</span><span class="en"><b>Also —</b> I consolidated Samsung's scattered Sketch/XD design system into one Figma library, and published design writing on Brunch.</span></p>
       </div>
       <div class="rv d1">
         <div class="tl"><div class="yr">2019–21</div><div><h5><span class="ko">제주항공 · 객실 승무원</span><span class="en">Jeju Air · Cabin Crew</span></h5><p><span class="ko">2년간 국내·국제선 비행.</span><span class="en">Two years on domestic and international flights.</span></p></div></div>
@@ -369,7 +396,8 @@
     <h2 class="ct-h rv"><span class="ko">다음 문제를<br>함께 풀고 싶습니다.</span><span class="en">Let's solve<br>the next problem together.</span></h2>
     <div class="ct-links rv d1">
       <div class="ct"><small>Email</small><a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a></div>
-      <div class="ct"><small>Writing</small><a href="https://brunch.co.kr" target="_blank" rel="noopener">Brunch <span class="note">· URL 교체</span></a></div>
+      <div class="ct"><small>Writing</small><a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a></div>
+      <div class="ct" style="grid-column:1/-1; gap:.4rem"><small><span class="ko">Duotone 블로그 · 기고</span><span class="en">Duotone blog</span></small><a href="https://brunch.co.kr/@duotoneofficial/45" target="_blank" rel="noopener" style="font-size:.95rem">디자이너에게 필요한 건 창의성보다 논리예요 ↗</a><a href="https://brunch.co.kr/@duotoneofficial/44" target="_blank" rel="noopener" style="font-size:.95rem">시선을 사로잡는 디자인, 3가지면 됩니다 ↗</a><a href="https://brunch.co.kr/@duotoneofficial/47" target="_blank" rel="noopener" style="font-size:.95rem">디자인과 생성 AI, 미래의 디자이너는 어떤 일을 할까 ↗</a></div>
       <div class="ct"><small>Build · RaiLink</small><a href="https://railink.app" target="_blank" rel="noopener">railink.app ↗</a></div>
       <div class="ct"><small>Build · Campaign</small><a href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com ↗</a></div>
       <div class="ct"><small><span class="ko">디자인 시스템</span><span class="en">Design system</span></small><a href="design-system.html"><span class="ko">보러 가기 →</span><span class="en">View →</span></a></div>
@@ -396,7 +424,11 @@
       <div class="wp-sec"><h4><span class="ko">접근</span><span class="en">Approach</span></h4><p><span class="ko">그래서 질문을 바꿨습니다. '누가 언제 일하나'가 아니라 '우리가 언제 같이 비나'를 보여주면 된다고요. 핵심은 비교라는 행위 자체를 없애는 것이었어요. 사람마다 색을 정하고 모두의 근무·휴무를 같은 달력 위에 겹쳐 두면, 비는 날은 굳이 찾지 않아도 저절로 드러납니다. 사용자가 머릿속으로 하던 대조를, 화면이 대신하게 만든 거죠.</span><span class="en">So I reframed the question — from "who works when" to "when are we all free." The point was to remove the act of comparing altogether. Give each person a color, stack everyone's work and days off on one calendar, and the free days surface on their own, no cross-checking needed. The screen does the comparison the user used to run in their head.</span></p></div>
       <div class="wp-sec"><h4><span class="ko">실행</span><span class="en">What I built</span></h4><p><span class="ko">여기서부터는 군더더기를 덜어내는 일이었습니다. 비교할 사람을 묶는 그룹, 한눈에 들어오는 색 구분, '이번 달 근무 25일·휴무 5일' 같은 요약, 그리고 처음 들어온 사람도 빈 화면을 만나지 않도록 데모 계정을 미리 채워 뒀어요. 기획부터 UX·디자인·프론트엔드까지 혼자 만들었고, 설치 없이 바로 쓰도록 PWA로 배포했습니다.</span><span class="en">From there it was about stripping friction away. A group to bundle the people you compare, color coding that reads instantly, a summary like "25 work days, 5 off this month," and a pre-filled demo account so first-timers never hit a blank screen. I built it all solo — planning, UX, design, front-end — and shipped it as a PWA so there's nothing to install.</span></p></div>
       <div class="wp-sec"><h4><span class="ko">결과</span><span class="en">Impact</span></h4><p class="dim"><span class="ko">지금은 실제 교대 근무자들이 쓰는 도구로 살아 있습니다. 작은 불편을 끝까지 파고들어, 문제 정의부터 출시까지 직접 해낸 프로젝트예요 — 기획자도 제품을 끝까지 만들 수 있다는 걸 보여줍니다.</span><span class="en">It's live and used by real shift workers today. I took one small frustration all the way — from defining the problem to shipping it — proof that a planner can carry a product end to end.</span></p>
-      <div class="metrics"><span class="fill"><span class="ko">활성 유저 · 리텐션 · 그룹 수 — 직접 채우기</span><span class="en">active users · retention · groups — fill in</span></span></div></div>
+      <div class="metrics">
+        <div class="metric-b"><div class="v">180+</div><div class="l"><span class="ko">한 달 실사용자</span><span class="en">real monthly users</span></div></div>
+        <div class="metric-b"><div class="v navy">1.9×</div><div class="l"><span class="ko">1인당 세션 · 재방문</span><span class="en">sessions per user</span></div></div>
+        <div class="metric-b"><div class="v">1:11</div><div class="l"><span class="ko">평균 체류 시간</span><span class="en">avg. engagement</span></div></div>
+      </div></div>
     </div>
     <div class="wp-tags"><span class="tag">0→1</span><span class="tag">Solo build</span><span class="tag">PWA</span><span class="tag">Scheduling</span><span class="tag">React</span></div>
     <div class="wp-nav"><a class="prev" href="#/korail"><small><span class="ko">이전</span><span class="en">Prev</span></small>Korail-talk</a><a class="next" href="#/deokhong"><small><span class="ko">다음</span><span class="en">Next</span></small>deokhong.com</a></div>
@@ -418,7 +450,18 @@
       <div class="wp-sec"><h4><span class="ko">구조 — 훑어도 남게</span><span class="en">Structure</span></h4><p><span class="ko">사람들은 선거 사이트를 정독하지 않습니다. 그래서 '읽게 만들기'가 아니라 '훑어도 남게 만들기'를 택했어요. 위에서 아래로 내려가는 동안 자연스럽게 설득되도록 순서를 짰습니다. 맨 위는 기호·슬로건과 선거까지 남은 시간으로 '지금 정해야 한다'는 긴장을 주는 자리예요. 이어지는 6대 정책은 무엇을 할 사람인지, 약력 타임라인은 믿을 만한 사람인지를 보여 줍니다. 주민 증언이 '남들도 인정한다'는 확신을 더하고, 마지막 보도자료가 '실재하는 후보'라는 신뢰로 마무리합니다.</span><span class="en">People don't study campaign sites, so instead of "make them read," I aimed for "make it stick at a glance." I ordered one page to persuade as you scroll. The top creates urgency — ballot number, slogan, a countdown to the vote. Below it, six policy pillars say what he'll do, while a career timeline shows he's credible. Resident testimony adds social proof, and a press feed closes the case that he's a real, covered candidate.</span></p></div>
       <div class="wp-sec"><h4><span class="ko">실행</span><span class="en">Execution</span></h4><p><span class="ko">카피는 표준어 대신 제주 방언('한번 써 봅서!')으로 풀어, 지역 사람에게 옆집 어른의 말처럼 들리게 했습니다. 구현은 유세 현장에서 공유되는 링크라 대부분 휴대폰으로 열린다는 전제로, 모바일을 먼저 설계하고 PC를 맞췄어요. 카카오톡·인스타그램에 붙어도 깨지지 않도록 OG 이미지와 메타까지 직접 챙겼고요. 정보구조·카피·디자인·퍼블리싱·SEO를 전부 혼자, Next.js로 만들었습니다.</span><span class="en">The copy uses Jeju dialect ("han-beon sseo bopseo!") instead of standard Korean, so to locals it sounds like the elder next door. Since the link gets shared on the trail and opens mostly on phones, I designed mobile first and fit desktop to it, and handled the OG image and metadata myself so it wouldn't break in KakaoTalk or Instagram. IA, copy, design, publishing, SEO — all solo, in Next.js.</span></p></div>
       <div class="wp-sec"><h4><span class="ko">결과</span><span class="en">Impact</span></h4><p class="dim"><span class="ko">선거 기간 내내 캠페인의 공식 디지털 거점이었고, 보도자료와 SNS가 모두 이 한 페이지로 모였습니다. 그리고 후보는 이번 지방선거에서 <b>당선됐어요.</b> 같은 사이트는 지금 당선인의 공식 페이지로 이어지고 있습니다.</span><span class="en">It was the campaign's official digital hub throughout the race, with press and social all pointing back to this one page. And the candidate <b>won the seat</b> — the same site now lives on as the elected member's official page.</span></p>
-      <div class="metrics"><span class="fill"><span class="ko">방문자 · 인스타 유입 수치 — 직접 채우기</span><span class="en">visitor &amp; referral numbers — fill in</span></span></div></div>
+      <div class="metrics">
+        <div class="metric-b"><div class="v">1,300+</div><div class="l"><span class="ko">선거기간 실방문자</span><span class="en">real visitors</span></div></div>
+        <div class="metric-b"><div class="v navy">4,000+</div><div class="l"><span class="ko">누적 조회</span><span class="en">page views</span></div></div>
+        <div class="metric-b"><div class="v">8</div><div class="l"><span class="ko">온·오프 유입 채널</span><span class="en">inbound channels</span></div></div>
+      </div>
+      <div class="insight rv">
+        <p class="ilead"><span class="ko">‘거점’이 될 수 있었던 건, 사람들이 실제로 머물렀기 때문이에요. 체류를 늘리려고 캠페인 중반에 <b>보도자료 섹션</b>을 투입했는데 — 거기 닿은 사람은 평균 4.6편을 정독했고, 체류는 홈의 1.9배가 됐습니다.</span><span class="en">It became a hub because people actually stayed. To raise dwell time, mid-campaign I added a <b>press section</b> — visitors who reached it read ~4.6 pieces on average, staying 1.9× longer than on the home page.</span></p>
+        <div class="ibar"><div class="lab"><span class="ko">홈 · 슬로건</span><span class="en">Home</span></div><div class="track"><div class="bf" style="--bw:53%"></div></div><div class="val"><span class="num" data-to="22.5" data-dec="1">0</span><small><span class="ko">초</span><span class="en">s</span></small></div></div>
+        <div class="ibar key"><div class="lab"><span class="ko">보도자료</span><span class="en">Press</span></div><div class="track"><div class="bf" style="--bw:100%"></div></div><div class="val"><span class="num" data-to="42.8" data-dec="1">0</span><small><span class="ko">초</span><span class="en">s</span></small></div></div>
+        <p class="ikicker"><span class="ko">체류를 늘린 건 정보량이 아니라, ‘증거’를 어디에 두느냐였다.</span><span class="en">What lifted engagement wasn’t more information — it was where the proof sat.</span></p>
+      </div>
+      </div>
     </div>
     <div class="wp-tags"><span class="tag">Campaign</span><span class="tag">One-page</span><span class="tag">Copywriting</span><span class="tag">Next.js</span></div>
     <div class="wp-nav"><a class="prev" href="#/railink"><small><span class="ko">이전</span><span class="en">Prev</span></small>RaiLink</a><a class="next" href="#/openpath"><small><span class="ko">다음</span><span class="en">Next</span></small>OPENPATH</a></div>
@@ -579,11 +622,12 @@
     els.forEach(function(el){ io.observe(el); });
   }
 
-  function countUp(){
-    var nums=document.querySelectorAll('#p-impact .num');
+  var RM = window.matchMedia ? window.matchMedia('(prefers-reduced-motion:reduce)').matches : false;
+  function runCount(nums){
     nums.forEach(function(el){
       if(el.dataset.done) return; el.dataset.done='1';
       var to=parseFloat(el.dataset.to), dec=parseInt(el.dataset.dec||'0',10), suf=el.dataset.suffix||'';
+      if(RM){ el.textContent=to.toFixed(dec)+suf; return; }
       var start=null, dur=1100;
       function step(t){
         if(!start) start=t;
@@ -595,6 +639,18 @@
       requestAnimationFrame(step);
     });
   }
+  function countUp(){ runCount(document.querySelectorAll('#p-impact .num')); }
+
+  // insight chart numbers (work page) — count up when scrolled into view
+  (function(){
+    var iv=document.querySelectorAll('.insight .num');
+    if(!iv.length) return;
+    if(!('IntersectionObserver' in window)){ runCount(iv); return; }
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ runCount([e.target]); io.unobserve(e.target); } });
+    },{threshold:0.8});
+    iv.forEach(function(el){ io.observe(el); });
+  })();
 
   // dots + impact trigger + topbar
   var panels=['p-hero','p-impact','p-work','p-about','p-contact'];
