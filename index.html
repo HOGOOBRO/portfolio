@@ -110,6 +110,8 @@
   #p-hero .eyebrow{margin-bottom:1.6rem}
   .hero-h{font-weight:700; letter-spacing:-.03em; line-height:1.12; font-size:clamp(2.6rem,7vw,5.4rem); max-width:15ch}
   body.lang-en .hero-h{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; line-height:1.04}
+  .br-m{display:none}
+  @media(max-width:600px){ .br-m{display:inline} }
   .hero-sub{margin-top:1.6rem; font-size:clamp(1.05rem,1.8vw,1.3rem); color:var(--ink-soft); max-width:42ch; line-height:1.6}
   .scroll-cue{position:absolute; left:50%; bottom:2rem; transform:translateX(-50%); font-family:var(--mono); font-size:.64rem; letter-spacing:.2em; color:var(--ink-faint); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem}
   .scroll-cue i{width:1px; height:34px; background:var(--line-strong); position:relative; overflow:hidden}
@@ -307,8 +309,8 @@
   <section class="panel" id="p-hero"><div class="wrap">
     <p class="eyebrow mono rv">Service Designer · Seoul · 2026</p>
     <h1 class="hero-h rv d1">
-      <span class="ko">승무원에서 카페 사장,<br>그리고 서비스 기획자.</span>
-      <span class="en">Cabin crew, café owner,<br>then service designer.</span>
+      <span class="ko">승무원에서 카페 사장,<br>그리고 <br class="br-m">서비스 기획자.</span>
+      <span class="en">Cabin crew, café owner,<br>then <br class="br-m">service designer.</span>
     </h1>
     <p class="hero-sub rv d2">
       <span class="ko">회사에선 글로벌 기업 웹사이트를 기획하고,<br>틈틈이 제 서비스도 직접 만듭니다.</span>
