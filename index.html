@@ -341,9 +341,9 @@
     <p class="group-label rv"><b><span class="ko">직접 만든 것</span><span class="en">Built solo</span></b><span><span class="ko">0→1, 기획부터 개발까지 혼자</span><span class="en">0→1, from planning to code, alone</span></span></p>
     <div class="work-grid">
       <a class="wcard lg rv" href="#/railink" style="background:#0C3C60">
-        <div class="wc-top"><span><span class="ko">근무 스케줄 앱</span><span class="en">Schedule app</span></span><span>2026 →</span></div>
+        <div class="wc-top"><span><span class="ko">근무 스케줄 서비스</span><span class="en">Scheduling service</span></span><span>2026 →</span></div>
         <div class="wc-bot"><h3>RaiLink <span class="arrow">→</span></h3>
-          <p class="one"><span class="ko">교대 근무자가 동료와 쉬는 날을 맞춰 보는 앱.</span><span class="en">An app for shift workers to line up days off with colleagues.</span></p></div>
+          <p class="one"><span class="ko">교대 근무자가 동료와 쉬는 날을 맞춰 보는 서비스.</span><span class="en">A service for shift workers to line up days off with colleagues.</span></p></div>
       </a>
       <a class="wcard lg rv d1" href="#/deokhong">
         <div class="bg" style="background-image:url('https://deokhong.com/images/hero.png')"></div>
@@ -708,7 +708,7 @@
   // home/scroll links
   document.addEventListener('click', function(ev){
     var a=ev.target.closest('a'); if(!a) return;
-    if(a.hasAttribute('data-home')){ ev.preventDefault(); if(location.hash && location.hash!=='#/'){ location.hash='#/'; } else { showHome(); } return; }
+    if(a.hasAttribute('data-home')){ ev.preventDefault(); var hid=a.classList.contains('back')?'p-work':null; if(location.hash && location.hash!=='#/'){ location.hash='#/'; if(hid) setTimeout(function(){ showHome(hid); },60); } else { showHome(hid||undefined); } return; }
     if(a.hasAttribute('data-scroll')){ ev.preventDefault(); var id=a.getAttribute('data-scroll'); if(location.hash && location.hash!=='#/'){ location.hash='#/'; setTimeout(function(){ showHome(id); },60); } else { showHome(id); } }
   });
 
