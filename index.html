@@ -622,7 +622,7 @@
   enBtn.onclick=function(){ setLang('en'); };
 
   var works=['railink','deokhong','openpath','samsung','genesis','korail'];
-  var homeEl=document.getElementById('view-home');
+  var homeEl=document.getElementById('view-home'); var homeScrollY=0;
   var top=document.getElementById('top');
 
   function runReveal(scope){
@@ -693,6 +693,7 @@
     var el=document.querySelector('.wp[data-work="'+id+'"]');
     if(!el){ location.hash='#/'; return; }
     el.classList.add('show');
+    if(body.classList.contains('mode-home')) homeScrollY=homeEl.scrollTop;
     body.classList.remove('mode-home'); body.classList.add('mode-work');
     top.classList.add('solid');
     window.scrollTo(0,0);
@@ -708,7 +709,7 @@
   // home/scroll links
   document.addEventListener('click', function(ev){
     var a=ev.target.closest('a'); if(!a) return;
-    if(a.hasAttribute('data-home')){ ev.preventDefault(); var hid=a.classList.contains('back')?'p-work':null; if(location.hash && location.hash!=='#/'){ location.hash='#/'; if(hid) setTimeout(function(){ showHome(hid); },60); } else { showHome(hid||undefined); } return; }
+    if(a.hasAttribute('data-home')){ ev.preventDefault(); var restore=a.classList.contains('back'); if(history.replaceState){ try{ history.replaceState(null,'',location.pathname+location.search+'#/'); }catch(e){} } body.classList.remove('mode-work'); body.classList.add('mode-home'); if(restore){ homeEl.scrollTop=homeScrollY; top.classList.toggle('solid', homeScrollY>50); } else { homeEl.scrollTop=0; top.classList.remove('solid'); } return; }
     if(a.hasAttribute('data-scroll')){ ev.preventDefault(); var id=a.getAttribute('data-scroll'); if(location.hash && location.hash!=='#/'){ location.hash='#/'; setTimeout(function(){ showHome(id); },60); } else { showHome(id); } }
   });
 
