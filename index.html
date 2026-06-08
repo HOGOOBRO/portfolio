@@ -712,7 +712,26 @@
     if(works.indexOf(h)>=0){ showWork(h); }
     else { showHome(); }
   }
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', function(){
+    route();
+    // GA4: SPA 라우트(케이스 페이지)는 해시 변경이라 자동 page_view가 안 잡힘 → 수동 전송
+    try{ if(window.gtag){ var h=(location.hash||'').replace(/^#\/?/,''); gtag('event','page_view',{ page_title: document.title, page_location: location.href, page_path: (works.indexOf(h)>=0?('/case/'+h):'/') }); } }catch(e){}
+  });
+
+  // GA4: 디자인 시스템 / 외부 사이트로 빠지는 클릭 추적
+  document.addEventListener('click', function(ev){
+    var a=ev.target.closest('a'); if(!a || !window.gtag) return;
+    var href=a.getAttribute('href')||'';
+    var text=(a.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);
+    try{
+      if(/design-system\.html/.test(href)){
+        gtag('event','design_system_click',{ link_text:text, link_url:href });
+      } else if(/^https?:\/\//.test(href)){
+        var dom=''; try{ dom=new URL(href).hostname; }catch(e){}
+        gtag('event','outbound_click',{ link_text:text, link_url:href, link_domain:dom });
+      }
+    }catch(e){}
+  });
 
   // home/scroll links
   document.addEventListener('click', function(ev){
