@@ -202,6 +202,39 @@
   .compare .col{border:1px solid var(--line); border-radius:var(--r-md); padding:1rem 1.15rem; background:var(--card)}
   .compare .col.to{border-color:var(--navy); background:color-mix(in srgb,var(--navy) 4%, var(--card))}
   .compare h6{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.6rem}
+  /* 데이터 비주얼 (문서용 — 최종 상태로 고정) */
+  .ibar{display:grid; grid-template-columns:104px 1fr 66px; gap:var(--sp-4); align-items:center; margin:.5rem 0; max-width:560px}
+  .ibar .lab{font-family:var(--mono); font-size:.68rem; color:var(--ink-soft); text-align:right; line-height:1.25}
+  .ibar .track{height:26px; background:var(--paper-2); border-radius:6px; overflow:hidden}
+  .ibar .track .bf{height:100%; border-radius:6px; background:var(--line-strong); width:var(--bw)}
+  .ibar.key .track .bf{background:var(--navy)}
+  .ibar .val{font-family:var(--serif); font-size:1.15rem; color:var(--ink-soft)}
+  .ibar.key .val{color:var(--navy); font-weight:500}
+  .ibar .val small{font-family:var(--mono); font-size:.58rem; color:var(--ink-faint); margin-left:.12rem}
+  .gauge{max-width:560px; margin-top:var(--sp-5)}
+  .gauge .gtrack{position:relative; height:34px; background:var(--paper-2); border-radius:8px}
+  .gauge .gfill{height:100%; width:var(--gv,50%); background:var(--navy); border-radius:8px 4px 4px 8px; display:flex; align-items:center; padding-left:.8rem}
+  .gauge .gfill b{color:#fff; font-family:var(--serif); font-weight:500; font-size:1.05rem; white-space:nowrap}
+  .gauge .gmark{position:absolute; left:var(--gm,100%); top:-6px; bottom:-6px; border-left:2px dashed var(--gold)}
+  .gauge .gmark span{position:absolute; top:-1.3rem; right:0; font-family:var(--mono); font-size:.58rem; letter-spacing:.06em; color:var(--gold); white-space:nowrap}
+  .spark{max-width:560px}
+  .spark svg{display:block; width:100%; height:auto}
+  .spark .grid{stroke:var(--line); stroke-width:1}
+  .spark .axis{stroke:var(--line-strong); stroke-width:1.5}
+  .spark .base{stroke:var(--ink-faint); stroke-width:1.2; stroke-dasharray:5 5; opacity:.7}
+  .spark .area{fill:url(#spk)}
+  .spark .dot{fill:var(--navy)}
+  .spark .halo{fill:var(--navy); fill-opacity:.15}
+  .spark .peak{font-family:var(--mono); font-size:14px; font-weight:600; fill:var(--navy); letter-spacing:.02em}
+  .spark .line{fill:none; stroke:var(--navy); stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round}
+  .spark .sxlab{display:flex; justify-content:space-between; margin-top:.55rem; font-family:var(--mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint)}
+  .nlist{margin-top:var(--sp-5); display:flex; flex-direction:column; gap:var(--sp-6); max-width:640px}
+  .nlist .ni{display:grid; grid-template-columns:2.6rem 1fr; column-gap:var(--sp-4); align-items:baseline}
+  .nlist .ni i{font-style:normal; font-family:var(--serif); font-weight:500; font-size:1.4rem; color:var(--navy); line-height:1}
+  .nlist .ni b{font-size:1.05rem; font-weight:700; letter-spacing:-.015em; line-height:1.4}
+  .nlist .ni p{grid-column:2; margin:.3rem 0 0; font-size:.88rem; color:var(--ink-soft); line-height:1.65}
+  .viz-note{margin-top:var(--sp-4); font-size:.92rem; color:var(--ink-soft); line-height:1.68; max-width:52ch}
+  .viz-note b{color:var(--ink); font-weight:600}
   .compare .col.to h6{color:var(--navy)}
   .compare ol{list-style:none; counter-reset:s; display:flex; flex-direction:column; gap:.34rem}
   .compare li{font-size:.9rem; color:var(--ink-soft); counter-increment:s; display:flex; gap:.55rem; align-items:baseline}
@@ -451,6 +484,42 @@
       <h3 class="blk"><span class="ko">임팩트 수치</span><span class="en">Impact numbers</span></h3>
       <div class="demo"><div class="cap">.metrics / .metric-b — <span class="ko">결과 강조</span><span class="en">result emphasis</span></div>
         <div class="metrics"><div class="metric-b"><div class="v">3×</div><div class="l"><span class="ko">가입 전환</span><span class="en">sign-up</span></div></div><div class="metric-b"><div class="v navy">3.4×</div><div class="l"><span class="ko">결제 전환</span><span class="en">payment</span></div></div><div class="metric-b"><div class="v">N=7,130</div><div class="l"><span class="ko">31일 A/B 표본</span><span class="en">31-day A/B sample</span></div></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">데이터 비주얼 · 막대</span><span class="en">Data visuals · bars</span></h3>
+      <div class="demo"><div class="cap">.ibar — <span class="ko">숫자를 늘어놓는 대신 길이로 먼저 보여줘요. 힘줄 막대 하나만 navy, 나머지는 회색으로 물러납니다. 폭은 <code>--bw</code>로 지정해요</span><span class="en">show the size before the number. Only the bar that matters is navy — the rest step back in grey. Width set via <code>--bw</code></span></div>
+        <div class="ibar"><div class="lab"><span class="ko">방문</span><span class="en">Visits</span></div><div class="track"><div class="bf" style="--bw:100%"></div></div><div class="val">400</div></div>
+        <div class="ibar key"><div class="lab"><span class="ko">가입</span><span class="en">Sign-ups</span></div><div class="track"><div class="bf" style="--bw:11%"></div></div><div class="val">44<small>11%</small></div></div>
+        <div class="ibar"><div class="lab"><span class="ko">활성</span><span class="en">Active</span></div><div class="track"><div class="bf" style="--bw:6%"></div></div><div class="val">23</div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">데이터 비주얼 · 기준선 게이지</span><span class="en">Data visuals · threshold gauge</span></h3>
+      <div class="demo"><div class="cap">.gauge — <span class="ko">목표선까지 얼마나 왔는지 한 칸으로 보여줘요. 아직 못 간 곳은 골드 점선 — '채울 자리'와 같은 약속이에요. 채움은 <code>--gv</code>, 목표선 위치는 <code>--gm</code></span><span class="en">how far to the target, in one track. What's not reached yet is gold-dashed — the same promise as the placeholder. Fill via <code>--gv</code>, threshold via <code>--gm</code></span></div>
+        <div class="gauge" style="--gv:30%"><div class="gtrack"><div class="gfill"><b>K 0.3</b></div><div class="gmark"><span class="ko">1.0 · 자생선</span><span class="en">1.0 · self-sustaining</span></div></div></div>
+      </div>
+
+      <h3 class="blk"><span class="ko">데이터 비주얼 · 스파이크 차트</span><span class="en">Data visuals · spike chart</span></h3>
+      <div class="demo"><div class="cap">.spark — <span class="ko">시간 속 사건 하나를 보여줄 때 써요. 점선은 평소 수위, 솟은 점이 사건. 라벨은 SVG 밖 HTML이라 모바일에서도 글자가 안 작아져요</span><span class="en">one event in time. The dashed line is the usual level, the peak is the event. Labels live in HTML outside the SVG, so they never shrink on mobile</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 600 190" aria-hidden="true">
+            <defs><linearGradient id="spk" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0C3C60" stop-opacity=".20"/><stop offset="1" stop-color="#0C3C60" stop-opacity="0"/></linearGradient></defs>
+            <line class="grid" x1="0" y1="35" x2="600" y2="35"/><line class="grid" x1="0" y1="75" x2="600" y2="75"/><line class="grid" x1="0" y1="115" x2="600" y2="115"/>
+            <line class="base" x1="0" y1="150" x2="600" y2="150"/>
+            <path class="area" d="M0,146 L220,146 C252,146 264,30 300,30 C336,30 348,146 380,146 L600,146 L600,168 L0,168 Z"/>
+            <path class="line" d="M0,146 L220,146 C252,146 264,30 300,30 C336,30 348,146 380,146 L600,146"/>
+            <line class="axis" x1="0" y1="168" x2="600" y2="168"/>
+            <circle class="halo" cx="300" cy="30" r="9"/><circle class="dot" cx="300" cy="30" r="4"/><text class="peak" x="300" y="18" text-anchor="middle">193</text>
+          </svg>
+          <div class="sxlab"><span><span class="ko">평소</span><span class="en">Baseline</span></span><span><span class="ko">사흘 · 스파이크</span><span class="en">3-day spike</span></span><span><span class="ko">다시 평소</span><span class="en">Back to baseline</span></span></div>
+        </div>
+      </div>
+
+      <h3 class="blk"><span class="ko">데이터 비주얼 · 발견 리스트</span><span class="en">Data visuals · findings list</span></h3>
+      <div class="demo"><div class="cap">.nlist — <span class="ko">발견 여러 개를 ①②③로 욱여넣지 않아요. 번호가 앵커(수치와 같은 Fraunces·navy), 결론은 굵게, 근거는 본문 폰트 한 줄 — 위에서 아래로 한 번에 읽힙니다</span><span class="en">no ①②③ crammed into a paragraph. The number anchors each item (Fraunces·navy, like the metrics), bold conclusion, one body-font line of evidence — reads straight down</span></div>
+        <div class="nlist">
+          <div class="ni"><i>01</i><b><span class="ko">한 명에서 시작된 네트워크가 실제로 굴러갔다</span><span class="en">The network actually moved — from one person</span></b><p><span class="ko">광고 없이 1명이 19명이 되고, 44명까지 컸어요.</span><span class="en">From 1 to 19 to 44 users, without ads.</span></p></div>
+          <div class="ni"><i>02</i><b><span class="ko">초대의 '질'은 증명됐다, 모자란 건 양</span><span class="en">Invite quality is proven — volume isn't</span></b><p><span class="ko">4명 중 1명이 알아서 초대를 보냈고, 그 초대의 66.7%가 가입으로 이어졌어요.</span><span class="en">1 in 4 sent an invite on their own, and 66.7% of those became sign-ups.</span></p></div>
+        </div>
       </div>
 
       <h3 class="blk"><span class="ko">비교 블록 (AS-IS / TO-BE)</span><span class="en">Compare block (AS-IS / TO-BE)</span></h3>
