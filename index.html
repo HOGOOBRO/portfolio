@@ -21,7 +21,8 @@
     function gtag(){dataLayer.push(arguments);}
     window.gtag = gtag;
     gtag('js', new Date());
-    gtag('config', 'G-E6V7FC0PJP');
+    // SPA(해시 라우팅): 자동 page_view를 끄고 route()에서 직접 전송한다.
+    gtag('config', 'G-E6V7FC0PJP', { send_page_view: false });
   })();
 </script>
 <meta charset="UTF-8" />
@@ -822,16 +823,24 @@
     window.scrollTo(0,0);
     runReveal(el);
   }
+  // GA4: 해시 라우팅이라 page_location의 '#' 뒤가 잘려 모든 케이스가 한 경로로 합쳐진다.
+  // page_location을 가짜 경로 URL(.../portfolio/case/<슬러그>)로 덮어써서 경로로 인식시킨다.
+  function gaPageView(){
+    try{
+      if(!window.gtag) return;
+      var h=(location.hash||'').replace(/^#\/?/,'');
+      var base=location.origin+location.pathname.replace(/\/$/,'');
+      var loc=(works.indexOf(h)>=0)?(base+'/case/'+h):(base+'/');
+      gtag('event','page_view',{ page_title: document.title, page_location: loc });
+    }catch(e){}
+  }
   function route(){
     var h=(location.hash||'').replace(/^#\/?/,'');
     if(works.indexOf(h)>=0){ showWork(h); }
     else { showHome(); }
+    gaPageView();
   }
-  window.addEventListener('hashchange', function(){
-    route();
-    // GA4: SPA 라우트(케이스 페이지)는 해시 변경이라 자동 page_view가 안 잡힘 → 수동 전송
-    try{ if(window.gtag){ var h=(location.hash||'').replace(/^#\/?/,''); gtag('event','page_view',{ page_title: document.title, page_location: location.href, page_path: (works.indexOf(h)>=0?('/case/'+h):'/') }); } }catch(e){}
-  });
+  window.addEventListener('hashchange', route);
 
   // GA4: 디자인 시스템 / 외부 사이트로 빠지는 클릭 추적
   document.addEventListener('click', function(ev){
@@ -862,7 +871,7 @@
 
   // init
   runReveal(homeEl);
-  route();
+  route(); // 초기 진입(홈/딥링크 케이스 모두)도 route() 안에서 page_view 전송
 })();
 </script>
 </body>
