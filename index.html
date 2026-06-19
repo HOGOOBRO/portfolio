@@ -227,8 +227,8 @@
   .wp-title{font-size:clamp(2.4rem,6vw,4.2rem); font-weight:700; letter-spacing:-.03em; line-height:1.04; margin:.5rem 0 .8rem}
   body.lang-en .wp-title{font-family:var(--serif); font-weight:500; letter-spacing:-.01em}
   .wp-meta{font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; opacity:.85}
-  .wp-live{display:inline-flex; align-items:center; gap:.45rem; margin-top:1.5rem; font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:.5rem .95rem; transition:background .2s,color .2s,border-color .2s}
-  .wp-live:hover{background:#fff; color:#111; border-color:#fff}
+  .wp-live{display:inline-flex; align-items:center; gap:.5rem; margin-top:1.5rem; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#111; background:#fff; border:1px solid #fff; border-radius:999px; padding:.66rem 1.2rem; transition:transform .2s}
+  .wp-live:hover{transform:translateY(-2px)}
   .wp-live .ar{transition:transform .2s}
   .wp-live:hover .ar{transform:translate(2px,-2px)}
   .wp-essence{font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.4; max-width:24ch; margin-top:1.8rem; font-weight:500}
@@ -247,6 +247,12 @@
   .metric-b .v{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1; letter-spacing:-.01em}
   .metric-b .v.navy{color:var(--navy)}
   .metric-b .l{margin-top:.5rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
+  .wp-cta{margin-top:var(--sp-7); background:rgba(12,60,96,.045); border:1px solid rgba(12,60,96,.14); border-radius:16px; padding:clamp(var(--sp-5),3vw,var(--sp-6)); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--sp-4) var(--sp-6)}
+  .wp-cta .wp-cta-lead{color:var(--ink-soft); font-size:clamp(1rem,1.5vw,1.12rem); line-height:1.55; font-weight:500; max-width:26ch; margin:0; text-wrap:balance}
+  .wp-cta-btn{display:inline-flex; align-items:center; gap:.5rem; flex-shrink:0; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#fff; background:var(--navy); border-radius:999px; padding:.8rem 1.4rem; transition:transform .2s}
+  .wp-cta-btn:hover{transform:translateY(-2px)}
+  .wp-cta-btn .ar{transition:transform .2s}
+  .wp-cta-btn:hover .ar{transform:translate(2px,-2px)}
   .insight{margin-top:var(--sp-6)}
   .insight .ilead{font-size:1.1rem; line-height:1.72; color:var(--ink-soft); max-width:62ch; margin-bottom:var(--sp-5)}
   .insight .ilead b{color:var(--ink); font-weight:600}
@@ -559,6 +565,10 @@
         <div class="metric-b"><div class="v">3.5</div><div class="l"><span class="ko">인당 연결</span><span class="en">per-user connections</span></div></div>
         <div class="metric-b"><div class="v">67%</div><div class="l"><span class="ko">초대 전환</span><span class="en">invite conversion</span></div></div>
         <div class="metric-b"><div class="v navy">0.3</div><div class="l"><span class="ko">10명이 3명 데려옴</span><span class="en">ten bring three</span></div></div>
+      </div>
+      <div class="wp-cta">
+        <p class="wp-cta-lead"><span class="ko">데모 계정이 채워져 있어 가입 없이 둘러볼 수 있어요.</span><span class="en">A demo account is ready — look around without signing up.</span></p>
+        <a class="wp-cta-btn" href="https://railink.app/?utm_source=portfolio&utm_medium=referral&utm_campaign=portfolio&utm_content=case-bottom" target="_blank" rel="noopener"><span class="ko">RaiLink 라이브로 보기</span><span class="en">See RaiLink live</span> railink.app <span class="ar">↗</span></a>
       </div></div>
     </div>
     <div class="wp-tags"><span class="tag">0→1</span><span class="tag">Solo build</span><span class="tag">Growth</span><span class="tag">Funnel</span><span class="tag">GA4</span><span class="tag">SQL</span><span class="tag">PWA</span></div>
