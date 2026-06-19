@@ -185,6 +185,13 @@
   .wcard .metric{font-family:var(--serif); font-weight:500; font-size:2rem; line-height:1; margin-bottom:.2rem}
   .wcard .arrow{font-family:var(--mono); font-size:.95rem; opacity:0; transform:translateX(-5px); transition:.25s}
   .wcard:hover .arrow{opacity:1; transform:none}
+  .wcard.has-phone{min-height:300px}
+  .wcard.has-phone .wc-top,.wcard.has-phone .wc-bot{position:relative; z-index:2}
+  .wcard.has-phone .one{max-width:21ch}
+  .wc-phone{position:absolute; right:5%; bottom:-78px; width:46%; max-width:162px; z-index:1; transform:rotate(-5deg); transform-origin:bottom center; pointer-events:none; transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .wc-phone img{display:block; width:100%; height:auto}
+  .wcard.has-phone:hover .wc-phone{transform:rotate(-5deg) translateY(-5px)}
+  @media(max-width:520px){ .wcard.has-phone{min-height:260px} .wc-phone{right:3%; max-width:126px; bottom:-58px} }
 
   /* ── about panel ── */
   #p-about{background:var(--paper-2)}
@@ -407,7 +414,8 @@
 
     <p class="group-label rv"><b><span class="ko">직접 만든 것</span><span class="en">Built solo</span></b><span><span class="ko">0→1, 기획부터 개발까지 혼자</span><span class="en">0→1, from planning to code, alone</span></span></p>
     <div class="work-grid">
-      <a class="wcard lg rv" href="#/railink" style="background:#0C3C60">
+      <a class="wcard lg rv has-phone" href="#/railink" style="background:#0C3C60">
+        <div class="wc-phone"><img src="assets/railink-phone.png" alt="RaiLink 앱 화면 — 동료 근무를 겹쳐 본 2026년 6월 캘린더" loading="lazy" /></div>
         <div class="wc-top"><span><span class="ko">근무 스케줄 서비스</span><span class="en">Scheduling service</span></span><span>2026 →</span></div>
         <div class="wc-bot"><h3>RaiLink <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">교대 근무자가 동료와 쉬는 날을 맞춰 보는 서비스.</span><span class="en">A service for shift workers to line up days off with colleagues.</span></p></div>
@@ -424,22 +432,22 @@
     <p class="group-label rv"><b><span class="ko">회사에서</span><span class="en">At work</span></b><span><span class="ko">기획·PM으로 맡은 프로젝트</span><span class="en">projects I led as planner &amp; PM</span></span></p>
     <div class="work-grid">
       <a class="wcard sm rv" href="#/openpath" style="background:#14564A">
-        <div class="wc-top"><span>Product Manager</span><span>2023</span></div>
+        <div class="wc-top"><span><span class="ko">Product Manager · 듀오톤</span><span class="en">Product Manager · Duotone</span></span><span>2023</span></div>
         <div class="wc-bot"><h3>OPENPATH <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">신규 교육 플랫폼을 만들고, 결제 전환을 3.4배로.</span><span class="en">Built a new edtech platform; payment conversion 3.4×.</span></p></div>
       </a>
       <a class="wcard sm rv d1" href="#/samsung" style="background:#13287A">
-        <div class="wc-top"><span>UX 기획 · 듀오톤</span><span>2024–25</span></div>
+        <div class="wc-top"><span><span class="ko">UX 기획 · 듀오톤</span><span class="en">UX Design · Duotone</span></span><span>2024–25</span></div>
         <div class="wc-bot"><h3>Samsung Care+ <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">나라마다 다르던 가입 여정을 100여 개국 하나로.</span><span class="en">A country-by-country sign-up, unified across 100+ markets.</span></p></div>
       </a>
       <a class="wcard sm rv d2" href="#/genesis" style="background:#4B3D2C">
-        <div class="wc-top"><span>UX 기획 · 이탈리아 마켓</span><span>2025</span></div>
+        <div class="wc-top"><span><span class="ko">서비스 기획 · Concentrix</span><span class="en">Service Design · Concentrix</span></span><span>2025</span></div>
         <div class="wc-bot"><h3>Genesis <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">반복되던 법적 문구를 골라 쓰는 시스템으로.</span><span class="en">Repeated legal copy, turned into a reusable system.</span></p></div>
       </a>
       <a class="wcard sm rv d3" href="#/korail" style="background:#1C2E70">
-        <div class="wc-top"><span>UX 리서치 · 듀오톤</span><span>2024</span></div>
+        <div class="wc-top"><span><span class="ko">UX 리서치 · 듀오톤</span><span class="en">UX Research · Duotone</span></span><span>2024</span></div>
         <div class="wc-bot"><h3>Korail-talk <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">한 화면에 몰린 예약을 네 단계로 정리.</span><span class="en">A crowded one-screen booking, re-split into four steps.</span></p></div>
       </a>
@@ -687,7 +695,7 @@
   <article class="wp t-bronze" id="work-genesis" data-work="genesis">
     <div class="wp-hero"><div class="wrap">
       <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
-      <p class="wp-kicker"><span class="ko">Concentrix Catalyst · UX 기획</span><span class="en">Concentrix Catalyst · UX</span></p>
+      <p class="wp-kicker"><span class="ko">Concentrix Catalyst · 서비스 기획</span><span class="en">Concentrix Catalyst · Service Design</span></p>
       <h1 class="wp-title">Genesis <span class="ko">유럽</span><span class="en">EU</span></h1>
       <p class="wp-meta"><span class="ko">이탈리아 마켓 단독 오너 · 2025.08–12</span><span class="en">Italy market owner · 2025.08–12</span></p>
       <a class="wp-live" href="https://www.genesis.com/it" target="_blank" rel="noopener"><span class="ko">라이브 보기</span><span class="en">View live</span> genesis.com/it <span class="ar">↗</span></a>
