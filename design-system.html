@@ -121,7 +121,7 @@
   .ruler + h3.blk{margin-top:var(--sp-8)}
 
   /* 토큰 칩 */
-  .tok{font-family:var(--mono); font-size:.7rem; background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:.1rem .38rem; color:var(--ink-soft); cursor:copy; transition:.15s; white-space:nowrap}
+  .tok{font-family:var(--mono); font-size:.7rem; background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:.1rem .38rem; color:var(--ink-soft); transition:.15s; white-space:nowrap}
   .tok:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
   .val{font-family:var(--mono); font-size:.72rem; color:var(--ink-faint)}
 
@@ -254,9 +254,6 @@
   .note{margin-top:var(--sp-4); font-size:.88rem; color:var(--ink-soft); border-left:2px solid var(--gold); padding-left:var(--sp-4); line-height:1.6}
 
   footer{border-top:1px solid var(--line); padding:var(--sp-8) var(--gutter); text-align:center; font-family:var(--mono); font-size:.66rem; color:var(--ink-faint); letter-spacing:.06em}
-
-  #toast{position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:.7rem; letter-spacing:.04em; padding:.6rem 1rem; border-radius:var(--r-pill); opacity:0; transition:.25s; pointer-events:none}
-  #toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body class="lang-ko">
@@ -289,7 +286,7 @@
       <p class="eyebrow mono">Design System · 2026</p>
       <h1><span class="ko">디자인도 감이 아니라, 규칙으로.</span><span class="en">Design by rules,<br>not by gut.</span></h1>
       <p><span class="ko">이 포트폴리오를 만든 규칙을 한곳에 모았어요. 색, 글자, 간격, 그리드, 컴포넌트, 움직임까지요. 값은 전부 한 군데(<b>토큰</b>)에 저장돼 있어서, 거기만 바꾸면 사이트 전체가 한 번에 바뀝니다. 그래서 화면마다 디자인이 들쭉날쭉하지 않아요.</span><span class="en">These are the rules behind this portfolio, all in one place — color, type, spacing, grid, components, motion. Every value is stored in one spot (a <b>token</b>), so changing it there updates the whole site at once. That's why the design never looks different from one screen to the next.</span></p>
-      <p class="meta"><span class="ko">모든 값을 한곳에서 관리해요 · 칩을 누르면 이름이 복사됩니다</span><span class="en">Every value managed in one place · tap a chip to copy its name</span></p>
+      <p class="meta"><span class="ko">모든 값을 한곳에서 관리해요</span><span class="en">Every value managed in one place</span></p>
     </div>
 
     <!-- 00 원칙 -->
@@ -559,7 +556,6 @@
 </div>
 
 <footer>© 2026 Kim Jinhyeon · Design System v1</footer>
-<div id="toast">복사됨</div>
 
 <script>
 (function(){
@@ -579,18 +575,6 @@
   setLang(saved);
   koBtn.onclick=function(){ setLang('ko'); };
   enBtn.onclick=function(){ setLang('en'); };
-
-  // 토큰 칩 클릭 → 이름 복사
-  var toast=document.getElementById('toast'), t;
-  document.querySelectorAll('.tok').forEach(function(el){
-    el.addEventListener('click', function(){
-      var txt=el.textContent.trim();
-      try{ navigator.clipboard.writeText(txt); }catch(e){}
-      toast.textContent = txt + (body.classList.contains('lang-en') ? ' copied' : ' 복사됨');
-      toast.classList.add('show');
-      clearTimeout(t); t=setTimeout(function(){ toast.classList.remove('show'); },1200);
-    });
-  });
 
   // 목차 스크롤-스파이: 지금 보고 있는 섹션을 목차에서 강조
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
