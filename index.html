@@ -362,6 +362,41 @@
   .wp-fig .cap{font-size:.86rem; line-height:1.55; color:var(--ink-soft); padding:.8rem .95rem; border-top:1px solid var(--line)}
   .wp-fig .cap b{color:var(--ink); font-weight:600}
   body.lang-en .wp-fig .cap{font-family:var(--sans-en)}
+  /* 폰 화면 가로 스트립 (AS-IS/TO-BE 실제 화면) */
+  .wp-shotset{margin-top:var(--sp-6)}
+  .wp-shotset+.wp-shotset{margin-top:var(--sp-5)}
+  .wp-shotset .shot-lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.75rem; max-width:min(100%,38rem); display:flex; align-items:baseline; gap:.5rem; flex-wrap:wrap}
+  .wp-shotset.to .shot-lbl{color:var(--navy)}
+  .wp-shotset .shot-lbl .tail{text-transform:none; letter-spacing:.01em; color:var(--ink-faint)}
+  .wp-shotset.to .shot-lbl .tail{color:var(--navy)}
+  /* 스와이프 힌트·우측 페이드·peek는 실제로 넘칠 때(.has-more)만 — JS가 토글 */
+  .wp-shotset .shot-lbl .swipe{display:none; margin-left:auto; font-size:.6rem; color:var(--ink-faint); text-transform:none; letter-spacing:.02em}
+  .wp-shotset.has-more .shot-lbl .swipe{display:inline-block}
+  .wp-shotset.to .shot-lbl .swipe{color:var(--navy)}
+  .wp-shots{display:flex; gap:var(--sp-3); overflow-x:auto; max-width:min(100%,38rem); padding-bottom:.7rem; scrollbar-width:thin; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch}
+  .wp-shotset.has-more .wp-shots{padding-right:1.4rem;
+    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2.6rem),transparent); mask-image:linear-gradient(to right,#000 calc(100% - 2.6rem),transparent)}
+  .wp-shots figure{flex:0 0 auto; width:clamp(122px,32vw,142px); margin:0; scroll-snap-align:start}
+  .wp-shots img{display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:var(--card)}
+  .wp-shotset.to .wp-shots img{border-color:color-mix(in srgb,var(--navy) 32%, var(--line))}
+  .wp-shots figcaption{margin-top:.55rem; font-size:.74rem; color:var(--ink-soft); display:flex; gap:.4rem; align-items:baseline; line-height:1.35}
+  .wp-shots figcaption .n{font-family:var(--mono); font-size:.64rem; color:var(--ink-faint)}
+  .wp-shotset.to .wp-shots figcaption .n{color:var(--navy)}
+  /* 아이트래킹 증거: 폰 스크린샷이라 폭을 좁게 제한, 항상 2-up */
+  .wp-eyes{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-4); max-width:368px; margin-top:var(--sp-6)}
+  .wp-eyes .wp-fig{margin-top:0}
+  .wp-eyes .wp-fig .lbl{font-size:.52rem; padding:.48rem .6rem}
+  .wp-eyes .wp-fig .cap{font-size:.76rem; padding:.6rem .68rem; line-height:1.45}
+  /* 인터뷰 사용자 보이스 */
+  .voices-lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-top:var(--sp-6); margin-bottom:.7rem}
+  .voices{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3)}
+  @media(max-width:680px){.voices{grid-template-columns:1fr}}
+  .voice{margin:0; border:1px solid var(--line); border-radius:12px; padding:.95rem 1.05rem; background:var(--card)}
+  .voice blockquote{margin:0; font-size:.94rem; line-height:1.55; color:var(--ink)}
+  .voice blockquote b{font-weight:600}
+  .voice .who{margin-top:.7rem; font-family:var(--mono); font-size:.62rem; letter-spacing:.03em; color:var(--ink-faint)}
+  body.lang-en .voice blockquote{font-family:var(--sans-en)}
+  .ab .wp-fig{margin-top:0}
   .ab{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); margin-top:var(--sp-2)}
   @media(max-width:640px){.ab{grid-template-columns:1fr}}
   .ab .col{border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem}
@@ -793,21 +828,59 @@
       <p class="wp-essence"><span class="ko">다 한 화면에 넣었더니, 조건은 건너뛰고 차부터 고르더라고요.</span><span class="en">Everything on one screen — so people picked a car before setting the conditions.</span></p>
       <figure class="wp-art">
         <div class="lbl">AS-IS</div>
-        <div class="row"><span class="nd gh" style="flex:1; text-align:center"><span class="ko">한 화면에 전부 — 조건 · 차량 · 옵션</span><span class="en">Everything on one screen</span></span></div>
+        <div class="row"><span class="nd gh" style="flex:1; text-align:center"><span class="ko">한 화면에 전부: 조건 · 차량 · 옵션</span><span class="en">Everything on one screen</span></span></div>
         <div class="lbl" style="margin-top:1.1rem">TO-BE</div>
-        <div class="row"><span class="nd on"><span class="ko">장소</span><span class="en">Place</span></span><span class="ar">→</span><span class="nd"><span class="ko">날짜</span><span class="en">Date</span></span><span class="ar">→</span><span class="nd"><span class="ko">차량</span><span class="en">Car</span></span><span class="ar">→</span><span class="nd"><span class="ko">옵션</span><span class="en">Option</span></span></div>
+        <div class="row"><span class="nd"><span class="ko">홈</span><span class="en">Home</span></span><span class="ar">→</span><span class="nd on"><span class="ko">장소</span><span class="en">Place</span></span><span class="ar">→</span><span class="nd"><span class="ko">날짜</span><span class="en">Date</span></span><span class="ar">→</span><span class="nd"><span class="ko">차량</span><span class="en">Car</span></span></div>
         <p class="cap"><span class="ko"><b>한 화면, 하나의 결정</b>으로 흐름을 다시 세움.</span><span class="en"><b>One screen, one decision.</b></span></p>
       </figure>
     </div></div>
     <div class="wp-body"><div class="wrap"><div class="wp-sections">
-      <div class="wp-sec"><h4><span class="ko">리서치: 세 가지로 교차 검증</span><span class="en">Research — triangulated</span></h4><p><span class="ko">추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 휴리스틱 평가로 화면의 문제 지점을 짚고, 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, 세 방법 모두 같은 곳을 가리켰습니다.</span><span class="en">To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A heuristic pass to mark problem spots, eye-tracking heatmaps and gaze paths to see where people actually looked first, and interviews to hear why. I designed and moderated it myself across ages 20–60 — and all three pointed to the same place.</span></p>
+      <div class="wp-sec"><h4><span class="ko">리서치: 세 가지로 교차 검증</span><span class="en">Research — triangulated</span></h4><p><span class="ko">추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 휴리스틱 평가로 '중요한 정보일수록 더 잘 보여야 한다', '저장 흐름이 명확해야 한다'는 원칙이 깨진 지점을 짚고, 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, 세 방법 모두 같은 곳을 가리켰습니다.</span><span class="en">To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A heuristic pass first flagged where the screens broke usability principles — key information must stand out, the save flow must be clear — then eye-tracking heatmaps and gaze paths showed where people actually looked first, and interviews told me why. I designed and moderated it myself across ages 20–60 — and all three pointed to the same place.</span></p>
       <div class="flow"><b><span class="ko">휴리스틱 평가</span><span class="en">Heuristic</span></b><i>→</i><b><span class="ko">아이트래킹</span><span class="en">Eye-tracking</span></b><i>→</i><b><span class="ko">인터뷰</span><span class="en">Interview</span></b></div></div>
-      <div class="wp-sec"><h4><span class="ko">발견: 기능은 있는데 흐름이 끊겼다</span><span class="en">Finding — features, broken flow</span></h4><p><span class="ko">렌터카 예약은 기능이 없어서가 아니라, 순서가 꼬여서 막혀 있었습니다. 차량 리스트와 대여 조건(장소·일정)이 한 화면에 같이 놓여 있다 보니, <b>사람들이 조건을 놓친 채 차부터</b> 봤어요. 조건 없이 고른 차라 뒤에서 다시 어긋나고, 흐름이 거기서 끊겼습니다. 정리하면 세 가지였어요.</span><span class="en">The booking wasn't blocked by missing features — it was blocked by a tangled order. With the car list and rental conditions (place, dates) on one screen, <b>people skipped the conditions and went straight to cars.</b> A car chosen without conditions clashed later, and the flow broke right there. Three problems stood out.</span></p>
-      <p class="dim"><span class="ko"><b>①</b> 먼저 보여야 할 대여 조건이 시각적으로 강조되지 않았다. <b>②</b> 설명 없는 정보는 믿고 쓰기 어려웠다. <b>③</b> 입력해도 다음 단계로 어떻게 가는지 보이지 않았다.</span><span class="en"><b>①</b> The conditions that should lead weren't visually emphasized. <b>②</b> Unexplained info was hard to trust. <b>③</b> After input, the next step wasn't visible.</span></p></div>
-      <div class="wp-sec"><h4><span class="ko">제안: 한 화면, 하나의 결정</span><span class="en">Proposal — one screen, one decision</span></h4><p><span class="ko">해법은 화면을 더하는 게 아니라 결정을 쪼개는 것이었습니다. 한 화면에 몰려 있던 입력을 <b>장소 → 날짜 → 차량 → 옵션</b> 네 단계로 나눠, 화면마다 하나씩만 고르게 했어요. 조건을 먼저 정하면 그게 차량을 고르는 기준이 되니, 사용자가 순서를 고민할 일이 사라집니다. 같은 기능을, 자연스럽게 따라가는 흐름으로 다시 세운 제안이었습니다.</span><span class="en">The fix wasn't to add screens but to split decisions. I broke the crowded single screen into four steps — <b>place → date → car → options</b> — one choice per screen. Set the conditions first and they become the frame for choosing a car, so there's no order left to puzzle over. Same features, rebuilt into a flow the user naturally follows.</span></p>
+      <div class="wp-sec"><h4><span class="ko">발견: 기능은 있는데 흐름이 끊겼다</span><span class="en">Finding — features, broken flow</span></h4><p><span class="ko">렌터카 예약은 기능이 없어서가 아니라, 순서가 꼬여서 막혀 있었습니다. 차량 리스트와 대여 조건(장소·일정)이 한 화면에 같이 놓여 있다 보니, <b>사람들이 조건을 놓친 채 차부터</b> 봤어요. 조건 없이 고른 차라 뒤에서 다시 어긋나고, 흐름이 거기서 끊겼습니다.</span><span class="en">The booking wasn't blocked by missing features — it was blocked by a tangled order. With the car list and rental conditions (place, dates) on one screen, <b>people skipped the conditions and went straight to cars.</b> A car chosen without conditions clashed later, and the flow broke right there.</span></p>
+      <div class="wp-eyes">
+        <figure class="wp-fig">
+          <div class="lbl">Eye-tracking · Heatmap</div>
+          <img src="assets/korail-heatmap.png" alt="롯데렌터카 차량선택 화면 아이트래킹 히트맵: 시선이 상단 대여 조건이 아니라 차량 이미지·가격에 집중된 것을 보여주는 열지도" loading="lazy">
+          <figcaption class="cap"><span class="ko">조건은 건너뛰고, 시선이 <b>차·가격부터</b> 갔어요.</span><span class="en">Conditions skipped — gaze went to <b>cars and prices first.</b></span></figcaption>
+        </figure>
+        <figure class="wp-fig">
+          <div class="lbl">Eye-tracking · Scan path</div>
+          <img src="assets/korail-scanpath.png" alt="대여 조건 입력 화면 아이트래킹 시선 흐름(스캔패스): 출발·반납·기간 사이를 오가며 시선이 흩어진 경로" loading="lazy">
+          <figcaption class="cap"><span class="ko">기간을 넣어도 확인 버튼이 없어, <b>X가 저장인지 몰라 다음으로 못 갔어요.</b></span><span class="en">No confirm button after the dates — <b>unsure if X saved or reset, they couldn't move on.</b></span></figcaption>
+        </figure>
+      </div>
+      <p class="dim" style="margin-top:var(--sp-5)"><span class="ko">세 방법이 가리킨 핵심 문제는 두 가지였어요. <b>①</b> 먼저 보여야 할 대여 조건이 시각적으로 강조되지 않았다. <b>②</b> 저장 버튼 없이 '닫기(X)'만 있어, 입력이 반영됐는지·다음으로 어떻게 가는지 알 수 없었다.</span><span class="en">The three methods pointed to two core problems. <b>①</b> The conditions that should lead weren't visually emphasized. <b>②</b> Only a "close" (X) and no save, so no way to tell if input registered or how to proceed.</span></p>
+      <p class="voices-lbl"><span class="ko">현장의 목소리</span><span class="en">In their words</span></p>
+      <div class="voices">
+        <figure class="voice"><blockquote><span class="ko">“일정은 아예 못 보고, 차를 먼저 봤어요.”</span><span class="en">“I never even saw the dates — I went straight to cars.”</span></blockquote><figcaption class="who"><span class="ko">46세 · 회사원</span><span class="en">46 · office worker</span></figcaption></figure>
+        <figure class="voice"><blockquote><span class="ko">“상단에 있는 건 광고처럼 보여서 안 봤어요.”</span><span class="en">“The bar up top looked like an ad, so I ignored it.”</span></blockquote><figcaption class="who"><span class="ko">62세 · 현장직</span><span class="en">62 · field worker</span></figcaption></figure>
+        <figure class="voice"><blockquote><span class="ko">“확인 버튼이 없으니까, X를 누르면 입력이 리셋될까 봐 헷갈렸어요.”</span><span class="en">“No confirm button — I worried X would reset what I’d entered.”</span></blockquote><figcaption class="who"><span class="ko">24세 · 대학생</span><span class="en">24 · student</span></figcaption></figure>
+      </div></div>
+      <div class="wp-sec"><h4><span class="ko">제안: 한 화면, 하나의 결정</span><span class="en">Proposal — one screen, one decision</span></h4><p><span class="ko">해법은 화면을 더하는 게 아니라 결정을 쪼개는 것이었습니다. 한 화면에 몰려 있던 입력을 <b>장소 → 날짜 → 차량</b> 순서로 나눠, 화면마다 하나씩만 고르게 했어요. 조건을 먼저 정하면 그게 차량을 고르는 기준이 되니, 사용자가 순서를 고민할 일이 사라집니다. 같은 기능을, 자연스럽게 따라가는 흐름으로 다시 세운 제안이었습니다.</span><span class="en">The fix wasn't to add screens but to split decisions. I broke the crowded single screen into a clear order — <b>place → date → car</b> — one choice per screen. Set the conditions first and they become the frame for choosing a car, so there's no order left to puzzle over. Same features, rebuilt into a flow the user naturally follows.</span></p>
       <div class="compare">
         <div class="col"><h6>AS-IS · Everything at once</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">렌터카 진입</span><span class="en">Enter rental</span></li><li><span class="ko">조건 설정</span><span class="en">Conditions</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">일정 설정</span><span class="en">Dates</span></li><li><span class="ko">조건 재설정</span><span class="en">Conditions again</span></li></ol></div>
-        <div class="col to"><h6>TO-BE · A simpler way</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">일정 선택</span><span class="en">Dates</span></li><li><span class="ko">차량 선택</span><span class="en">Car</span></li></ol></div>
+        <div class="col to"><h6>TO-BE · A simpler way</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">날짜 선택</span><span class="en">Date</span></li><li><span class="ko">차량 선택</span><span class="en">Car</span></li></ol></div>
+      </div>
+      <div class="wp-shotset">
+        <div class="shot-lbl">AS-IS<span class="tail"><span class="ko">· 실제 화면</span><span class="en">· actual screens</span></span><span class="swipe"><span class="ko">옆으로 넘겨보세요 →</span><span class="en">swipe →</span></span></div>
+        <div class="wp-shots">
+          <figure><img src="assets/korail-asis-1.png" alt="Korail-talk 홈: 승차권 예매와 '이런 서비스는 어떠세요?'의 렌터카 진입" loading="lazy"><figcaption><span class="n">1</span><span><span class="ko">홈</span><span class="en">Home</span></span></figcaption></figure>
+          <figure><img src="assets/korail-asis-2.png" alt="렌터카 진입 화면" loading="lazy"><figcaption><span class="n">2</span><span><span class="ko">렌터카 진입</span><span class="en">Enter rental</span></span></figcaption></figure>
+          <figure><img src="assets/korail-asis-3.png" alt="대여 조건 설정 화면" loading="lazy"><figcaption><span class="n">3</span><span><span class="ko">조건 설정</span><span class="en">Conditions</span></span></figcaption></figure>
+          <figure><img src="assets/korail-asis-4.png" alt="장소 선택 화면" loading="lazy"><figcaption><span class="n">4</span><span><span class="ko">장소 선택</span><span class="en">Place</span></span></figcaption></figure>
+          <figure><img src="assets/korail-asis-5.png" alt="일정 설정 화면" loading="lazy"><figcaption><span class="n">5</span><span><span class="ko">일정 설정</span><span class="en">Dates</span></span></figcaption></figure>
+          <figure><img src="assets/korail-asis-6.png" alt="조건 재설정 화면" loading="lazy"><figcaption><span class="n">6</span><span><span class="ko">조건 재설정</span><span class="en">Conditions again</span></span></figcaption></figure>
+        </div>
+      </div>
+      <div class="wp-shotset to">
+        <div class="shot-lbl">TO-BE<span class="tail"><span class="ko">· 한 화면, 하나의 결정</span><span class="en">· one screen, one decision</span></span><span class="swipe"><span class="ko">옆으로 넘겨보세요 →</span><span class="en">swipe →</span></span></div>
+        <div class="wp-shots">
+          <figure><img src="assets/korail-tobe-1.png" alt="Korail-talk 홈: 재설계 흐름의 시작점" loading="lazy"><figcaption><span class="n">1</span><span><span class="ko">홈</span><span class="en">Home</span></span></figcaption></figure>
+          <figure><img src="assets/korail-tobe-2.png" alt="장소 선택: 한 화면에서 타는 장소만 고르는 단계" loading="lazy"><figcaption><span class="n">2</span><span><span class="ko">장소 선택</span><span class="en">Place</span></span></figcaption></figure>
+          <figure><img src="assets/korail-tobe-3.png" alt="날짜 선택 화면" loading="lazy"><figcaption><span class="n">3</span><span><span class="ko">날짜 선택</span><span class="en">Date</span></span></figcaption></figure>
+          <figure><img src="assets/korail-tobe-4.png" alt="차량 선택 화면" loading="lazy"><figcaption><span class="n">4</span><span><span class="ko">차량 선택</span><span class="en">Car</span></span></figcaption></figure>
+        </div>
       </div>
       <p class="dim" style="margin-top:var(--sp-5)"><span class="ko">추측이 아니라 세 갈래 근거가 같은 곳을 가리켰기에, 무엇을 어떻게 고칠지가 분명했습니다. 여기서 얻은 '한 화면엔 하나의 결정'은 이후 다른 화면을 설계할 때도 제 기준이 됐어요.</span><span class="en">Because three independent methods pointed to the same place, what to fix — and how — was unambiguous. "One decision per screen" became a principle I carried into every screen after.</span></p></div>
     </div>
@@ -968,6 +1041,18 @@
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
   }
 
+  // 화면 스트립: 실제로 가로 넘침이 있을 때만 어포던스(.has-more) 표시
+  function syncShots(){
+    var sets=document.querySelectorAll('.wp-shotset');
+    for(var i=0;i<sets.length;i++){
+      var strip=sets[i].querySelector('.wp-shots');
+      if(!strip) continue;
+      sets[i].classList.toggle('has-more', strip.scrollWidth - strip.clientWidth > 4);
+    }
+  }
+  window.addEventListener('resize', syncShots);
+  window.addEventListener('load', syncShots);
+
   // clock
   var clock=document.getElementById('clock');
   function tick(){ try{ clock.textContent=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Seoul'})+' SEOUL'; }catch(e){ clock.textContent='SEOUL'; } }
@@ -976,6 +1061,7 @@
   // init
   runReveal(homeEl);
   route(); // 초기 진입(홈/딥링크 케이스 모두)도 route() 안에서 page_view 전송
+  syncShots();
 })();
 </script>
 </body>
