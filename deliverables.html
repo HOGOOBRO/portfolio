@@ -103,7 +103,7 @@
 
   /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 (design-system.html과 동일) ── */
   .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
-  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} section.sec{margin-left:0; padding-left:var(--sp-4)} }
+  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} }
   .toc{position:sticky; top:84px; padding-top:var(--sp-9); display:flex; flex-direction:column; gap:.2rem}
   .toc .lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem; padding-left:.7rem}
   .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; margin-left:.9rem; padding:.3rem 0 .3rem .7rem; display:flex; align-items:baseline; gap:.5rem; border-left:2px solid transparent; transition:.18s}
@@ -132,7 +132,7 @@
   .nda p b{color:var(--ink); font-weight:600}
 
   /* ── 산출물 카드 ── */
-  section.sec{padding:var(--sp-9) 0 var(--sp-9) var(--sp-5); border-top:1px solid var(--line)}
+  section.sec{padding:var(--sp-9) 0; border-top:1px solid var(--line)}
   .grp{margin-top:var(--sp-2); margin-bottom:var(--sp-4); padding-top:var(--sp-6); border-top:1px solid color-mix(in srgb, var(--ink-faint) 60%, var(--line-strong)); display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap}
   .grp .gk{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--navy); font-weight:600}
   .grp .gd{font-size:.8rem; color:var(--ink-faint)}
