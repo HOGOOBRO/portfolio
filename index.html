@@ -104,7 +104,13 @@
   .lang{display:inline-flex; border:1px solid var(--line-strong); border-radius:999px; overflow:hidden}
   .lang button{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; padding:.3rem .56rem; background:transparent; border:0; color:var(--ink-faint)}
   .lang button.on{background:var(--ink); color:var(--paper)}
-  @media(max-width:700px){ .hide-sm{display:none} }
+  .menu-btn{display:none; align-items:center; justify-content:center; font-size:1.2rem; line-height:1; background:transparent; border:0; color:var(--ink-soft); padding:.3rem .35rem; cursor:pointer; -webkit-tap-highlight-color:transparent}
+  .menu-btn[aria-expanded="true"]{color:var(--ink)}
+  .mnav{display:none; position:absolute; top:calc(100% + .55rem); right:clamp(1rem,5vw,2rem); flex-direction:column; min-width:158px; background:var(--paper); border:1px solid var(--line-strong); border-radius:14px; padding:.4rem; box-shadow:0 18px 40px -22px rgba(0,0,0,.5); z-index:90}
+  .mnav.open{display:flex}
+  .mnav a{font-family:var(--mono); font-size:.76rem; letter-spacing:.04em; color:var(--ink-soft); padding:.72rem .85rem; border-radius:9px; text-decoration:none}
+  .mnav a:hover, .mnav a:active{background:color-mix(in srgb,var(--ink) 6%, transparent); color:var(--ink)}
+  @media(max-width:700px){ .hide-sm{display:none} .menu-btn{display:inline-flex} }
 
   /* ── views ── */
   .view{display:none}
@@ -348,6 +354,14 @@
   .compare li{font-size:.9rem; color:var(--ink-soft); counter-increment:s; display:flex; gap:.55rem; align-items:baseline}
   .compare li::before{content:counter(s); font-family:var(--mono); font-size:.66rem; color:var(--ink-faint)}
   .compare .col.to li{color:var(--ink)}
+  .wp-fig{margin-top:var(--sp-6); border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--card)}
+  .wp-fig .lbl{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); padding:.62rem .9rem; border-bottom:1px solid var(--line); background:color-mix(in srgb,var(--ink) 3%, transparent)}
+  .wp-fig img{display:block; width:100%; height:auto}
+  .wp-fig+.wp-fig{margin-top:var(--sp-4)}
+  .wp-fig .lbl .tail{color:var(--ink-soft); text-transform:none; letter-spacing:.01em}
+  .wp-fig .cap{font-size:.86rem; line-height:1.55; color:var(--ink-soft); padding:.8rem .95rem; border-top:1px solid var(--line)}
+  .wp-fig .cap b{color:var(--ink); font-weight:600}
+  body.lang-en .wp-fig .cap{font-family:var(--sans-en)}
   .ab{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); margin-top:var(--sp-2)}
   @media(max-width:640px){.ab{grid-template-columns:1fr}}
   .ab .col{border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem}
@@ -374,11 +388,19 @@
   <a class="brand" href="#/" data-home><b>KIM JINHYEON</b><span class="ko">서비스 기획자 · 서울</span><span class="en">Service Designer · Seoul</span></a>
   <div class="top-r">
     <a class="nav-link hide-sm" href="#/" data-home><span class="ko">홈</span><span class="en">Home</span></a>
-    <a class="nav-link hide-sm" href="#/" data-scroll="p-work"><span class="ko">작업</span><span class="en">Work</span></a>
+    <a class="nav-link hide-sm" href="#/" data-scroll="p-work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
+    <a class="nav-link hide-sm" href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
     <a class="nav-link hide-sm" href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
     <span class="clock hide-sm" id="clock">SEOUL</span>
     <span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span>
+    <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false" aria-controls="mnav">☰</button>
   </div>
+  <nav class="mnav" id="mnav" aria-hidden="true">
+    <a href="#/" data-home><span class="ko">홈</span><span class="en">Home</span></a>
+    <a href="#/" data-scroll="p-work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
+    <a href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+    <a href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+  </nav>
 </header>
 
 <!-- ════════════════ HOME ════════════════ -->
@@ -493,6 +515,7 @@
       <div class="ct" style="grid-column:1/-1; gap:.4rem"><small><span class="ko">Duotone 블로그 · 기고</span><span class="en">Duotone blog</span></small><a href="https://brunch.co.kr/@duotoneofficial/45" target="_blank" rel="noopener" style="font-size:.95rem">디자이너에게 필요한 건 창의성보다 논리예요 ↗</a><a href="https://brunch.co.kr/@duotoneofficial/44" target="_blank" rel="noopener" style="font-size:.95rem">시선을 사로잡는 디자인, 3가지면 됩니다 ↗</a><a href="https://brunch.co.kr/@duotoneofficial/47" target="_blank" rel="noopener" style="font-size:.95rem">디자인과 생성 AI, 미래의 디자이너는 어떤 일을 할까 ↗</a></div>
       <div class="ct"><small>Build · RaiLink</small><a href="https://railink.app/?utm_source=portfolio&utm_medium=referral&utm_campaign=portfolio&utm_content=contact" target="_blank" rel="noopener">railink.app ↗</a></div>
       <div class="ct"><small>Build · Campaign</small><a href="https://deokhong.com/?utm_source=portfolio&utm_medium=referral&utm_campaign=portfolio&utm_content=contact" target="_blank" rel="noopener">deokhong.com ↗</a></div>
+      <div class="ct"><small><span class="ko">산출물</span><span class="en">Deliverables</span></small><a href="deliverables.html"><span class="ko">보러 가기 →</span><span class="en">View →</span></a></div>
       <div class="ct"><small><span class="ko">디자인 시스템</span><span class="en">Design system</span></small><a href="design-system.html"><span class="ko">보러 가기 →</span><span class="en">View →</span></a></div>
     </div>
     <div class="ct-foot rv d2"><span>© 2026 Kim Jinhyeon</span><span class="ko">서울에서</span><span class="en">From Seoul</span></div>
@@ -505,7 +528,7 @@
   <!-- RAILINK -->
   <article class="wp t-navy" id="work-railink" data-work="railink">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">직접 만든 것 · 1인 빌드·운영</span><span class="en">Built &amp; run solo</span></p>
       <h1 class="wp-title">RaiLink</h1>
       <p class="wp-meta"><span class="ko">기획·UX·디자인·프론트엔드·그로스 · 2026 →</span><span class="en">Strategy · UX · Design · Front-end · Growth · 2026 →</span></p>
@@ -599,7 +622,7 @@
   <!-- DEOKHONG -->
   <article class="wp t-dark" id="work-deokhong" data-work="deokhong">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">직접 만든 것 · 1인 빌드</span><span class="en">Solo build</span></p>
       <h1 class="wp-title">deokhong.com</h1>
       <p class="wp-meta"><span class="ko">기획·정보구조·카피·디자인·퍼블리싱 · 2026</span><span class="en">Strategy · IA · Copy · Design · Publishing · 2026</span></p>
@@ -633,7 +656,7 @@
   <!-- OPENPATH -->
   <article class="wp t-green" id="work-openpath" data-work="openpath">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">듀오톤 · Product Manager</span><span class="en">Duotone · Product Manager</span></p>
       <h1 class="wp-title">OPENPATH</h1>
       <p class="wp-meta"><span class="ko">IT 교육 플랫폼 0→1 · 2023.06–12</span><span class="en">Edtech platform 0→1 · 2023.06–12</span></p>
@@ -682,7 +705,7 @@
   <!-- SAMSUNG -->
   <article class="wp t-blue" id="work-samsung" data-work="samsung">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">듀오톤 · UX 기획·디자인</span><span class="en">Duotone · UX Design</span></p>
       <h1 class="wp-title">Samsung Care+</h1>
       <p class="wp-meta"><span class="ko">글로벌 구매 여정 표준화 · 2024.05–2025.05</span><span class="en">Global purchase-journey standardization · 2024.05–2025.05</span></p>
@@ -720,7 +743,7 @@
   <!-- GENESIS -->
   <article class="wp t-bronze" id="work-genesis" data-work="genesis">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">Concentrix Catalyst · 서비스 기획</span><span class="en">Concentrix Catalyst · Service Design</span></p>
       <h1 class="wp-title">Genesis <span class="ko">유럽</span><span class="en">EU</span></h1>
       <p class="wp-meta"><span class="ko">이탈리아 마켓 단독 오너 · 2025.08–12</span><span class="en">Italy market owner · 2025.08–12</span></p>
@@ -741,7 +764,17 @@
       <div class="compare">
         <div class="col"><h6>Before</h6><ol><li><span class="ko">페이지마다 개별 작성</span><span class="en">Written per page</span></li><li><span class="ko">고지 변경 시 전 페이지 수작업</span><span class="en">Manual edits across pages</span></li><li><span class="ko">매번 법무 재검토</span><span class="en">Legal re-review each time</span></li></ol></div>
         <div class="col to"><h6>After</h6><ol><li><span class="ko">페이지 유형별 기준 정립</span><span class="en">Standard by page type</span></li><li><span class="ko">골라서 재사용</span><span class="en">Select &amp; reuse</span></li><li><span class="ko">변경은 시스템 단위 일괄</span><span class="en">Update once, everywhere</span></li></ol></div>
-      </div></div>
+      </div>
+      <figure class="wp-fig">
+        <div class="lbl"><span class="ko">디스클레이머 인벤토리 <span class="tail">· 페이지 유형별 전체</span></span><span class="en">Disclaimer Inventory <span class="tail">· full sheet, by page type</span></span></div>
+        <img src="assets/genesis-disclaimer-cfm.png" alt="페이지 유형별로 정리한 디스클레이머 인벤토리 전체" loading="lazy">
+        <figcaption class="cap"><span class="ko">먼저 흩어져 있던 고지 문구를 <b>전부 모아 페이지 유형별로 정리</b>했어요. 이 인벤토리를 기준으로 AEM <b>CFM(Content Fragment)</b>으로 옮겨, 한 번 만들어 여러 곳에서 가져다 쓰게 만들었습니다.</span><span class="en">First I <b>gathered the scattered notices and organized them by page type</b>. That inventory became the spec for moving them into AEM <b>Content Fragments (CFM)</b> — authored once, reused everywhere.</span></figcaption>
+      </figure>
+      <figure class="wp-fig">
+        <div class="lbl"><span class="ko">고지 문구 정의 <span class="tail">· 일부 확대</span></span><span class="en">Per-page-type spec <span class="tail">· detail view</span></span></div>
+        <img src="assets/genesis-disclaimer-detail.png" alt="페이지 유형·CFM 타이틀·설명·실제 고지 문구를 확대한 상세" loading="lazy">
+        <figcaption class="cap"><span class="ko">페이지 유형마다 어떤 고지를, 어떤 문구로 넣을지 정의한 부분입니다. 이 표 그대로 CFM으로 만들었어요.</span><span class="en">A zoomed-in slice: which disclaimer each page type gets, and in what wording. This definition became the CFM spec verbatim.</span></figcaption>
+      </figure></div>
       <div class="wp-sec"><h4><span class="ko">의미</span><span class="en">Why it matters</span></h4><p class="dim"><span class="ko">겉보기엔 작은 변화지만, <b>일하는 방식</b>이 바뀌었어요. 매번 반복하던 일을, 한 번 정해두면 계속 재사용되는 구조로 옮긴 거죠. 이런 변화는 페이지가 늘고 나라가 늘수록 더 크게 돌아옵니다.</span><span class="en">It looks small, but the <b>way of working</b> changed: a task we repeated every time became a structure defined once and reused. The more pages and markets pile up, the more it pays back.</span></p></div>
     </div>
     <div class="wp-tags"><span class="tag">AEM</span><span class="tag">Content Fragment</span><span class="tag">EU Rollout</span><span class="tag">Frankfurt</span></div>
@@ -752,7 +785,7 @@
   <!-- KORAIL -->
   <article class="wp t-indigo" id="work-korail" data-work="korail">
     <div class="wp-hero"><div class="wrap">
-      <a class="back" href="#/" data-home>← <span class="ko">전체 작업</span><span class="en">All work</span></a>
+      <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">듀오톤 · UX 기획·디자인</span><span class="en">Duotone · UX Design</span></p>
       <h1 class="wp-title">Korail-talk</h1>
       <p class="wp-meta"><span class="ko">MaaS 렌터카 예약 흐름·UX 개선 · 2024.01–02</span><span class="en">MaaS car-rental flow & UX · 2024.01–02</span></p>
@@ -909,6 +942,8 @@
     try{
       if(/design-system\.html/.test(href)){
         gtag('event','design_system_click',{ link_text:text, link_url:href });
+      } else if(/deliverables\.html/.test(href)){
+        gtag('event','deliverables_click',{ link_text:text, link_url:href });
       } else if(/^https?:\/\//.test(href)){
         var dom=''; try{ dom=new URL(href).hostname; }catch(e){}
         gtag('event','outbound_click',{ link_text:text, link_url:href, link_domain:dom });
@@ -922,6 +957,16 @@
     if(a.hasAttribute('data-home')){ ev.preventDefault(); var restore=a.classList.contains('back'); if(history.replaceState){ try{ history.replaceState(null,'',location.pathname+location.search+'#/'); }catch(e){} } body.classList.remove('mode-work'); body.classList.add('mode-home'); if(restore){ homeEl.scrollTop=homeScrollY; top.classList.toggle('solid', homeScrollY>50); } else { homeEl.scrollTop=0; top.classList.remove('solid'); } return; }
     if(a.hasAttribute('data-scroll')){ ev.preventDefault(); var id=a.getAttribute('data-scroll'); if(location.hash && location.hash!=='#/'){ location.hash='#/'; setTimeout(function(){ showHome(id); },60); } else { showHome(id); } }
   });
+
+  // mobile menu
+  var menuBtn=document.getElementById('menuBtn'), mnav=document.getElementById('mnav');
+  if(menuBtn && mnav){
+    function setMenu(open){ mnav.classList.toggle('open',open); menuBtn.setAttribute('aria-expanded',open?'true':'false'); mnav.setAttribute('aria-hidden',open?'false':'true'); }
+    menuBtn.addEventListener('click', function(e){ e.stopPropagation(); setMenu(!mnav.classList.contains('open')); });
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function(e){ if(mnav.classList.contains('open') && !mnav.contains(e.target) && e.target!==menuBtn) setMenu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+  }
 
   // clock
   var clock=document.getElementById('clock');

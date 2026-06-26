@@ -90,6 +90,13 @@
   .top-r{display:flex; align-items:center; gap:clamp(.7rem,2vw,1.5rem)}
   .nav-link{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none}
   .nav-link:hover{color:var(--ink)}
+  .menu-btn{display:none; align-items:center; justify-content:center; font-size:1.2rem; line-height:1; background:transparent; border:0; color:var(--ink-soft); padding:.3rem .35rem; cursor:pointer; -webkit-tap-highlight-color:transparent}
+  .menu-btn[aria-expanded="true"]{color:var(--ink)}
+  .mnav{display:none; position:absolute; top:calc(100% + .55rem); right:clamp(1rem,5vw,2rem); flex-direction:column; min-width:158px; background:var(--paper); border:1px solid var(--line-strong); border-radius:14px; padding:.4rem; box-shadow:0 18px 40px -22px rgba(0,0,0,.5); z-index:90}
+  .mnav.open{display:flex}
+  .mnav a{font-family:var(--mono); font-size:.76rem; letter-spacing:.04em; color:var(--ink-soft); padding:.72rem .85rem; border-radius:9px; text-decoration:none}
+  .mnav a:hover, .mnav a:active{background:color-mix(in srgb,var(--ink) 6%, transparent); color:var(--ink)}
+  @media(max-width:700px){ .hide-sm{display:none} .menu-btn{display:inline-flex} }
 
   /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 ── */
   .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
@@ -261,9 +268,17 @@
 <header class="top">
   <a class="brand" href="index.html"><b>KIM JINHYEON</b><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
   <div class="top-r">
-    <a class="nav-link" href="index.html"><span class="ko">← 포트폴리오</span><span class="en">← Portfolio</span></a>
+    <a class="nav-link hide-sm" href="index.html"><span class="ko">포트폴리오</span><span class="en">Portfolio</span></a>
+    <a class="nav-link hide-sm" href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+    <a class="nav-link hide-sm" href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
     <span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span>
+    <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false" aria-controls="mnav">☰</button>
   </div>
+  <nav class="mnav" id="mnav" aria-hidden="true">
+    <a href="index.html"><span class="ko">포트폴리오</span><span class="en">Portfolio</span></a>
+    <a href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+    <a href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+  </nav>
 </header>
 
 <div class="shell">
@@ -575,6 +590,16 @@
   setLang(saved);
   koBtn.onclick=function(){ setLang('ko'); };
   enBtn.onclick=function(){ setLang('en'); };
+
+  // 모바일 메뉴
+  var menuBtn=document.getElementById('menuBtn'), mnav=document.getElementById('mnav');
+  if(menuBtn && mnav){
+    function setMenu(open){ mnav.classList.toggle('open',open); menuBtn.setAttribute('aria-expanded',open?'true':'false'); mnav.setAttribute('aria-hidden',open?'false':'true'); }
+    menuBtn.addEventListener('click', function(e){ e.stopPropagation(); setMenu(!mnav.classList.contains('open')); });
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function(e){ if(mnav.classList.contains('open') && !mnav.contains(e.target) && e.target!==menuBtn) setMenu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+  }
 
   // 목차 스크롤-스파이: 지금 보고 있는 섹션을 목차에서 강조
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));

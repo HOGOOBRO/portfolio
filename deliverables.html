@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — per-browser opt-out: visit with ?noga=1 once to stop
+     GA counting this browser (persists in localStorage, survives IP changes);
+     ?noga=0 clears it. When opted out, gtag.js never loads so window.gtag stays
+     undefined and the downstream event guards below all no-op. -->
+<script>
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search).get('noga');
+      if (p === '1') localStorage.setItem('ga_optout', '1');
+      else if (p === '0') localStorage.removeItem('ga_optout');
+      if (localStorage.getItem('ga_optout') === '1') return;
+    } catch (e) {}
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-E6V7FC0PJP';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-E6V7FC0PJP');
+  })();
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>산출물 — 김진현 포트폴리오 · Selected Deliverables</title>
+<meta name="description" content="기획·UX 산출물을 기밀 정보를 제거해 재구성한 모음. 화면기획서의 주석 밀도로 실행력을 보여줍니다." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='52' fill='%23FAF8F4' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ── 색 ── */
+    --paper:#FAF8F4; --paper-2:#F1EDE5; --card:#FFFFFF;
+    --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
+    --line:#E5E0D5; --line-strong:#D6D0C2;
+    --navy:#0C3C60; --gold:#B98B2E;
+    /* 프로젝트 정체성 색 */
+    --t-navy:#0C3C60; --t-dark:#211C16; --t-green:#14564A; --t-blue:#13287A; --t-bronze:#4B3D2C; --t-indigo:#1C2E70;
+    /* ── 글꼴 ── */
+    --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+    --sans-en:'Inter Tight','Pretendard Variable',system-ui,sans-serif;
+    --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    /* ── 간격 스케일 (4px 기준) ── */
+    --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+    --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:6rem; --sp-10:8rem;
+    /* ── 레이아웃 ── */
+    --wrap:1180px;
+    --gutter:clamp(1.25rem,5vw,3.5rem);
+    --col-gap:clamp(.75rem,1.4vw,1.125rem);
+    --section-y:clamp(5rem,12vh,9rem);
+    /* ── 모서리 ── */
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+    /* ── 그림자 · 모션 ── */
+    --shadow:0 18px 40px -22px rgba(0,0,0,.5);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.7;
+    word-break:keep-all; overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit; text-decoration:none}
+  button{font:inherit; cursor:pointer}
+  ::selection{background:var(--navy); color:#fff}
+  .mono{font-family:var(--mono); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-faint)}
+  .serif{font-family:var(--serif)}
+
+  /* ── 이중 언어 ── */
+  body.lang-en{font-family:var(--sans-en); word-break:normal}
+  body.lang-ko .en{display:none !important}
+  body.lang-en .ko{display:none !important}
+  body.lang-en .hero h1{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; line-height:1.08}
+
+  /* ── 상단바 (GNB) — index.html과 동일한 브랜드·링크·토글 ── */
+  .top{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+       padding:var(--sp-3) var(--gutter); background:color-mix(in srgb,var(--paper) 86%, transparent); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line)}
+  .brand{display:flex; flex-direction:column; gap:.35rem; line-height:1.2; text-decoration:none}
+  .brand b{font-family:var(--mono); font-weight:500; font-size:.82rem; letter-spacing:.16em}
+  .brand span{font-size:.7rem; color:var(--ink-faint)}
+  .top-r{display:flex; align-items:center; gap:clamp(.7rem,2vw,1.5rem)}
+  .nav-link{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none}
+  .nav-link:hover{color:var(--ink)}
+  .menu-btn{display:none; align-items:center; justify-content:center; font-size:1.2rem; line-height:1; background:transparent; border:0; color:var(--ink-soft); padding:.3rem .35rem; cursor:pointer; -webkit-tap-highlight-color:transparent}
+  .menu-btn[aria-expanded="true"]{color:var(--ink)}
+  .mnav{display:none; position:absolute; top:calc(100% + .55rem); right:clamp(1rem,5vw,2rem); flex-direction:column; min-width:158px; background:var(--paper); border:1px solid var(--line-strong); border-radius:14px; padding:.4rem; box-shadow:0 18px 40px -22px rgba(0,0,0,.5); z-index:90}
+  .mnav.open{display:flex}
+  .mnav a{font-family:var(--mono); font-size:.76rem; letter-spacing:.04em; color:var(--ink-soft); padding:.72rem .85rem; border-radius:9px; text-decoration:none}
+  .mnav a:hover, .mnav a:active{background:color-mix(in srgb,var(--ink) 6%, transparent); color:var(--ink)}
+  @media(max-width:700px){ .hide-sm{display:none} .menu-btn{display:inline-flex} }
+  .lang{display:inline-flex; border:1px solid var(--line-strong); border-radius:var(--r-pill); overflow:hidden}
+  .lang button{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; padding:.3rem .56rem; background:transparent; border:0; color:var(--ink-faint)}
+  .lang button.on{background:var(--ink); color:var(--paper)}
+
+  /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 (design-system.html과 동일) ── */
+  .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
+  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} }
+  .toc{position:sticky; top:84px; padding-top:var(--sp-9); display:flex; flex-direction:column; gap:.2rem}
+  .toc .lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem; padding-left:.7rem}
+  .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; padding:.3rem 0 .3rem .7rem; display:flex; gap:.5rem; border-left:2px solid transparent; transition:.18s}
+  .toc a:hover{color:var(--ink)}
+  .toc a.active{color:var(--ink); font-weight:600; border-left-color:var(--navy)}
+  .toc a i{font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); font-style:normal}
+  .toc a.active i{color:var(--navy)}
+  .toc .ext{margin-top:var(--sp-4); padding-top:var(--sp-4); border-top:1px solid var(--line)}
+
+  main{padding:var(--sp-9) 0 var(--sp-10); min-width:0}
+  .hero{margin-bottom:var(--sp-8)}
+  .hero .eyebrow{margin-bottom:var(--sp-5)}
+  .hero h1{font-family:var(--sans); font-weight:700; letter-spacing:-.03em; line-height:1.12; font-size:clamp(2.2rem,5vw,3.6rem); max-width:18ch}
+  .hero p{margin-top:var(--sp-5); color:var(--ink-soft); max-width:56ch; font-size:1.08rem}
+  .hero p b{color:var(--ink); font-weight:600}
+  .hero .meta{margin-top:var(--sp-5); font-family:var(--mono); font-size:.7rem; color:var(--ink-faint); letter-spacing:.04em}
+
+  /* 전역 기밀 안내 배너 */
+  .nda{display:flex; gap:var(--sp-3); align-items:flex-start; max-width:56ch; margin-top:var(--sp-6);
+       border:1px dashed var(--line-strong); border-radius:var(--r-md); padding:var(--sp-4) var(--sp-5);
+       background:color-mix(in srgb,var(--gold) 7%,var(--paper))}
+  .nda .ic{font-family:var(--mono); color:var(--gold); font-size:.9rem; line-height:1.5; flex-shrink:0}
+  .nda p{margin:0; font-size:.9rem; color:var(--ink-soft); line-height:1.6}
+  .nda p b{color:var(--ink); font-weight:600}
+
+  /* ── 산출물 카드 ── */
+  section.sec{padding:var(--sp-9) 0; border-top:1px solid var(--line)}
+  .dhead{display:flex; align-items:baseline; gap:var(--sp-4); flex-wrap:wrap; margin-bottom:var(--sp-2)}
+  .dhead .num{font-family:var(--mono); font-size:.72rem; color:var(--navy); letter-spacing:.1em}
+  .dhead h2{font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:clamp(1.5rem,2.6vw,2rem)}
+  body.lang-en .dhead h2{font-family:var(--serif); font-weight:500}
+  .dmeta{display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-bottom:var(--sp-5); font-family:var(--mono); font-size:.66rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-faint)}
+  .dmeta b{color:var(--ink-soft); font-weight:500}
+  .dlead{color:var(--ink-soft); max-width:62ch; margin-bottom:var(--sp-6); line-height:1.75}
+  .dlead b{color:var(--ink); font-weight:600}
+
+  /* ── 산출물 전시: 실제 슬라이드 이미지 (기밀 제거) ── */
+  .slidewrap{max-width:980px}
+  .dfig{margin:0; border:1px solid var(--line-strong); border-radius:var(--r-md); overflow:hidden; background:var(--card)}
+  .dfig-lbl{font-family:var(--mono); font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); padding:.5rem .8rem; background:var(--paper-2); border-bottom:1px solid var(--line)}
+  .dfig img{display:block; width:100%; height:auto}
+  /* 캡션: 슬라이드가 화면기획서임을 명시 */
+  .slide-cap{margin-top:var(--sp-3); font-family:var(--mono); font-size:.62rem; letter-spacing:.03em; color:var(--ink-faint); display:flex; gap:.5rem; align-items:baseline}
+  .slide-cap b{color:var(--ink-soft); font-weight:500}
+
+  /* '이게 뭘 증명하나' 캡션 + 태그 */
+  .proves{margin-top:var(--sp-7); border-left:2px solid var(--gold); padding-left:var(--sp-4); max-width:60ch}
+  .proves .pl{font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.4rem}
+  .proves p{font-size:1.02rem; color:var(--ink); line-height:1.6; font-weight:500}
+  .dtags{margin-top:var(--sp-5); display:flex; flex-wrap:wrap; gap:var(--sp-2)}
+  .tag{font-family:var(--mono); font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); border:1px solid var(--line-strong); border-radius:var(--r-pill); padding:.3rem .65rem}
+
+  /* 더 채워질 자리 (placeholder) */
+  .soon{border:1px dashed var(--line-strong); border-radius:var(--r-md); padding:var(--sp-6); text-align:center; color:var(--ink-faint); background:color-mix(in srgb,var(--card) 50%,var(--paper))}
+  .soon b{display:block; color:var(--ink-soft); font-size:.95rem; margin-bottom:.3rem}
+  .soon span{font-size:.85rem}
+
+  footer{border-top:1px solid var(--line); padding:var(--sp-8) var(--gutter); text-align:center; font-family:var(--mono); font-size:.66rem; color:var(--ink-faint); letter-spacing:.06em}
+</style>
+</head>
+<body class="lang-ko">
+
+<header class="top">
+  <a class="brand" href="index.html"><b>KIM JINHYEON</b><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+  <div class="top-r">
+    <a class="nav-link hide-sm" href="index.html"><span class="ko">포트폴리오</span><span class="en">Portfolio</span></a>
+    <a class="nav-link hide-sm" href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+    <a class="nav-link hide-sm" href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+    <span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span>
+    <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false" aria-controls="mnav">☰</button>
+  </div>
+  <nav class="mnav" id="mnav" aria-hidden="true">
+    <a href="index.html"><span class="ko">포트폴리오</span><span class="en">Portfolio</span></a>
+    <a href="deliverables.html"><span class="ko">산출물</span><span class="en">Deliverables</span></a>
+    <a href="design-system.html"><span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+  </nav>
+</header>
+
+<div class="shell">
+  <!-- 목차 -->
+  <nav class="toc">
+    <span class="lbl"><span class="ko">목차</span><span class="en">Contents</span></span>
+    <a href="#testdrive"><i>01</i> Test Drive</a>
+    <a href="#configurator"><i>02</i> Configurator</a>
+    <a href="#ia"><i>03</i> <span class="ko">정보구조 IA</span><span class="en">IA</span></a>
+    <a class="ext" href="design-system.html"><i>↗</i> <span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <p class="eyebrow mono">Selected Deliverables · 2026</p>
+      <h1><span class="ko">생각만 한 게 아니라,<br>이만큼 그려서 넘겼어요.</span><span class="en">Not just the thinking —<br>the artifacts I shipped.</span></h1>
+      <p><span class="ko">프로젝트 페이지가 <b>왜 그렇게 결정했는지</b>를 말한다면, 여기는 <b>그래서 무엇을 만들어 넘겼는지</b>를 봅니다. 유저 플로우로 전체 흐름을 잡고, 화면마다 기능을 번호 단위로 정의해 개발이 그대로 구현하게 한 실제 산출물이에요. 기획자의 실행력은 결국 이 밀도로 드러나니까요.</span><span class="en">If the project pages say <b>why I decided</b>, this is <b>what I actually built and handed off</b>. User flows to capture the whole journey, then each screen's function defined by number so engineering builds it as-is. A planner's execution shows up in exactly this density.</span></p>
+      <div class="nda">
+        <span class="ic">✎</span>
+        <p><span class="ko"><b>실제 산출물 그대로입니다.</b> 내부 자산 경로·백엔드 시스템명·연락처·요구사항 ID 같은 기밀만 <b>Confidential</b>로 가렸고, 화면 설계와 기능 정의는 손대지 않았어요. 원본은 클라이언트 자산이라 게시하지 않습니다.</span><span class="en"><b>The real deliverables, as-is.</b> Only confidential bits — internal asset paths, backend system names, contacts, requirement IDs — are masked as <b>Confidential</b>; the screen and function definitions are untouched. The source files are client property and are not published.</span></p>
+      </div>
+      <p class="meta"><span class="ko">사고는 프로젝트에서, 실행은 여기에서</span><span class="en">Thinking in the cases, execution here</span></p>
+    </div>
+
+    <!-- 01 · TEST DRIVE -->
+    <section class="sec" id="testdrive">
+      <div class="dhead"><span class="num">01</span><h2><span class="ko">Genesis · Test Drive 화면기획</span><span class="en">Genesis · Test Drive spec</span></h2></div>
+      <div class="dmeta">
+        <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
+        <span><span class="ko">유럽 롤아웃 · 이탈리아 마켓</span><span class="en">EU rollout · Italy market</span></span>
+        <span>2025</span>
+        <span><span class="ko">화면기획서(스토리보드)</span><span class="en">Storyboard</span></span>
+      </div>
+      <p class="dlead"><span class="ko">시승 신청을 유저 플로우로 먼저 잡았어요. 어디서 들어오고(진입), 무엇을 고르고, 성공·실패가 어디로 가고, 뒤에서 어떤 시스템과 붙는지까지 한 장에 정리했죠. 그다음 신청 폼을 화면 단위로 펼쳐, 모델 선택·일정·딜러 찾기(Agency Locator)를 번호로 짚고 오른쪽 표에 동작을 1:1로 적었습니다. 흐름과 화면을 같이 봐야 개발이 추측 없이 구현하거든요.</span><span class="en">I started the test-drive request as a user flow: where people enter, what they pick, where success and failure go, and which backend systems it connects to, all on one page. Then I unfolded the request form screen by screen, pinning model selection, scheduling and the agency locator by number with behavior mirrored 1:1 in the table. Flow and screen have to be read together for engineers to build without guessing.</span></p>
+
+      <div class="slidewrap">
+        <figure class="dfig">
+          <div class="dfig-lbl"><span class="ko">유저 플로우 · 진입부터 백엔드 연동까지</span><span class="en">User flow · entry to backend</span></div>
+          <img src="assets/genesis-td-userflow.png" alt="Genesis Test Drive 유저 플로우 — 진입 경로, 신청 단계, 성공·실패 분기와 백엔드 연동을 한 장에 정리한 다이어그램 (실제 산출물, 기밀 Confidential 처리)" loading="lazy" />
+        </figure>
+        <figure class="dfig" style="margin-top:var(--sp-5)">
+          <div class="dfig-lbl"><span class="ko">신청 폼 · 모델 선택 · Agency Locator</span><span class="en">Request form · model select · agency locator</span></div>
+          <img src="assets/genesis-td-form.png" alt="Genesis Test Drive 신청 폼 화면기획 — 모델 선택, 일정, 딜러 찾기(지도·자동완성)를 화면 왼쪽 번호로 짚고 우측 명세 표에 동작을 1:1로 정의한 실제 슬라이드" loading="lazy" />
+        </figure>
+        <div class="slide-cap">
+          <span>✎</span>
+          <span><span class="ko"><b>실제 산출물에서 발췌</b> · 유저 플로우의 백엔드 시스템명은 <b>Confidential</b>로 가렸어요. 폼 화면은 왼쪽 번호와 오른쪽 명세 표가 1:1로 대응합니다.</span><span class="en"><b>Excerpted from the real deliverable</b> · backend system names in the flow are masked as <b>Confidential</b>. On the form screen, the left-side numbers map 1:1 to the spec table on the right.</span></span>
+        </div>
+      </div>
+
+      <div class="proves">
+        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
+        <p><span class="ko">전체 흐름을 한 장으로 잡고, 화면마다 기능을 번호로 정의해 개발이 추측 없이 구현하게 만드는 설계력.</span><span class="en">Capturing the whole flow on one page, then defining each screen's behavior by number so engineering builds it without guessing.</span></p>
+      </div>
+      <div class="dtags">
+        <span class="tag">Storyboard</span><span class="tag">User Flow</span><span class="tag">Form Design</span><span class="tag">Agency Locator</span><span class="tag">i18n</span><span class="tag">EU Rollout</span>
+      </div>
+    </section>
+
+    <!-- 02 · CONFIGURATOR -->
+    <section class="sec" id="configurator">
+      <div class="dhead"><span class="num">02</span><h2><span class="ko">Genesis · Configurator 화면기획</span><span class="en">Genesis · Configurator spec</span></h2></div>
+      <div class="dmeta">
+        <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
+        <span><span class="ko">이탈리아 마켓</span><span class="en">Italy market</span></span>
+        <span>2025</span>
+        <span><span class="ko">화면기획서(스토리보드)</span><span class="en">Storyboard</span></span>
+      </div>
+      <p class="dlead"><span class="ko">차량을 직접 구성(Configurator)하는 여정이에요. 모델 라인부터 엔진·색상·휠·인테리어·옵션을 거쳐 Summary까지 가는 단계 흐름을 먼저 정의하고, 핵심인 Summary 화면을 펼쳤습니다. 가격(부가세·등록비 포함)·금융 계산·법적 디스클레이머가 한 화면에 얽히는 곳이라, 무엇을 어떤 순서로 보여주고 어떤 문구를 띄울지를 번호 단위로 적었어요.</span><span class="en">The journey of configuring a car yourself: I defined the step flow from model line through engine, color, wheels, interior and options to the Summary, then unfolded the Summary itself. It's where price (incl. VAT and registration), finance calculation and legal disclaimers all tangle on one screen, so I specced what shows in what order and which copy appears, by number.</span></p>
+
+      <div class="slidewrap">
+        <figure class="dfig">
+          <div class="dfig-lbl"><span class="ko">유저 플로우 · 구성 단계 전체</span><span class="en">User flow · the full configure path</span></div>
+          <img src="assets/genesis-cfg-userflow.png" alt="Genesis Configurator 유저 플로우 — 모델 라인부터 옵션·Summary까지의 구성 단계와 Get a Quote·View Stock·Test Drive 분기를 정리한 다이어그램" loading="lazy" />
+        </figure>
+        <figure class="dfig" style="margin-top:var(--sp-5)">
+          <div class="dfig-lbl"><span class="ko">Summary 상세 · 가격·금융·디스클레이머</span><span class="en">Summary detail · price · finance · disclaimers</span></div>
+          <img src="assets/genesis-cfg-summary.png" alt="Genesis Configurator Summary 화면기획 — 가격 구성과 합계, 금융 옵션, 법적 디스클레이머를 번호로 짚고 우측 명세 표에 정의한 실제 슬라이드" loading="lazy" />
+        </figure>
+        <div class="slide-cap">
+          <span>✎</span>
+          <span><span class="ko"><b>실제 산출물에서 발췌</b> · 요구사항 ID 등 기밀은 <b>Confidential</b>로 가렸어요.</span><span class="en"><b>Excerpted from the real deliverable</b> · requirement IDs and the like are masked as <b>Confidential</b>.</span></span>
+        </div>
+      </div>
+
+      <div class="proves">
+        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
+        <p><span class="ko">가격·금융·법무가 얽힌 복잡한 화면도, 보여줄 순서와 문구를 정해 하나의 명세로 끝내는 정리력.</span><span class="en">Even a screen where price, finance and legal collide, resolved into one spec by deciding the order and the copy.</span></p>
+      </div>
+      <div class="dtags">
+        <span class="tag">Storyboard</span><span class="tag">User Flow</span><span class="tag">Configurator</span><span class="tag">Pricing</span><span class="tag">Finance</span><span class="tag">Disclaimers</span>
+      </div>
+    </section>
+
+    <!-- 03 · IA -->
+    <section class="sec" id="ia">
+      <div class="dhead"><span class="num">03</span><h2><span class="ko">Genesis · 정보구조(IA)</span><span class="en">Genesis · Information Architecture</span></h2></div>
+      <div class="dmeta">
+        <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
+        <span><span class="ko">이탈리아 마켓</span><span class="en">Italy market</span></span>
+        <span>2025</span>
+        <span><span class="ko">메뉴 트리 · 오픈 단계</span><span class="en">Menu tree · go-live phasing</span></span>
+      </div>
+      <p class="dlead"><span class="ko">이탈리아 사이트(genesis.com/it)의 메뉴 구조 전체를 정의했어요. Models·Offers·Buy·Owners·Service부터 Footer까지 1~4 depth로 펼치고, 단순히 '무엇이 있나'에서 멈추지 않고 <b>무엇을 언제 여는지</b>까지 단계(Phase 1·2·3)로 색을 입혀 한 장에 담았습니다. 화면을 그리기 전에 이 뼈대를 먼저 합의해야, 뒤따르는 모든 화면기획이 같은 구조 위에서 움직이거든요.</span><span class="en">I defined the full menu structure of the Italy site (genesis.com/it). From Models, Offers, Buy, Owners and Service down to the footer, laid out across 1–4 depths — and not stopping at "what exists" but coloring in <b>what opens when</b>, by go-live phase (1·2·3), all on one page. This skeleton has to be agreed before any screen is drawn, so every spec that follows moves on the same structure.</span></p>
+
+      <div class="slidewrap">
+        <figure class="dfig">
+          <div class="dfig-lbl"><span class="ko">IT 사이트 IA · 단계별 오픈</span><span class="en">Italy site IA · phased go-live</span></div>
+          <img src="assets/genesis-ia-it.png" alt="Genesis 이탈리아 사이트 정보구조(IA) — 전체 메뉴 트리를 1~4 depth로 펼치고 오픈 단계(Phase 1·2·3)를 색으로 구분한 실제 산출물 (문서 푸터·내부 식별자 가림)" loading="lazy" />
+        </figure>
+        <div class="slide-cap">
+          <span>✎</span>
+          <span><span class="ko"><b>실제 IA 산출물</b> · 문서 푸터·내부 식별자는 가렸어요. 색은 오픈 단계(Phase 1·2·3)를 뜻합니다.</span><span class="en"><b>The real IA deliverable</b> · document footer and internal identifiers masked. Colors denote go-live phase (1·2·3).</span></span>
+        </div>
+      </div>
+
+      <div class="proves">
+        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
+        <p><span class="ko">화면을 그리기 전에 사이트 전체 구조를 잡고, 오픈 순서까지 계획해 뒤따르는 모든 기획의 토대를 만드는 일.</span><span class="en">Setting the whole site's structure before any screen, and planning the release order, to lay the foundation every later spec stands on.</span></p>
+      </div>
+      <div class="dtags">
+        <span class="tag">IA</span><span class="tag">Menu Tree</span><span class="tag">Sitemap</span><span class="tag">Go-live Phasing</span><span class="tag">Italy</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>© 2026 Kim Jinhyeon · Selected Deliverables</footer>
+
+<script>
+(function(){
+  // 언어 토글 (포트폴리오·디자인 시스템과 'lang' 키 공유 — 페이지 이동해도 유지)
+  var body=document.body, doc=document.documentElement;
+  var koBtn=document.getElementById('ko-btn'), enBtn=document.getElementById('en-btn');
+  function setLang(l){
+    var en=(l==='en');
+    body.classList.toggle('lang-en', en);
+    body.classList.toggle('lang-ko', !en);
+    doc.lang = en ? 'en' : 'ko';
+    koBtn.classList.toggle('on', !en);
+    enBtn.classList.toggle('on', en);
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  var saved='ko'; try{ saved = localStorage.getItem('lang') || 'ko'; }catch(e){}
+  setLang(saved);
+  koBtn.onclick=function(){ setLang('ko'); };
+  enBtn.onclick=function(){ setLang('en'); };
+
+  // 모바일 메뉴
+  var menuBtn=document.getElementById('menuBtn'), mnav=document.getElementById('mnav');
+  if(menuBtn && mnav){
+    function setMenu(open){ mnav.classList.toggle('open',open); menuBtn.setAttribute('aria-expanded',open?'true':'false'); mnav.setAttribute('aria-hidden',open?'false':'true'); }
+    menuBtn.addEventListener('click', function(e){ e.stopPropagation(); setMenu(!mnav.classList.contains('open')); });
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function(e){ if(mnav.classList.contains('open') && !mnav.contains(e.target) && e.target!==menuBtn) setMenu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+  }
+
+  // 목차 스크롤-스파이: 지금 보고 있는 섹션을 목차에서 강조
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var spyMap = {};
+  tocLinks.forEach(function(a){ spyMap[a.getAttribute('href').slice(1)] = a; });
+  var spySections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  function spy(){
+    if(!spySections.length) return;
+    var line = window.innerHeight * 0.3, current = spySections[0].id;
+    spySections.forEach(function(s){ if(s.getBoundingClientRect().top <= line) current = s.id; });
+    tocLinks.forEach(function(a){ a.classList.toggle('active', a === spyMap[current]); });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('resize', spy);
+  spy();
+})();
+</script>
+</body>
+</html>
