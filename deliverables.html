@@ -103,15 +103,17 @@
 
   /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 (design-system.html과 동일) ── */
   .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
-  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} }
+  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} section.sec{margin-left:0; padding-left:var(--sp-4)} }
   .toc{position:sticky; top:84px; padding-top:var(--sp-9); display:flex; flex-direction:column; gap:.2rem}
   .toc .lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem; padding-left:.7rem}
-  .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; padding:.3rem 0 .3rem .7rem; display:flex; gap:.5rem; border-left:2px solid transparent; transition:.18s}
+  .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; margin-left:.9rem; padding:.3rem 0 .3rem .7rem; display:flex; align-items:baseline; gap:.5rem; border-left:2px solid transparent; transition:.18s}
   .toc a:hover{color:var(--ink)}
   .toc a.active{color:var(--ink); font-weight:600; border-left-color:var(--navy)}
   .toc a i{font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); font-style:normal}
   .toc a.active i{color:var(--navy)}
-  .toc .ext{margin-top:var(--sp-4); padding-top:var(--sp-4); border-top:1px solid var(--line)}
+  .toc-grp{font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); font-weight:600; margin:var(--sp-4) 0 .25rem; padding-left:.7rem}
+  .toc .lbl + .toc-grp{margin-top:0}
+  .toc .ext{margin-left:0; margin-top:var(--sp-4); padding-top:var(--sp-4); border-top:1px solid var(--line)}
 
   main{padding:var(--sp-9) 0 var(--sp-10); min-width:0}
   .hero{margin-bottom:var(--sp-8)}
@@ -130,10 +132,15 @@
   .nda p b{color:var(--ink); font-weight:600}
 
   /* ── 산출물 카드 ── */
-  section.sec{padding:var(--sp-9) 0; border-top:1px solid var(--line)}
+  section.sec{padding:var(--sp-9) 0 var(--sp-9) var(--sp-5); border-top:1px solid var(--line)}
+  .grp{margin-top:var(--sp-2); margin-bottom:var(--sp-4); padding-top:var(--sp-6); border-top:1px solid color-mix(in srgb, var(--ink-faint) 60%, var(--line-strong)); display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap}
+  .grp .gk{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--navy); font-weight:600}
+  .grp .gd{font-size:.8rem; color:var(--ink-faint)}
+  body.lang-en .grp .gd{font-family:var(--sans-en)}
+  .grp + section.sec{border-top:0; padding-top:var(--sp-4)}
   .dhead{display:flex; align-items:baseline; gap:var(--sp-4); flex-wrap:wrap; margin-bottom:var(--sp-2)}
   .dhead .num{font-family:var(--mono); font-size:.72rem; color:var(--navy); letter-spacing:.1em}
-  .dhead h2{font-family:var(--sans); font-weight:700; letter-spacing:-.02em; font-size:clamp(1.5rem,2.6vw,2rem)}
+  .dhead h2{font-family:var(--sans); font-weight:600; letter-spacing:-.02em; font-size:clamp(1.18rem,1.8vw,1.4rem)}
   body.lang-en .dhead h2{font-family:var(--serif); font-weight:500}
   .dmeta{display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-bottom:var(--sp-5); font-family:var(--mono); font-size:.66rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-faint)}
   .dmeta b{color:var(--ink-soft); font-weight:500}
@@ -186,122 +193,122 @@
   <!-- 목차 -->
   <nav class="toc">
     <span class="lbl"><span class="ko">목차</span><span class="en">Contents</span></span>
+    <span class="toc-grp">Wireframe</span>
     <a href="#testdrive"><i>01</i> Test Drive</a>
     <a href="#configurator"><i>02</i> Configurator</a>
-    <a href="#ia"><i>03</i> <span class="ko">정보구조 IA</span><span class="en">IA</span></a>
+    <span class="toc-grp">Information Architecture</span>
+    <a href="#ia"><i>03</i> Menu Tree</a>
     <a class="ext" href="design-system.html"><i>↗</i> <span class="ko">디자인 시스템</span><span class="en">Design System</span></a>
   </nav>
 
   <main>
     <div class="hero">
-      <p class="eyebrow mono">Selected Deliverables · 2026</p>
-      <h1><span class="ko">생각만 한 게 아니라,<br>이만큼 그려서 넘겼어요.</span><span class="en">Not just the thinking —<br>the artifacts I shipped.</span></h1>
-      <p><span class="ko">프로젝트 페이지가 <b>왜 그렇게 결정했는지</b>를 말한다면, 여기는 <b>그래서 무엇을 만들어 넘겼는지</b>를 봅니다. 유저 플로우로 전체 흐름을 잡고, 화면마다 기능을 번호 단위로 정의해 개발이 그대로 구현하게 한 실제 산출물이에요. 기획자의 실행력은 결국 이 밀도로 드러나니까요.</span><span class="en">If the project pages say <b>why I decided</b>, this is <b>what I actually built and handed off</b>. User flows to capture the whole journey, then each screen's function defined by number so engineering builds it as-is. A planner's execution shows up in exactly this density.</span></p>
+      <p class="eyebrow mono">Selected Deliverables</p>
+      <h1><span class="ko">생각만 한 게 아니라,<br>화면으로 그려 넘겼어요.</span><span class="en">Not just the thinking —<br>the screens I shipped.</span></h1>
+      <p><span class="ko">프로젝트 페이지가 <b>왜 그렇게 결정했는지</b>를 말한다면, 여기는 <b>그래서 무엇을 그려 넘겼는지</b>를 봅니다. 유저 플로우로 전체 흐름을 잡고, 화면마다 기능을 번호 단위로 정의해 개발이 그대로 구현할 수 있게 한 산출물이에요.</span><span class="en">If the project pages say <b>why I decided</b>, this is <b>what I drew up and handed off</b>. A user flow to capture the whole journey, then each screen's function defined by number so engineering can build it directly.</span></p>
       <div class="nda">
         <span class="ic">✎</span>
-        <p><span class="ko"><b>실제 산출물 그대로입니다.</b> 내부 자산 경로·백엔드 시스템명·연락처·요구사항 ID 같은 기밀만 <b>Confidential</b>로 가렸고, 화면 설계와 기능 정의는 손대지 않았어요. 원본은 클라이언트 자산이라 게시하지 않습니다.</span><span class="en"><b>The real deliverables, as-is.</b> Only confidential bits — internal asset paths, backend system names, contacts, requirement IDs — are masked as <b>Confidential</b>; the screen and function definitions are untouched. The source files are client property and are not published.</span></p>
+        <p><span class="ko"><b>실제로 작업한 산출물이에요.</b> 내부 자산 경로·백엔드 시스템명·연락처·요구사항 ID 같은 기밀만 <b>Confidential</b>로 가렸습니다. 원본은 클라이언트 자산이라 게시하지 않아요.</span><span class="en"><b>Deliverables from real client work.</b> Only confidential details — internal asset paths, backend system names, contacts, requirement IDs — are masked as <b>Confidential</b>. The source files are client property and aren't published.</span></p>
       </div>
       <p class="meta"><span class="ko">사고는 프로젝트에서, 실행은 여기에서</span><span class="en">Thinking in the cases, execution here</span></p>
     </div>
 
+    <!-- ══ WIREFRAME GROUP ══ -->
+    <div class="grp"><span class="gk">Wireframe</span><span class="gd"><span class="ko">화면기획서 · 유저 플로우 + 화면 기능 명세</span><span class="en">Screen specs · user flow + numbered functions</span></span></div>
+
     <!-- 01 · TEST DRIVE -->
     <section class="sec" id="testdrive">
-      <div class="dhead"><span class="num">01</span><h2><span class="ko">Genesis · Test Drive 화면기획</span><span class="en">Genesis · Test Drive spec</span></h2></div>
+      <div class="dhead"><span class="num">01</span><h2>Genesis · Test Drive</h2></div>
       <div class="dmeta">
         <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
-        <span><span class="ko">유럽 롤아웃 · 이탈리아 마켓</span><span class="en">EU rollout · Italy market</span></span>
+        <span><span class="ko">유럽 롤아웃</span><span class="en">EU rollout</span></span>
         <span>2025</span>
-        <span><span class="ko">화면기획서(스토리보드)</span><span class="en">Storyboard</span></span>
+        <span>Wireframe</span>
       </div>
-      <p class="dlead"><span class="ko">시승 신청을 유저 플로우로 먼저 잡았어요. 어디서 들어오고(진입), 무엇을 고르고, 성공·실패가 어디로 가고, 뒤에서 어떤 시스템과 붙는지까지 한 장에 정리했죠. 그다음 신청 폼을 화면 단위로 펼쳐, 모델 선택·일정·딜러 찾기(Agency Locator)를 번호로 짚고 오른쪽 표에 동작을 1:1로 적었습니다. 흐름과 화면을 같이 봐야 개발이 추측 없이 구현하거든요.</span><span class="en">I started the test-drive request as a user flow: where people enter, what they pick, where success and failure go, and which backend systems it connects to, all on one page. Then I unfolded the request form screen by screen, pinning model selection, scheduling and the agency locator by number with behavior mirrored 1:1 in the table. Flow and screen have to be read together for engineers to build without guessing.</span></p>
+      <p class="dlead"><span class="ko">시승 신청을 유저 플로우로 먼저 잡았어요. 어디서 들어오고(진입), 무엇을 고르고, 성공·실패가 어디로 가고, 뒤에서 어떤 시스템과 붙는지까지 한 장에 정리했죠. 그다음 신청 폼을 화면 단위로 펼쳐, 모델 선택·일정·딜러 찾기를 번호로 짚고 오른쪽 표에 동작을 1:1로 적었습니다. 흐름과 화면을 같이 봐야 개발이 추측 없이 구현되거든요.</span><span class="en">I started the test-drive request as a user flow: where people enter, what they pick, where success and failure go, and which backend systems it connects to, all on one page. Then I unfolded the request form screen by screen, pinning model selection, scheduling and dealer search by number with behavior mirrored 1:1 in the table. Flow and screen have to be read together for engineers to build without guessing.</span></p>
 
       <div class="slidewrap">
         <figure class="dfig">
-          <div class="dfig-lbl"><span class="ko">유저 플로우 · 진입부터 백엔드 연동까지</span><span class="en">User flow · entry to backend</span></div>
+          <div class="dfig-lbl"><span class="ko">유저 플로우</span><span class="en">User flow</span></div>
           <img src="assets/genesis-td-userflow.png" alt="Genesis Test Drive 유저 플로우 — 진입 경로, 신청 단계, 성공·실패 분기와 백엔드 연동을 한 장에 정리한 다이어그램 (실제 산출물, 기밀 Confidential 처리)" loading="lazy" />
         </figure>
         <figure class="dfig" style="margin-top:var(--sp-5)">
-          <div class="dfig-lbl"><span class="ko">신청 폼 · 모델 선택 · Agency Locator</span><span class="en">Request form · model select · agency locator</span></div>
+          <div class="dfig-lbl"><span class="ko">신청 폼 · 화면 명세</span><span class="en">Request form · screen spec</span></div>
           <img src="assets/genesis-td-form.png" alt="Genesis Test Drive 신청 폼 화면기획 — 모델 선택, 일정, 딜러 찾기(지도·자동완성)를 화면 왼쪽 번호로 짚고 우측 명세 표에 동작을 1:1로 정의한 실제 슬라이드" loading="lazy" />
         </figure>
-        <div class="slide-cap">
-          <span>✎</span>
-          <span><span class="ko"><b>실제 산출물에서 발췌</b> · 유저 플로우의 백엔드 시스템명은 <b>Confidential</b>로 가렸어요. 폼 화면은 왼쪽 번호와 오른쪽 명세 표가 1:1로 대응합니다.</span><span class="en"><b>Excerpted from the real deliverable</b> · backend system names in the flow are masked as <b>Confidential</b>. On the form screen, the left-side numbers map 1:1 to the spec table on the right.</span></span>
-        </div>
       </div>
 
       <div class="proves">
-        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
-        <p><span class="ko">전체 흐름을 한 장으로 잡고, 화면마다 기능을 번호로 정의해 개발이 추측 없이 구현하게 만드는 설계력.</span><span class="en">Capturing the whole flow on one page, then defining each screen's behavior by number so engineering builds it without guessing.</span></p>
+        <div class="pl"><span class="ko">요약</span><span class="en">Summary</span></div>
+        <p><span class="ko">진입부터 성공·실패 분기, 백엔드 연동까지 한 장에 정리하고, 화면 기능은 번호 단위로 명세해 개발이 추측 없이 구현하도록 넘겼습니다.</span><span class="en">Mapped the whole path — entry, success/failure branches, backend connections — on one page, and specced each screen's behavior by number so engineering could build it without guessing.</span></p>
       </div>
       <div class="dtags">
-        <span class="tag">Storyboard</span><span class="tag">User Flow</span><span class="tag">Form Design</span><span class="tag">Agency Locator</span><span class="tag">i18n</span><span class="tag">EU Rollout</span>
+        <span class="tag">Wireframe</span><span class="tag">User Flow</span><span class="tag">Form Design</span><span class="tag">i18n</span><span class="tag">EU Rollout</span>
       </div>
     </section>
 
     <!-- 02 · CONFIGURATOR -->
     <section class="sec" id="configurator">
-      <div class="dhead"><span class="num">02</span><h2><span class="ko">Genesis · Configurator 화면기획</span><span class="en">Genesis · Configurator spec</span></h2></div>
+      <div class="dhead"><span class="num">02</span><h2>Genesis · Configurator</h2></div>
       <div class="dmeta">
         <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
-        <span><span class="ko">이탈리아 마켓</span><span class="en">Italy market</span></span>
+        <span><span class="ko">유럽 롤아웃</span><span class="en">EU rollout</span></span>
         <span>2025</span>
-        <span><span class="ko">화면기획서(스토리보드)</span><span class="en">Storyboard</span></span>
+        <span>Wireframe</span>
       </div>
       <p class="dlead"><span class="ko">차량을 직접 구성(Configurator)하는 여정이에요. 모델 라인부터 엔진·색상·휠·인테리어·옵션을 거쳐 Summary까지 가는 단계 흐름을 먼저 정의하고, 핵심인 Summary 화면을 펼쳤습니다. 가격(부가세·등록비 포함)·금융 계산·법적 디스클레이머가 한 화면에 얽히는 곳이라, 무엇을 어떤 순서로 보여주고 어떤 문구를 띄울지를 번호 단위로 적었어요.</span><span class="en">The journey of configuring a car yourself: I defined the step flow from model line through engine, color, wheels, interior and options to the Summary, then unfolded the Summary itself. It's where price (incl. VAT and registration), finance calculation and legal disclaimers all tangle on one screen, so I specced what shows in what order and which copy appears, by number.</span></p>
 
       <div class="slidewrap">
         <figure class="dfig">
-          <div class="dfig-lbl"><span class="ko">유저 플로우 · 구성 단계 전체</span><span class="en">User flow · the full configure path</span></div>
+          <div class="dfig-lbl"><span class="ko">유저 플로우</span><span class="en">User flow</span></div>
           <img src="assets/genesis-cfg-userflow.png" alt="Genesis Configurator 유저 플로우 — 모델 라인부터 옵션·Summary까지의 구성 단계와 Get a Quote·View Stock·Test Drive 분기를 정리한 다이어그램" loading="lazy" />
         </figure>
         <figure class="dfig" style="margin-top:var(--sp-5)">
-          <div class="dfig-lbl"><span class="ko">Summary 상세 · 가격·금융·디스클레이머</span><span class="en">Summary detail · price · finance · disclaimers</span></div>
+          <div class="dfig-lbl"><span class="ko">Summary 상세</span><span class="en">Summary detail</span></div>
           <img src="assets/genesis-cfg-summary.png" alt="Genesis Configurator Summary 화면기획 — 가격 구성과 합계, 금융 옵션, 법적 디스클레이머를 번호로 짚고 우측 명세 표에 정의한 실제 슬라이드" loading="lazy" />
         </figure>
-        <div class="slide-cap">
-          <span>✎</span>
-          <span><span class="ko"><b>실제 산출물에서 발췌</b> · 요구사항 ID 등 기밀은 <b>Confidential</b>로 가렸어요.</span><span class="en"><b>Excerpted from the real deliverable</b> · requirement IDs and the like are masked as <b>Confidential</b>.</span></span>
-        </div>
       </div>
 
       <div class="proves">
-        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
-        <p><span class="ko">가격·금융·법무가 얽힌 복잡한 화면도, 보여줄 순서와 문구를 정해 하나의 명세로 끝내는 정리력.</span><span class="en">Even a screen where price, finance and legal collide, resolved into one spec by deciding the order and the copy.</span></p>
+        <div class="pl"><span class="ko">요약</span><span class="en">Summary</span></div>
+        <p><span class="ko">가격·금융·법적 고지가 한 화면에 모이는 Summary에서, 무엇을 어떤 순서로 보여주고 어떤 문구를 띄울지까지 번호 단위 명세로 정리했습니다.</span><span class="en">On the Summary, where price, finance and legal notices converge, specced what shows in what order and which copy appears, down to the numbered item.</span></p>
       </div>
       <div class="dtags">
-        <span class="tag">Storyboard</span><span class="tag">User Flow</span><span class="tag">Configurator</span><span class="tag">Pricing</span><span class="tag">Finance</span><span class="tag">Disclaimers</span>
+        <span class="tag">Wireframe</span><span class="tag">User Flow</span><span class="tag">Configurator</span><span class="tag">Pricing</span><span class="tag">Finance</span><span class="tag">Disclaimers</span>
       </div>
     </section>
 
+    <!-- ══ INFORMATION ARCHITECTURE GROUP ══ -->
+    <div class="grp"><span class="gk">Information Architecture</span><span class="gd"><span class="ko">사이트 전체 메뉴 구조와 오픈 단계</span><span class="en">Full site menu structure and release phasing</span></span></div>
+
     <!-- 03 · IA -->
     <section class="sec" id="ia">
-      <div class="dhead"><span class="num">03</span><h2><span class="ko">Genesis · 정보구조(IA)</span><span class="en">Genesis · Information Architecture</span></h2></div>
+      <div class="dhead"><span class="num">03</span><h2><span class="ko">Genesis · 메뉴 트리</span><span class="en">Genesis · Menu Tree</span></h2></div>
       <div class="dmeta">
         <span><b>Concentrix Catalyst</b> · <span class="ko">서비스 기획</span><span class="en">Service Design</span></span>
-        <span><span class="ko">이탈리아 마켓</span><span class="en">Italy market</span></span>
+        <span><span class="ko">유럽 롤아웃</span><span class="en">EU rollout</span></span>
         <span>2025</span>
         <span><span class="ko">메뉴 트리 · 오픈 단계</span><span class="en">Menu tree · go-live phasing</span></span>
       </div>
-      <p class="dlead"><span class="ko">이탈리아 사이트(genesis.com/it)의 메뉴 구조 전체를 정의했어요. Models·Offers·Buy·Owners·Service부터 Footer까지 1~4 depth로 펼치고, 단순히 '무엇이 있나'에서 멈추지 않고 <b>무엇을 언제 여는지</b>까지 단계(Phase 1·2·3)로 색을 입혀 한 장에 담았습니다. 화면을 그리기 전에 이 뼈대를 먼저 합의해야, 뒤따르는 모든 화면기획이 같은 구조 위에서 움직이거든요.</span><span class="en">I defined the full menu structure of the Italy site (genesis.com/it). From Models, Offers, Buy, Owners and Service down to the footer, laid out across 1–4 depths — and not stopping at "what exists" but coloring in <b>what opens when</b>, by go-live phase (1·2·3), all on one page. This skeleton has to be agreed before any screen is drawn, so every spec that follows moves on the same structure.</span></p>
+      <p class="dlead"><span class="ko">Genesis 사이트의 메뉴 구조 전체를 정의했어요. Models·Offers·Buy·Owners·Service부터 Footer까지 1~4 depth로 펼치고, 단순히 '무엇이 있나'에서 멈추지 않고 <b>무엇을 언제 여는지</b>까지 단계(Phase 1·2·3)로 색을 입혀 한 장에 담았습니다. 화면을 그리기 전에 이 뼈대를 먼저 합의해야, 뒤따르는 모든 화면기획이 같은 구조 위에서 움직이거든요.</span><span class="en">I defined the full menu structure of the Genesis site. From Models, Offers, Buy, Owners and Service down to the footer, laid out across 1–4 depths — and not stopping at "what exists" but coloring in <b>what opens when</b>, by go-live phase (1·2·3), all on one page. This skeleton has to be agreed before any screen is drawn, so every spec that follows moves on the same structure.</span></p>
 
       <div class="slidewrap">
         <figure class="dfig">
-          <div class="dfig-lbl"><span class="ko">IT 사이트 IA · 단계별 오픈</span><span class="en">Italy site IA · phased go-live</span></div>
-          <img src="assets/genesis-ia-it.png" alt="Genesis 이탈리아 사이트 정보구조(IA) — 전체 메뉴 트리를 1~4 depth로 펼치고 오픈 단계(Phase 1·2·3)를 색으로 구분한 실제 산출물 (문서 푸터·내부 식별자 가림)" loading="lazy" />
+          <div class="dfig-lbl"><span class="ko">사이트 IA · 단계별 오픈</span><span class="en">Site IA · phased go-live</span></div>
+          <img src="assets/genesis-ia-it.png" alt="Genesis 사이트 정보구조(IA) — 전체 메뉴 트리를 1~4 depth로 펼치고 오픈 단계(Phase 1·2·3)를 색으로 구분한 산출물 (문서 푸터·내부 식별자 가림)" loading="lazy" />
         </figure>
         <div class="slide-cap">
-          <span>✎</span>
-          <span><span class="ko"><b>실제 IA 산출물</b> · 문서 푸터·내부 식별자는 가렸어요. 색은 오픈 단계(Phase 1·2·3)를 뜻합니다.</span><span class="en"><b>The real IA deliverable</b> · document footer and internal identifiers masked. Colors denote go-live phase (1·2·3).</span></span>
+          <span>◆</span>
+          <span><span class="ko">색은 오픈 단계(Phase 1·2·3)를 뜻합니다.</span><span class="en">Colors denote go-live phase (1·2·3).</span></span>
         </div>
       </div>
 
       <div class="proves">
-        <div class="pl"><span class="ko">이게 증명하는 것</span><span class="en">What this proves</span></div>
-        <p><span class="ko">화면을 그리기 전에 사이트 전체 구조를 잡고, 오픈 순서까지 계획해 뒤따르는 모든 기획의 토대를 만드는 일.</span><span class="en">Setting the whole site's structure before any screen, and planning the release order, to lay the foundation every later spec stands on.</span></p>
+        <div class="pl"><span class="ko">요약</span><span class="en">Summary</span></div>
+        <p><span class="ko">화면을 그리기 전에 사이트 전체 메뉴 구조와 오픈 순서를 먼저 정의해, 이후 모든 화면기획이 같은 구조 위에서 진행되도록 했습니다.</span><span class="en">Defined the site's full menu structure and release order before any screen, so every later spec proceeded on the same structure.</span></p>
       </div>
       <div class="dtags">
-        <span class="tag">IA</span><span class="tag">Menu Tree</span><span class="tag">Sitemap</span><span class="tag">Go-live Phasing</span><span class="tag">Italy</span>
+        <span class="tag">IA</span><span class="tag">Menu Tree</span><span class="tag">Sitemap</span><span class="tag">Go-live Phasing</span>
       </div>
     </section>
 
