@@ -103,7 +103,7 @@
 
   /* ── 본문 레이아웃: 좌측 목차 + 콘텐츠 (design-system.html과 동일) ── */
   .shell{max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:200px 1fr; gap:var(--sp-8); align-items:start}
-  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} main{padding:var(--sp-6) 0 var(--sp-6)} section.sec{padding:var(--sp-6) 0} footer{padding:var(--sp-6) var(--gutter)} }
+  @media(max-width:880px){ .shell{grid-template-columns:1fr; gap:var(--sp-6)} .toc{position:static !important; border-bottom:1px solid var(--line); padding-bottom:var(--sp-4)} }
   .toc{position:sticky; top:84px; padding-top:var(--sp-9); display:flex; flex-direction:column; gap:.2rem}
   .toc .lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.5rem; padding-left:.7rem}
   .toc a{font-size:.92rem; color:var(--ink-soft); text-decoration:none; margin-left:.9rem; padding:.3rem 0 .3rem .7rem; display:flex; align-items:baseline; gap:.5rem; border-left:2px solid transparent; transition:.18s}
@@ -173,6 +173,8 @@
   .soon span{font-size:.85rem}
 
   footer{border-top:1px solid var(--line); padding:var(--sp-8) var(--gutter); text-align:center; font-family:var(--mono); font-size:.66rem; color:var(--ink-faint); letter-spacing:.06em}
+  /* mobile vertical-spacing compression — placed after base rules so source order wins over them */
+  @media(max-width:880px){ main{padding:var(--sp-6) 0} section.sec{padding:var(--sp-6) 0} footer{padding:var(--sp-6) var(--gutter)} }
 </style>
 </head>
 <body class="lang-ko">
