@@ -386,7 +386,7 @@
   .wp-eyes figure{margin:0}
   .wp-eyes img{display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:var(--card)}
   .wp-eyes figcaption{margin-top:.6rem; font-size:.82rem; line-height:1.5; color:var(--ink-soft)}
-  .wp-eyes figcaption b{color:var(--ink); font-weight:600}
+  .wp-eyes .etag{display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.4rem}
   body.lang-en .wp-eyes figcaption{font-family:var(--sans-en)}
   /* 인터뷰 사용자 보이스 */
   .voices-lbl{font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-top:var(--sp-6); margin-bottom:.7rem}
@@ -835,17 +835,17 @@
       </figure>
     </div></div>
     <div class="wp-body"><div class="wrap"><div class="wp-sections">
-      <div class="wp-sec"><h4><span class="ko">리서치: 세 가지로 교차 검증</span><span class="en">Research — triangulated</span></h4><p><span class="ko">추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 닐슨 노먼 그룹(NNG)의 10대 사용성 휴리스틱을 기준으로 점검해, 대여 조건(기간·장소)의 시각적 위계가 낮아 지나치기 쉽고 바텀시트 '닫기' 버튼의 동작이 불분명하다는 점을 짚고, 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, 세 방법 모두 같은 곳을 가리켰습니다.</span><span class="en">To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A pass against the Nielsen Norman Group's 10 usability heuristics flagged that the rental conditions ranked too low to notice and the bottom-sheet close button behaved unclearly; eye-tracking heatmaps and gaze paths showed where people actually looked first; and interviews told me why. I designed and moderated it myself across ages 20–60 — and all three pointed to the same place.</span></p>
+      <div class="wp-sec"><h4><span class="ko">리서치: 세 가지로 교차 검증</span><span class="en">Research — triangulated</span></h4><p><span class="ko">렌터카 예약 흐름을 다시 그리기 전에, 무엇이 진짜 문제인지부터 확인했어요. 추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 닐슨 노먼 그룹(NNG)의 10대 사용성 휴리스틱을 기준으로 점검해, 대여 조건(기간·장소)의 시각적 위계가 낮아 지나치기 쉽고 바텀시트 '닫기' 버튼의 동작이 불분명하다는 점을 짚고, 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, 세 방법 모두 같은 곳을 가리켰습니다.</span><span class="en">Before redrawing the rental flow, I first pinned down where the real problem was. To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A pass against the Nielsen Norman Group's 10 usability heuristics flagged that the rental conditions ranked too low to notice and the bottom-sheet close button behaved unclearly; eye-tracking heatmaps and gaze paths showed where people actually looked first; and interviews told me why. I designed and moderated it myself across ages 20–60 — and all three pointed to the same place.</span></p>
       <div class="flow"><b><span class="ko">휴리스틱 평가</span><span class="en">Heuristic</span></b><i>→</i><b><span class="ko">아이트래킹</span><span class="en">Eye-tracking</span></b><i>→</i><b><span class="ko">인터뷰</span><span class="en">Interview</span></b></div></div>
       <div class="wp-sec"><h4><span class="ko">발견: 기능은 있는데 흐름이 끊겼다</span><span class="en">Finding — features, broken flow</span></h4><p><span class="ko">렌터카 예약은 기능이 없어서가 아니라, 순서가 꼬여서 막혀 있었습니다. 차량 리스트와 대여 조건(장소·일정)이 한 화면에 같이 놓여 있다 보니, <b>사람들이 조건을 놓친 채 차부터</b> 봤어요. 조건 없이 고른 차라 뒤에서 다시 어긋나고, 흐름이 거기서 끊겼습니다.</span><span class="en">The booking wasn't blocked by missing features — it was blocked by a tangled order. With the car list and rental conditions (place, dates) on one screen, <b>people skipped the conditions and went straight to cars.</b> A car chosen without conditions clashed later, and the flow broke right there.</span></p>
       <div class="wp-eyes">
         <figure>
           <img src="assets/korail-heatmap.png" alt="롯데렌터카 차량선택 화면 아이트래킹 히트맵: 시선이 상단 대여 조건이 아니라 차량 이미지·가격에 집중된 것을 보여주는 열지도" loading="lazy">
-          <figcaption><span class="ko">조건은 건너뛰고, 시선이 <b>차·가격부터</b> 갔어요.</span><span class="en">Conditions skipped — gaze went to <b>cars and prices first.</b></span></figcaption>
+          <figcaption><span class="etag"><span class="ko">히트맵</span><span class="en">Heatmap</span></span><span class="ko">조건은 건너뛰고, 시선이 차·가격부터 갔어요.</span><span class="en">Conditions skipped — gaze went to cars and prices first.</span></figcaption>
         </figure>
         <figure>
           <img src="assets/korail-scanpath.png" alt="대여 조건 입력 화면 아이트래킹 시선 흐름(스캔패스): 출발·반납·기간 사이를 오가며 시선이 흩어진 경로" loading="lazy">
-          <figcaption><span class="ko">기간을 넣어도 확인 버튼이 없어, <b>X가 저장인지 몰라 다음으로 못 갔어요.</b></span><span class="en">No confirm button after the dates — <b>unsure if X saved or reset, they couldn't move on.</b></span></figcaption>
+          <figcaption><span class="etag"><span class="ko">시선 흐름</span><span class="en">Scan path</span></span><span class="ko">확인 버튼이 없어, X가 저장인지 몰라 다음으로 못 갔어요.</span><span class="en">No confirm button, so users couldn't tell if X saved — and stalled.</span></figcaption>
         </figure>
       </div>
       <p class="dim" style="margin-top:var(--sp-5)"><span class="ko">세 방법이 가리킨 핵심 문제는 두 가지였어요. <b>①</b> 먼저 보여야 할 대여 조건이 시각적으로 강조되지 않았다. <b>②</b> 저장 버튼 없이 '닫기(X)'만 있어, 입력이 반영됐는지·다음으로 어떻게 가는지 알 수 없었다.</span><span class="en">The three methods pointed to two core problems. <b>①</b> The conditions that should lead weren't visually emphasized. <b>②</b> Only a "close" (X) and no save, so no way to tell if input registered or how to proceed.</span></p>
