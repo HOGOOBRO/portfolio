@@ -1026,7 +1026,7 @@
   // home/scroll links
   document.addEventListener('click', function(ev){
     var a=ev.target.closest('a'); if(!a) return;
-    if(a.hasAttribute('data-home')){ ev.preventDefault(); var restore=a.classList.contains('back'); if(history.replaceState){ try{ history.replaceState(null,'',location.pathname+location.search+'#/'); }catch(e){} } body.classList.remove('mode-work'); body.classList.add('mode-home'); if(restore){ homeEl.scrollTop=homeScrollY; top.classList.toggle('solid', homeScrollY>50); } else { homeEl.scrollTop=0; top.classList.remove('solid'); } return; }
+    if(a.hasAttribute('data-home')){ ev.preventDefault(); var restore=a.classList.contains('back'); var wasWork=body.classList.contains('mode-work'); var fromWork=(location.hash||'').replace(/^#\/?/,''); if(history.replaceState){ try{ history.replaceState(null,'',location.pathname+location.search+'#/'); }catch(e){} } body.classList.remove('mode-work'); body.classList.add('mode-home'); if(restore){ homeEl.scrollTop=homeScrollY; top.classList.toggle('solid', homeScrollY>50); } else { homeEl.scrollTop=0; top.classList.remove('solid'); } if(wasWork){ gaPageView(); if(window.gtag) gtag('event','home_return',{ from_case: fromWork }); } return; }
     if(a.hasAttribute('data-scroll')){ ev.preventDefault(); var id=a.getAttribute('data-scroll'); if(location.hash && location.hash!=='#/'){ location.hash='#/'; setTimeout(function(){ showHome(id); },60); } else { showHome(id); } }
   });
 
