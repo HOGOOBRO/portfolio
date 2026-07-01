@@ -78,6 +78,9 @@
     --section-y:clamp(5rem,12vh,9rem);
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  /* keyboard focus ring (mouse clicks unaffected) */
+  :where(a,button,input,summary,[tabindex]):focus-visible{outline:2px solid var(--navy); outline-offset:3px; border-radius:var(--r-xs)}
+  .wp-hero :where(a,button):focus-visible, #top :where(a,button):focus-visible{outline-color:var(--navy-lite)}
   html,body{height:100%}
   body{
     background:var(--paper); color:var(--ink);
@@ -863,7 +866,7 @@
       <div class="wp-summary">
       <div class="ws-row"><span class="ws-k">Role</span><span class="ws-v"><span class="ko">UX 4인 팀에서 기획·디자인 · 기여도 40%</span><span class="en">Planning &amp; design in a 4-person UX team · 40% mine</span></span></div>
       <div class="ws-row"><span class="ws-k">Problem</span><span class="ws-v"><span class="ko">사려는 사람이 어디서 사는지도, 살 수 있는지도 너무 늦게 안다</span><span class="en">Buyers learn where to buy, and whether they even can, far too late</span></span></div>
-      <div class="ws-row"><span class="ws-k">Decision</span><span class="ws-v"><span class="ko">가장 큰 결제 페이지의 입구를 목적별로 나누고, 자격 확인을 맨 앞으로</span><span class="en">On the biggest checkout page, split the entry by intent and move eligibility to the front</span></span></div>
+      <div class="ws-row"><span class="ws-k">Decision</span><span class="ws-v"><span class="ko">직접 고칠 수 있는 가장 큰 페이지(Standalone)의 입구를 목적별로 나누고, 자격 확인을 맨 앞으로</span><span class="en">On the biggest page we could actually fix (Standalone), split the entry by intent and move eligibility to the front</span></span></div>
       <div class="ws-row"><span class="ws-k">Impact</span><span class="ws-v"><span class="ko">가입 절차를 절반으로(10단계를 6단계로), 100여 개국이 한 표준으로</span><span class="en">Sign-up cut in half (10 steps to 6); 100+ markets on one standard</span></span></div>
       <div class="ws-row"><span class="ws-k">Output</span><span class="ws-v"><span class="ko">samsung.com/uk 등 라이브, 가입 흐름 재설계안</span><span class="en">Live on samsung.com/uk and more; redesigned sign-up flow</span></span></div>
       </div>
