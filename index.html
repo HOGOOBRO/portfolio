@@ -8,6 +8,9 @@
 <script>
   (function () {
     document.documentElement.classList.add('js');
+    // 로컬 개발(localhost·127.0.0.1·file://)은 GA에서 항상 제외
+    var host = location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host === '') return;
     try {
       var p = new URLSearchParams(location.search).get('noga');
       if (p === '1') localStorage.setItem('ga_optout', '1');
