@@ -339,6 +339,16 @@
   .insight.in .spark .halo, .insight.in .spark .dot, .insight.in .spark .peak{opacity:1}
   .spark .sxlab{display:flex; justify-content:space-between; margin-top:.55rem; font-family:var(--mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint)}
   @media (prefers-reduced-motion:reduce){ .spark .line{transition:none; stroke-dashoffset:0} .spark .halo, .spark .dot, .spark .peak{transition:none; opacity:1} }
+  /* AARRR funnel (OPENPATH) */
+  .funnel{max-width:480px; margin:0 auto; padding:1.2rem 1rem .8rem}
+  .funnel svg{display:block; width:100%; height:auto}
+  .funnel .st{fill:var(--paper-2); stroke:var(--paper-2); stroke-width:16; stroke-linejoin:round}
+  .funnel .st.hi{fill:var(--navy); stroke:var(--navy)}
+  .funnel text{text-anchor:middle}
+  .funnel .t{font-family:var(--sans); font-size:14px; font-weight:700; fill:var(--ink-soft)}
+  .funnel .g{font-family:var(--mono); font-size:10px; letter-spacing:.04em; fill:var(--ink-faint)}
+  .funnel .on{fill:#fff}
+  .funnel .on2{fill:rgba(255,255,255,.75)}
   .fill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem; color:var(--gold); border:1px dashed var(--gold); border-radius:var(--r-sm); padding:.5rem .75rem; background:color-mix(in srgb,var(--gold) 9%,var(--paper))}
   .fill::before{content:"✎"}
   .wp-tags{margin:var(--sp-6) 0 var(--sp-7); display:flex; flex-wrap:wrap; gap:var(--sp-2)}
@@ -793,7 +803,7 @@
       <a class="back" href="#/" data-home>← <span class="ko">전체 프로젝트</span><span class="en">All work</span></a>
       <p class="wp-kicker"><span class="ko">듀오톤 · Product Manager</span><span class="en">Duotone · Product Manager</span></p>
       <h1 class="wp-title">OPENPATH</h1>
-      <p class="wp-meta"><span class="ko">IT 교육 플랫폼 0→1 · 2023.06–12</span><span class="en">Edtech platform 0→1 · 2023.06–12</span></p>
+      <p class="wp-meta"><span class="ko">IT 디자인 교육 플랫폼 0→1 · 2023.06–12</span><span class="en">Design edtech platform 0→1 · 2023.06–12</span></p>
       <a class="wp-live" href="https://openpath.kr" target="_blank" rel="noopener"><span class="ko">라이브 보기</span><span class="en">View live</span> openpath.kr <span class="ar">↗</span></a>
       <div class="wp-spec"><span class="ko">단독 그로스 PM</span><span class="en">Sole Growth PM</span><span class="ko">팀 6명 · PM2·강사2·디자인2</span><span class="en">Team of 6</span><span>GA4</span></div>
       <p class="wp-essence"><span class="ko">"무료 강의를 써본 사람이 결제한다"는 가설을 31일간 검증했습니다.</span><span class="en">"People who try a free lesson convert": a hypothesis I tested over 31 days.</span></p>
@@ -814,7 +824,30 @@
       <div class="ws-row"><span class="ws-k">Output</span><span class="ws-v"><span class="ko">openpath.kr 라이브</span><span class="en">openpath.kr live</span></span></div>
       </div>
       <p class="ws-foot"><span class="ko">*기여도 60%: 단독 그로스 PM으로 실험 가설·A/B 설계·데이터 분석을 주도, 구현·디자인은 6인 팀</span><span class="en">*60% — as sole Growth PM I drove the hypothesis, A/B design, and analysis; build and design by the team of 6</span></p>
-      <div class="wp-sec"><h4><span class="ko">문제: 트래픽은 있는데 전환이 없다</span><span class="en">Problem: traffic, no conversion</span></h4><p><span class="ko">신규 IT 교육 플랫폼의 0→1을 단독 PM으로 맡았습니다. 광고를 돌리니 사람은 들어왔어요. 2023년 9월 2주 동안 <b>2,550명</b>. 그런데 대부분 그냥 나갔습니다. 퍼널을 AARRR로 끊어 보니 막힌 곳은 유입이 아니라 그다음이었어요. <b>가입 전환 5%, 가입자의 결제 전환 1.6%.</b> 트래픽을 더 사는 건 밑 빠진 독에 물 붓기였고, 진짜 풀어야 할 곳은 들어온 사람을 붙잡는 Activation 단계였습니다.</span><span class="en">I led the 0→1 of a new edtech platform as sole PM. Ads brought people in (<b>2,550</b> over two weeks in Sep 2023), but most just left. Cutting the funnel with AARRR, the blockage wasn't acquisition; it was everything after: <b>5% sign-up, 1.6% of sign-ups paying.</b> Buying more traffic was pouring water into a leaky bucket. The real thing to fix was Activation: holding the people who already arrived.</span></p></div>
+      <div class="wp-sec"><h4><span class="ko">문제: 트래픽은 있는데 전환이 없다</span><span class="en">Problem: traffic, no conversion</span></h4><p><span class="ko">OPENPATH는 디자인 에이전시 듀오톤이 만든 IT 디자인 교육 플랫폼입니다. 여섯 명이 함께 만들었고, 저는 PM으로 론칭과 그로스를 맡았어요. 신규 서비스라 아는 사람이 없으니, 먼저 Meta 광고로 사람을 모았습니다. 들어오긴 했어요. 2023년 9월 2주 동안 <b>2,550명</b>. 그런데 대부분 그냥 나갔습니다. 퍼널을 AARRR로 끊어 보니 막힌 곳은 유입이 아니라 그다음이었어요. <b>가입 전환 5%, 가입자의 결제 전환 1.6%.</b> 트래픽을 더 사는 건 밑 빠진 독에 물 붓기였고, 진짜 풀어야 할 곳은 들어온 사람을 붙잡는 Activation 단계였습니다.</span><span class="en">OPENPATH is an IT-design education platform built by Duotone, a design agency. A team of six built it; as PM, I owned the launch and growth. A brand-new service starts unknown, so we brought people in with Meta ads first. And they came: <b>2,550</b> over two weeks in Sep 2023. But most just left. Cutting the funnel with AARRR, the blockage wasn't acquisition; it was everything after: <b>5% sign-up, 1.6% of sign-ups paying.</b> Buying more traffic was pouring water into a leaky bucket. The real thing to fix was Activation: holding the people who already arrived.</span></p>
+      <figure class="wp-fig rv">
+        <div class="lbl"><span class="ko">AARRR 퍼널 · 어디서 막혔나</span><span class="en">AARRR funnel · where it blocked</span></div>
+        <div class="funnel">
+          <svg viewBox="0 0 560 460" role="img" aria-label="AARRR 퍼널: Acquisition, Activation, Retention, Referral, Revenue 5단계 중 Activation과 Revenue가 막힌 단계">
+            <polygon class="st" points="43.6,8 516.4,8 477.5,78 82.5,78"/>
+            <polygon class="st hi" points="93,97 467,97 428.1,167 131.9,167"/>
+            <polygon class="st" points="142.5,186 417.5,186 378.6,256 181.4,256"/>
+            <polygon class="st" points="191.9,275 368.1,275 329.2,345 230.8,345"/>
+            <polygon class="st hi" points="241.4,364 318.6,364 280,442"/>
+            <text class="t" x="280" y="40">Acquisition</text>
+            <text class="g" x="280" y="58"><tspan class="ko">유입</tspan><tspan class="en">traffic in</tspan></text>
+            <text class="t on" x="280" y="129">Activation</text>
+            <text class="g on2" x="280" y="147"><tspan class="ko">가입 · 첫 경험</tspan><tspan class="en">sign-up · first value</tspan></text>
+            <text class="t" x="280" y="218">Retention</text>
+            <text class="g" x="280" y="236"><tspan class="ko">재방문</tspan><tspan class="en">coming back</tspan></text>
+            <text class="t" x="280" y="307">Referral</text>
+            <text class="g" x="280" y="325"><tspan class="ko">추천</tspan><tspan class="en">word of mouth</tspan></text>
+            <text class="t on" x="280" y="378">Revenue</text>
+            <text class="g on2" x="280" y="394"><tspan class="ko">결제</tspan><tspan class="en">payment</tspan></text>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="ko">여정을 다섯 단계로 끊어 보면 막힌 곳이 보여요. 유입(Acquisition)은 충분했는데, 가입(Activation)에서 100명 중 95명이 새고, 결제(Revenue)까지 간 사람은 가입자의 1.6%였습니다.</span><span class="en">Cut the journey into five stages and the blockage shows itself: traffic was fine, but 95 of every 100 leaked at Activation, and only 1.6% of sign-ups reached Revenue.</span></figcaption>
+      </figure></div>
       <div class="wp-sec"><h4><span class="ko">가설: 광고가 아니라 경험</span><span class="en">Hypothesis</span></h4><p><span class="ko">흔한 답은 '광고 소재를 더 잘 만들자'입니다. 하지만 클릭률은 이미 나쁘지 않았어요. 그래서 질문을 뒤집었습니다. 들어온 사람이 결제까지 안 가는 이유가 관심이 부족해서가 아니라, 제품을 충분히 겪어보지 못해서라면? 무료 강의를 한 번이라도 들어본 사람은 가치를 머리로 이해한 게 아니라 몸으로 느꼈을 테니 결제로 이어질 거라고 봤습니다. 가설을 두 줄로 좁혔어요.</span><span class="en">The usual answer is "make better ads." But click-through was already fine. So I flipped the question: what if people don't convert for lack of interest, but because they never really experienced the product? Someone who takes even one free lesson has <em>felt</em> the value, not just understood it, so they should convert. I narrowed it to two claims.</span></p>
       <div class="flow"><b><span class="ko">① 무료 강의는 가입을 유도한다</span><span class="en">① free lessons drive sign-up</span></b><b><span class="ko">② 수강 경험은 결제로 이어진다</span><span class="en">② the experience drives payment</span></b></div></div>
       <div class="wp-sec"><h4><span class="ko">실험: 31일 A/B</span><span class="en">Experiment: 31-day A/B</span></h4><p><span class="ko">검증은 단순하게 설계했습니다. Meta 광고를 두 갈래로 나눠, 한쪽(A)은 일반적인 서비스 소개로, 다른 쪽(B)은 무료 강의 자체를 미끼로 유입을 받았어요. <b>2023년 10월, 31일간, 7,130명</b>을 GA4 이벤트로 추적했고, 두 집단의 유일한 차이는 '제품을 먼저 경험했는가'였습니다.</span><span class="en">I kept the test simple. I split Meta ads two ways: group A entered through a standard service pitch, group B through the free lesson itself as the hook. <b>31 days, N=7,130</b> (Oct 2023), tracked via GA4. The only difference between the groups was whether they'd experienced the product first.</span></p>
