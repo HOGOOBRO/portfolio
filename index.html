@@ -153,11 +153,16 @@
 
   /* ── hero panel ── */
   #p-hero .eyebrow{margin-bottom:1.6rem}
-  .hero-h{font-weight:700; letter-spacing:-.03em; line-height:1.12; font-size:clamp(2.6rem,7vw,5.4rem); max-width:15ch}
-  body.lang-en .hero-h{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; line-height:1.04}
-  .br-m{display:none}
-  @media(max-width:600px){ .br-m{display:inline} }
-  .hero-sub{margin-top:1.6rem; font-size:clamp(1.05rem,1.8vw,1.3rem); color:var(--ink-soft); max-width:42ch; line-height:1.6}
+  .hero-tag{font-family:var(--serif); font-weight:600; text-transform:uppercase; letter-spacing:-.01em; line-height:1.08; font-size:clamp(2.8rem,9vw,6.8rem); color:var(--ink); margin-top:.4rem}
+  .hero-tag .ln{display:block}
+  .hero-tag .line-more{display:inline-block}
+  .hero-tag .line-less{filter:blur(0); opacity:1; transition:filter .7s var(--ease), opacity .7s var(--ease)}
+  .hero-tag.settle .line-less{filter:blur(4px); opacity:.58}
+  @media(prefers-reduced-motion:reduce){ .hero-tag .line-less, .hero-tag.settle .line-less{filter:blur(4px); opacity:.58; transition:none} }
+  /* FOUT 방지: 폰트 로드까지 히어로 텍스트를 숨기고, 로드되면 전부 한 번에 표시(등장 모션 없음) */
+  html.js #p-hero .eyebrow, html.js .hero-tag, html.js .hero-credo{opacity:0}
+  html.js #p-hero.fonts-in .eyebrow, html.js #p-hero.fonts-in .hero-tag, html.js #p-hero.fonts-in .hero-credo{opacity:1}
+  .hero-credo{margin-top:1.7rem; font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink-soft); font-weight:500; max-width:34ch; line-height:1.55}
   .scroll-cue{position:absolute; left:50%; bottom:2rem; transform:translateX(-50%); font-family:var(--mono); font-size:.64rem; letter-spacing:.2em; color:var(--ink-faint); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem}
   .scroll-cue i{width:1px; height:34px; background:var(--line-strong); position:relative; overflow:hidden}
   .scroll-cue i::after{content:""; position:absolute; inset:0; background:var(--ink); animation:cue 1.8s ease-in-out infinite}
@@ -503,7 +508,7 @@
 <body class="lang-ko mode-home">
 
 <header class="top" id="top">
-  <a class="brand" href="#/" data-home><b>KIM JINHYEON</b><span class="ko">서비스 기획자 · 서울</span><span class="en">Service Designer · Seoul</span></a>
+  <a class="brand" href="#/" data-home><b>KIM JINHYEON</b><span class="ko">서비스 기획자 · 서울</span><span class="en">UX Designer &amp; Researcher · Seoul</span></a>
   <div class="top-r">
     <a class="nav-link hide-sm" href="#/" data-home><span class="ko">홈</span><span class="en">Home</span></a>
     <a class="nav-link hide-sm" href="#/" data-scroll="p-work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
@@ -533,15 +538,12 @@
 
   <!-- hero -->
   <section class="panel" id="p-hero"><div class="wrap">
-    <p class="eyebrow mono rv">Service Designer · Seoul · 2026</p>
-    <h1 class="hero-h rv d1">
-      <span class="ko">승무원에서 카페 사장,<br>그리고 <br class="br-m">서비스 기획자.</span>
-      <span class="en">Cabin crew, café owner,<br>then <br class="br-m">service designer.</span>
+    <p class="eyebrow mono">Product Strategy · UX Research · 0→1 Build</p>
+    <h1 class="hero-tag" id="heroTag" aria-label="Design less, solve more.">
+      <span class="ln line-less">DESIGN LESS</span>
+      <span class="ln line-more">SOLVE MORE</span>
     </h1>
-    <p class="hero-sub rv d2">
-      <span class="ko">회사에선 글로벌 기업 웹사이트를 기획하고,<br>틈틈이 제 서비스도 직접 만듭니다.</span>
-      <span class="en">At work I plan global enterprise websites,<br>and build my own on the side.</span>
-    </p>
+    <p class="hero-credo"><span class="ko">복잡한 문제일수록, 뺄 것부터 찾습니다.</span><span class="en">The more complex the problem, the more I start by subtracting.</span></p>
   </div>
   <div class="scroll-cue"><span class="ko">스크롤</span><span class="en">Scroll</span><i></i></div>
   </section>
@@ -1254,6 +1256,15 @@
   runReveal(homeEl);
   route(); // 초기 진입(홈/딥링크 케이스 모두)도 route() 안에서 page_view 전송
   syncShots();
+})();
+</script>
+<script>
+(function(){
+  var sec=document.getElementById('p-hero'), tag=document.getElementById('heroTag');
+  if(!sec || !tag) return;
+  var show=function(){ if(sec.classList.contains('fonts-in')) return; sec.classList.add('fonts-in'); setTimeout(function(){ tag.classList.add('settle'); }, 600); };
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(show); setTimeout(show,1500); }
+  else show();
 })();
 </script>
 </body>
