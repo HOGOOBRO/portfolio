@@ -198,7 +198,7 @@
   .wcard.lg{grid-column:span 6}
   .wcard.sm{grid-column:span 3; min-height:200px}
   @media(max-width:860px){ .wcard.lg{grid-column:span 12} .wcard.sm{grid-column:span 6} }
-  @media(max-width:520px){ .wcard.sm{grid-column:span 12; min-height:150px} }
+  @media(max-width:520px){ .wcard.sm{grid-column:span 12; min-height:150px} .wcard.lg{min-height:260px} }
   .wcard .bg{position:absolute; inset:0; z-index:-2; background-size:cover; background-position:center}
   .wcard .scrim{position:absolute; inset:0; z-index:-1}
   .wcard .wc-top{display:flex; justify-content:space-between; align-items:flex-start; gap:var(--sp-3); font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; opacity:.92}
@@ -270,13 +270,13 @@
   .wp-figure img{display:block; width:100%; height:auto}
   /* designed case visual (hero · on dark) — before→after schematic */
   .wp-art{margin-top:2.4rem; max-width:560px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.045); border-radius:var(--r-lg); padding:clamp(1.3rem,3vw,1.8rem)}
-  .wp-art .lbl{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:.55rem}
+  .wp-art .lbl{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:.55rem}
   .wp-art .row{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
-  .wp-art .nd{font-family:var(--mono); font-size:.64rem; letter-spacing:.02em; text-transform:uppercase; color:rgba(255,255,255,.9); border:1px solid rgba(255,255,255,.24); border-radius:var(--r-sm); padding:.46rem .6rem; background:rgba(255,255,255,.03); white-space:nowrap}
+  .wp-art .nd{font-family:var(--mono); font-size:.64rem; letter-spacing:.02em; text-transform:uppercase; color:#fff; border:1px solid rgba(255,255,255,.5); border-radius:var(--r-sm); padding:.46rem .6rem; background:rgba(255,255,255,.06); white-space:nowrap}
   .wp-art .nd.on{border-color:#fff; background:#fff; color:#15110c; font-weight:600}
-  .wp-art .nd.gh{border-style:dashed; color:rgba(255,255,255,.5); background:transparent}
-  .wp-art .ar{font-family:var(--mono); color:rgba(255,255,255,.4); font-size:.8rem}
-  .wp-art .cap{margin-top:1.05rem; padding-top:.9rem; border-top:1px solid rgba(255,255,255,.12); font-size:.86rem; line-height:1.5; color:rgba(255,255,255,.74)}
+  .wp-art .nd.gh{border-style:dashed; color:rgba(255,255,255,.72); background:transparent}
+  .wp-art .ar{font-family:var(--mono); color:rgba(255,255,255,.65); font-size:.8rem}
+  .wp-art .cap{margin-top:1.05rem; padding-top:.9rem; border-top:1px solid rgba(255,255,255,.25); font-size:.86rem; line-height:1.5; color:rgba(255,255,255,.92)}
   .wp-art .cap b{color:#fff; font-weight:600}
   body.lang-en .wp-art .cap{font-family:var(--sans-en)}
   @media(max-width:600px){ .wp-art .nd{font-size:.58rem; padding:.4rem .5rem} .wp-art .ar{font-size:.7rem} }
@@ -492,9 +492,9 @@
   /* tones */
   .t-navy .wp-hero{background:#0C3C60}
   .t-dark .wp-hero{background:#211C16}
-  .t-green .wp-hero{background:#14564A}
+  .t-green .wp-hero{background:#115655}
   .t-blue .wp-hero{background:#13287A}
-  .t-bronze .wp-hero{background:#4B3D2C}
+  .t-bronze .wp-hero{background:#0b0a09 url('assets/genesis-hero-bg.jpg') center/cover no-repeat}
   .t-indigo .wp-hero{background:#1C2E70}
   /* Samsung 히어로: 점지도 배경 + 우측 폰(깨진-지도) 별도 배치 — 콘텐츠와 비겹침 */
   #work-samsung .wp-hero{ background:#0e1422; background-image:url('assets/samsung-mapbg.webp?v=3'); background-size:cover; background-position:center }
@@ -504,7 +504,7 @@
   @media(max-width:900px){ .sams-phone{display:none} }
   /* case hero phone: Samsung 패턴 재사용, 원본 스크린샷용 라운드+헤어라인 */
   .case-phone{position:absolute; right:max(var(--gutter), calc((100% - var(--wrap)) / 2 + var(--gutter))); top:50%; transform:translateY(-50%); width:clamp(160px,19vw,256px); z-index:0; pointer-events:none}
-  .case-phone img{width:100%; height:auto; display:block; border-radius:18px; border:1px solid rgba(255,255,255,.16); filter:drop-shadow(0 26px 50px rgba(0,0,0,.55))}
+  .case-phone img{width:100%; height:auto; display:block; border-radius:18px; border:1px solid rgba(255,255,255,.16)}
   @media(max-width:900px){ .case-phone{display:none} }
   /* 케이스 상단 15초 요약 (Role/Problem/Decision/Impact/Output) */
   .wp-summary{margin:0; max-width:760px; border:1px solid var(--line); border-radius:var(--r-lg); background:var(--card); overflow:hidden}
@@ -599,7 +599,7 @@
 
     <p class="group-label rv"><b><span class="ko">회사에서</span><span class="en">At work</span></b><span><span class="ko">기획·PM으로 맡은 프로젝트</span><span class="en">projects I led as planner &amp; PM</span></span></p>
     <div class="work-grid">
-      <a class="wcard sm rv" href="#/openpath" style="background:#14564A">
+      <a class="wcard sm rv" href="#/openpath" style="background:#115655">
         <div class="wc-top"><span><span class="ko">Product Manager · 듀오톤</span><span class="en">Product Manager · Duotone</span></span><span>2023</span></div>
         <div class="wc-bot"><h3>OPENPATH <span class="arrow">→</span></h3>
           <p class="one"><span class="ko">무료로 써보면 결제하더라고요. 체험을 앞세웠더니 3.4배.</span><span class="en">People convert after trying it free. Leading with the trial: 3.4×.</span></p></div>
@@ -1003,7 +1003,7 @@
       <p class="wp-meta"><span class="ko">이탈리아 마켓 단독 오너 · 2025.08–12</span><span class="en">Italy market owner · 2025.08–12</span></p>
       <a class="wp-live" href="https://www.genesis.com/it" target="_blank" rel="noopener"><span class="ko">라이브 보기</span><span class="en">View live</span> genesis.com/it <span class="ar">↗</span></a>
       <div class="wp-spec"><span class="ko">팀 9명 · 개발4·디자인2·PM1·기획2</span><span class="en">Team of 9</span><span class="ko">이탈리아 단독</span><span class="en">Italy, solo owner</span><span class="ko">프랑크푸르트 현지</span><span class="en">On-site, Frankfurt</span></div>
-      <p class="wp-essence"><span class="ko">매번 새로 쓰던 법적 문구를, 골라 쓰는 시스템으로.</span><span class="en">Legal copy that was rewritten every time, turned into a system you pick from.</span></p>
+      <p class="wp-essence"><span class="ko">매번 새로 쓰던 법적 문구를,<br>골라 쓰는 시스템으로.</span><span class="en">Legal copy that was rewritten every time, turned into a system you pick from.</span></p>
       <figure class="wp-art">
         <div class="lbl"><span class="ko">전 · 페이지마다 따로</span><span class="en">Before · per page</span></div>
         <div class="row"><span class="nd gh"><span class="ko">고지</span><span class="en">Notice</span></span><span class="nd gh"><span class="ko">고지</span><span class="en">Notice</span></span><span class="nd gh"><span class="ko">고지</span><span class="en">Notice</span></span><span class="nd gh"><span class="ko">고지</span><span class="en">Notice</span></span></div>
@@ -1011,7 +1011,9 @@
         <div class="row"><span class="nd on"><span class="ko">고지 블록</span><span class="en">Notice block</span></span><span class="ar">→</span><span class="nd"><span class="ko">페이지</span><span class="en">Page</span></span><span class="nd"><span class="ko">페이지</span><span class="en">Page</span></span><span class="nd"><span class="ko">페이지</span><span class="en">Page</span></span></div>
         <p class="cap"><span class="ko"><b>한 번 정의</b>하면 모든 페이지에 <b>재사용</b>.</span><span class="en"><b>Define once</b>, reuse everywhere.</span></p>
       </figure>
-    </div></div>
+    </div>
+    <div class="case-phone"><img src="assets/genesis-phone.png" alt="" aria-hidden="true" loading="lazy"></div>
+    </div>
     <div class="wp-body"><div class="wrap"><div class="wp-sections">
       <div class="wp-summary">
       <div class="ws-row"><span class="ws-k">Role</span><span class="ws-v"><span class="ko">이탈리아 마켓 단독 오너 (팀 9명) · 기여도 70%</span><span class="en">Sole owner of the Italy market (team of 9) · 70% mine</span></span></div>
@@ -1052,7 +1054,7 @@
       <h1 class="wp-title">Korail-talk</h1>
       <p class="wp-meta"><span class="ko">MaaS 렌터카 예약 흐름·UX 개선 · 2024.01–02</span><span class="en">MaaS car-rental flow & UX · 2024.01–02</span></p>
       <div class="wp-spec"><span class="ko">UT 모더레이터</span><span class="en">UT moderator</span><span class="ko">20–60대 사용성 테스트</span><span class="en">Usability test, ages 20–60</span></div>
-      <p class="wp-essence"><span class="ko">여러 공이 날아오면, 받으려다 다 놓쳐요. 선택지도 똑같아요.</span><span class="en">When several balls come at you, you catch none. Choices are no different.</span></p>
+      <p class="wp-essence"><span class="ko">여러 공이 날아오면, 받으려다<br>다 놓쳐요. 선택지도 똑같아요.</span><span class="en">When several balls come at you, you catch none. Choices are no different.</span></p>
       <figure class="wp-art">
         <div class="lbl">AS-IS</div>
         <div class="row"><span class="nd gh" style="flex:1; text-align:center"><span class="ko">한 화면에 전부: 조건 · 차량 · 옵션</span><span class="en">Everything on one screen</span></span></div>
@@ -1060,7 +1062,9 @@
         <div class="row"><span class="nd"><span class="ko">홈</span><span class="en">Home</span></span><span class="ar">→</span><span class="nd"><span class="ko">장소</span><span class="en">Place</span></span><span class="ar">→</span><span class="nd"><span class="ko">날짜</span><span class="en">Date</span></span><span class="ar">→</span><span class="nd"><span class="ko">차량</span><span class="en">Car</span></span></div>
         <p class="cap"><span class="ko"><b>한 화면, 하나의 결정</b>으로 흐름을 다시 세움.</span><span class="en"><b>One screen, one decision.</b></span></p>
       </figure>
-    </div></div>
+    </div>
+    <div class="case-phone"><img src="assets/korail-phone.png" alt="" aria-hidden="true" loading="lazy"></div>
+    </div>
     <div class="wp-body"><div class="wrap"><div class="wp-sections">
       <div class="wp-summary">
       <div class="ws-row"><span class="ws-k">Role</span><span class="ws-v"><span class="ko">사용성 테스트 진행·UX 기획 · 기여도 40%</span><span class="en">Ran the usability testing &amp; UX planning · 40% mine</span></span></div>
