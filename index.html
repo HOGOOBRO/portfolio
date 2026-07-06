@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<!-- Google tag (gtag.js) — per-browser opt-out: visit with ?noga=1 once to stop
-     GA counting this browser (persists in localStorage, survives IP changes);
-     ?noga=0 clears it. When opted out, gtag.js never loads so window.gtag stays
-     undefined and the downstream event guards below all no-op. -->
+<!-- Google tag (gtag.js) + Microsoft Clarity — per-browser opt-out: visit with
+     ?noga=1 once to stop both from counting this browser (persists in
+     localStorage, survives IP changes); ?noga=0 clears it. When opted out,
+     neither gtag.js nor Clarity loads, so window.gtag stays undefined and the
+     downstream event guards below all no-op. -->
 <script>
   (function () {
     document.documentElement.classList.add('js');
@@ -27,6 +28,11 @@
     gtag('js', new Date());
     // SPA(해시 라우팅): 자동 page_view를 끄고 route()에서 직접 전송한다.
     gtag('config', 'G-E6V7FC0PJP', { send_page_view: false });
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xi1lbv7a6n");
   })();
 </script>
 <meta charset="UTF-8" />
