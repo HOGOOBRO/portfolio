@@ -339,7 +339,7 @@
     <!-- 01 색 -->
     <section class="sec" id="color">
       <div class="sec-h"><span class="num">01</span><h2><span class="ko">색</span><span class="en">Color</span> <em class="ko">color</em></h2></div>
-      <p class="lead"><span class="ko">바탕은 따뜻한 오프화이트, 글자는 검정에 가까운 색이에요. 눈길을 끄는 색은 <b>네이비</b>(링크·중요한 숫자)와 <b>골드</b>(아직 못 채운 자리), 딱 둘뿐입니다. 회색은 세 단계로 나눠 무엇이 더 중요한지 보여줘요.</span><span class="en">A warm off-white ground, near-black text. Only two colors grab attention: <b>navy</b> (links, key numbers) and <b>gold</b> (spots still to fill). Grey comes in three steps to show what matters more.</span></p>
+      <p class="lead"><span class="ko">바탕은 따뜻한 오프화이트, 글자는 검정에 가까운 색이에요. 눈길을 끄는 색은 <b>네이비</b>(링크·중요한 숫자)와 <b>골드</b>(집계 중인 수치), 딱 둘뿐입니다. 회색은 세 단계로 나눠 무엇이 더 중요한지 보여줘요.</span><span class="en">A warm off-white ground, near-black text. Only two colors grab attention: <b>navy</b> (links, key numbers) and <b>gold</b> (numbers still being counted). Grey comes in three steps to show what matters more.</span></p>
       <h3 class="blk"><span class="ko">기본 팔레트</span><span class="en">Base palette</span></h3>
       <div class="swatches">
         <div class="sw"><div class="chip" style="background:#FAF8F4"></div><div class="meta"><div class="row"><span class="tok">--paper</span><span class="val">#FAF8F4</span></div><div class="use"><span class="ko">페이지 전체 배경이에요. 따뜻한 종이 느낌.</span><span class="en">The whole-page background. A warm, papery tone.</span></div></div></div>
@@ -352,7 +352,7 @@
         <div class="sw"><div class="chip" style="background:#D6D0C2"></div><div class="meta"><div class="row"><span class="tok">--line-strong</span><span class="val">#D6D0C2</span></div><div class="use"><span class="ko">칩·카드 테두리. 선을 조금 더 또렷하게.</span><span class="en">Chip and card borders: a slightly clearer line.</span></div></div></div>
         <div class="sw"><div class="chip" style="background:#0C3C60"></div><div class="meta"><div class="row"><span class="tok">--navy</span><span class="val">#0C3C60</span></div><div class="use"><span class="ko">가장 강조하는 색. 링크·활성 상태·중요한 숫자에 써요.</span><span class="en">The main accent. For links, active state, and key numbers.</span></div></div></div>
         <div class="sw"><div class="chip" style="background:#7FB2D8"></div><div class="meta"><div class="row"><span class="tok">--navy-lite</span><span class="val">#7FB2D8</span></div><div class="use"><span class="ko">어두운 배경 위에선 네이비가 안 보여서, 이 밝은 네이비로 바꿔 써요.</span><span class="en">On dark backgrounds navy vanishes, so it switches to this lighter navy.</span></div></div></div>
-        <div class="sw"><div class="chip" style="background:#B98B2E"></div><div class="meta"><div class="row"><span class="tok">--gold</span><span class="val">#B98B2E</span></div><div class="use"><span class="ko">아직 안 채운 숫자를 표시할 때만 써요.</span><span class="en">Used only to mark numbers not filled in yet.</span></div></div></div>
+        <div class="sw"><div class="chip" style="background:#B98B2E"></div><div class="meta"><div class="row"><span class="tok">--gold</span><span class="val">#B98B2E</span></div><div class="use"><span class="ko">집계 중인 숫자를 표시할 때만 써요.</span><span class="en">Used only to mark numbers still being counted.</span></div></div></div>
       </div>
       <h3 class="blk"><span class="ko">프로젝트 정체성 색</span><span class="en">Project identity colors</span></h3>
       <p class="lead"><span class="ko">프로젝트마다 색을 하나씩 정했어요. 작업 페이지 맨 위 배경에 깔려서, 지금 어떤 프로젝트를 보고 있는지 한눈에 들어옵니다.</span><span class="en">Each project gets its own color. It fills the top of the work page, so you can tell at a glance which one you're looking at.</span></p>
@@ -524,8 +524,8 @@
       </div>
 
       <h3 class="blk"><span class="ko">데이터 비주얼 · 기준선 게이지</span><span class="en">Data visuals · threshold gauge</span></h3>
-      <div class="demo"><div class="cap">.gauge · <span class="ko">목표선까지 얼마나 왔는지 한 칸으로 보여줘요. 아직 못 간 곳은 골드 점선: '채울 자리'와 같은 약속이에요. 채움은 <code>--gv</code>, 목표선 위치는 <code>--gm</code></span><span class="en">how far to the target, in one track. What's not reached yet is gold-dashed: the same promise as the placeholder. Fill via <code>--gv</code>, threshold via <code>--gm</code></span></div>
-        <div class="gauge" style="--gv:30%"><div class="gtrack"><div class="gfill"><b>K 0.3</b></div><div class="gmark"><span class="ko">1.0 · 자생선</span><span class="en">1.0 · self-sustaining</span></div></div></div>
+      <div class="demo"><div class="cap">.gauge · <span class="ko">목표선 대비 지금 어디까지 왔는지 한 칸으로 보여줘요. 골드 점선이 목표선이에요. 채움은 <code>--gv</code>, 목표선 위치는 <code>--gm</code></span><span class="en">where you stand against a target, in one track. The gold dashed line marks the target. Fill via <code>--gv</code>, threshold via <code>--gm</code></span></div>
+        <div class="gauge" style="--gv:82%; --gm:75%"><div class="gtrack"><div class="gfill"><b>82%</b></div><div class="gmark"><span class="ko">75% · 목표</span><span class="en">75% · target</span></div></div></div>
       </div>
 
       <h3 class="blk"><span class="ko">데이터 비주얼 · 스파이크 차트</span><span class="en">Data visuals · spike chart</span></h3>
@@ -557,8 +557,8 @@
         <div class="compare"><div class="col"><h6>AS-IS</h6><ol><li><span class="ko">기기 선택</span><span class="en">Device</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li></ol></div><div class="col to"><h6>TO-BE</h6><ol><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 완료</span><span class="en">Done</span></li></ol></div></div>
       </div>
 
-      <h3 class="blk"><span class="ko">채울 자리</span><span class="en">Placeholder</span></h3>
-      <div class="demo"><div class="cap"><span class="ko">.fill · 아직 못 채운 실제 수치를 골드 점선으로 표시해요</span><span class="en">.fill · a gold dashed marker for real numbers still to come</span></div><span class="fill"><span class="ko">방문자 · 인스타 유입 · 득표: 직접 채우기</span><span class="en">visitors · referrals · votes: fill in</span></span></div>
+      <h3 class="blk"><span class="ko">집계 중 표시</span><span class="en">Pending data</span></h3>
+      <div class="demo"><div class="cap"><span class="ko">.fill · 확정 전 수치는 추정으로 적지 않고, 집계 중이라고 밝혀요</span><span class="en">.fill · numbers not yet final are marked as pending, never estimated</span></div><span class="fill"><span class="ko">출시 후 30일 지표: 집계 중</span><span class="en">30-day post-launch metrics: pending</span></span></div>
 
       <h3 class="blk"><span class="ko">섹션 제목 패턴</span><span class="en">Section-heading pattern</span></h3>
       <div class="demo"><div class="cap"><span class="ko">번호(mono)와 제목을 짝지어, 모든 섹션 머리를 같은 모양으로 맞춰요</span><span class="en">a mono number paired with a title, so every section starts the same way</span></div>
