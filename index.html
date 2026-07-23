@@ -75,6 +75,8 @@
     /* ── radius scale (mirrors design-system.html) · ease ── */
     --r-xs:4px; --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
     --ease:cubic-bezier(.2,.7,.2,1);
+    /* 마이크로 인터랙션용 강한 ease-out — 초반이 빨라 즉각 반응처럼 읽힘 */
+    --ease-snap:cubic-bezier(.23,1,.32,1);
     /* ── spacing scale (4px base) ── */
     --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
     --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:6rem; --sp-10:8rem;
@@ -114,6 +116,8 @@
   .top{position:fixed; inset:0 0 auto 0; z-index:80; display:flex; align-items:center; justify-content:space-between;
        padding:var(--sp-3) var(--gutter); transition:background .3s, border-color .3s; border-bottom:1px solid transparent}
   .top.solid{background:color-mix(in srgb,var(--paper) 86%, transparent); backdrop-filter:saturate(140%) blur(10px); border-bottom-color:var(--line)}
+  /* 투명도 줄이기 설정 사용자는 반투명 재질 대신 불투명 배경 */
+  @media (prefers-reduced-transparency:reduce){ .top.solid{background:var(--paper); backdrop-filter:none} }
   .brand{display:flex; flex-direction:column; gap:.35rem; line-height:1.2}
   .brand b{font-family:var(--mono); font-weight:500; font-size:.82rem; letter-spacing:.16em}
   .brand span{font-size:.7rem; color:var(--ink-faint)}
@@ -124,10 +128,26 @@
   .lang{display:inline-flex; border:1px solid var(--line-strong); border-radius:var(--r-pill); overflow:hidden}
   .lang button{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; padding:.3rem .56rem; background:transparent; border:0; color:var(--ink-faint)}
   .lang button.on{background:var(--ink); color:var(--paper)}
+  /* 누를 수 있는 것은 눌리는 감각을 준다.
+     iOS는 :active를 늦게 발동시키므로 JS가 pointerdown 즉시 붙이는 data-pressed를 함께 쓴다.
+     누름 스케일은 모션이 아니라 '입력 확인' 피드백이라 prefers-reduced-motion에서도 끄지 않는다. */
+  .lang button, .menu-btn, .dots button, .wp-live, .wp-cta-btn{transition:transform .16s var(--ease-snap); touch-action:manipulation; -webkit-tap-highlight-color:transparent}
+  .lang button:active, .lang button[data-pressed],
+  .menu-btn:active, .menu-btn[data-pressed],
+  .dots button:active, .dots button[data-pressed]{transform:scale(.94)}
+  /* a.* 로 특이성을 올려 뒤에 오는 :hover 리프트가 누름 상태를 덮지 못하게 한다 */
+  a.wp-live:active, a.wp-live[data-pressed],
+  a.wp-cta-btn:active, a.wp-cta-btn[data-pressed]{transform:translateY(0) scale(.97)}
+  a.wcard:active, a.wcard[data-pressed]{transform:translateY(-2px) scale(.985)}
   .menu-btn{display:none; align-items:center; justify-content:center; font-size:1.2rem; line-height:1; background:transparent; border:0; color:var(--ink-soft); padding:.3rem .35rem; cursor:pointer; -webkit-tap-highlight-color:transparent}
   .menu-btn[aria-expanded="true"]{color:var(--ink)}
-  .mnav{display:none; position:absolute; top:calc(100% + .55rem); right:clamp(1rem,5vw,2rem); flex-direction:column; min-width:158px; background:var(--paper); border:1px solid var(--line-strong); border-radius:var(--r-lg); padding:.4rem; box-shadow:0 18px 40px -22px rgba(0,0,0,.5); z-index:90}
-  .mnav.open{display:flex}
+  .mnav{display:flex; position:absolute; top:calc(100% + .55rem); right:clamp(1rem,5vw,2rem); flex-direction:column; min-width:158px; background:var(--paper); border:1px solid var(--line-strong); border-radius:var(--r-lg); padding:.4rem; box-shadow:0 18px 40px -22px rgba(0,0,0,.5); z-index:90;
+    /* 트리거(우상단 ☰)에서 자라나는 오리진 인식 등장 — scale(0)이 아니라 .96에서, 나갈 땐 더 빠르게 */
+    opacity:0; visibility:hidden; pointer-events:none; transform:scale(.96) translateY(-4px); transform-origin:top right;
+    transition:opacity .13s var(--ease-snap), transform .13s var(--ease-snap), visibility 0s .13s}
+  .mnav.open{opacity:1; visibility:visible; pointer-events:auto; transform:none;
+    transition:opacity .18s var(--ease-snap), transform .18s var(--ease-snap), visibility 0s}
+  @media (prefers-reduced-motion:reduce){ .mnav{transform:none; transition:opacity .15s ease, visibility 0s .15s} .mnav.open{transition:opacity .15s ease, visibility 0s} }
   .mnav a{font-family:var(--mono); font-size:.76rem; letter-spacing:.04em; color:var(--ink-soft); padding:.72rem .85rem; border-radius:var(--r-sm); text-decoration:none}
   .mnav a:hover, .mnav a:active{background:color-mix(in srgb,var(--ink) 6%, transparent); color:var(--ink)}
   @media(max-width:700px){ .hide-sm{display:none} .menu-btn{display:inline-flex} }
@@ -146,20 +166,24 @@
   /* nav dots */
   .dots{position:fixed; right:max(1rem,2vw); top:50%; transform:translateY(-50%); z-index:70; display:flex; flex-direction:column; gap:.85rem}
   body.mode-work .dots{display:none}
-  .dots button{width:9px; height:9px; border-radius:50%; border:1px solid var(--ink-faint); background:transparent; padding:0; transition:.25s}
+  .dots button{width:9px; height:9px; border-radius:50%; border:1px solid var(--ink-faint); background:transparent; padding:0; transition:transform .2s var(--ease-snap), background-color .2s ease, border-color .2s ease}
   .dots button.on{background:var(--ink); border-color:var(--ink); transform:scale(1.25)}
+  /* 어두운 패널(임팩트·연락처) 위에서는 도트를 반전 — 잉크색 채움이 배경에 묻히는 버그 수정 */
+  body.on-dark .dots button{border-color:rgba(250,248,244,.5)}
+  body.on-dark .dots button.on{background:var(--paper); border-color:var(--paper)}
   @media(max-width:700px){ .dots{display:none} }
 
-  /* reveal */
-  .rv{transition:opacity .8s var(--ease), transform .8s var(--ease)}
-  html.js .rv{opacity:0; transform:translateY(22px)}
+  /* reveal — .8s/22px → .6s/14px: 이동량을 줄이고 빨리 끝내 콘텐츠가 기다리게 하지 않는다 */
+  .rv{transition:opacity .6s var(--ease), transform .6s var(--ease)}
+  html.js .rv{opacity:0; transform:translateY(14px)}
   html.js .rv.in{opacity:1; transform:none}
   .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
   @media (prefers-reduced-motion:reduce){ html.js .rv, html.js .rv.in{opacity:1; transform:none} }
 
   /* ── hero panel ── */
   #p-hero .eyebrow{margin-bottom:1.6rem}
-  .hero-tag{font-family:var(--serif); font-weight:600; text-transform:uppercase; letter-spacing:-.01em; line-height:1.08; font-size:clamp(2.8rem,9vw,6.8rem); color:var(--ink); margin-top:.4rem}
+  /* 대형 디스플레이 타입은 커질수록 트래킹을 더 조인다(-.01em → -.024em) */
+  .hero-tag{font-family:var(--serif); font-weight:600; text-transform:uppercase; letter-spacing:-.024em; line-height:1.08; font-size:clamp(2.8rem,9vw,6.8rem); color:var(--ink); margin-top:.4rem}
   .hero-tag .ln{display:block}
   .hero-tag .line-more{display:inline-block}
   .hero-tag .line-less{filter:blur(0); opacity:1; transition:filter .7s var(--ease), opacity .7s var(--ease)}
@@ -173,6 +197,7 @@
   .scroll-cue i{width:1px; height:34px; background:var(--line-strong); position:relative; overflow:hidden}
   .scroll-cue i::after{content:""; position:absolute; inset:0; background:var(--ink); animation:cue 1.8s ease-in-out infinite}
   @keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+  @media (prefers-reduced-motion:reduce){ .scroll-cue i::after{animation:none} }
 
   /* ── impact panel ── */
   #p-impact{background:var(--ink); color:var(--paper); scroll-snap-align:start}
@@ -198,9 +223,12 @@
   .group-label > span{font-size:.9rem; color:var(--ink-soft)}
   .work-grid + .group-label{margin-top:var(--sp-6)}
   .wcard{position:relative; border-radius:var(--r-lg); overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end;
-         min-height:230px; padding:var(--sp-5); color:#fff; transition:transform .35s var(--ease), box-shadow .35s; isolation:isolate; gap:var(--sp-4)}
+         min-height:230px; padding:var(--sp-5); color:#fff; transition:transform .22s var(--ease-snap), box-shadow .3s ease; isolation:isolate; gap:var(--sp-4)}
   .wcard{justify-content:space-between}
-  .wcard:hover{transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(0,0,0,.5)}
+  /* 호버 리프트는 정밀 포인터에서만 — 터치는 탭하면 이동하므로 들뜬 상태로 고정되는 것을 방지 */
+  @media (hover:hover) and (pointer:fine){
+    .wcard:hover{transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(0,0,0,.5)}
+  }
   .wcard.lg{grid-column:span 6}
   .wcard.sm{grid-column:span 3; min-height:200px}
   @media(max-width:860px){ .wcard.lg{grid-column:span 12} .wcard.sm{grid-column:span 6} }
@@ -215,14 +243,14 @@
   body.lang-en .wcard h3{font-family:var(--serif); font-weight:500}
   .wcard .one{margin-top:.35rem; font-size:.92rem; line-height:1.45; opacity:.92; max-width:34ch}
   .wcard .metric{font-family:var(--serif); font-weight:500; font-size:2rem; line-height:1; margin-bottom:.2rem}
-  .wcard .arrow{font-family:var(--mono); font-size:.95rem; opacity:0; transform:translateX(-5px); transition:.25s}
-  .wcard:hover .arrow{opacity:1; transform:none}
+  .wcard .arrow{font-family:var(--mono); font-size:.95rem; opacity:0; transform:translateX(-5px); transition:opacity .2s var(--ease-snap), transform .2s var(--ease-snap)}
+  @media (hover:hover) and (pointer:fine){ .wcard:hover .arrow{opacity:1; transform:none} }
   .wcard.has-phone{min-height:300px}
   .wcard.has-phone .wc-top,.wcard.has-phone .wc-bot{position:relative; z-index:2}
   .wcard.has-phone .one{max-width:21ch}
   .wc-phone{position:absolute; right:5%; bottom:-78px; width:46%; max-width:162px; z-index:1; transform:rotate(-5deg); transform-origin:bottom center; pointer-events:none; transition:transform .35s var(--ease)}
   .wc-phone img{display:block; width:100%; height:auto}
-  .wcard.has-phone:hover .wc-phone{transform:rotate(-5deg) translateY(-5px)}
+  @media (hover:hover) and (pointer:fine){ .wcard.has-phone:hover .wc-phone{transform:rotate(-5deg) translateY(-5px)} }
   @media(max-width:520px){ .wcard.has-phone{min-height:260px} .wcard.has-phone .wc-bot{max-width:56%} .wc-phone{right:2%; max-width:112px; bottom:-54px} }
 
   /* ── about panel ── */
@@ -248,7 +276,7 @@
   .ct-links{margin-top:2.6rem; display:grid; grid-template-columns:repeat(2,minmax(0,250px)); gap:1rem 3rem}
   .ct{display:flex; flex-direction:column; gap:.15rem; padding:.85rem 0; border-top:1px solid rgba(250,248,244,.2)}
   .ct small{font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(250,248,244,.5)}
-  .ct a,.ct span{font-size:1.05rem; color:var(--paper); transition:.2s}
+  .ct a,.ct span{font-size:1.05rem; color:var(--paper); transition:opacity .18s ease}
   .ct a:hover{opacity:.7}
   .ct .note{font-family:var(--mono); font-size:.6rem; color:#D9B25A}
   .ct-foot{margin-top:3rem; font-family:var(--mono); font-size:.66rem; color:rgba(250,248,244,.5); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
@@ -256,8 +284,9 @@
   /* ── work page ── */
   #view-work{padding-bottom:0}
   .wp{display:none}
-  .wp.show{display:block; animation:fade .5s ease}
-  @keyframes fade{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}
+  .wp.show{display:block; animation:fade .45s var(--ease-snap)}
+  @keyframes fade{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){ .wp.show{animation:none} }
   .wp-hero{color:#fff; padding:var(--sp-10) 0 var(--sp-7); position:relative; overflow:hidden}
   .wp-hero .wrap{position:relative; z-index:1}
   .back{display:inline-flex; align-items:center; gap:.4rem; font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.8); margin-bottom:2.2rem}
@@ -266,10 +295,12 @@
   .wp-title{font-size:clamp(2.4rem,6vw,4.2rem); font-weight:700; letter-spacing:-.03em; line-height:1.04; margin:.5rem 0 .8rem}
   body.lang-en .wp-title{font-family:var(--serif); font-weight:500; letter-spacing:-.01em}
   .wp-meta{font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; opacity:.85}
-  .wp-live{display:inline-flex; align-items:center; gap:.5rem; margin-top:1.5rem; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#111; background:#fff; border:1px solid #fff; border-radius:var(--r-pill); padding:.66rem 1.2rem; transition:transform .2s}
-  .wp-live:hover{transform:translateY(-2px)}
-  .wp-live .ar{transition:transform .2s}
-  .wp-live:hover .ar{transform:translate(2px,-2px)}
+  .wp-live{display:inline-flex; align-items:center; gap:.5rem; margin-top:1.5rem; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#111; background:#fff; border:1px solid #fff; border-radius:var(--r-pill); padding:.66rem 1.2rem; transition:transform .16s var(--ease-snap)}
+  .wp-live .ar{transition:transform .2s var(--ease-snap)}
+  @media (hover:hover) and (pointer:fine){
+    .wp-live:hover{transform:translateY(-2px)}
+    .wp-live:hover .ar{transform:translate(2px,-2px)}
+  }
   .wp-essence{font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.4; max-width:24ch; margin-top:1.8rem; font-weight:500}
   body.lang-en .wp-essence{font-family:var(--serif); font-weight:400; font-style:italic; max-width:30ch}
   .wp-figure{margin-top:2.4rem; border-radius:var(--r-lg); overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.04); max-width:560px}
@@ -301,10 +332,12 @@
   .metric-b .l{margin-top:.5rem; font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint)}
   .wp-cta{margin-top:var(--sp-7); background:rgba(12,60,96,.045); border:1px solid rgba(12,60,96,.14); border-radius:var(--r-lg); padding:clamp(var(--sp-5),3vw,var(--sp-6)); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--sp-4) var(--sp-6)}
   .wp-cta .wp-cta-lead{color:var(--ink-soft); font-size:clamp(1rem,1.5vw,1.12rem); line-height:1.55; font-weight:500; max-width:26ch; margin:0; text-wrap:balance}
-  .wp-cta-btn{display:inline-flex; align-items:center; gap:.5rem; flex-shrink:0; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#fff; background:var(--navy); border-radius:var(--r-pill); padding:.8rem 1.4rem; transition:transform .2s}
-  .wp-cta-btn:hover{transform:translateY(-2px)}
-  .wp-cta-btn .ar{transition:transform .2s}
-  .wp-cta-btn:hover .ar{transform:translate(2px,-2px)}
+  .wp-cta-btn{display:inline-flex; align-items:center; gap:.5rem; flex-shrink:0; font-family:var(--mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#fff; background:var(--navy); border-radius:var(--r-pill); padding:.8rem 1.4rem; transition:transform .16s var(--ease-snap)}
+  .wp-cta-btn .ar{transition:transform .2s var(--ease-snap)}
+  @media (hover:hover) and (pointer:fine){
+    .wp-cta-btn:hover{transform:translateY(-2px)}
+    .wp-cta-btn:hover .ar{transform:translate(2px,-2px)}
+  }
   .insight{margin-top:var(--sp-6)}
   .insight .ilead{font-size:1.1rem; line-height:1.72; color:var(--ink-soft); max-width:62ch; margin-bottom:var(--sp-5)}
   .insight .ilead b{color:var(--ink); font-weight:600}
@@ -1212,6 +1245,7 @@
         var id=e.target.id, i=panels.indexOf(id);
         dotBtns.forEach(function(b,bi){ b.classList.toggle('on', bi===i); });
         top.classList.toggle('solid', id!=='p-hero');
+        body.classList.toggle('on-dark', id==='p-impact' || id==='p-contact');
         if(id==='p-impact') countUp();
       }
     });
@@ -1323,6 +1357,32 @@
   var show=function(){ if(sec.classList.contains('fonts-in')) return; sec.classList.add('fonts-in'); setTimeout(function(){ tag.classList.add('settle'); }, 600); };
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(show); setTimeout(show,1500); }
   else show();
+})();
+</script>
+<script>
+/* 누름 피드백을 pointerdown 즉시 발동 — iOS가 :active를 지연시키는 문제 우회.
+   10px 이상 움직이면(스크롤 의도) 취소해, 페이지를 스크롤하다 카드가 눌리는 오작동을 막는다. */
+(function(){
+  var SEL='.lang button, .menu-btn, .dots button, a.wp-live, a.wp-cta-btn, a.wcard';
+  var cur=null, sx=0, sy=0;
+  function clear(){
+    if(cur){ cur.removeAttribute('data-pressed'); cur=null; }
+    window.removeEventListener('pointerup', clear);
+    window.removeEventListener('pointercancel', clear);
+    window.removeEventListener('pointermove', onMove);
+  }
+  function onMove(e){
+    if(Math.abs(e.clientX-sx)>10 || Math.abs(e.clientY-sy)>10) clear();
+  }
+  document.addEventListener('pointerdown', function(e){
+    var t=e.target.closest ? e.target.closest(SEL) : null;
+    if(!t) return;
+    cur=t; sx=e.clientX; sy=e.clientY;
+    t.setAttribute('data-pressed','');
+    window.addEventListener('pointerup', clear);
+    window.addEventListener('pointercancel', clear);
+    window.addEventListener('pointermove', onMove, {passive:true});
+  }, {passive:true});
 })();
 </script>
 </body>
