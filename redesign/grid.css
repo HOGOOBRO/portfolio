@@ -9,10 +9,10 @@
   --gap: clamp(.75rem, 1.1vw, 1.25rem);       /* 컬럼 사이 거터 */
   --sect: clamp(80px, 11vh, 150px);           /* 섹션 상하 호흡 (레퍼런스 실측) */
 
-  /* 팔레트 (기존 브랜드 유지) */
-  --paper:#FAF8F4; --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
-  --line:#E5E0D5; --line-strong:#D6D0C2;
-  --navy:#0C3C60; --gold:#B98B2E; --black:#000;
+  /* 팔레트 v2: 흑백 위주. UI는 무채색, 컬러는 작업물 이미지에서만 나온다 */
+  --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#4A4A4A; --ink-faint:#8F8F8F;
+  --line:#E9E9E9; --line-strong:#D4D4D4;
+  --black:#000;
 
   /* 폰트 */
   --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
@@ -39,8 +39,8 @@ body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-bre
 /* ── 테마: 섹션 단위로 스왑. 히어로=다크, 본문=페이퍼 ── */
 .theme-paper{ --bg:var(--paper); --fg:var(--ink); --fg-soft:var(--ink-soft);
               --fg-faint:var(--ink-faint); --rule:var(--line) }
-.theme-dark { --bg:var(--black); --fg:var(--paper); --fg-soft:rgba(250,248,244,.62);
-              --fg-faint:rgba(250,248,244,.38); --rule:rgba(250,248,244,.16) }
+.theme-dark { --bg:var(--black); --fg:#F5F5F5; --fg-soft:rgba(245,245,245,.6);
+              --fg-faint:rgba(245,245,245,.36); --rule:rgba(245,245,245,.14) }
 .theme-paper, .theme-dark{ background:var(--bg); color:var(--fg) }
 
 /* ── 12컬럼 로우 ──
@@ -58,7 +58,7 @@ body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-bre
 .bleed{ padding-left:0; padding-right:0 }        /* 풀블리드 로우 */
 
 /* ── 타이포 클래스 ── */
-.display{ font-family:var(--serif); font-weight:500; font-size:var(--t-display);
+.display{ font-family:var(--serif); font-weight:600;  /* KO는 Pretendard로 폴백(확정), EN만 Fraunces */ font-size:var(--t-display);
           line-height:1.06; letter-spacing:-.024em; text-wrap:balance }
 .h1{ font-family:var(--serif); font-weight:500; font-size:var(--t-h1);
      line-height:1.12; letter-spacing:-.02em; text-wrap:balance }

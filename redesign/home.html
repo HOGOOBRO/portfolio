@@ -3,40 +3,87 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>개편 2단계 · 홈 v1</title>
+<title>개편 2단계 · 홈 v2 (페이지 전환)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="grid.css" />
 <style>
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  /* ── 모션 토큰 (레퍼런스 실측) ── */
+  :root{
+    --page-speed:.85s;  --page-curve:cubic-bezier(.65,0,.20,1);
+    --anim-speed:.7s;   --anim-curve:cubic-bezier(.80,0,.20,1);
+    --t-fast:.2s ease;  --t-base:.3s ease;  --t-slow:.4s ease;
+  }
+  html,body{height:100%; overflow:hidden}
 
-  /* ── 상단 크롬: 레퍼런스처럼 최소한만 ── */
-  .chrome{position:fixed; inset:0 0 auto 0; z-index:50; display:flex;
-          justify-content:space-between; align-items:center;
-          padding:1.1rem var(--side); mix-blend-mode:difference; color:#fff}
+  /* ── 고정 크롬: 로고 + 메뉴 트리거 ── */
+  .chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex;
+          justify-content:space-between; align-items:flex-start;
+          padding:1.15rem var(--side); mix-blend-mode:difference; color:#fff;
+          pointer-events:none}
+  .chrome > *{pointer-events:auto}
   .chrome a{color:inherit; text-decoration:none}
-  .chrome .label{color:rgba(255,255,255,.75)}
-  .chrome nav{display:flex; gap:1.6rem}
-  .chrome nav a{font-family:var(--mono); font-size:var(--t-label);
-                letter-spacing:.13em; text-transform:uppercase}
-  .chrome nav a:hover{color:#fff}
+  .menu-trigger{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+                text-transform:uppercase; color:#fff; background:none; border:0; cursor:pointer;
+                padding:0; transition:opacity var(--t-slow), transform .16s var(--ease-snap)}
+  .menu-trigger:active{transform:scale(.94)}
 
-  /* ── 히어로: 확정 카드 캐러셀 (수치 변경 금지) ── */
+  /* ── 전체화면 메뉴 오버레이 ── */
+  .menu-overlay{position:fixed; inset:0; z-index:150; background:#000;
+                transform:scaleY(0); transition:transform var(--anim-speed) var(--anim-curve);
+                padding:clamp(80px,11vh,150px) var(--side) var(--side);
+                display:flex; flex-direction:column; justify-content:space-between}
+  .menu-overlay.open{transform:scaleY(1)}
+  .menu-list{padding-left:calc(100vw / 6); display:flex; flex-direction:column;
+             opacity:0; transition:opacity var(--t-base)}
+  .menu-overlay.open .menu-list{opacity:1; transition:opacity var(--t-slow) .35s}
+  .menu-list a{font-family:var(--serif); font-weight:500; color:#F5F5F5; text-decoration:none;
+               font-size:clamp(2rem,5.4vw,4.6rem); line-height:1.16; letter-spacing:-.02em;
+               display:inline-block; width:fit-content; transition:opacity var(--t-fast)}
+  .menu-list a .idx{font-family:var(--mono); font-size:.6rem; letter-spacing:.14em;
+                    vertical-align:super; margin-right:.7rem; color:rgba(245,245,245,.4)}
+  @media (hover:hover) and (pointer:fine){
+    .menu-list:hover a{opacity:.35}
+    .menu-list a:hover{opacity:1}
+  }
+  .menu-foot{padding-left:calc(100vw / 6); display:flex; gap:2rem; flex-wrap:wrap;
+             opacity:0; transition:opacity var(--t-base)}
+  .menu-overlay.open .menu-foot{opacity:1; transition:opacity var(--t-slow) .5s}
+  .menu-foot a, .menu-foot span{font-family:var(--mono); font-size:var(--t-label);
+             letter-spacing:.13em; text-transform:uppercase; color:rgba(245,245,245,.45);
+             text-decoration:none}
+  .menu-foot a:hover{color:#F5F5F5}
+
+  /* ── 페이지 컨테이너: 세로 셔터 전환 ── */
+  .page{position:absolute; inset:0; width:100%; height:100dvh; overflow:hidden;
+        transform:scaleY(0); z-index:1; pointer-events:none;
+        transition:transform var(--page-speed) var(--page-curve)}
+  .page.visible{transform:scaleY(1); z-index:10; pointer-events:auto}
+  .page.scrolly{overflow-y:auto; -webkit-overflow-scrolling:touch}
+  .page-inner{min-height:100%; padding-top:clamp(5rem,12vh,9rem); padding-bottom:var(--sect)}
+
+  @media (prefers-reduced-motion:reduce){
+    .page{transition:opacity var(--t-base); transform:none; opacity:0}
+    .page.visible{opacity:1}
+    .menu-overlay{transition:opacity var(--t-base); transform:none; opacity:0; pointer-events:none}
+    .menu-overlay.open{opacity:1; pointer-events:auto}
+  }
+
+  /* ── 히어로(홈): 확정 카드 캐러셀 ── */
+  #page-home{background:#000}
   .hero{position:relative; height:100dvh; overflow:hidden;
         --cw:clamp(180px,16vw,340px); --ch:clamp(180px,16vw,340px)}
   .carousel{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
             perspective:4000px; perspective-origin:50% -40%; z-index:2; cursor:grab;
-            transform:translateY(1vh)}
+            transform:translateY(1vh); touch-action:none}
   .carousel.grabbing{cursor:grabbing}
   .carousel, .carousel *{-webkit-user-drag:none; user-select:none; -webkit-user-select:none}
-  .carousel{touch-action:none}
   .ring{position:relative; width:0; height:0; transform-style:preserve-3d; will-change:transform}
   .card{position:absolute; left:calc(var(--cw) / -2); top:calc(var(--ch) / -2);
         width:var(--cw); height:var(--ch); border-radius:24px; overflow:hidden;
-        background:var(--bg-card,#222); color:#fff; padding:1.1rem 1.2rem;
+        background:var(--bg-card,#1a1a1a); color:#fff; padding:1.1rem 1.2rem;
         display:flex; flex-direction:column; justify-content:space-between;
         box-shadow:0 40px 80px -30px rgba(0,0,0,.9); will-change:filter,opacity}
   .card.photo{background-size:cover; background-position:center top}
@@ -52,16 +99,16 @@
                    font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.08; letter-spacing:-.02em}
   .hero .lockup p{margin-top:.9rem; max-width:34ch; font-weight:500;
                   font-size:clamp(.92rem,1.15vw,1.05rem); line-height:1.55; color:rgba(245,245,245,.55)}
-  .hero .eyebrow{position:absolute; top:4.2rem; left:var(--side); z-index:3}
+  .hero .eyebrow{position:absolute; top:4.4rem; left:var(--side); z-index:3}
   .hero .drag-hint{position:absolute; right:var(--side); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3;
                    font-family:var(--mono); font-size:.6rem; letter-spacing:.12em;
                    text-transform:uppercase; color:rgba(245,245,245,.4)}
 
-  /* ── 프로젝트 인덱스: 편집 리스트 ── */
+  /* ── 프로젝트 인덱스 ── */
   .windex a{display:block; color:inherit; text-decoration:none}
   .windex .wrow{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
-                align-items:baseline; padding:1.6rem var(--side); border-top:1px solid var(--rule);
-                transition:background .18s ease}
+                align-items:baseline; padding:1.5rem var(--side); border-top:1px solid var(--rule);
+                transition:background var(--t-fast), color var(--t-fast)}
   .windex .wrow:last-child{border-bottom:1px solid var(--rule)}
   .windex .no{grid-column:1 / span 1}
   .windex .nm{grid-column:3 / span 5; font-family:var(--serif); font-weight:500;
@@ -69,22 +116,20 @@
   .windex .one{grid-column:8 / span 3; font-size:var(--t-cap); color:var(--fg-faint); align-self:center}
   .windex .yr{grid-column:12 / span 1; text-align:right}
   .windex .ar{display:inline-block; margin-left:.5rem; opacity:0; transform:translateX(-6px);
-              transition:opacity .2s var(--ease-snap), transform .2s var(--ease-snap)}
+              transition:opacity var(--t-fast), transform .2s var(--ease-snap)}
   @media (hover:hover) and (pointer:fine){
     .windex .wrow:hover{background:var(--ink); color:var(--paper)}
-    .windex .wrow:hover .one, .windex .wrow:hover .no, .windex .wrow:hover .yr{color:rgba(255,255,255,.6)}
+    .windex .wrow:hover .one,.windex .wrow:hover .no,.windex .wrow:hover .yr{color:rgba(255,255,255,.6)}
     .windex .wrow:hover .ar{opacity:1; transform:none}
   }
   .windex a:active .wrow{background:var(--ink); color:var(--paper)}
 
-  /* 타임라인 */
+  /* ── 타임라인 · 컨택트 ── */
   .tl-row{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
           padding:1.1rem var(--side); border-top:1px solid var(--rule)}
   .tl-row .yr{grid-column:1 / span 2}
   .tl-row h5{grid-column:3 / span 4; font-size:1rem; font-weight:600}
   .tl-row p{grid-column:7 / span 5; font-size:var(--t-cap); color:var(--fg-soft); line-height:1.6}
-
-  /* 컨택트 */
   .contact-mail{font-family:var(--serif); font-weight:500; color:inherit; text-decoration:none;
                 font-size:clamp(1.6rem,4.2vw,4rem); letter-spacing:-.02em; line-height:1.1;
                 border-bottom:2px solid var(--rule)}
@@ -95,10 +140,10 @@
   .clinks a:hover{color:var(--fg)}
 
   @media (max-width:900px){
-    .windex .wrow{display:grid; grid-template-columns:1fr auto; padding:1.2rem var(--side)}
+    .menu-list, .menu-foot{padding-left:0}
+    .windex .wrow{grid-template-columns:1fr auto; padding:1.2rem var(--side)}
     .windex .no,.windex .one{display:none}
-    .windex .nm{grid-column:auto}
-    .windex .yr{grid-column:auto}
+    .windex .nm,.windex .yr{grid-column:auto}
     .tl-row{display:block}
     .tl-row p{margin-top:.3rem}
     .hero{--cw:clamp(150px,38vw,220px); --ch:clamp(150px,38vw,220px)}
@@ -108,141 +153,172 @@
 <body class="theme-paper">
 
   <header class="chrome">
-    <a class="label" href="#">©kimjinhyeon</a>
-    <nav>
-      <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
-    </nav>
+    <a class="label" href="#/" style="color:#fff">©kimjinhyeon</a>
+    <button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
   </header>
 
-  <!-- ── 히어로: 확정 3D 카드 캐러셀 ── -->
-  <section class="hero theme-dark">
-    <p class="eyebrow label" style="color:rgba(245,245,245,.45)">Product Strategy · UX Research · 0→1 Build</p>
-    <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
-      <div class="ring" id="ring">
-        <div class="card photo" style="background-image:url('railink-hero.png')">
-          <span class="scrim"></span>
-          <span class="tag">근무 스케줄 서비스 · 2026 →</span>
-          <span class="bot"><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
-        </div>
-        <div class="card photo" style="background-image:url('deokhong-hero.jpg')">
-          <span class="scrim"></span>
-          <span class="tag">선거 캠페인 사이트 · 2026</span>
-          <span class="bot"><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
-        </div>
-        <div class="card" style="--bg-card:#1E8C77">
-          <span class="scrim"></span>
-          <span class="ph"><img src="openpath-phone.png" alt="" /></span>
-          <span class="tag">Product Manager · 2023</span>
-          <span class="bot"><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
-        </div>
-        <div class="card" style="--bg-card:#2F55D4">
-          <span class="scrim"></span>
-          <span class="ph"><img src="samsung-phone.png" alt="" /></span>
-          <span class="tag">UX 기획 · 2024–25</span>
-          <span class="bot"><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
-        </div>
-        <div class="card photo" style="background-image:url('genesis-cfg-summary.png')">
-          <span class="scrim"></span>
-          <span class="tag">서비스 기획 · 2025</span>
-          <span class="bot"><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
-        </div>
-        <div class="card photo" style="background-image:url('korail-heatmap.png')">
-          <span class="scrim"></span>
-          <span class="tag">UX 리서치 · 2024</span>
-          <span class="bot"><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
+  <!-- ── 메뉴 오버레이 ── -->
+  <div class="menu-overlay" id="menu" aria-hidden="true">
+    <nav class="menu-list">
+      <a href="#/"><span class="idx">01</span>Index</a>
+      <a href="#/work"><span class="idx">02</span>Work</a>
+      <a href="#/about"><span class="idx">03</span>About</a>
+      <a href="#/contact"><span class="idx">04</span>Contact</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
+      <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
+      <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+      <span>Seoul</span>
+    </div>
+  </div>
+
+  <!-- ── 01 · 인덱스(홈): 키비주얼 ── -->
+  <main class="page visible" id="page-home" data-route="">
+    <section class="hero theme-dark">
+      <p class="eyebrow label" style="color:rgba(245,245,245,.45)">Product Strategy · UX Research · 0→1 Build</p>
+      <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
+        <div class="ring" id="ring">
+          <div class="card photo" style="background-image:url('railink-hero.png')">
+            <span class="scrim"></span><span class="tag">근무 스케줄 서비스 · 2026 →</span>
+            <span class="bot"><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
+          </div>
+          <div class="card photo" style="background-image:url('deokhong-hero.jpg')">
+            <span class="scrim"></span><span class="tag">선거 캠페인 사이트 · 2026</span>
+            <span class="bot"><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
+          </div>
+          <div class="card" style="--bg-card:#1E8C77">
+            <span class="scrim"></span><span class="ph"><img src="openpath-phone.png" alt="" /></span>
+            <span class="tag">Product Manager · 2023</span>
+            <span class="bot"><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
+          </div>
+          <div class="card" style="--bg-card:#2F55D4">
+            <span class="scrim"></span><span class="ph"><img src="samsung-phone.png" alt="" /></span>
+            <span class="tag">UX 기획 · 2024–25</span>
+            <span class="bot"><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
+          </div>
+          <div class="card photo" style="background-image:url('genesis-cfg-summary.png')">
+            <span class="scrim"></span><span class="tag">서비스 기획 · 2025</span>
+            <span class="bot"><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
+          </div>
+          <div class="card photo" style="background-image:url('korail-heatmap.png')">
+            <span class="scrim"></span><span class="tag">UX 리서치 · 2024</span>
+            <span class="bot"><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="lockup">
-      <h1>Design less,<br />solve more.</h1>
-      <p>The more complex the problem,<br />the more it calls for subtraction.</p>
-    </div>
-    <p class="drag-hint">드래그해서 돌려보세요</p>
-  </section>
+      <div class="lockup">
+        <h1>Design less,<br />solve more.</h1>
+        <p>The more complex the problem,<br />the more it calls for subtraction.</p>
+      </div>
+      <p class="drag-hint">드래그해서 돌려보세요</p>
+    </section>
+  </main>
 
-  <!-- ── 스테이트먼트 ── -->
-  <section class="theme-paper sect">
-    <div class="row">
-      <p class="c s1 w2 label">Intro</p>
-      <div class="c s3 w8">
-        <h2 class="display" style="font-size:clamp(2rem,4.2vw,4.2rem)">감이 아니라,<br />근거로 결정합니다.</h2>
-        <p class="body" style="margin-top:1.6rem">항공 승무원으로 시작해, 카페를 창업해 매출로 마케팅을 배웠고, 지금은 IT에서 서비스를 기획합니다. 자리는 계속 달라졌지만 방식은 같았습니다. <b>가설을 세우고, 실험하고, 숫자로 확인한 다음에 움직입니다.</b></p>
+  <!-- ── 02 · Work ── -->
+  <main class="page scrolly theme-paper" id="page-work" data-route="work" aria-hidden="true">
+    <div class="page-inner">
+      <div class="row" style="margin-bottom:2.4rem">
+        <p class="c s1 w2 label">Work · 6</p>
+        <p class="c s3 w7 lead">직접 만든 것 둘, 회사에서 맡은 것 넷.</p>
+      </div>
+      <div class="windex">
+        <a href="#/case/railink"><div class="wrow"><span class="no label">01</span><span class="nm">RaiLink<span class="ar">→</span></span><span class="one">근무표를 겹쳐, 같이 쉬는 날을 찾는다</span><span class="yr label">2026</span></div></a>
+        <a href="#/case/deokhong"><div class="wrow"><span class="no label">02</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one">무소속 캠페인을 한 페이지로</span><span class="yr label">2026</span></div></a>
+        <a href="#/case/samsung"><div class="wrow"><span class="no label">03</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one">100여 개국 가입 여정 통일</span><span class="yr label">2024</span></div></a>
+        <a href="#/case/openpath"><div class="wrow"><span class="no label">04</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one">체험을 앞세워 결제 전환 3.4배</span><span class="yr label">2023</span></div></a>
+        <a href="#/case/genesis"><div class="wrow"><span class="no label">05</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one">법적 문구를 고르는 시스템</span><span class="yr label">2025</span></div></a>
+        <a href="#/case/korail"><div class="wrow"><span class="no label">06</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one">한꺼번에 묻지 않기로 했다</span><span class="yr label">2024</span></div></a>
       </div>
     </div>
-    <!-- 수치 밴드 -->
-    <div class="row" style="margin-top:var(--sect)">
-      <div class="c s3 w2"><p class="num">6.5×</p><p class="label" style="margin-top:.6rem">카페 월매출 · 5개월</p></div>
-      <div class="c s5 w2"><p class="num">3.4×</p><p class="label" style="margin-top:.6rem">결제 전환 · OPENPATH</p></div>
-      <div class="c s7 w2"><p class="num">100+</p><p class="label" style="margin-top:.6rem">가입 통일 · Samsung</p></div>
-      <div class="c s9 w2"><p class="num">44</p><p class="label" style="margin-top:.6rem">가입 · RaiLink · 광고 0</p></div>
-    </div>
-  </section>
+  </main>
 
-  <!-- ── 프로젝트 인덱스 ── -->
-  <section class="theme-paper" id="work" style="padding-bottom:var(--sect)">
-    <div class="row" style="margin-bottom:2rem">
-      <p class="c s1 w2 label">Work · 6</p>
-    </div>
-    <div class="windex">
-      <a href="#"><div class="wrow"><span class="no label">01</span><span class="nm">RaiLink<span class="ar">→</span></span><span class="one">근무표를 겹쳐, 같이 쉬는 날을 찾는다</span><span class="yr label">2026</span></div></a>
-      <a href="#"><div class="wrow"><span class="no label">02</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one">무소속 캠페인을 한 페이지로</span><span class="yr label">2026</span></div></a>
-      <a href="#"><div class="wrow"><span class="no label">03</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one">100여 개국 가입 여정 통일</span><span class="yr label">2024</span></div></a>
-      <a href="#"><div class="wrow"><span class="no label">04</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one">체험을 앞세워 결제 전환 3.4배</span><span class="yr label">2023</span></div></a>
-      <a href="#"><div class="wrow"><span class="no label">05</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one">법적 문구를 고르는 시스템</span><span class="yr label">2025</span></div></a>
-      <a href="#"><div class="wrow"><span class="no label">06</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one">한꺼번에 묻지 않기로 했다</span><span class="yr label">2024</span></div></a>
-    </div>
-  </section>
-
-  <!-- ── 어바웃 ── -->
-  <section class="theme-paper sect rule-top" id="about">
-    <div class="row" style="margin-bottom:2.2rem">
-      <p class="c s1 w2 label">About</p>
-      <p class="c s3 w7 lead">거쳐 온 자리는 다 달랐지만, 결정하는 방식은 늘 같았어요.</p>
-    </div>
-    <div class="tl-row"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아) 론칭 · 현재 LG B2B 글로벌 사이트 기획</p></div>
-    <div class="tl-row"><span class="yr label">2023–25</span><h5>듀오톤 · PM · UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화</p></div>
-    <div class="tl-row"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위</p></div>
-    <div class="tl-row"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행</p></div>
-  </section>
-
-  <!-- ── 컨택트 ── -->
-  <section class="theme-dark sect" id="contact">
-    <div class="row">
-      <p class="c s1 w2 label">Contact</p>
-      <div class="c s3 w9">
-        <p class="body" style="margin-bottom:1.6rem">다음 문제를 함께 풀고 싶습니다.</p>
-        <a class="contact-mail" href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
-        <div class="clinks">
-          <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
-          <a href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com ↗</a>
-          <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+  <!-- ── 03 · About ── -->
+  <main class="page scrolly theme-paper" id="page-about" data-route="about" aria-hidden="true">
+    <div class="page-inner">
+      <div class="row">
+        <p class="c s1 w2 label">About</p>
+        <div class="c s3 w8">
+          <h2 class="display" style="font-size:clamp(2rem,4.2vw,4.2rem)">감이 아니라,<br />근거로 결정합니다.</h2>
+          <p class="body" style="margin-top:1.6rem">항공 승무원으로 시작해, 카페를 창업해 매출로 마케팅을 배웠고, 지금은 IT에서 서비스를 기획합니다. 자리는 계속 달라졌지만 방식은 같았습니다. <b>가설을 세우고, 실험하고, 숫자로 확인한 다음에 움직입니다.</b></p>
         </div>
       </div>
+      <div class="row" style="margin:var(--sect) 0">
+        <div class="c s3 w2"><p class="num">6.5×</p><p class="label" style="margin-top:.6rem">카페 월매출 · 5개월</p></div>
+        <div class="c s5 w2"><p class="num">3.4×</p><p class="label" style="margin-top:.6rem">결제 전환 · OPENPATH</p></div>
+        <div class="c s7 w2"><p class="num">100+</p><p class="label" style="margin-top:.6rem">가입 통일 · Samsung</p></div>
+        <div class="c s9 w2"><p class="num">44</p><p class="label" style="margin-top:.6rem">가입 · RaiLink · 광고 0</p></div>
+      </div>
+      <div class="tl-row"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아) 론칭 · 현재 LG B2B 글로벌 사이트 기획</p></div>
+      <div class="tl-row"><span class="yr label">2023–25</span><h5>듀오톤 · PM · UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화</p></div>
+      <div class="tl-row"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위</p></div>
+      <div class="tl-row"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행</p></div>
     </div>
-    <div class="row" style="margin-top:var(--sect)">
-      <p class="c s1 w4 label">© 2026 Kim Jinhyeon</p>
-      <p class="c s9 w4 label" style="text-align:right; grid-column-end:13">From Seoul</p>
+  </main>
+
+  <!-- ── 04 · Contact ── -->
+  <main class="page scrolly theme-dark" id="page-contact" data-route="contact" aria-hidden="true">
+    <div class="page-inner">
+      <div class="row">
+        <p class="c s1 w2 label">Contact</p>
+        <div class="c s3 w9">
+          <p class="body" style="margin-bottom:1.6rem">다음 문제를 함께 풀고 싶습니다.</p>
+          <a class="contact-mail" href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
+          <div class="clinks">
+            <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
+            <a href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com ↗</a>
+            <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:var(--sect)">
+        <p class="c s1 w4 label">© 2026 Kim Jinhyeon</p>
+        <p class="c s9 w4 label" style="grid-column-end:13; text-align:right">From Seoul</p>
+      </div>
     </div>
-  </section>
+  </main>
 
 <script>
 (function(){
-  /* 캡처·디버그용: ?nohero 면 히어로 숨김 */
-  if(location.search.indexOf('nohero')>=0){
-    document.querySelector('.hero').style.display='none';
+  /* ── 라우팅: 메뉴로 페이지 전환 (세로 셔터) ── */
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var menu=document.getElementById('menu'), btn=document.getElementById('menuBtn');
+  var homeVisible=true;
+
+  function setMenu(open){
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open?'false':'true');
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    btn.textContent = open ? 'Close' : 'Menu';
   }
-  /* ── 확정 캐러셀 로직 (수치 고정: GAP 1.24 · FLARE 1.5 · 속도 .17) ── */
+  btn.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+
+  function route(){
+    var h=(location.hash||'').replace(/^#\/?/,'').split('/')[0];
+    var target=pages.filter(function(p){ return p.dataset.route===h; })[0] || pages[0];
+    pages.forEach(function(p){
+      var on=(p===target);
+      p.classList.toggle('visible', on);
+      p.setAttribute('aria-hidden', on?'false':'true');
+      if(on) p.scrollTop=0;
+    });
+    homeVisible = (target.id==='page-home');
+    document.body.className = target.classList.contains('theme-dark') ? 'theme-dark' : 'theme-paper';
+    setMenu(false);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+  if(location.search.indexOf('menu')>=0) setMenu(true);   /* 캡처·디버그용 */
+
+  /* ── 확정 캐러셀 (수치 고정: GAP 1.24 · FLARE 1.5 · 속도 .17) ── */
   var ring=document.getElementById('ring'), wrap=document.getElementById('carousel');
   var cards=[].slice.call(ring.children), N=cards.length;
   var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var GAP=1.24, FLARE=1.5;
-  function radius(){
-    var cw=cards[0].offsetWidth;
-    return Math.round((cw*GAP/2)/Math.tan(Math.PI/N));
-  }
-  var R=0;
   function layout(){
-    R=radius();
+    var cw=cards[0].offsetWidth;
+    var R=Math.round((cw*GAP/2)/Math.tan(Math.PI/N));
     cards.forEach(function(c,i){
       c.style.transform='rotateY('+(i*360/N)+'deg) translateZ('+R+'px) rotateX('+(-FLARE)+'deg)';
     });
@@ -271,6 +347,8 @@
   wrap.addEventListener('pointercancel', release);
 
   (function loop(){
+    requestAnimationFrame(loop);
+    if(!homeVisible) return;                 /* 다른 페이지에선 연산 중단 */
     if(!dragging){
       vel+=(0-vel)*.02;
       rot+=vel + autoVel;
@@ -286,7 +364,6 @@
       c.style.opacity=String(1-t*.12);
       c.style.zIndex=String(Math.round(100+facing*100));
     });
-    requestAnimationFrame(loop);
   })();
 })();
 </script>
