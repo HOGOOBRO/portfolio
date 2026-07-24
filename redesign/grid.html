@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>개편 1단계 · 그리드 시스템 스펙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<style>
+  .hintbar{position:fixed; right:1rem; bottom:1rem; z-index:1000; font-family:var(--mono);
+           font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+           background:rgba(0,0,0,.7); color:rgba(250,248,244,.8);
+           border-radius:8px; padding:.55rem .8rem}
+  .specnote{font-family:var(--mono); font-size:.6rem; letter-spacing:.08em;
+            color:#c25454; text-transform:uppercase; margin-bottom:.5rem}
+  .scale-row{display:flex; align-items:baseline; gap:1.4rem; padding:.9rem 0; border-top:1px solid var(--rule); flex-wrap:wrap}
+  .scale-row .label{min-width:9em}
+</style>
+</head>
+<body class="theme-paper">
+
+  <div class="grid-overlay" id="ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="hintbar">G 키 · 그리드 오버레이</p>
+
+  <!-- 1. 다크 섹션: 표제 스펙 (히어로 계열) -->
+  <section class="theme-dark sect">
+    <div class="row">
+      <p class="c s1 w2 label">Grid Spec · v1</p>
+      <div class="c s3 w9">
+        <h1 class="display">잡지처럼 조판하고,<br />근거로 말한다.</h1>
+        <p class="lead" style="margin-top:1.4rem; color:var(--fg-soft)">12컬럼 뷰포트 그리드. 첫 두 컬럼은 메타 정보의 자리, 본문은 셋째 컬럼에서 시작합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 페이퍼 섹션: 기본 본문 문법 -->
+  <section class="theme-paper sect">
+    <div class="row">
+      <div class="c s1 w2">
+        <p class="label">Case · 01</p>
+        <p class="cap" style="margin-top:.4rem">RaiLink<br />2026 →</p>
+      </div>
+      <div class="c s3 w7">
+        <h2 class="h1">같이 쉬는 날을,<br />근무표가 먼저 안다</h2>
+        <p class="body" style="margin-top:1.2rem">교대 근무자는 근무표가 매달 새로 짜입니다. 겹치는 휴일은 분명히 있는데, 그걸 알려면 서로의 근무표를 캡처해 눈으로 맞춰봐야 했죠. <b>질문을 바꿨습니다.</b> 누가 언제 일하는지가 아니라, 우리가 언제 같이 비는지를 보여주기로요.</p>
+      </div>
+      <div class="c s11 w2">
+        <p class="label">Role</p>
+        <p class="cap" style="margin-top:.4rem">기획 · UX · 개발<br />1인 빌드</p>
+      </div>
+    </div>
+
+    <!-- 수치 밴드: 편집디자인의 숫자 취급 -->
+    <div class="row" style="margin-top:var(--sect)">
+      <div class="c s3 w3"><p class="num">44</p><p class="label" style="margin-top:.6rem">가입 · 광고 0원</p></div>
+      <div class="c s6 w3"><p class="num">2/3</p><p class="label" style="margin-top:.6rem">초대 수락률</p></div>
+      <div class="c s9 w3"><p class="num">35%</p><p class="label" style="margin-top:.6rem">재방문</p></div>
+    </div>
+  </section>
+
+  <!-- 3. 풀블리드 미디어 + 캡션 열 -->
+  <section class="theme-paper">
+    <div class="row bleed">
+      <figure class="c s1 w12 media" style="background:#0C3C60; aspect-ratio:21/9; display:flex; align-items:center; justify-content:center">
+        <span class="label" style="color:rgba(250,248,244,.6)">Full-bleed media · 21:9</span>
+      </figure>
+    </div>
+    <div class="row" style="margin-top:.8rem">
+      <p class="c s3 w4 cap">캡션은 본문 시작선에 정렬. 이미지가 화면을 다 쓰더라도 글은 그리드로 돌아온다.</p>
+    </div>
+  </section>
+
+  <!-- 4. 타이포 스케일 표 -->
+  <section class="theme-paper sect">
+    <div class="row"><p class="c s1 w2 label">Type Scale</p>
+      <div class="c s3 w9">
+        <div class="scale-row" style="border-top:0"><span class="label">display</span><span class="display" style="font-size:clamp(2rem,3.4vw,3.2rem)">깎아낼 것을 아는 사람</span></div>
+        <div class="scale-row"><span class="label">h1</span><span class="h1" style="font-size:clamp(1.5rem,2.4vw,2.2rem)">섹션 표제가 서는 자리</span></div>
+        <div class="scale-row"><span class="label">lead</span><span class="lead">리드문은 문단의 문을 연다.</span></div>
+        <div class="scale-row"><span class="label">body</span><span class="body">본문은 62자 폭을 넘지 않고, 부드럽게 줄을 바꾼다.</span></div>
+        <div class="scale-row"><span class="label">cap</span><span class="cap">캡션과 보조 설명이 서는 자리.</span></div>
+        <div class="scale-row"><span class="label">label</span><span class="label">MONO LABEL · META</span></div>
+        <div class="scale-row"><span class="label">num</span><span class="num">6.5×</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 다크 복귀: 전환 규칙 확인 -->
+  <section class="theme-dark sect">
+    <div class="row">
+      <p class="c s1 w2 label">Theme Rule</p>
+      <div class="c s3 w7">
+        <h2 class="h1">다크와 페이퍼는 섹션 단위로 갈린다</h2>
+        <p class="body" style="margin-top:1.1rem">히어로와 마감 섹션은 다크, 본문은 페이퍼. 같은 토큰 이름(--bg, --fg)을 테마 클래스가 갈아끼우므로, 컴포넌트는 자기가 어느 무대에 있는지 몰라도 된다.</p>
+      </div>
+    </div>
+  </section>
+
+<script>
+  var ov=document.getElementById('ov');
+  window.addEventListener('keydown', function(e){
+    if(e.key==='g'||e.key==='G') ov.classList.toggle('on');
+  });
+</script>
+</body>
+</html>
