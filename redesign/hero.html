@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>시안 · 프로젝트 카드 3D 캐러셀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FAF8F4; --ink:#1B1A17; --ink-soft:#56534B; --ink-faint:#8C877C;
+    --navy:#0C3C60; --gold:#B98B2E;
+    --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+    --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --gutter:clamp(1.25rem,5vw,3.5rem);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#000; color:var(--paper); font-family:var(--sans);
+       -webkit-font-smoothing:antialiased; overflow:hidden}
+  .mono{font-family:var(--mono); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:rgba(250,248,244,.45)}
+  .stage{position:relative; height:100dvh; width:100%}
+  .eyebrow{position:absolute; top:clamp(1.2rem,4vh,2.6rem); left:var(--gutter); z-index:3}
+
+
+  /* ── 3D 캐러셀 ── */
+  .carousel{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+            perspective:4000px; perspective-origin:50% -40%; z-index:2; cursor:grab;
+            transform:translateY(1vh);
+            opacity:0; transition:opacity .8s var(--ease) .2s}
+  .in .carousel{opacity:1}
+  .carousel.grabbing{cursor:grabbing}
+  .carousel, .carousel *{-webkit-user-drag:none; user-select:none; -webkit-user-select:none}
+  .carousel{touch-action:none}
+  .ring{position:relative; width:0; height:0; transform-style:preserve-3d; will-change:transform}
+  .card{position:absolute; left:calc(var(--cw) / -2); top:calc(var(--ch) / -2);
+        width:var(--cw); height:var(--ch); border-radius:24px; overflow:hidden;
+        background:var(--bg,#222); color:#fff; padding:1.1rem 1.2rem;
+        display:flex; flex-direction:column; justify-content:space-between;
+        box-shadow:0 40px 80px -30px rgba(0,0,0,.9); will-change:filter,opacity}
+  .card.photo{background-size:cover; background-position:center top}
+  .card .ph{position:absolute; inset:8% 0 14% 0; display:flex; align-items:center; justify-content:center}
+  .card .ph img{height:100%; width:auto; filter:drop-shadow(0 14px 24px rgba(0,0,0,.45))}
+  .card .scrim{position:absolute; inset:0; background:linear-gradient(180deg,rgba(15,12,9,.5),rgba(15,12,9,.05) 45%,rgba(15,12,9,.75))}
+  .card > *{position:relative}
+  .card .tag{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; opacity:.9}
+  .card .bot b{display:block; font-size:1.15rem; font-weight:700; letter-spacing:-.01em}
+  .card .bot span{font-size:.78rem; opacity:.85; line-height:1.4; display:block; margin-top:.25rem; word-break:keep-all}
+  .card .metric{font-family:var(--serif); font-weight:500; font-size:1.7rem; line-height:1}
+
+  .lockup{position:absolute; left:var(--gutter); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3;
+          opacity:0; transform:translateY(10px);
+          transition:opacity .7s var(--ease) .3s, transform .7s var(--ease) .3s}
+  .in .lockup{opacity:1; transform:none}
+  .lockup h1{font-family:var(--serif); font-weight:600;
+             font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.08; letter-spacing:-.02em; color:var(--paper)}
+  .lockup p{margin-top:.9rem; max-width:34ch; font-weight:500;
+            font-size:clamp(.92rem,1.15vw,1.05rem); line-height:1.55; color:rgba(250,248,244,.55)}
+  .hint{position:absolute; right:var(--gutter); bottom:clamp(1.8rem,6vh,3.4rem); z-index:3;
+        font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase;
+        color:rgba(250,248,244,.4); opacity:0; transition:opacity .6s var(--ease) 1s}
+  .in .hint{opacity:1}
+  .tuner{display:none; position:absolute; left:var(--gutter); top:34vh; z-index:5; flex-direction:column; gap:.45rem;
+         font-family:var(--mono); font-size:.6rem; letter-spacing:.06em; color:rgba(250,248,244,.75);
+         background:rgba(0,0,0,.55); border:1px solid rgba(250,248,244,.15); border-radius:10px; padding:.8rem .9rem}
+  .tuner label{display:flex; align-items:center; gap:.5rem}
+  .tuner input{width:120px; accent-color:#B98B2E}
+  .tuner b{min-width:3.2em; font-weight:500}
+  .note{position:absolute; right:var(--gutter); top:clamp(1.2rem,4vh,2.6rem); z-index:3;
+        font-family:var(--mono); font-size:.6rem; letter-spacing:.14em;
+        text-transform:uppercase; color:rgba(250,248,244,.4)}
+
+  @media (prefers-reduced-motion:reduce){
+    .carousel,.lockup,.hint{transition:none; opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+  <div class="stage" id="stage" style="--cw:clamp(180px,16vw,340px); --ch:clamp(180px,16vw,340px)">
+    <p class="eyebrow mono">Product Strategy · UX Research · 0→1 Build</p>
+    <p class="note">draft · carousel v1</p>
+
+    <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
+      <div class="ring" id="ring">
+        <div class="card photo" style="background-image:url('./railink-hero.png')">
+          <span class="scrim"></span>
+          <span class="tag">근무 스케줄 서비스 · 2026 →</span>
+          <span class="bot"><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
+        </div>
+        <div class="card photo" style="background-image:url('./deokhong-hero.jpg')">
+          <span class="scrim"></span>
+          <span class="tag">선거 캠페인 사이트 · 2026</span>
+          <span class="bot"><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
+        </div>
+        <div class="card" style="--bg:#1E8C77">
+          <span class="scrim"></span>
+          <span class="ph"><img src="./openpath-phone.png" alt="" /></span>
+          <span class="tag">Product Manager · 2023</span>
+          <span class="bot"><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
+        </div>
+        <div class="card" style="--bg:#2F55D4">
+          <span class="scrim"></span>
+          <span class="ph"><img src="./samsung-phone.png" alt="" /></span>
+          <span class="tag">UX 기획 · 2024–25</span>
+          <span class="bot"><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
+        </div>
+        <div class="card photo" style="background-image:url('./genesis-cfg-summary.png')">
+          <span class="scrim"></span>
+          <span class="tag">서비스 기획 · 2025</span>
+          <span class="bot"><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
+        </div>
+        <div class="card photo" style="background-image:url('./korail-heatmap.png')">
+          <span class="scrim"></span>
+          <span class="tag">UX 리서치 · 2024</span>
+          <span class="bot"><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tuner" id="tuner">
+      <label>카드 크기 <input type="range" id="t-size" min="12" max="32" step=".5" value="16" /><b id="v-size">16vw</b></label>
+      <label>간격 <input type="range" id="t-gap" min="105" max="200" step="1" value="124" /><b id="v-gap">1.24</b></label>
+      <label>원근 <input type="range" id="t-persp" min="1200" max="4400" step="50" value="4000" /><b id="v-persp">4000</b></label>
+      <label>카메라 높이 <input type="range" id="t-camy" min="-50" max="45" step="1" value="-40" /><b id="v-camy">-40%</b></label>
+      <label>속도 <input type="range" id="t-speed" min="-20" max="20" step="1" value="17" /><b id="v-speed">17</b></label>
+      <label>세로 위치 <input type="range" id="t-ty" min="-6" max="14" step="1" value="1" /><b id="v-ty">1vh</b></label>
+      <label>벌어짐 <input type="range" id="t-flare" min="0" max="10" step=".5" value="1.5" /><b id="v-flare">1.5°</b></label>
+    </div>
+    <div class="lockup">
+      <h1>Design less,<br />solve more.</h1>
+      <p>The more complex the problem,<br />the more it calls for subtraction.</p>
+    </div>
+    <p class="hint">드래그해서 돌려보세요</p>
+  </div>
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ stage.classList.add('in'); });});
+
+  var ring=document.getElementById('ring'), wrap=document.getElementById('carousel');
+  var cards=[].slice.call(ring.children), N=cards.length;
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var GAP=1.24, FLARE=1.5;
+  function radius(){
+    var cw=cards[0].offsetWidth;
+    return Math.round((cw*GAP/2)/Math.tan(Math.PI/N));
+  }
+  var R=0;
+  function layout(){
+    R=radius();
+    cards.forEach(function(c,i){
+      c.style.transform='rotateY('+(i*360/N)+'deg) translateZ('+R+'px) rotateX('+(-FLARE)+'deg)';
+    });
+  }
+  layout();
+  window.addEventListener('resize', layout);
+
+  /* 회전: 평소엔 천천히 자동, 드래그하면 1:1로 따라오고 놓으면 관성 */
+  var rot=0, vel=0, dragging=false, lastX=0, lastY=0, lastT=0, autoVel=RM?0:.17;
+  var REST_TILT=3, tilt=REST_TILT;
+  wrap.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  wrap.querySelectorAll('img').forEach(function(im){ im.draggable=false; });
+  wrap.addEventListener('pointerdown', function(e){
+    dragging=true; lastX=e.clientX; lastY=e.clientY; lastT=performance.now(); vel=0;
+    wrap.classList.add('grabbing'); wrap.setPointerCapture(e.pointerId);
+  });
+  wrap.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    var dx=e.clientX-lastX, dy=e.clientY-lastY, now=performance.now();
+    rot+=dx*.28;
+    tilt=Math.max(-18, Math.min(18, tilt - dy*.15));
+    vel=dx*.28/Math.max(now-lastT,1)*16;
+    lastX=e.clientX; lastY=e.clientY; lastT=now;
+  });
+  function release(){ dragging=false; wrap.classList.remove('grabbing'); }
+  wrap.addEventListener('pointerup', release);
+  wrap.addEventListener('pointercancel', release);
+
+  if(location.search.indexOf('tune')>=0){ document.getElementById('tuner').style.display='flex'; }
+  /* 튜닝 패널 바인딩 */
+  function bind(id, fn){
+    var el=document.getElementById('t-'+id), out=document.getElementById('v-'+id);
+    el.addEventListener('input', function(){ fn(parseFloat(el.value), out); });
+  }
+  bind('size', function(v,o){ stage.style.setProperty('--cw','clamp(160px,'+v+'vw,460px)'); stage.style.setProperty('--ch','clamp(160px,'+v+'vw,460px)'); o.textContent=v+'vw'; layout(); });
+  bind('gap', function(v,o){ GAP=v/100; o.textContent=(v/100).toFixed(2); layout(); });
+  bind('persp', function(v,o){ wrap.style.perspective=v+'px'; o.textContent=v; });
+  bind('camy', function(v,o){ wrap.style.perspectiveOrigin='50% '+v+'%'; o.textContent=v+'%'; });
+  bind('speed', function(v,o){ autoVel=v/100; o.textContent=v; });
+  bind('ty', function(v,o){ wrap.style.transform='translateY('+v+'vh)'; o.textContent=v+'vh'; });
+  bind('flare', function(v,o){ FLARE=v; o.textContent=v+'°'; layout(); });
+
+  (function loop(){
+    if(!dragging){
+      vel+=(0-vel)*.02;                    /* 관성 감쇠 */
+      rot+=vel + autoVel;                  /* 잔잔한 자동 회전 */
+      tilt+=(REST_TILT-tilt)*.06;                  /* 틸트는 제자리로 복귀 */
+    }
+    ring.style.transform='rotateX('+tilt+'deg) rotateY('+rot+'deg)';
+    /* 각도에 따라 뒤 카드는 흐리고 어둡게 (레퍼런스의 깊이감) */
+    cards.forEach(function(c,i){
+      var a=((rot+i*360/N)%360+360)%360;
+      var facing=Math.cos(a*Math.PI/180);   /* 1=정면, -1=정반대 */
+      var back=(1-facing)/2;                /* 0=정면, 1=뒤 */
+      var t=Math.max(0,(back-.45))/.55;     /* 앞쪽 3장은 0, 뒤쪽만 상승 */
+      c.style.filter='blur('+(t*12)+'px) brightness('+(1-t*.75)+')';
+      c.style.opacity=String(1-t*.1);
+      c.style.zIndex=String(Math.round(100+facing*100));
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
