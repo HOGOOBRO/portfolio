@@ -81,7 +81,7 @@
   .carousel.grabbing{cursor:grabbing}
   .carousel, .carousel *{-webkit-user-drag:none; user-select:none; -webkit-user-select:none}
   .ring{position:relative; width:0; height:0; transform-style:preserve-3d; will-change:transform}
-  .card{position:absolute; left:calc(var(--cw) / -2); top:calc(var(--ch) / -2);
+  .card{position:absolute; left:calc(var(--cw) / -2); top:calc(var(--ch) / -2); text-decoration:none;
         width:var(--cw); height:var(--ch); border-radius:24px; overflow:hidden;
         background:var(--bg-card,#1a1a1a); color:#fff; padding:1.1rem 1.2rem;
         display:flex; flex-direction:column; justify-content:space-between;
@@ -179,39 +179,39 @@
       <p class="eyebrow label" style="color:rgba(245,245,245,.45)">Product Strategy · UX Research · 0→1 Build</p>
       <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
         <div class="ring" id="ring">
-          <div class="card photo" style="background-image:url('railink-hero.png')">
+          <a class="card photo" href="case-railink.html" style="background-image:url('railink-hero.png')">
             <span class="scrim"></span><span class="tag">근무 스케줄 서비스 · 2026 →</span>
             <span class="bot"><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
-          </div>
-          <div class="card photo" style="background-image:url('deokhong-hero.jpg')">
+          </a>
+          <a class="card photo" href="case-deokhong.html" style="background-image:url('deokhong-hero.jpg')">
             <span class="scrim"></span><span class="tag">선거 캠페인 사이트 · 2026</span>
             <span class="bot"><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
-          </div>
-          <div class="card" style="--bg-card:#1E8C77">
+          </a>
+          <a class="card" href="case-openpath.html" style="--bg-card:#1E8C77">
             <span class="scrim"></span><span class="ph"><img src="openpath-phone.png" alt="" /></span>
             <span class="tag">Product Manager · 2023</span>
             <span class="bot"><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
-          </div>
-          <div class="card" style="--bg-card:#2F55D4">
+          </a>
+          <a class="card" href="case-samsung.html" style="--bg-card:#2F55D4">
             <span class="scrim"></span><span class="ph"><img src="samsung-phone.png" alt="" /></span>
             <span class="tag">UX 기획 · 2024–25</span>
             <span class="bot"><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
-          </div>
-          <div class="card photo" style="background-image:url('genesis-cfg-summary.png')">
+          </a>
+          <a class="card photo" href="case-genesis.html" style="background-image:url('genesis-cfg-summary.png')">
             <span class="scrim"></span><span class="tag">서비스 기획 · 2025</span>
             <span class="bot"><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
-          </div>
-          <div class="card photo" style="background-image:url('korail-heatmap.png')">
+          </a>
+          <a class="card photo" href="case-korail.html" style="background-image:url('korail-heatmap.png')">
             <span class="scrim"></span><span class="tag">UX 리서치 · 2024</span>
             <span class="bot"><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
-          </div>
+          </a>
         </div>
       </div>
       <div class="lockup">
         <h1>Design less,<br />solve more.</h1>
         <p>The more complex the problem,<br />the more it calls for subtraction.</p>
       </div>
-      <p class="drag-hint">드래그해서 돌려보세요</p>
+      <p class="drag-hint">드래그해서 돌리고 · 카드를 눌러 케이스로</p>
     </section>
   </main>
 
@@ -330,8 +330,10 @@
   var REST_TILT=3, tilt=REST_TILT;
   wrap.addEventListener('dragstart', function(e){ e.preventDefault(); });
   wrap.querySelectorAll('img').forEach(function(im){ im.draggable=false; });
+  var downX=0, downY=0, moved=false;
   wrap.addEventListener('pointerdown', function(e){
-    dragging=true; lastX=e.clientX; lastY=e.clientY; lastT=performance.now(); vel=0;
+    dragging=true; moved=false; lastX=e.clientX; lastY=e.clientY;
+    downX=e.clientX; downY=e.clientY; lastT=performance.now(); vel=0;
     wrap.classList.add('grabbing'); wrap.setPointerCapture(e.pointerId);
   });
   wrap.addEventListener('pointermove', function(e){
@@ -341,7 +343,12 @@
     tilt=Math.max(-18, Math.min(18, tilt - dy*.15));
     vel=dx*.28/Math.max(now-lastT,1)*16;
     lastX=e.clientX; lastY=e.clientY; lastT=now;
+    if(Math.abs(e.clientX-downX)>6 || Math.abs(e.clientY-downY)>6) moved=true;
   });
+  /* 드래그로 움직였으면 카드 클릭(케이스 이동) 취소 */
+  wrap.addEventListener('click', function(e){
+    if(moved){ e.preventDefault(); e.stopPropagation(); }
+  }, true);
   function release(){ dragging=false; wrap.classList.remove('grabbing'); }
   wrap.addEventListener('pointerup', release);
   wrap.addEventListener('pointercancel', release);
