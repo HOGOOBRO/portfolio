@@ -40,16 +40,8 @@
   .live .ar{transition:transform .2s var(--ease-out)}
   @media (hover:hover) and (pointer:fine){ .live:hover .ar{transform:translate(2px,-2px)} }
 
-  /* ── 오프닝 풀블리드 사진 (유일한 풀블리드) ── */
-  .opener{position:relative; margin-top:clamp(2rem,5vh,4rem)}
-  .opener img{width:100%; height:min(72vh,720px); object-fit:cover; display:block; background:#e8e8e8}
-  /* 사진 위 수치 타일 (레퍼런스: 반투명 색 타일이 이미지에 겹침) */
-  .stat-tile{position:absolute; right:var(--side); bottom:0; transform:translateY(38%);
-             background:var(--fg); color:var(--bg); padding:1.4rem 1.7rem 1.5rem; max-width:20rem;
-             box-shadow:0 30px 60px -30px rgba(0,0,0,.4)}
-  .stat-tile .n{font-family:var(--serif); font-weight:500; font-size:clamp(2.6rem,4.6vw,3.8rem);
-                line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
-  .stat-tile .l{margin-top:.5rem; font-size:.86rem; line-height:1.45; opacity:.75}
+  /* ── 히어로 데이터 앵커 (랜딩 스크린샷 대신) ── */
+  .hero-stat{margin-top:clamp(3rem,7vh,5rem); padding-top:clamp(2rem,4vh,3rem); align-items:baseline}
 
   /* ── 본문 섹션: 2단 조판, 좌측 정렬, 우측 여백 확보 ── */
   .sec{padding-top:clamp(4rem,9vh,7.5rem); padding-bottom:clamp(1rem,2vh,2rem)}
@@ -163,19 +155,16 @@
         <a class="live" href="https://railink.app" target="_blank" rel="noopener">railink.app <span class="ar">↗</span></a>
       </div>
     </div>
-  </section>
-
-  <!-- ── 오프닝 풀블리드 사진 + 수치 타일 ── -->
-  <section class="opener reveal">
-    <img src="railink-hero.png" alt="RaiLink 랜딩: 같이 쉬는 날이 한눈에, 동료 근무를 겹쳐 본 캘린더" loading="lazy" />
-    <div class="stat-tile">
-      <p class="n" data-to="44">44</p>
-      <p class="l">광고 한 푼 없이 가입한 사람. 초대받으면 셋 중 둘이 가입했다.</p>
+    <!-- 히어로 데이터 앵커: 랜딩 스크린샷 대신 핵심 수치 한 줄 -->
+    <div class="row hero-stat rule-top reveal d2">
+      <div class="c s3 w3"><p class="num" data-to="44">44</p><p class="label" style="margin-top:.6rem">광고 0원 · 가입</p></div>
+      <div class="c s6 w3"><p class="num">2/3</p><p class="label" style="margin-top:.6rem">초대받으면 가입</p></div>
+      <div class="c s9 w4"><p class="cap" style="max-width:26ch">광고 한 푼 없이 가입한 사람과, 초대받았을 때의 전환율. 지표를 어떻게 세느냐가 이 케이스의 이야기다.</p></div>
     </div>
   </section>
 
   <!-- ── 문제: 2단 본문 ── -->
-  <section class="sec theme-paper" style="padding-top:clamp(6rem,12vh,10rem)">
+  <section class="sec theme-paper">
     <div class="row">
       <div class="sec-head reveal"><p class="label ey">Problem</p></div>
       <h2 class="sec-subhead reveal d1">다들 '일정이 안 맞아서'라고 하지만,<br />겹치는 날은 분명히 있었다</h2>
