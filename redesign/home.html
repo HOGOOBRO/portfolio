@@ -84,20 +84,17 @@
   .card{position:absolute; left:calc(var(--cw) / -2); top:calc(var(--ch) / -2); text-decoration:none;
         width:var(--cw); height:var(--ch); border-radius:24px; overflow:hidden;
         background:var(--bg-card,#1a1a1a); color:#fff; padding:1.1rem 1.2rem;
-        display:flex; flex-direction:column; justify-content:space-between;
+        display:flex; flex-direction:column; justify-content:flex-end;
         box-shadow:0 40px 80px -30px rgba(0,0,0,.9); will-change:filter,opacity}
-    /* 화면 캡처에도 글자가 있어서 카피와 겹친다. 이미지는 카드 가운데 띠에만 두고
-     위(태그)·아래(이름)는 검은 여백으로 비워 글자끼리 부딪히지 않게 한다 */
-  .card .plate{position:absolute; left:0; right:0; top:16%; bottom:29%;
-               background-image:var(--img); background-size:cover; background-position:center;
-               -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);
-                       mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+    .card.photo{background-image:var(--img); background-size:cover; background-position:center}
   .card .ph{position:absolute; inset:8% 0 14% 0; display:flex; align-items:center; justify-content:center}
   .card .ph img{height:100%; width:auto; filter:drop-shadow(0 14px 24px rgba(0,0,0,.45))}
-    .card .scrim{position:absolute; inset:0; background:linear-gradient(180deg,
-                rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 62%, rgba(0,0,0,.55) 100%)}
+    /* 카피를 전부 아래로 모았으므로 어둡게 까는 것도 아래에서만. 위쪽은 화면이 그대로 보인다 */
+  .card .scrim{position:absolute; inset:0; background:linear-gradient(180deg,
+                rgba(0,0,0,0) 38%, rgba(0,0,0,.55) 62%, rgba(0,0,0,.92) 100%)}
   .card > *{position:relative}
   .card .tag{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; opacity:.9}
+  .card .bot .tag{display:block; margin-bottom:.5rem}
   .card .bot b{display:block; font-size:1.05rem; font-weight:700; letter-spacing:-.01em}
   .card .bot span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
   .hero .lockup{position:absolute; left:var(--side); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
@@ -195,28 +192,28 @@
       <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
         <div class="ring" id="ring">
           <a class="card photo" href="case-railink.html" style="--img:url('card-railink.png')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">근무 스케줄 서비스 · 2026 →</span>
-            <span class="bot"><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">근무 스케줄 서비스 · 2026 →</span><b>RaiLink</b><span>같이 쉬는 날을 찾아줘요.</span></span>
           </a>
           <a class="card photo" href="case-deokhong.html" style="--img:url('card-deokhong.jpg')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">선거 캠페인 사이트 · 2026</span>
-            <span class="bot"><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">선거 캠페인 사이트 · 2026</span><b>deokhong.com</b><span>무소속 캠페인을 한 페이지로.</span></span>
           </a>
           <a class="card photo" href="case-openpath.html" style="--img:url('card-openpath.png')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">Product Manager · 2023</span>
-            <span class="bot"><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">Product Manager · 2023</span><b>OPENPATH</b><span>결제 전환 3.4배.</span></span>
           </a>
           <a class="card photo" href="case-samsung.html" style="--img:url('card-samsung.png')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">UX 기획 · 2024–25</span>
-            <span class="bot"><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">UX 기획 · 2024–25</span><b>Samsung Care+</b><span>100여 개국 가입 여정 통일.</span></span>
           </a>
           <a class="card photo" href="case-genesis.html" style="--img:url('card-genesis.png')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">서비스 기획 · 2025</span>
-            <span class="bot"><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">서비스 기획 · 2025</span><b>Genesis</b><span>법적 문구를 골라 쓰게.</span></span>
           </a>
           <a class="card photo" href="case-korail.html" style="--img:url('card-korail.png')">
-            <span class="plate"></span><span class="scrim"></span><span class="tag">UX 리서치 · 2024</span>
-            <span class="bot"><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag">UX 리서치 · 2024</span><b>Korail-talk</b><span>하나씩 묻기로 했어요.</span></span>
           </a>
         </div>
       </div>
