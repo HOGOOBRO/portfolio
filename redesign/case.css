@@ -10,13 +10,7 @@ body{background:var(--bg)}
 /* ── 키보드 포커스: 마우스 클릭에는 안 뜨고 탭 이동에만 뜬다 ── */
 :focus-visible{outline:2px solid var(--fg,#0A0A0A); outline-offset:3px; border-radius:2px}
 
-/* ── 상단 고정 크롬 ── */
-.chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex; justify-content:space-between;
-        align-items:center; padding:1.15rem var(--side); mix-blend-mode:difference; color:#fff}
-.chrome a{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em; text-transform:uppercase;
-          color:#fff; text-decoration:none; transition:transform .16s var(--ease-out)}
-.chrome a:active{transform:scale(.94)}
-.back::before{content:"← "}
+/* 상단 크롬·메뉴는 nav.css가 담당한다 */
 
 /* ── 히어로 ── */
 .case-hero{padding-top:clamp(6rem,15vh,10rem); padding-bottom:clamp(2.4rem,5vh,4rem)}

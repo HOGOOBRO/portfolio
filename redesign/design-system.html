@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="grid.css" />
 <link rel="stylesheet" href="case.css" />
+<link rel="stylesheet" href="nav.css" />
 <style>
   /* 디자인 시스템 문서 전용 */
   .ds-title{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4vw,3.4rem);
@@ -97,10 +98,30 @@
 </head>
 <body class="theme-paper">
 
+  <!-- ── 공통: 고정 크롬 + 전체화면 메뉴 (nav.css / nav.js) ── -->
   <header class="chrome">
-    <a class="back" href="home.html#/">Index</a>
-    <a href="deliverables.html">Deliverables</a>
+    <span class="left">
+      <a class="brand" href="home.html#/">©kimjinhyeon</a>
+    </span>
+    <button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
   </header>
+
+  <div class="menu-overlay" id="menu" aria-hidden="true">
+    <nav class="menu-list">
+      <a data-nav="index" href="home.html#/"><span class="idx">01</span>Index</a>
+      <a data-nav="work" href="home.html#/work"><span class="idx">02</span>Work</a>
+      <a data-nav="deliverables" href="deliverables.html"><span class="idx">03</span>Deliverables</a>
+      <a data-nav="design-system" href="design-system.html"><span class="idx">04</span>Design System</a>
+      <a data-nav="about" href="home.html#/about"><span class="idx">05</span>About</a>
+      <a data-nav="contact" href="home.html#/contact"><span class="idx">06</span>Contact</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
+      <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
+      <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+      <span>Seoul</span>
+    </div>
+  </div>
 
   <!-- 히어로 -->
   <section class="case-hero theme-paper">
@@ -368,5 +389,6 @@
   els.forEach(function(el){ io.observe(el); });
 })();
 </script>
+<script src="nav.js"></script>
 </body>
 </html>
