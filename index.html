@@ -57,7 +57,9 @@
   /* ── 히어로(홈): 확정 카드 캐러셀 ── */
   #page-home{background:#000}
   .hero{position:relative; height:100dvh; overflow:hidden;
-        --cw:clamp(180px,16vw,340px); --ch:clamp(180px,16vw,340px)}
+        --cw:clamp(180px,16vw,340px); --ch:clamp(180px,16vw,340px);
+        /* 12컬럼 폭. 히어로는 풀블리드 무대라 100vw 기준으로 직접 계산한다 */
+        --colw:calc((100vw - 2 * var(--side) - 11 * var(--gap)) / 12)}
   .carousel{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
             perspective:4000px; perspective-origin:50% -40%; z-index:2; cursor:grab;
             transform:translateY(1vh); touch-action:none}
@@ -81,7 +83,9 @@
   .card .bot .tag{display:block; margin-bottom:.5rem}
   .card .bot b{display:block; font-size:1.05rem; font-weight:700; letter-spacing:-.01em}
   .card .bot > span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
-  .hero .lockup{position:absolute; left:var(--side); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
+  /* 헤드라인은 다른 페이지 본문과 같은 3번 컬럼에서 시작한다(eyebrow는 메타라 1번 컬럼 유지) */
+  .hero .lockup{position:absolute; left:calc(var(--side) + 2 * (var(--colw) + var(--gap)));
+                bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
   .hero .lockup h1{font-family:var(--serif); font-weight:600; color:#F5F5F5;
                    font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.08; letter-spacing:-.02em}
   .hero .lockup p{margin-top:.9rem; max-width:34ch; font-weight:500;
@@ -125,6 +129,7 @@
     .windex .no,.windex .one{display:none}
     .windex .nm,.windex .yr{grid-column:auto}
     .hero{--cw:clamp(150px,44vw,220px); --ch:clamp(150px,44vw,220px)}
+    .hero .lockup{left:var(--side)}
     /* 카드 안 글자가 데스크톱 크기 그대로라 좁은 카드에서 넘쳐 두 줄로 깨졌다 */
     .card{padding:.8rem .9rem; border-radius:18px}
     /* 좁은 카드에 세 줄은 많다. 분야·연도 태그는 빼고 이름과 한 줄만 남긴다(연도는 아래 Work 목록에 있음) */
