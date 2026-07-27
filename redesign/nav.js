@@ -109,3 +109,27 @@
     if(e.target.closest && e.target.closest('#menuBtn')) chrome.classList.remove('hide');
   });
 })();
+
+/* 문서 간 이동에 홈과 같은 셔터 전환을 준다.
+   @view-transition은 브라우저 지원과 조건을 타서, 직접 그려 어디서나 같게 만든다. */
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var sh = document.createElement('div');
+  sh.className = 'shutter opening';
+  document.body.appendChild(sh);
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){ sh.className = 'shutter done'; });
+  });
+  setTimeout(function(){ sh.className = 'shutter'; }, 500);
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a');
+    if(!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
+    var href = a.getAttribute('href') || '';
+    if(!/\.html($|[#?])/.test(href) && !/^\/?$/.test(href)) return;   /* 같은 사이트 문서만 */
+    if(a.hostname && a.hostname !== location.hostname) return;
+    e.preventDefault();
+    sh.className = 'shutter closing';
+    setTimeout(function(){ location.href = a.href; }, 380);
+  });
+})();

@@ -4,8 +4,8 @@
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title><span class="ko">디자인 시스템</span><span class="en">Design system</span> · 김진현 포트폴리오</title>
-<meta name="description" content="이 사이트를 지탱하는 규칙. 색·타이포·<span class="ko">간격</span><span class="en">Spacing</span>·<span class="ko">그리드</span><span class="en">Grid</span>·<span class="ko">모션</span><span class="en">Motion</span>·<span class="ko">컴포넌트</span><span class="en">Components</span>를 값으로 정리했습니다." />
+<title>디자인 시스템 · 김진현 포트폴리오</title>
+<meta name="description" content="이 사이트를 지탱하는 규칙. 색·타이포·간격·그리드·모션·컴포넌트를 값으로 정리했습니다." />
 <link rel="canonical" href="https://hogoobro.github.io/portfolio/design-system.html" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
 <meta name="theme-color" content="#0A0A0A" />
@@ -97,7 +97,7 @@
            font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; color:var(--fg-faint)}
   .dfw figcaption{margin-top:.8rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; max-width:52ch}
 
-  /* <span class="ko">보이스</span><span class="en">Voice</span>: keep-all 비교 */
+  /* 보이스: keep-all 비교 */
   .kacmp{grid-column:3 / span 8; margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
   .kacmp div{border:1px solid var(--rule); padding:1rem}
   .kacmp .h{font-family:var(--mono); font-size:.6rem; letter-spacing:.06em; color:var(--fg-faint); margin-bottom:.6rem}
@@ -159,13 +159,13 @@
   <section class="sec theme-paper">
     <div class="row">
       <div class="sn reveal"><p class="no">00</p><p class="nm"><span class="ko">원칙</span><span class="en">Principles</span></p></div>
-      <p class="sec-lead reveal d1"><span class="ko"><span class="ko">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</span><span class="en">Settle these four and the rest of the rules follow.</span></span><span class="en">Decide these four, and every other rule falls into place.</span></p>
+      <p class="sec-lead reveal d1"><span class="ko">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</span><span class="en">Decide these four, and every other rule falls into place.</span></p>
     </div>
     <div class="row"><div class="nlist reveal">
-      <div class="ni"><i>01</i><b><span class="ko">색 대신 위계로 말한다</span><span class="en">Hierarchy, not color</span></b><p><span class="ko">UI는 흑백만 씁니다. 강조는 색이 아니라 크기·굵기·여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지Image 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</span><span class="en">The UI is black and white. Emphasis comes from size, weight, and space, not hue. The only color on screen comes from the work itself, so the work never gets lost in the background.</span></span><span class="en">The UI is black and white. Emphasis comes from size, weight, and space, not hue. The only color on screen comes from the work itself, so the work never gets lost in the background.</span></p></div>
+      <div class="ni"><i>01</i><b><span class="ko">색 대신 위계로 말한다</span><span class="en">Hierarchy, not color</span></b><p><span class="ko">UI는 흑백만 씁니다. 강조는 색이 아니라 크기·굵기·여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지Image 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</span><span class="en">The UI is black and white. Emphasis comes from size, weight, and space, not hue. The only color on screen comes from the work itself, so the work never gets lost in the background.</span></p></div>
       <div class="ni"><i>02</i><b><span class="ko">한국어를 먼저 생각한 타이포</span><span class="en">Typography that starts with Korean</span></b><p><span class="ko">한글은 단어 중간에서 줄이 끊기면 읽기 불편해요. 그래서 띄어쓰기 단위로만 넘어가게(word-break:keep-all) 해뒀습니다. 라틴 제목은 Fraunces, 본문과 한글은 Pretendard, 라벨·수치는 JetBrains Mono로 역할을 나눴어요.</span><span class="en">Korean is hard to read when a line breaks mid-word, so lines break only at spaces (word-break:keep-all). Roles are split by face: Fraunces for Latin headings, Pretendard for body and all Korean, JetBrains Mono for labels and figures.</span></p></div>
       <div class="ni"><i>03</i><b><span class="ko">여백은 화면 크기를 따라간다</span><span class="en">Space scales with the screen</span></b><p><span class="ko">고정 px 대신 clamp()로 최소·유동·최대를 함께 정합니다. 작은 화면에서는 답답하지 않을 만큼만 줄고, 큰 화면에서는 끝없이 벌어지지 않아요.</span><span class="en">Instead of fixed pixels, clamp() sets a minimum, a fluid middle, and a maximum. Small screens tighten only so far; large ones stop spreading.</span></p></div>
-      <div class="ni"><i>04</i><b><span class="ko">그리드의 원점은 하나</span><span class="en">One origin for the grid</span></b><p><span class="ko">12컬럼 중 1–2번은 메타 정보(라벨) 자리, 본문·수치·구분선Rules은 전부 3번 컬럼에서 시작합니다. 무엇 하나만 왼쪽으로 튀어나오지 않게, 원점을 하나로 고정했어요.</span><span class="en">Of twelve columns, 1–2 hold meta labels; body text, figures, and rules all start at column 3. One fixed origin so nothing juts out to the left on its own.</span></span><span class="en">Of twelve columns, 1–2 hold meta labels; body text, figures, and rules all start at column 3. One fixed origin so nothing juts out to the left on its own.</span></p></div>
+      <div class="ni"><i>04</i><b><span class="ko">그리드의 원점은 하나</span><span class="en">One origin for the grid</span></b><p><span class="ko">12컬럼 중 1–2번은 메타 정보(라벨) 자리, 본문·수치·구분선Rules은 전부 3번 컬럼에서 시작합니다. 무엇 하나만 왼쪽으로 튀어나오지 않게, 원점을 하나로 고정했어요.</span><span class="en">Of twelve columns, 1–2 hold meta labels; body text, figures, and rules all start at column 3. One fixed origin so nothing juts out to the left on its own.</span></p></div>
     </div></div>
   </section>
 
@@ -218,7 +218,7 @@
     <div class="row"><div class="tok reveal" style="margin-top:2rem">
       <div class="tr"><span class="tk">--serif</span><span class="tv">Fraunces</span><span class="td"><span class="ko">라틴 제목·수치. 한글은 지원하지 않아 Pretendard로 넘어갑니다.</span><span class="en">Latin headings and figures. No Korean coverage, so it falls back to Pretendard.</span></span></div>
       <div class="tr"><span class="tk">--sans</span><span class="tv">Pretendard Variable</span><span class="td"><span class="ko">한글 전부와 본문</span><span class="en">All Korean, and body text</span></span></div>
-      <div class="tr"><span class="tk">--mono</span><span class="tv">JetBrains Mono</span><span class="td"><span class="ko">라벨·<span class="ko">그래프</span><span class="en">Charts</span> 축·태그</span><span class="en">Labels, chart axes, tags</span></span></div>
+      <div class="tr"><span class="tk">--mono</span><span class="tv">JetBrains Mono</span><span class="td"><span class="ko">라벨·그래프 축·태그</span><span class="en">Labels, chart axes, tags</span></span></div>
     </div></div>
   </section>
 
@@ -265,11 +265,11 @@
     <div class="row"><div class="tok reveal">
       <div class="tr"><span class="tk"><span class="ko">페이지 전환</span><span class="en">Page transition</span></span><span class="tv">.85s cubic-bezier(.65,0,.20,1)</span><span class="td"><span class="ko">홈은 스크롤 나열이 아니라 페이지 전환입니다. 세로로 열리고 닫히는 셔터 움직임.</span><span class="en">The home isn’t a scroll list but a page transition: a shutter opening and closing vertically.</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">메뉴 오버레이</span><span class="en">Menu overlay</span></span><span class="tv">.7s cubic-bezier(.80,0,.20,1)</span><span class="td"><span class="ko">검은 면이 먼저 열리고, 메뉴 항목이 .4s 뒤따라 나타납니다.</span><span class="en">The black plane opens first; menu items follow .4s behind.</span></span></div>
-      <div class="tr"><span class="tk">--t-fast / base / slow</span><span class="tv">.2s / .3s / .4s ease</span><span class="td"><span class="ko">링크·버튼 등 작은 <span class="ko">상태</span><span class="en">States</span> 변화</span><span class="en">Small state changes on links and buttons</span></span></div>
+      <div class="tr"><span class="tk">--t-fast / base / slow</span><span class="tv">.2s / .3s / .4s ease</span><span class="td"><span class="ko">링크·버튼 등 작은 상태 변화</span><span class="en">Small state changes on links and buttons</span></span></div>
       <div class="tr"><span class="tk">--ease-snap</span><span class="tv">cubic-bezier(.23,1,.32,1)</span><span class="td"><span class="ko">강한 감속. 등장·그래프가 이 곡선 하나를 공유합니다.</span><span class="en">Hard deceleration. Reveals and charts share this one curve.</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">등장(reveal)</span><span class="en">Reveal</span></span><span class="tv"><span class="ko">16px 아래에서 .6s</span><span class="en">From 16px below, .6s</span></span><span class="td"><span class="ko">묶인 요소는 .05s씩 차례로(d1·d2)</span><span class="en">Grouped elements stagger by .05s (d1·d2)</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">그래프</span><span class="en">Charts</span></span><span class="tv"><span class="ko">막대 .9s · 선 1.4s</span><span class="en">Bars .9s · lines 1.4s</span></span><span class="td"><span class="ko">화면에 들어올 때 한 번만. 되감기지 않습니다.</span><span class="en">Once, on entering the viewport. Never rewound.</span></span></div>
-      <div class="tr"><span class="tk">reduced-motion</span><span class="tv"><span class="ko">전부 off</span><span class="en">All off</span></span><span class="td"><span class="ko">기기에서 '움직임 줄이기Reduced motion'를 켜면 애니메이션 없이 최종 상태로 바로 보여줍니다.</span><span class="en">With reduce-motion on, everything renders in its final state with no animation.</span></span><span class="en">With reduce-motion on, everything renders in its final state with no animation.</span></span></div>
+      <div class="tr"><span class="tk">reduced-motion</span><span class="tv"><span class="ko">전부 off</span><span class="en">All off</span></span><span class="td"><span class="ko">기기에서 '움직임 줄이기Reduced motion'를 켜면 애니메이션 없이 최종 상태로 바로 보여줍니다.</span><span class="en">With reduce-motion on, everything renders in its final state with no animation.</span></span></div>
     </div></div>
     <div class="row"><p class="viz-kicker reveal"><span class="ko">움직임은 transform·opacity로만 만듭니다. 레이아웃을 다시 계산하게 만드는 속성(width·top 같은)은 쓰지 않아요. 그래야 저사양 기기에서도 끊기지 않습니다.</span><span class="en">Motion uses only transform and opacity. Properties that force layout (width, top) are avoided, so it stays smooth on low-end devices.</span></p></div>
   </section>
@@ -278,12 +278,12 @@
   <section class="sec theme-paper">
     <div class="row">
       <div class="sn reveal"><p class="no">06</p><p class="nm"><span class="ko">상태</span><span class="en">States</span></p></div>
-      <p class="sec-lead reveal d1"><span class="ko">누르면 즉시 반응하고, 마우스가 없는 기기에는 <span class="ko">호버</span><span class="en">Hover</span>를 걸지 않습니다.</span><span class="en">Responds the instant you press, and never applies hover where there’s no mouse.</span></p>
+      <p class="sec-lead reveal d1"><span class="ko">누르면 즉시 반응하고, 마우스가 없는 기기에는 호버를 걸지 않습니다.</span><span class="en">Responds the instant you press, and never applies hover where there’s no mouse.</span></p>
     </div>
     <div class="row"><div class="tok reveal">
       <div class="tr"><span class="tk"><span class="ko">누름(:active)</span><span class="en">Press (:active)</span></span><span class="tv">scale(.94–.97) · .16s</span><span class="td"><span class="ko">손가락이 닿는 순간 눌린 게 보입니다. 서버 응답을 기다리지 않아요.</span><span class="en">The press shows the moment a finger lands, without waiting on a server.</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">호버</span><span class="en">Hover</span></span><span class="tv">(hover:hover) and (pointer:fine)</span><span class="td"><span class="ko">마우스가 있는 기기에만. 터치에서 호버가 남아 붙는 문제를 없앱니다.</span><span class="en">Only on devices with a mouse, so hover never sticks on touch.</span></span></div>
-      <div class="tr"><span class="tk"><span class="ko"><span class="ko">키보드</span><span class="en">Keyboard</span> 포커스</span><span class="en">Keyboard focus</span></span><span class="tv"><span class="ko">:focus-visible · 2px 외곽선</span><span class="en">:focus-visible · 2px outline</span></span><span class="td"><span class="ko">마우스 클릭에는 뜨지 않고 탭으로 이동할 때만 보입니다.</span><span class="en">Hidden on click, shown only when tabbing.</span></span></div>
+      <div class="tr"><span class="tk"><span class="ko">키보드 포커스</span><span class="en">Keyboard focus</span></span><span class="tv"><span class="ko">:focus-visible · 2px 외곽선</span><span class="en">:focus-visible · 2px outline</span></span><span class="td"><span class="ko">마우스 클릭에는 뜨지 않고 탭으로 이동할 때만 보입니다.</span><span class="en">Hidden on click, shown only when tabbing.</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">링크 화살표</span><span class="en">Link arrow</span></span><span class="tv">translateX(4–8px)</span><span class="td"><span class="ko">어디로 가는지 방향을 미리 보여주는 정도로만</span><span class="en">Just enough to hint at the direction</span></span></div>
     </div></div>
   </section>
@@ -337,15 +337,15 @@
     <div class="row"><div class="demo reveal">
       <p class="dl"><span class="ko">15초 요약 — .summary / .sm-row</span><span class="en">15-second summary — .summary / .sm-row</span></p>
       <div class="dsum">
-        <div class="dsr"><span class="k label">Role</span><span class="v">혼자 0부터 1까지 전부 · <b><span class="ko">기여도 100%</span><span class="en">100% mine</span></b></span></div>
-        <div class="dsr"><span class="k label">Impact</span><span class="v">광고 한 푼 없이 <b><span class="ko">44명 가입</span><span class="en">44 sign-ups</span></b></span></div>
+        <div class="dsr"><span class="k label">Role</span><span class="v"><span class="ko">혼자 0부터 1까지 전부 · <b>기여도 100%</b></span><span class="en">Everything from 0 to 1, solo · <b>100% mine</b></span></span></div>
+        <div class="dsr"><span class="k label">Impact</span><span class="v"><span class="ko">광고 한 푼 없이 <b>44명 가입</b></span><span class="en">With zero ad spend, <b>44 sign-ups</b></span></span></div>
       </div>
     </div></div>
 
     <div class="row"><div class="demo reveal">
       <p class="dl"><span class="ko">수치 밴드 — .metric</span><span class="en">Figure band — .metric</span></p>
       <div class="dmet">
-        <div><span class="num">44</span><span class="lab label"><span class="ko"><span class="ko">가입 · 광고 0원</span><span class="en">sign-ups · 0 ads</span></span><span class="en">sign-ups · 0 ads</span></span></div>
+        <div><span class="num">44</span><span class="lab label"><span class="ko">가입 · 광고 0원</span><span class="en">sign-ups · 0 ads</span></span></div>
         <div><span class="num">2/3</span><span class="lab label"><span class="ko">초대 수락률</span><span class="en">invite conversion</span></span></div>
         <div><span class="num">35%</span><span class="lab label"><span class="ko">재방문</span><span class="en">retention</span></span></div>
       </div>
