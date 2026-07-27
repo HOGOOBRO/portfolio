@@ -3,8 +3,11 @@
 - 작업 위치: `개인_Resume/portfolio-repo`, 브랜치 `redesign-editorial` (main=현 배포본, 손대지 말 것)
 - 로컬 프리뷰: `cd portfolio-repo/redesign && python3 -m http.server 8742` → home.html / case-railink.html
 - 헤드리스 검증: `chrome --headless=new --screenshot` (Theo는 CLI라 화면 못 봄 → 반드시 스크린샷 찍어 확인 후 보고)
-- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / 3 RaiLink 케이스(case-railink.html) / deokhong 케이스(case-deokhong.html)
-- **다음 할 일: 케이스 4종 전개** (Samsung·OPENPATH·Genesis·Korail) — case-railink.html / case-deokhong.html을 템플릿으로, **원본 index.html의 내용·데이터·그래프를 그대로 이식(형식만 변경)**. 각 케이스 대표 이미지는 라이브/원본을 고DPR 재캡처.
+- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / **3 케이스 6종 전부**(railink·deokhong·samsung·openpath·genesis·korail) + 공통 조판 CSS(case.css)
+- **다음 할 일: 4 이미지 경량화(WebP)·성능·접근성 → 5 모바일 → 6 최종 검수 후 main 머지(G2)**
+- 조판 공통 규칙은 `case.css`에 있음. 케이스별 1회성 그래프만 각 파일 `<style>`에.
+  공통 컴포넌트: sec/cols/single · split+fig+ftile · summary(sm-row) · compare · flow · voices · shots(필름스트립) · figwide/figpair · metrics · next · reveal
+- 케이스 순서(홈 인덱스와 동일): 01 RaiLink → 02 deokhong → 03 Samsung → 04 OPENPATH → 05 Genesis → 06 Korail → (다시 01). 홈 카드·Work 목록·각 케이지 하단 Next가 모두 이 순서로 연결됨.
 - 원본 파일 경로는 repo 루트의 `index.html` (문서 다른 곳의 "site/index.html" 표기는 같은 파일을 가리킴)
 - 헤드리스 캡처 주의: macOS Chrome은 창 최소 폭이 있어 `--window-size=390`으로 찍으면 실제로는 더 넓게 렌더된 걸 390으로 잘라 낸다(글자 잘림처럼 보임). 모바일 확인은 430 이상으로 찍거나, iframe(width:430)에 물려서 캡처할 것. 실측 결과 케이스 페이지는 430px에서 가로 넘침 없음(scrollWidth=430).
 - 절대 원칙: (1) 형식만 개편, 내용/수치/그래프 창작·변경 금지. (2) 그리드 = 메타 col1-2, 콘텐츠 col3+ 여백 안. (3) 저해상 이미지 금지, 2x+ 재캡처. (4) 모션은 apple-design/emil 원칙(강한 ease-out·transform/opacity·reduced-motion).
@@ -40,7 +43,11 @@ main(현재 배포본)은 개편이 끝나 승인될 때까지 건드리지 않�
 - [ ] 1. 그리드 시스템 정의: 12컬럼 토큰, 타이포 스케일, 다크/페이퍼 전환 규칙
 - [x] 2. 홈 구성: 페이지 전환 SPA(Index/Work/About/Contact) + 메뉴 오버레이, 흑백 팔레트 확정
 - [~] 3. RaiLink 케이스 편집 v2(2단 조판+마진+수치 타일+내용 복원) 완료, 카드→케이스 링크 연결. Theo 승인 후 나머지 5종 전개
+- [x] 3-2. 나머지 케이스 5종 전개(deokhong·Samsung·OPENPATH·Genesis·Korail) + 공통 CSS(case.css) 분리
 - [ ] 4. 이미지 경량화(WebP), 성능·접근성·KO/EN 점검
+      · **남은 화질 숙제**: 과거 클라이언트 작업(Samsung·OPENPATH·Genesis·Korail)은 라이브 재캡처가 불가(사이트가 이미 바뀜).
+        원본 자산이 546~640px뿐이라 표시 폭을 절반 이하로 제한해 2x 밀도를 맞춰 둠. 더 선명하게 하려면 Figma/원본 파일에서 재추출 필요.
+      · KO/EN: 원본 index.html은 이중 언어인데 개편 케이지는 KO만 이식됨. EN 병기는 별도 작업.
 - [ ] 5. 모바일 대응
 - [ ] 6. 최종 검수 → main 머지 → 배포 (G2 승인 필수)
 
