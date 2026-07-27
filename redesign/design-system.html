@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>개편 · 디자인 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  /* 디자인 시스템 문서 전용 */
+  .ds-title{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4vw,3.4rem);
+            line-height:1.16; letter-spacing:-.02em; text-wrap:balance}
+  .sn{grid-column:1 / span 2}
+  .sn .no{font-family:var(--mono); font-size:.68rem; letter-spacing:.13em; color:var(--fg-faint)}
+  .sn .nm{margin-top:.3rem; font-size:.95rem; font-weight:600}
+  .sec-lead{grid-column:3 / span 6; font-size:var(--t-lead); line-height:1.5; font-weight:500; color:var(--fg); margin-bottom:1.8rem}
+
+  /* 토큰 표 */
+  .tok{grid-column:3 / span 8; margin-top:.6rem}
+  .tok .tr{display:grid; grid-template-columns:12rem 1fr 1.6fr; gap:1.2rem; align-items:baseline;
+           padding:.72rem 0; border-bottom:1px solid var(--rule)}
+  .tok .tr:first-child{border-top:1px solid var(--rule)}
+  .tok .tk{font-family:var(--mono); font-size:.72rem; color:var(--fg)}
+  .tok .tv{font-family:var(--mono); font-size:.72rem; color:var(--fg-soft)}
+  .tok .td{font-size:.88rem; color:var(--fg-faint); line-height:1.55}
+
+  /* 색 */
+  .swatches{grid-column:3 / span 8; margin-top:.6rem; display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(9rem,1fr)); gap:var(--gap)}
+  .sw{border:1px solid var(--rule)}
+  .sw .chip{height:5.2rem; display:block}
+  .sw .meta{padding:.7rem .8rem}
+  .sw .nm{font-size:.82rem; font-weight:600}
+  .sw .hex{font-family:var(--mono); font-size:.66rem; color:var(--fg-faint); margin-top:.2rem}
+  .sw .use{font-size:.74rem; color:var(--fg-faint); margin-top:.35rem; line-height:1.5}
+
+  /* 타이포 견본 */
+  .spec-row{grid-column:3 / span 8; display:grid; grid-template-columns:9rem 1fr; gap:1.4rem;
+            align-items:baseline; padding:1.1rem 0; border-bottom:1px solid var(--rule)}
+  .spec-row:first-of-type{border-top:1px solid var(--rule)}
+  .spec-row .k{font-family:var(--mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-faint)}
+  .spec-row .k small{display:block; margin-top:.3rem; text-transform:none; letter-spacing:0; font-size:.62rem}
+
+  /* 그리드 시연 */
+  .gdemo{grid-column:3 / span 10; margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr);
+         gap:var(--gap); border:1px solid var(--rule); padding:.5rem}
+  .gdemo i{background:rgba(10,10,10,.05); border-radius:2px; height:3.4rem; display:block; position:relative}
+  .gdemo i::after{content:attr(data-n); position:absolute; inset:auto 0 .3rem 0; text-align:center;
+                  font-family:var(--mono); font-size:.55rem; color:var(--fg-faint)}
+  .gdemo i.meta{background:rgba(10,10,10,.18)}
+  .gnote{grid-column:3 / span 6; margin-top:.9rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
+
+  /* 컴포넌트 견본 상자 */
+  .demo{grid-column:3 / span 8; margin-top:1rem; border:1px solid var(--rule); padding:1.6rem}
+  .demo + .demo{margin-top:var(--gap)}
+  .demo .dl{font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--fg-faint); margin-bottom:1.1rem}
+  .demo .bars,.demo .compare,.demo .flow,.demo .voices{grid-column:auto; margin-top:0}
+  .demo .voices{grid-template-columns:repeat(2,1fr)}
+  .demo .fbar{margin:.5rem 0}
+  .demo .ffill{width:var(--w)}
+
+  /* 보이스: keep-all 비교 */
+  .kacmp{grid-column:3 / span 8; margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
+  .kacmp div{border:1px solid var(--rule); padding:1rem}
+  .kacmp .h{font-family:var(--mono); font-size:.6rem; letter-spacing:.06em; color:var(--fg-faint); margin-bottom:.6rem}
+  .kacmp p{font-size:.92rem; line-height:1.7; width:11em}
+  .kacmp .bad p{word-break:break-all}
+  .kacmp .good p{word-break:keep-all}
+
+  @media (max-width:900px){
+    .sn,.sec-lead,.tok,.swatches,.spec-row,.gdemo,.gnote,.demo,.kacmp{grid-column:auto}
+    .tok .tr{grid-template-columns:1fr; gap:.2rem}
+    .spec-row{grid-template-columns:1fr}
+    .kacmp{grid-template-columns:1fr}
+    .gdemo{display:none}
+  }
+</style>
+</head>
+<body class="theme-paper">
+
+  <header class="chrome">
+    <a class="back" href="home.html#/">Index</a>
+    <a href="deliverables.html">Deliverables</a>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="case-hero theme-paper">
+    <div class="row">
+      <div class="c s1 w2 reveal"><p class="label">Design System</p><p class="cap" style="margin-top:.5rem">디자인 시스템</p></div>
+      <div class="c s3 w7"><h1 class="ds-title reveal">디자인도 감이 아니라,<br />규칙으로.</h1></div>
+    </div>
+    <div class="row" style="margin-top:2.4rem">
+      <div class="c s3 w6 reveal d1">
+        <p class="lead">이 사이트를 지탱하는 규칙을 그대로 적어 둔 문서예요. 색·글자 크기·간격·움직임을 매번 감으로 고르지 않고 정해진 값에서만 고릅니다. 화면이 늘어도 결이 흐트러지지 않는 이유고요.</p>
+      </div>
+      <div class="c s10 w2 reveal d2">
+        <p class="cap">값은 실제 코드<br />(grid.css · case.css)에서<br />그대로 가져왔습니다</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 00 원칙 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">00</p><p class="nm">원칙</p></div>
+      <p class="sec-lead reveal d1">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</p>
+    </div>
+    <div class="row"><div class="nlist reveal">
+      <div class="ni"><i>01</i><b>색 대신 위계로 말한다</b><p>UI는 흑백만 씁니다. 강조는 색이 아니라 크기·굵기·여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</p></div>
+      <div class="ni"><i>02</i><b>한국어를 먼저 생각한 타이포</b><p>한글은 단어 중간에서 줄이 끊기면 읽기 불편해요. 그래서 띄어쓰기 단위로만 넘어가게(word-break:keep-all) 해뒀습니다. 라틴 제목은 Fraunces, 본문과 한글은 Pretendard, 라벨·수치는 JetBrains Mono로 역할을 나눴어요.</p></div>
+      <div class="ni"><i>03</i><b>여백은 화면 크기를 따라간다</b><p>고정 px 대신 clamp()로 최소·유동·최대를 함께 정합니다. 작은 화면에서는 답답하지 않을 만큼만 줄고, 큰 화면에서는 끝없이 벌어지지 않아요.</p></div>
+      <div class="ni"><i>04</i><b>그리드의 원점은 하나</b><p>12컬럼 중 1–2번은 메타 정보(라벨) 자리, 본문·수치·구분선은 전부 3번 컬럼에서 시작합니다. 무엇 하나만 왼쪽으로 튀어나오지 않게, 원점을 하나로 고정했어요.</p></div>
+    </div></div>
+  </section>
+
+  <!-- 01 색 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">01</p><p class="nm">색</p></div>
+      <p class="sec-lead reveal d1">무채색 다섯 단계가 전부입니다. 컬러는 작업물 이미지에서만 나와요.</p>
+    </div>
+    <div class="row"><div class="swatches reveal">
+      <div class="sw"><span class="chip" style="background:#0A0A0A"></span><div class="meta"><p class="nm">Ink</p><p class="hex">#0A0A0A</p><p class="use">본문 글자, 강조 도형</p></div></div>
+      <div class="sw"><span class="chip" style="background:#4A4A4A"></span><div class="meta"><p class="nm">Ink soft</p><p class="hex">#4A4A4A</p><p class="use">긴 문단 본문</p></div></div>
+      <div class="sw"><span class="chip" style="background:#8F8F8F"></span><div class="meta"><p class="nm">Ink faint</p><p class="hex">#8F8F8F</p><p class="use">라벨, 캡션, 보조 수치</p></div></div>
+      <div class="sw"><span class="chip" style="background:#E9E9E9"></span><div class="meta"><p class="nm">Line</p><p class="hex">#E9E9E9</p><p class="use">구분선, 표 경계</p></div></div>
+      <div class="sw"><span class="chip" style="background:#FFFFFF; box-shadow:inset 0 0 0 1px #E9E9E9"></span><div class="meta"><p class="nm">Paper</p><p class="hex">#FFFFFF</p><p class="use">기본 배경</p></div></div>
+    </div></div>
+    <div class="row"><p class="viz-kicker reveal">테마는 섹션 단위로 바뀝니다. <code>.theme-paper</code>는 흰 바탕에 검은 글자, <code>.theme-dark</code>는 검은 바탕에 흰 글자. 같은 변수 이름(--fg, --bg, --rule)을 쓰기 때문에 안에 들어가는 컴포넌트는 고칠 필요가 없어요.</p></div>
+  </section>
+
+  <!-- 02 타이포그래피 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">02</p><p class="nm">타이포그래피</p></div>
+      <p class="sec-lead reveal d1">여섯 단계. 그 사이 크기는 쓰지 않습니다.</p>
+    </div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">Display<small>clamp(2.8rem, 6.2vw, 6.6rem)</small></p>
+      <p class="display">잡지처럼 조판한다</p>
+    </div></div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">H1 · 섹션 표제<small>clamp(1.9rem, 3.4vw, 3.4rem)</small></p>
+      <p class="h1">들어온 열에 아홉이 떠났다</p>
+    </div></div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">Lead · 리드문<small>clamp(1.12rem, 1.6vw, 1.45rem)</small></p>
+      <p class="lead">한 문단 먼저 읽히는 자리</p>
+    </div></div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">Body · 본문<small>clamp(.98rem, 1.12vw, 1.1rem)</small></p>
+      <p class="body">교대 근무자는 근무표가 매달 새로 짜입니다. 겹치는 휴일은 분명히 있는데, 그걸 알려면 서로의 근무표를 눈으로 맞춰봐야 했죠.</p>
+    </div></div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">Caption<small>.84rem</small></p>
+      <p class="cap">사진·도판에 붙는 설명</p>
+    </div></div>
+    <div class="row"><div class="spec-row reveal">
+      <p class="k">Label · 메타<small>.68rem · 자간 .13em</small></p>
+      <p class="label">Case 01 · Growth</p>
+    </div></div>
+    <div class="row"><div class="tok reveal" style="margin-top:2rem">
+      <div class="tr"><span class="tk">--serif</span><span class="tv">Fraunces</span><span class="td">라틴 제목·수치. 한글은 지원하지 않아 Pretendard로 넘어갑니다.</span></div>
+      <div class="tr"><span class="tk">--sans</span><span class="tv">Pretendard Variable</span><span class="td">한글 전부와 본문</span></div>
+      <div class="tr"><span class="tk">--mono</span><span class="tv">JetBrains Mono</span><span class="td">라벨·그래프 축·태그</span></div>
+    </div></div>
+  </section>
+
+  <!-- 03 간격 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">03</p><p class="nm">간격</p></div>
+      <p class="sec-lead reveal d1">고정값이 아니라 범위로 정합니다.</p>
+    </div>
+    <div class="row"><div class="tok reveal">
+      <div class="tr"><span class="tk">--side</span><span class="tv">clamp(1.25rem, 2.3vw, 2.75rem)</span><span class="td">화면 양옆 여백. 모든 콘텐츠가 이 안에서만 움직입니다.</span></div>
+      <div class="tr"><span class="tk">--gap</span><span class="tv">clamp(.75rem, 1.1vw, 1.25rem)</span><span class="td">컬럼 사이 거터</span></div>
+      <div class="tr"><span class="tk">--sect</span><span class="tv">clamp(80px, 11vh, 150px)</span><span class="td">섹션 상하 호흡</span></div>
+      <div class="tr"><span class="tk">섹션 내부</span><span class="tv">clamp(4rem, 9vh, 7.5rem)</span><span class="td">케이스 본문 섹션 사이</span></div>
+    </div></div>
+  </section>
+
+  <!-- 04 그리드 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">04</p><p class="nm">그리드</p></div>
+      <p class="sec-lead reveal d1">12컬럼. 1–2번은 메타, 본문은 3번부터.</p>
+    </div>
+    <div class="row"><div class="gdemo reveal">
+      <i class="meta" data-n="1"></i><i class="meta" data-n="2"></i>
+      <i data-n="3"></i><i data-n="4"></i><i data-n="5"></i><i data-n="6"></i><i data-n="7"></i><i data-n="8"></i>
+      <i data-n="9"></i><i data-n="10"></i><i data-n="11"></i><i data-n="12"></i>
+    </div></div>
+    <div class="row"><p class="gnote reveal">진한 두 칸이 메타 열입니다. 본문·요약·수치·구분선은 3번에서 시작해 8번에서 끝나고(6컬럼), 도판처럼 넓게 봐야 하는 것만 10~12번까지 씁니다. 오프셋은 <code>100vw/12</code> 단위로 계산해 화면 폭이 변해도 비율이 유지됩니다.</p></div>
+  </section>
+
+  <!-- 05 모션 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">05</p><p class="nm">모션</p></div>
+      <p class="sec-lead reveal d1">움직임은 거들 뿐, 주인공은 아니에요.</p>
+    </div>
+    <div class="row"><div class="tok reveal">
+      <div class="tr"><span class="tk">페이지 전환</span><span class="tv">.85s cubic-bezier(.65,0,.20,1)</span><span class="td">홈은 스크롤 나열이 아니라 페이지 전환입니다. 세로로 열리고 닫히는 셔터 움직임.</span></div>
+      <div class="tr"><span class="tk">메뉴 오버레이</span><span class="tv">.7s cubic-bezier(.80,0,.20,1)</span><span class="td">검은 면이 먼저 열리고, 메뉴 항목이 .4s 뒤따라 나타납니다.</span></div>
+      <div class="tr"><span class="tk">--t-fast / base / slow</span><span class="tv">.2s / .3s / .4s ease</span><span class="td">링크·버튼 등 작은 상태 변화</span></div>
+      <div class="tr"><span class="tk">--ease-snap</span><span class="tv">cubic-bezier(.23,1,.32,1)</span><span class="td">강한 감속. 등장·그래프가 이 곡선 하나를 공유합니다.</span></div>
+      <div class="tr"><span class="tk">등장(reveal)</span><span class="tv">16px 아래에서 .6s</span><span class="td">묶인 요소는 .05s씩 차례로(d1·d2)</span></div>
+      <div class="tr"><span class="tk">그래프</span><span class="tv">막대 .9s · 선 1.4s</span><span class="td">화면에 들어올 때 한 번만. 되감기지 않습니다.</span></div>
+      <div class="tr"><span class="tk">reduced-motion</span><span class="tv">전부 off</span><span class="td">기기에서 '움직임 줄이기'를 켜면 애니메이션 없이 최종 상태로 바로 보여줍니다.</span></div>
+    </div></div>
+    <div class="row"><p class="viz-kicker reveal">움직임은 transform·opacity로만 만듭니다. 레이아웃을 다시 계산하게 만드는 속성(width·top 같은)은 쓰지 않아요. 그래야 저사양 기기에서도 끊기지 않습니다.</p></div>
+  </section>
+
+  <!-- 06 컴포넌트 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">06</p><p class="nm">컴포넌트</p></div>
+      <p class="sec-lead reveal d1">앞의 토큰을 조립하면 이런 부품이 됩니다. 케이스 6종이 이걸 공유해요.</p>
+    </div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">칩 / 태그 — .spec</p>
+      <div class="spec" style="margin-top:0"><span>1인 운영</span><span>가입 44 · 광고 0</span><span>PWA</span></div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">수치 — .num + .label</p>
+      <span class="num">44</span><span class="label" style="display:block; margin-top:.6rem">가입 · 광고 0원</span>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">막대 — .bars / .fbar</p>
+      <div class="bars filled">
+        <div class="fbar" style="--w:100%"><span class="flab">방문</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">~400</span></div>
+        <div class="fbar key" style="--w:11%"><span class="flab">가입</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">44<small>11%</small></span></div>
+      </div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">전후 비교 — .compare</p>
+      <div class="compare">
+        <div class="col"><h6>AS-IS</h6><ol><li>기기 선택</li><li>플랜 선택</li><li>가입 가능 확인</li></ol></div>
+        <div class="col to"><h6>TO-BE</h6><ol><li>가입 가능 확인</li><li>플랜 선택</li><li>가입 완료</li></ol></div>
+      </div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">단계 흐름 — .flow</p>
+      <div class="flow"><b>휴리스틱 평가</b><i>→</i><b>아이트래킹</b><i>→</i><b>인터뷰</b></div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">인용 — .voices</p>
+      <div class="voices">
+        <figure class="voice"><blockquote>“일정은 아예 못 보고, 차를 먼저 봤어요.”</blockquote><figcaption class="who">46세 · 회사원</figcaption></figure>
+        <figure class="voice"><blockquote>“상단에 있는 건 광고처럼 보여서 안 봤어요.”</blockquote><figcaption class="who">62세 · 현장직</figcaption></figure>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 07 보이스 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">07</p><p class="nm">보이스</p></div>
+      <p class="sec-lead reveal d1">글도 디자인만큼 규칙이 있어요.</p>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p>케이스는 늘 같은 순서로 씁니다. <b>문제 → 진단 → 결정 → 결과</b>. 겉으로 드러난 증상이 아니라 진짜 원인을 짚고, 왜 그렇게 결정했는지 이유를 보여준 뒤, 무엇이 증명됐는지로 마무리해요. 끊어지는 불릿 대신 이어지는 문단으로 씁니다.</p>
+      <p>수치는 출처와 기준을 함께 적습니다. 어떤 기간의 값인지, 분모가 무엇인지 밝히지 않은 숫자는 쓰지 않아요. 실패한 실험도 실패로 적습니다.</p>
+    </div></div>
+    <div class="row"><div class="kacmp reveal">
+      <div class="bad"><p class="h">✕ 기본 (break-all)</p><p>서비스 기획자는 영향력의 스케일을 좇습니다.</p></div>
+      <div class="good"><p class="h">✓ keep-all</p><p>서비스 기획자는 영향력의 스케일을 좇습니다.</p></div>
+    </div></div>
+    <div class="row"><p class="gnote reveal">왼쪽은 단어 한가운데서 끊기고, 오른쪽은 띄어쓰기에서 넘어갑니다. 제목에는 <code>text-wrap:balance</code>를 더해 줄 길이까지 고르게 맞춰요.</p></div>
+  </section>
+
+  <!-- 다음 -->
+  <nav class="next theme-paper">
+    <a href="deliverables.html">
+      <span><span class="lab">Next</span><br /><span class="nm">산출물</span></span>
+      <span class="nm ar">→</span>
+    </a>
+  </nav>
+
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(RM || !('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.16, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
