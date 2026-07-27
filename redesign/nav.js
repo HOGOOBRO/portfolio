@@ -38,3 +38,22 @@
   markCurrent();
   window.addEventListener('hashchange', markCurrent);
 })();
+
+/* 스크롤 진행: 문서 스크롤(케이스·산출물·디자인시스템)과 홈의 페이지별 스크롤 영역을 모두 다룬다 */
+(function(){
+  var bar = document.querySelector('.scroll-progress i');
+  if(!bar) return;
+  function pct(el){
+    var max = (el.scrollHeight - el.clientHeight);
+    return max > 0 ? Math.min(1, el.scrollTop / max) : 0;
+  }
+  function update(){
+    var scroller = document.querySelector('.page.visible.scrolly') || document.scrollingElement;
+    bar.style.width = (pct(scroller) * 100).toFixed(2) + '%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  document.addEventListener('scroll', update, {passive:true, capture:true});
+  window.addEventListener('resize', update);
+  window.addEventListener('hashchange', function(){ setTimeout(update, 60); });
+  update();
+})();

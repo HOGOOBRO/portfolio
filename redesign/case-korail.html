@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Korail-talk · 김진현 포트폴리오</title>
+<meta name="description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<link rel="canonical" href="https://hogoobro.github.io/portfolio/case-korail.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0A0A0A" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hogoobro.github.io/portfolio/case-korail.html" />
+<meta property="og:title" content="Korail-talk · 김진현 포트폴리오" />
+<meta property="og:description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<meta property="og:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Korail-talk · 김진현 포트폴리오" />
+<meta name="twitter:description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -25,6 +43,8 @@
 </style>
 </head>
 <body class="theme-paper">
+
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
   <!-- ── 공통: 고정 크롬 + 전체화면 메뉴 (nav.css / nav.js) ── -->
   <header class="chrome">
@@ -115,11 +135,11 @@
     </div></div>
     <div class="row"><div class="figpair reveal">
       <figure>
-        <img src="korail-heatmap.png" alt="롯데렌터카 차량선택 화면 아이트래킹 히트맵: 시선이 상단 대여 조건이 아니라 차량 이미지·가격에 집중된 것을 보여주는 열지도" loading="lazy" />
+        <img src="korail-heatmap.webp" alt="롯데렌터카 차량선택 화면 아이트래킹 히트맵: 시선이 상단 대여 조건이 아니라 차량 이미지·가격에 집중된 것을 보여주는 열지도" loading="lazy" />
         <figcaption><span class="etag">히트맵</span>조건은 건너뛰고, 시선이 차·가격부터 갔어요.</figcaption>
       </figure>
       <figure>
-        <img src="korail-scanpath.png" alt="대여 조건 입력 화면 아이트래킹 시선 흐름(스캔패스): 출발·반납·기간 사이를 오가며 시선이 흩어진 경로" loading="lazy" />
+        <img src="korail-scanpath.webp" alt="대여 조건 입력 화면 아이트래킹 시선 흐름(스캔패스): 출발·반납·기간 사이를 오가며 시선이 흩어진 경로" loading="lazy" />
         <figcaption><span class="etag">시선 흐름</span>확인 버튼이 없어, X가 저장인지 몰라 다음으로 못 갔어요.</figcaption>
       </figure>
     </div></div>
@@ -152,20 +172,20 @@
 
     <div class="row"><p class="shotset-lbl reveal"><span>AS-IS · 실제 화면</span><span class="swipe">옆으로 넘겨보세요 →</span></p></div>
     <div class="row"><div class="shots reveal">
-      <figure><img src="korail-asis-1.png" alt="Korail-talk 홈: 승차권 예매와 '이런 서비스는 어떠세요?'의 렌터카 진입" loading="lazy" /><figcaption><span class="n">1</span><span>홈</span></figcaption></figure>
-      <figure><img src="korail-asis-2.png" alt="렌터카 진입 화면" loading="lazy" /><figcaption><span class="n">2</span><span>렌터카 진입</span></figcaption></figure>
-      <figure><img src="korail-asis-3.png" alt="대여 조건 설정 화면" loading="lazy" /><figcaption><span class="n">3</span><span>조건 설정</span></figcaption></figure>
-      <figure><img src="korail-asis-4.png" alt="장소 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span>장소 선택</span></figcaption></figure>
-      <figure><img src="korail-asis-5.png" alt="일정 설정 화면" loading="lazy" /><figcaption><span class="n">5</span><span>일정 설정</span></figcaption></figure>
-      <figure><img src="korail-asis-6.png" alt="조건 재설정 화면" loading="lazy" /><figcaption><span class="n">6</span><span>조건 재설정</span></figcaption></figure>
+      <figure><img src="korail-asis-1.webp" alt="Korail-talk 홈: 승차권 예매와 '이런 서비스는 어떠세요?'의 렌터카 진입" loading="lazy" /><figcaption><span class="n">1</span><span>홈</span></figcaption></figure>
+      <figure><img src="korail-asis-2.webp" alt="렌터카 진입 화면" loading="lazy" /><figcaption><span class="n">2</span><span>렌터카 진입</span></figcaption></figure>
+      <figure><img src="korail-asis-3.webp" alt="대여 조건 설정 화면" loading="lazy" /><figcaption><span class="n">3</span><span>조건 설정</span></figcaption></figure>
+      <figure><img src="korail-asis-4.webp" alt="장소 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span>장소 선택</span></figcaption></figure>
+      <figure><img src="korail-asis-5.webp" alt="일정 설정 화면" loading="lazy" /><figcaption><span class="n">5</span><span>일정 설정</span></figcaption></figure>
+      <figure><img src="korail-asis-6.webp" alt="조건 재설정 화면" loading="lazy" /><figcaption><span class="n">6</span><span>조건 재설정</span></figcaption></figure>
     </div></div>
 
     <div class="row"><p class="shotset-lbl to reveal"><span>TO-BE · 한 화면, 하나의 결정</span><span class="swipe">옆으로 넘겨보세요 →</span></p></div>
     <div class="row"><div class="shots reveal">
-      <figure><img src="korail-tobe-1.png" alt="Korail-talk 홈: 재설계 흐름의 시작점" loading="lazy" /><figcaption><span class="n">1</span><span>홈</span></figcaption></figure>
-      <figure><img src="korail-tobe-2.png" alt="장소 선택: 한 화면에서 타는 장소만 고르는 단계" loading="lazy" /><figcaption><span class="n">2</span><span>장소 선택</span></figcaption></figure>
-      <figure><img src="korail-tobe-3.png" alt="날짜 선택 화면" loading="lazy" /><figcaption><span class="n">3</span><span>날짜 선택</span></figcaption></figure>
-      <figure><img src="korail-tobe-4.png" alt="차량 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span>차량 선택</span></figcaption></figure>
+      <figure><img src="korail-tobe-1.webp" alt="Korail-talk 홈: 재설계 흐름의 시작점" loading="lazy" /><figcaption><span class="n">1</span><span>홈</span></figcaption></figure>
+      <figure><img src="korail-tobe-2.webp" alt="장소 선택: 한 화면에서 타는 장소만 고르는 단계" loading="lazy" /><figcaption><span class="n">2</span><span>장소 선택</span></figcaption></figure>
+      <figure><img src="korail-tobe-3.webp" alt="날짜 선택 화면" loading="lazy" /><figcaption><span class="n">3</span><span>날짜 선택</span></figcaption></figure>
+      <figure><img src="korail-tobe-4.webp" alt="차량 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span>차량 선택</span></figcaption></figure>
     </div></div>
 
     <div class="row" style="margin-top:clamp(3rem,6vh,5rem)"><div class="single reveal">

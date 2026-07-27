@@ -80,3 +80,9 @@
 @keyframes nav-out{ to{ opacity:0; transform:scale(.985) } }
 @keyframes nav-in{ from{ opacity:0; clip-path:inset(45% 0 45% 0) }
                    to{ opacity:1; clip-path:inset(0 0 0 0) } }
+
+/* ── 스크롤 진행 표시: 페이지 상단 1.5px 선 ── */
+.scroll-progress{position:fixed; inset:0 0 auto 0; height:1.5px; z-index:210; pointer-events:none}
+.scroll-progress i{display:block; height:100%; width:0; background:var(--fg,#0A0A0A);
+                   transform-origin:0 50%; transition:width .08s linear}
+@media (prefers-reduced-motion:reduce){ .scroll-progress i{transition:none} }

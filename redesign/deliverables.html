@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>산출물 · 김진현 포트폴리오 · Selected Deliverables</title>
+<meta name="description" content="유저 플로우와 화면 기능 명세, 사이트 IA, Figma 라이브러리까지 실제로 그려낸 산출물 4건." />
+<link rel="canonical" href="https://hogoobro.github.io/portfolio/deliverables.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0A0A0A" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hogoobro.github.io/portfolio/deliverables.html" />
+<meta property="og:title" content="산출물 · 김진현 포트폴리오 · Selected Deliverables" />
+<meta property="og:description" content="유저 플로우와 화면 기능 명세, 사이트 IA, Figma 라이브러리까지 실제로 그려낸 산출물 4건." />
+<meta property="og:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="산출물 · 김진현 포트폴리오 · Selected Deliverables" />
+<meta name="twitter:description" content="유저 플로우와 화면 기능 명세, 사이트 IA, Figma 라이브러리까지 실제로 그려낸 산출물 4건." />
+<meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -63,6 +81,8 @@
 </head>
 <body class="theme-paper">
 
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+
   <!-- ── 공통: 고정 크롬 + 전체화면 메뉴 (nav.css / nav.js) ── -->
   <header class="chrome">
     <span class="left">
@@ -121,11 +141,11 @@
     </div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">유저 플로우</div>
-      <img src="genesis-td-userflow.png" alt="Genesis Test Drive 유저 플로우: 진입 경로, 신청 단계, 성공·실패 분기와 백엔드 연동을 한 장에 정리한 다이어그램" loading="lazy" />
+      <img src="genesis-td-userflow.webp" alt="Genesis Test Drive 유저 플로우: 진입 경로, 신청 단계, 성공·실패 분기와 백엔드 연동을 한 장에 정리한 다이어그램" loading="lazy" />
     </figure></div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">신청 폼 · 화면 명세</div>
-      <img src="genesis-td-form.png" alt="Genesis Test Drive 신청 폼 화면기획: 모델 선택, 일정, 딜러 찾기(지도·자동완성)를 화면 왼쪽 번호로 짚고 우측 명세 표에 동작을 적은 산출물" loading="lazy" />
+      <img src="genesis-td-form.webp" alt="Genesis Test Drive 신청 폼 화면기획: 모델 선택, 일정, 딜러 찾기(지도·자동완성)를 화면 왼쪽 번호로 짚고 우측 명세 표에 동작을 적은 산출물" loading="lazy" />
     </figure></div>
     <div class="row"><div class="prove reveal">
       <p class="pl">요약</p>
@@ -140,11 +160,11 @@
     </div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">유저 플로우</div>
-      <img src="genesis-cfg-userflow.png" alt="Genesis Configurator 유저 플로우: 모델 라인부터 옵션·Summary까지의 구성 단계를 정리한 다이어그램" loading="lazy" />
+      <img src="genesis-cfg-userflow.webp" alt="Genesis Configurator 유저 플로우: 모델 라인부터 옵션·Summary까지의 구성 단계를 정리한 다이어그램" loading="lazy" />
     </figure></div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">Summary 상세</div>
-      <img src="genesis-cfg-summary.png" alt="Genesis Configurator Summary 화면기획: 가격 구성과 합계, 금융 옵션, 법적 디스클레이머를 번호로 짚고 우측 명세 표에 정리한 산출물" loading="lazy" />
+      <img src="genesis-cfg-summary.webp" alt="Genesis Configurator Summary 화면기획: 가격 구성과 합계, 금융 옵션, 법적 디스클레이머를 번호로 짚고 우측 명세 표에 정리한 산출물" loading="lazy" />
     </figure></div>
     <div class="row"><div class="prove reveal">
       <p class="pl">요약</p>
@@ -164,7 +184,7 @@
     </div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">사이트 IA · 단계별 오픈</div>
-      <img src="genesis-ia-it.png" alt="Genesis 사이트 정보구조(IA): 전체 메뉴 트리를 1~4 depth로 펼치고 오픈 단계(Phase 1·2·3)를 색으로 구분한 산출물" loading="lazy" />
+      <img src="genesis-ia-it.webp" alt="Genesis 사이트 정보구조(IA): 전체 메뉴 트리를 1~4 depth로 펼치고 오픈 단계(Phase 1·2·3)를 색으로 구분한 산출물" loading="lazy" />
       <p class="note">◆ 색은 오픈 단계(Phase 1·2·3)를 뜻합니다.</p>
     </figure></div>
     <div class="row"><div class="prove reveal">
@@ -185,15 +205,15 @@
     </div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">Component Specs</div>
-      <img src="samsung-ds-specs.png" alt="Samsung 버튼(CTA) 컴포넌트 명세: 테마·상태·변형별 스펙 정의" loading="lazy" />
+      <img src="samsung-ds-specs.webp" alt="Samsung 버튼(CTA) 컴포넌트 명세: 테마·상태·변형별 스펙 정의" loading="lazy" />
     </figure></div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">Grouped Components</div>
-      <img src="samsung-ds-grouped.png" alt="Samsung 버튼 컴포넌트 변형 묶음: 상태·테마별 버튼 세트" loading="lazy" />
+      <img src="samsung-ds-grouped.webp" alt="Samsung 버튼 컴포넌트 변형 묶음: 상태·테마별 버튼 세트" loading="lazy" />
     </figure></div>
     <div class="row"><figure class="dfig reveal">
       <div class="lbl">Using Components</div>
-      <img src="samsung-ds-using.png" alt="Samsung 버튼 컴포넌트 사용법: Figma 속성으로 타입·테마·아이콘 선택" loading="lazy" />
+      <img src="samsung-ds-using.webp" alt="Samsung 버튼 컴포넌트 사용법: Figma 속성으로 타입·테마·아이콘 선택" loading="lazy" />
     </figure></div>
     <div class="row"><div class="prove reveal">
       <p class="pl">요약</p>
