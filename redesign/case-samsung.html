@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>개편 3단계 · Samsung Care+ 케이스 (원본 충실 이식)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  /* 이 페이지 전용 그래프 — 원본 SVG를 그대로 쓰고 색만 흑백 시스템으로 */
+  /* 채널별 판매 비중 파이 */
+  .pie{grid-column:3 / span 3; margin-top:1.4rem}
+  .pie svg{display:block; width:100%; max-width:15rem; height:auto}
+  .pie svg path{transition:opacity .5s var(--ease-out); opacity:0}
+  .pie.in svg path{opacity:1}
+  .pie.in svg path:nth-child(2){transition-delay:.06s}
+  .leg{grid-column:6 / span 4; margin-top:1.4rem}
+  .leg-grp + .leg-grp{margin-top:1.5rem}
+  .grp-h{font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase;
+         color:var(--fg-faint); padding-bottom:.5rem; border-bottom:1px solid var(--rule)}
+  .leg ul{list-style:none}
+  .leg li{display:grid; grid-template-columns:.7rem 1fr auto; align-items:baseline; gap:.6rem;
+          padding:.5rem 0; border-bottom:1px solid var(--rule); font-size:.9rem; color:var(--fg-soft)}
+  .leg li.hi{color:var(--fg); font-weight:600}
+  .leg .sw{width:.7rem; height:.7rem; border-radius:2px; align-self:center}
+  .leg .nm small{display:block; font-size:.68rem; font-weight:400; color:var(--fg-faint); margin-top:.1rem}
+  .leg .pct{font-family:var(--serif); font-variant-numeric:tabular-nums; font-size:1rem}
+
+  /* 가입 단계·페이지 수 막대 */
+  .barchart{grid-column:3 / span 4; margin-top:1.6rem}
+  .barchart svg{display:block; width:100%; height:auto}
+  .barchart .bar{transform-origin:50% 168px; transform:scaleY(0); transition:transform .8s var(--ease-out)}
+  .barchart.in .bar{transform:none}
+  .barchart .bar:nth-of-type(2){transition-delay:.08s}
+  .barchart .bar:nth-of-type(3){transition-delay:.16s}
+  .barchart .bar:nth-of-type(4){transition-delay:.24s}
+  .barchart .val{opacity:0; transition:opacity .4s ease .5s}
+  .barchart.in .val{opacity:1}
+  .bc-leg{display:flex; gap:1.2rem; margin-top:.8rem; font-family:var(--mono); font-size:.6rem;
+          letter-spacing:.06em; text-transform:uppercase; color:var(--fg-faint)}
+  .bc-k{display:inline-flex; align-items:center; gap:.4rem}
+  .bc-k i{width:.6rem; height:.6rem; border-radius:2px; display:inline-block}
+  .bc-note{grid-column:8 / span 4; margin-top:1.6rem; font-size:.98rem; line-height:1.7; color:var(--fg-soft)}
+  .bc-note b{color:var(--fg); font-weight:600}
+
+  @media (prefers-reduced-motion:reduce){
+    .pie svg path,.barchart .bar,.barchart .val{transition:none; opacity:1; transform:none}
+  }
+  @media (max-width:900px){
+    .pie,.leg,.barchart,.bc-note{grid-column:auto}
+    .pie svg{margin:0 auto}
+  }
+</style>
+</head>
+<body class="theme-paper">
+
+  <header class="chrome">
+    <a class="back" href="home.html#/work">Work</a>
+    <a href="home.html#/">©kimjinhyeon</a>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="case-hero theme-paper">
+    <div class="row">
+      <div class="c s1 w2 reveal"><p class="label">Case 03</p><p class="cap" style="margin-top:.5rem">듀오톤<br />UX 기획·디자인</p></div>
+      <div class="c s3 w7"><h1 class="case-title long reveal">Samsung Care+</h1></div>
+    </div>
+    <div class="row" style="margin-top:2.6rem">
+      <div class="c s3 w5">
+        <p class="case-essence reveal d1">나라마다 다르던 가입 여정을,<br />100여 개국 하나의 표준으로.</p>
+        <div class="spec reveal d1"><span>UX 디자이너 4인 팀</span><span>100+ 마켓</span><span>Information Architecture</span></div>
+      </div>
+      <div class="c s9 w3 reveal d2">
+        <p class="label">Role</p>
+        <p class="cap" style="margin-top:.4rem">글로벌 구매 여정 표준화<br />2024.05–2025.05 · 기여도 40%</p>
+        <a class="live" href="https://www.samsung.com/uk" target="_blank" rel="noopener">samsung.com/uk <span class="ar">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15초 요약 -->
+  <section class="summary theme-paper">
+    <div class="sm-row"><span class="k label">Role</span><span class="v">UX 4인 팀에서 기획·디자인 · <b>기여도 40%</b></span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v">사려는 사람이 어디서 사는지도, 살 수 있는지도 너무 늦게 안다</span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v">직접 고칠 수 있는 가장 큰 페이지(Standalone)의 입구를 목적별로 나누고, 자격 확인을 맨 앞으로</span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v">가입 절차를 절반으로(<b>10단계를 6단계로</b>), 100여 개국이 한 표준으로</span></div>
+    <div class="sm-row"><span class="k label">Output</span><span class="v">samsung.com/uk 등 라이브, 가입 흐름 재설계안</span></div>
+    <p class="sm-foot">*기여도 40%: UX 4인 팀에서 채널 분석·IA·가입 플로우 재설계를 주도, 비주얼·컴포넌트는 팀과 협업</p>
+  </section>
+
+  <!-- 문제 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">문제</p></div>
+      <h2 class="sec-subhead reveal d1">사려 해도<br />보이질 않는다</h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p>삼성 케어 플러스는 기기가 고장·파손됐을 때 수리나 보상을 받는 보험 상품이에요. 상품은 좋았지만, 정작 가입하려는 사용자는 두 번 막혔습니다. 첫째, <b>어디서 사야 하는지</b>가 안 보였어요. 둘째, 정작 가입이 가능한 기기인지조차 <b>옵션을 끝까지 다 고른 뒤에야</b> 알 수 있었습니다.</p>
+      <p>자격이 안 되는 사람도 끝까지 다 걷고 나서야 '안 됩니다'를 만난 거죠. 게다가 이 경험이 KR·US·UK·FR·DE처럼 나라마다 달라서, 사용자도 헤매고 운영도 매번 따로 관리해야 했습니다.</p>
+    </div></div>
+  </section>
+
+  <!-- 인사이트 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">인사이트</p></div>
+      <h2 class="sec-subhead reveal d1">어디부터 고쳐야<br />크게 움직이나</h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p>100개가 넘는 마켓을 한 번에 손볼 수는 없으니, '어디부터 고쳐야 가장 크게 움직이나'부터 정했습니다. 판매 경로별 가입 비중을 보면 Retail(34.1%)·B2B(33.7%)가 컸지만, 이 둘은 매장·파트너 영역이라 우리가 직접 재설계할 수 없었어요.</p>
+      <p>직접 손댈 수 있는 디지털 경로는 제품 단독(Standalone)과 eStore 둘이었는데, <b>Standalone(16.7%)</b>이 eStore(9.1%)보다 컸고, 한 번 잘 만들면 구조가 같은 다른 마켓으로 그대로 복제할 수 있었죠.</p>
+    </div></div>
+
+    <div class="row"><p class="viz-lbl reveal">채널별 Samsung Care+ 판매 비중 · 24년 7월 누적</p></div>
+    <div class="row">
+      <div class="pie reveal" id="pie">
+        <svg viewBox="0 0 120 120" role="img" aria-label="채널별 Samsung Care+ 판매 비중: Standalone 16.7%, eStore 9.1%, Retail 34.1%, B2B 33.7%, SES 5.9%">
+          <path d="M60.60 55.53 L60.60 14.60 Q60.60 8.60 66.58 9.02 A51.40 51.40 0 0 1 101.08 29.11 Q104.40 34.11 99.18 37.07 L63.59 57.27 A2.0 2.0 0 0 1 60.60 55.53 Z" fill="#0A0A0A"/>
+          <path d="M67.95 56.18 L99.78 38.11 Q104.99 35.15 107.58 40.56 A51.40 51.40 0 0 1 111.27 56.41 Q111.34 62.40 105.35 62.05 L68.82 59.91 A2.0 2.0 0 0 1 67.95 56.18 Z" fill="#6E6E6E"/>
+          <path d="M61.36 60.68 L105.28 63.25 Q111.27 63.60 110.51 69.55 A51.40 51.40 0 0 1 34.79 104.80 Q29.75 101.55 33.34 96.75 L59.64 61.48 A2.0 2.0 0 0 1 61.36 60.68 Z" fill="#CFCFCF"/>
+          <path d="M58.66 60.80 L32.37 96.03 Q28.79 100.84 24.24 96.92 A51.40 51.40 0 0 1 35.31 14.92 Q40.73 12.35 42.92 17.94 L58.92 58.87 A2.0 2.0 0 0 1 58.66 60.80 Z" fill="#BDBDBD"/>
+          <path d="M55.54 46.93 L44.03 17.50 Q41.85 11.91 47.57 10.12 A51.40 51.40 0 0 1 53.42 9.02 Q59.40 8.60 59.40 14.60 L59.40 46.20 A2.0 2.0 0 0 1 55.54 46.93 Z" fill="#E6E6E6"/>
+        </svg>
+      </div>
+      <div class="leg reveal d1">
+        <div class="leg-grp">
+          <div class="grp-h">직접 고칠 수 있는 디지털</div>
+          <ul>
+            <li class="hi"><span class="sw" style="background:#0A0A0A"></span><span class="nm">Standalone<small>단독 가입</small></span><span class="pct">16.7%</span></li>
+            <li><span class="sw" style="background:#6E6E6E"></span><span class="nm">eStore<small>번들 가입</small></span><span class="pct">9.1%</span></li>
+          </ul>
+        </div>
+        <div class="leg-grp">
+          <div class="grp-h">직접 못 고침 · 매장/파트너</div>
+          <ul>
+            <li><span class="sw" style="background:#CFCFCF"></span><span class="nm">Retail<small>매장</small></span><span class="pct">34.1%</span></li>
+            <li><span class="sw" style="background:#BDBDBD"></span><span class="nm">B2B<small>파트너</small></span><span class="pct">33.7%</span></li>
+            <li><span class="sw" style="background:#E6E6E6"></span><span class="nm">SES<small>체험매장</small></span><span class="pct">5.9%</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row"><p class="viz-kicker reveal">판매의 대부분(Retail·B2B·체험매장, 73.7%)은 매장·파트너 영역이라 직접 손댈 수 없었어요. 재설계할 수 있는 건 온라인 둘뿐. 그래서 그중 더 큰 Standalone부터 집중했습니다.</p></div>
+  </section>
+
+  <!-- 결정 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">결정</p></div>
+      <h2 class="sec-subhead reveal d1">'짧고 분명하게'에 건다</h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p><b>그 페이지를 짧고 분명하게 만들면, 막히던 가입이 풀린다.</b> 이 가설로 두 가지를 바꿨어요. 먼저, 입구를 사용자 맥락에 맞게 갈랐습니다. 이미 망가진 기기를 고치려는 사람(보상 청구)은 <b>SUPPORT</b>로, 새로 보장을 사려는 사람(신규 구매)은 <b>SHOP</b>으로.</p>
+      <p>목적이 다른데 같은 문으로 들여보내니 길을 잃을 수 있으니까요. 그다음, 가입 가능 여부 확인을 맨 앞으로 끌어왔습니다. 자격을 먼저 거르면, 안 되는 사람은 시간을 버리지 않고 바로 빠지고 되는 사람만 끝까지 갑니다.</p>
+    </div></div>
+    <div class="row"><div class="compare reveal">
+      <div class="col"><h6>AS-IS · Hard to find</h6><ol><li>GNB</li><li>기기 선택</li><li>플랜 선택</li><li>가입 가능 여부 확인</li></ol></div>
+      <div class="col to"><h6>TO-BE · Right there</h6><ol><li>GNB</li><li>가입 가능 여부 확인</li><li>플랜 선택</li><li>가입 완료</li></ol></div>
+    </div></div>
+  </section>
+
+  <!-- 결과 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">결과</p></div></div>
+    <div class="row"><div class="single reveal">
+      <p>전환을 직접 측정할 환경은 아니었어요. 대신 '절차가 짧고 분명해졌는가'로 가설을 확인했습니다. 화면을 더하지 않고 순서만 바로잡았더니, 거쳐야 하는 단계와 페이지가 눈에 띄게 줄었어요.</p>
+    </div></div>
+    <div class="row">
+      <figure class="barchart reveal" id="barchart">
+        <svg viewBox="0 0 320 200" role="img" aria-label="가입 단계 10에서 6, 페이지 6에서 3으로 감소">
+          <g stroke="#E9E9E9" stroke-width="1">
+            <line x1="36" y1="16" x2="308" y2="16"/><line x1="36" y1="92" x2="308" y2="92"/><line x1="36" y1="168" x2="308" y2="168"/>
+          </g>
+          <g fill="#8F8F8F" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="end">
+            <text x="28" y="19">10</text><text x="28" y="95">5</text><text x="28" y="171">0</text>
+          </g>
+          <defs><clipPath id="bcclip"><rect x="0" y="0" width="320" height="168"/></clipPath></defs>
+          <g clip-path="url(#bcclip)">
+            <path class="bar" d="M84 168 L84 23 Q84 16 91 16 L107 16 Q114 16 114 23 L114 168 Z" fill="#D4D4D4"/>
+            <path class="bar" d="M122 168 L122 83.8 Q122 76.8 129 76.8 L145 76.8 Q152 76.8 152 83.8 L152 168 Z" fill="#0A0A0A"/>
+            <path class="bar" d="M204 168 L204 83.8 Q204 76.8 211 76.8 L227 76.8 Q234 76.8 234 83.8 L234 168 Z" fill="#D4D4D4"/>
+            <path class="bar" d="M242 168 L242 129.4 Q242 122.4 249 122.4 L265 122.4 Q272 122.4 272 129.4 L272 168 Z" fill="#0A0A0A"/>
+          </g>
+          <g font-family="Fraunces, Georgia, serif" font-size="14" font-weight="600" text-anchor="middle">
+            <text class="val" x="99" y="11" fill="#8F8F8F">10</text><text class="val" x="137" y="71.8" fill="#0A0A0A">6</text>
+            <text class="val" x="219" y="71.8" fill="#8F8F8F">6</text><text class="val" x="257" y="117.4" fill="#0A0A0A">3</text>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#4A4A4A" text-anchor="middle">
+            <text x="118" y="188">가입 단계</text><text x="238" y="188">페이지 수</text>
+          </g>
+        </svg>
+        <figcaption class="bc-leg">
+          <span class="bc-k"><i style="background:#D4D4D4"></i>개선 전</span>
+          <span class="bc-k"><i style="background:#0A0A0A"></i>개선 후</span>
+        </figcaption>
+      </figure>
+      <p class="bc-note reveal d1">그리고 이 한 페이지가 그대로 <b>100여 개국</b>에 복제되면서, 나라마다 따로 관리하던 가입이 하나의 표준으로 통일됐습니다.</p>
+    </div>
+
+    <div class="metrics" style="margin-top:clamp(3rem,6vh,5rem)">
+      <div class="metric reveal"><span class="num">10→6</span><span class="lab label">가입 단계</span></div>
+      <div class="metric reveal d1"><span class="num">6→3</span><span class="lab label">페이지 수</span></div>
+      <div class="metric reveal d2"><span class="num" data-to="100" data-suffix="+">100+</span><span class="lab label">한 표준으로 통일된 마켓</span></div>
+    </div>
+  </section>
+
+  <!-- 다음 케이스 -->
+  <nav class="next theme-paper">
+    <a href="case-openpath.html">
+      <span><span class="lab">Next</span><br /><span class="nm">OPENPATH</span></span>
+      <span class="nm ar">→</span>
+    </a>
+  </nav>
+
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function once(sel, cb, th){
+    var els=[].slice.call(document.querySelectorAll(sel));
+    if(RM || !('IntersectionObserver' in window)){ els.forEach(cb); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ cb(e.target); io.unobserve(e.target); } }); },{threshold:th||.16, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  once('.reveal', function(el){ el.classList.add('in'); });
+  once('#pie', function(el){ el.classList.add('in'); }, .4);
+  once('#barchart', function(el){ el.classList.add('in'); }, .4);
+
+  function countUp(el){
+    var to=parseFloat(el.dataset.to), suf=el.dataset.suffix||'';
+    if(RM){ el.textContent=to+suf; return; }
+    var s=null,d=900;
+    function step(t){ if(!s)s=t; var p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(to*e)+suf; if(p<1)requestAnimationFrame(step); else el.textContent=to+suf; }
+    requestAnimationFrame(step);
+  }
+  once('[data-to]', countUp, .8);
+})();
+</script>
+</body>
+</html>
