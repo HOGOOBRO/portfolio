@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>개편 3단계 · deokhong.com 케이스 (원본 충실 이식)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<style>
+  :root{ --ease-out:cubic-bezier(.23,1,.32,1); --t-fast:.2s ease; --t-base:.3s ease; }
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{background:var(--bg)}
+
+  .chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex; justify-content:space-between;
+          align-items:center; padding:1.15rem var(--side); mix-blend-mode:difference; color:#fff}
+  .chrome a{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em; text-transform:uppercase;
+            color:#fff; text-decoration:none; transition:transform .16s var(--ease-out)}
+  .chrome a:active{transform:scale(.94)}
+  .back::before{content:"← "}
+
+  /* 히어로 */
+  .case-hero{padding-top:clamp(6rem,15vh,10rem); padding-bottom:clamp(2.4rem,5vh,4rem)}
+  .case-title{font-family:var(--serif); font-weight:500; font-size:clamp(2.6rem,7.6vw,6.8rem); line-height:.96; letter-spacing:-.03em}
+  .case-essence{font-family:var(--serif); font-weight:400; font-style:italic; font-size:clamp(1.4rem,2.6vw,2.2rem);
+                line-height:1.32; color:var(--fg-soft); text-wrap:balance}
+  .live{display:inline-flex; align-items:center; gap:.5rem; margin-top:1.4rem; font-family:var(--mono); font-size:.72rem;
+        letter-spacing:.06em; text-transform:uppercase; font-weight:500; color:var(--bg); background:var(--fg);
+        border-radius:999px; padding:.7rem 1.3rem; text-decoration:none; transition:transform .16s var(--ease-out)}
+  .live:active{transform:scale(.97)}
+  .live .ar{transition:transform .2s var(--ease-out)}
+  @media (hover:hover) and (pointer:fine){ .live:hover .ar{transform:translate(2px,-2px)} }
+  .spec{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem}
+  .spec span{font-family:var(--mono); font-size:.64rem; letter-spacing:.05em; text-transform:uppercase;
+             color:var(--fg-soft); border:1px solid var(--rule); border-radius:999px; padding:.32rem .66rem}
+
+  /* 섹션 · 2단 조판 */
+  .sec{padding-top:clamp(4rem,9vh,7.5rem); padding-bottom:clamp(1rem,2vh,2rem)}
+  .sec-head{grid-column:1 / span 2}
+  .sec-subhead{grid-column:3 / span 6; font-family:var(--serif); font-weight:500; font-size:clamp(1.6rem,2.8vw,2.6rem);
+               line-height:1.12; letter-spacing:-.02em; margin-bottom:2rem; text-wrap:balance}
+  .cols{grid-column:3 / span 6; columns:2; column-gap:var(--gap); font-size:.98rem; line-height:1.72}
+  .cols p{color:var(--fg-soft); margin:0 0 1rem; break-inside:avoid}
+  .cols p:first-child{margin-top:0}
+  .cols p b{color:var(--fg); font-weight:600}
+  .single{grid-column:3 / span 6; font-size:1rem; line-height:1.75; color:var(--fg-soft)}
+  .single p{margin:0 0 1rem} .single p b{color:var(--fg); font-weight:600}
+  .lead-note{grid-column:3 / span 6; font-size:var(--t-lead); line-height:1.5; font-weight:500; color:var(--fg); margin-bottom:1.6rem}
+
+  /* 실행: 좌 본문 / 우 이미지 */
+  .split{align-items:start}
+  .split .txt{grid-column:3 / span 5}
+  .split .fig{grid-column:9 / span 4; position:relative}
+  .split .fig.tint{background:#F0F0F0; padding:2.2rem 2.2rem 0; display:flex; justify-content:center; align-items:flex-end}
+  /* 원본은 기기 목업이 아니라 실제 화면 캡처라, 기기 프레임을 CSS로 입혀 RaiLink와 같은 결로 */
+  .split .fig.tint img{width:74%; border:7px solid #111; border-radius:2.1rem; background:#111;
+                       filter:drop-shadow(0 20px 40px rgba(0,0,0,.16))}
+  .fig .ftile{position:absolute; left:0; bottom:0; transform:translateY(30%); background:var(--ink); color:var(--paper); padding:1rem 1.2rem}
+  .fig .ftile .n{font-family:var(--serif); font-size:1.9rem; line-height:1; font-variant-numeric:tabular-nums}
+  .fig .ftile .l{margin-top:.35rem; font-size:.72rem; opacity:.8}
+
+  /* 15초 요약 — 구분선도 페이지 여백 안에서(풀블리드 금지) */
+  .summary{margin-top:clamp(4rem,9vh,7.5rem); padding:0 var(--side)}
+  .sm-row{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap); padding:1.05rem 0; border-bottom:1px solid var(--rule)}
+  .sm-row:first-child{border-top:1px solid var(--rule)}
+  .sm-row .k{grid-column:1 / span 2}
+  .sm-row .v{grid-column:3 / span 6; font-size:1.02rem; line-height:1.5}
+  .sm-row .v b{font-weight:600}
+
+  /* ── 그래프 (흑백): 체류 시간 비교 바 ── */
+  .bars{grid-column:3 / span 6; margin-top:2.2rem; max-width:40rem}
+  .fbar{display:grid; grid-template-columns:5.5rem 1fr 4.5rem; align-items:center; gap:1.2rem; margin:.7rem 0}
+  .fbar .flab{font-family:var(--mono); font-size:.68rem; color:var(--fg-soft); text-align:right}
+  .fbar .ftrack{height:34px; background:var(--paper); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+  .fbar .ffill{display:block; height:100%; width:0; background:var(--ink); border-radius:3px; transition:width .9s var(--ease-out)}
+  .bars.filled .ffill{width:var(--w)}
+  .fbar.key .ftrack{border-color:var(--ink)}
+  .fbar .fval{font-family:var(--serif); font-size:1.1rem; font-variant-numeric:tabular-nums; text-align:right; color:var(--fg-faint)}
+  .fbar.key .fval{font-weight:600; color:var(--fg)}
+  .fbar.key .flab{color:var(--fg); font-weight:500}
+  .fbar .fval small{font-family:var(--mono); font-size:.62rem; color:var(--fg-faint); margin-left:.2rem}
+  .viz-kicker{grid-column:3 / span 5; margin-top:1.6rem; font-size:.98rem; font-weight:500; color:var(--fg);
+              line-height:1.6; border-left:2px solid var(--ink); padding-left:1rem}
+
+  /* 수치 밴드 — 본문과 같은 col3에서 시작(맨 왼쪽으로 튀지 않게) */
+  .metrics{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap); row-gap:2.6rem; padding:0 var(--side)}
+  .metric:nth-child(1){grid-column:3 / span 3}
+  .metric:nth-child(2){grid-column:6 / span 3}
+  .metric:nth-child(3){grid-column:9 / span 2}
+  .metric .num{display:block}
+  .metric .lab{margin-top:.6rem}
+
+  /* 다음 케이스 */
+  .next{border-top:1px solid var(--rule); margin-top:clamp(4rem,9vh,7.5rem); padding:var(--sect) var(--side)}
+  .next a{display:flex; justify-content:space-between; align-items:baseline; color:inherit; text-decoration:none; gap:2rem}
+  .next .lab{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em; text-transform:uppercase; color:var(--fg-faint)}
+  .next .nm{font-family:var(--serif); font-weight:500; font-size:clamp(2rem,5vw,4rem); letter-spacing:-.02em}
+  .next .ar{display:inline-block; transition:transform .2s var(--ease-out)}
+  @media (hover:hover) and (pointer:fine){ .next a:hover .ar{transform:translateX(8px)} }
+
+  /* 리빌 */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
+  .reveal.in{opacity:1; transform:none}
+  .reveal.d1{transition-delay:.05s}.reveal.d2{transition-delay:.10s}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none}
+    .bars .ffill{transition:none}
+  }
+
+  @media (max-width:900px){
+    .sec-head,.sec-subhead,.cols,.single,.lead-note,.bars,.viz-kicker{grid-column:auto}
+    .cols{columns:1}
+    .split .txt,.split .fig{grid-column:auto}
+    .split .fig{margin-top:2rem}
+    .fig .ftile{position:static; transform:none; margin-top:1rem; display:inline-block}
+    .sm-row{grid-template-columns:1fr} .sm-row .k,.sm-row .v{grid-column:auto} .sm-row .k{margin-bottom:.3rem}
+    .metrics{grid-template-columns:1fr 1fr}
+    .metric:nth-child(1),.metric:nth-child(2),.metric:nth-child(3){grid-column:auto}
+    .metric{margin-bottom:1.6rem}
+    .fbar{grid-template-columns:4.5rem 1fr 3.5rem}
+  }
+</style>
+</head>
+<body class="theme-paper">
+
+  <header class="chrome">
+    <a class="back" href="home.html#/work">Work</a>
+    <a href="home.html#/">©kimjinhyeon</a>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="case-hero theme-paper">
+    <div class="row">
+      <div class="c s1 w2 reveal"><p class="label">Case 02</p><p class="cap" style="margin-top:.5rem">직접 만든 것<br />1인 빌드</p></div>
+      <div class="c s3 w7"><h1 class="case-title reveal">deokhong.com</h1></div>
+    </div>
+    <div class="row" style="margin-top:2.6rem">
+      <div class="c s3 w5">
+        <p class="case-essence reveal d1">조직도 예산도 없는 무소속 후보,<br />온라인에서 어떻게 알릴까.</p>
+        <div class="spec reveal d1"><span>Campaign</span><span>One-page</span><span>Copywriting</span><span>Next.js</span></div>
+      </div>
+      <div class="c s9 w3 reveal d2">
+        <p class="label">Role</p>
+        <p class="cap" style="margin-top:.4rem">기획 · 정보구조 · 카피 · 디자인 · 퍼블리싱<br />2026 · 기여도 100%</p>
+        <a class="live" href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com <span class="ar">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15초 요약 -->
+  <section class="summary theme-paper">
+    <div class="sm-row"><span class="k label">Role</span><span class="v">혼자 전부 (기획·카피·디자인·개발) · <b>기여도 100%</b></span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v">조직도 예산도 없는 무소속 후보를 빠르고 싸게 알려야 했다</span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v">‘읽게’가 아니라 ‘훑어도 남게’, 한 페이지를 위에서 아래로 설득 순서로</span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v">후보 <b>당선</b>, 한 달 새 실방문 1,300명·조회 4,000회</span></div>
+    <div class="sm-row"><span class="k label">Output</span><span class="v">deokhong.com 라이브 (지금은 당선인 공식 페이지)</span></div>
+  </section>
+
+  <!-- 문제 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">문제</p></div></div>
+    <div class="row"><div class="single reveal">
+      <p>2026년 지방선거, 제주 조천읍에 출마한 무소속 도의원 후보였습니다. 정당 후보는 현수막도, 조직도, 콜센터도 갖추고 시작하지만 무소속에겐 그게 전부 없어요. 가진 건 후보의 38년 행정 경력과 '말보다 실천'이라는 메시지뿐이었죠. 그래서 풀어야 할 문제는 분명했습니다. 짧은 선거 기간 동안, 적은 비용으로, 이름을 처음 듣는 유권자에게도 <b>'이 사람이 누구고 왜 찍어야 하는지'를 한 번에 납득</b>시키는 것.</p>
+    </div></div>
+  </section>
+
+  <!-- 구조 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">구조</p></div>
+      <h2 class="sec-subhead reveal d1">훑어도 남게</h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p>사람들은 선거 사이트를 정독하지 않습니다. 그래서 '읽게 만들기'가 아니라 <b>'훑어도 남게 만들기'</b>를 택했어요. 위에서 아래로 내려가는 동안 자연스럽게 설득되도록 순서를 짰습니다.</p>
+      <p>맨 위는 기호·슬로건과 선거까지 남은 시간으로 '지금 정해야 한다'는 긴장을 주는 자리예요. 이어지는 6대 정책은 무엇을 할 사람인지, 약력 타임라인은 믿을 만한 사람인지를 보여 줍니다. 주민 증언이 '남들도 인정한다'는 확신을 더하고, 마지막 보도자료가 '실재하는 후보'라는 신뢰로 마무리합니다.</p>
+    </div></div>
+  </section>
+
+  <!-- 실행 -->
+  <section class="sec theme-paper">
+    <div class="row split">
+      <div class="txt reveal">
+        <p class="label" style="margin-bottom:1.4rem">실행</p>
+        <div class="single" style="grid-column:auto">
+          <p>카피는 표준어 대신 제주 방언('한번 써 봅서!')으로 풀어, 지역 사람에게 옆집 어른의 말처럼 들리게 했습니다.</p>
+          <p>구현은 유세 현장에서 공유되는 링크라 대부분 휴대폰으로 열린다는 전제로, <b>모바일을 먼저 설계하고 PC를 맞췄어요.</b> 카카오톡·인스타그램에 붙어도 깨지지 않도록 OG 이미지와 메타까지 직접 챙겼고요. 정보구조·카피·디자인·퍼블리싱·SEO를 전부 혼자, Next.js로 만들었습니다.</p>
+        </div>
+      </div>
+      <figure class="fig tint reveal d1">
+        <img src="deokhong-phone.png" alt="deokhong.com 첫 화면: '말보다 실천!' 슬로건과 후보 사진" loading="lazy" />
+        <div class="ftile"><p class="n">Mobile first</p><p class="l">모바일 먼저 · PC를 맞춤</p></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 결과 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label">결과</p></div>
+      <h2 class="sec-subhead reveal d1">그리고 후보는<br />당선됐어요</h2>
+    </div>
+    <div class="row"><div class="single reveal">
+      <p>선거 기간 내내 캠페인의 공식 디지털 거점이었고, 보도자료와 SNS가 모두 이 한 페이지로 모였습니다. 그리고 후보는 이번 지방선거에서 <b>당선됐어요.</b> 같은 사이트는 지금 당선인의 공식 페이지로 이어지고 있습니다.</p>
+    </div></div>
+
+    <div class="metrics" style="margin-top:clamp(3rem,6vh,5rem)">
+      <div class="metric reveal"><span class="num" data-to="1300" data-suffix="+">1,300+</span><span class="lab label">선거기간 실방문자</span></div>
+      <div class="metric reveal d1"><span class="num" data-to="4000" data-suffix="+">4,000+</span><span class="lab label">누적 조회</span></div>
+      <div class="metric reveal d2"><span class="num" data-to="8">8</span><span class="lab label">온·오프 유입 채널</span></div>
+    </div>
+
+    <div class="row" style="margin-top:clamp(3.4rem,7vh,6rem)">
+      <p class="lead-note reveal">‘거점’이 될 수 있었던 건, 사람들이 실제로 머물렀기 때문이에요. 체류를 늘리려고 캠페인 중반에 <b>보도자료 섹션</b>을 투입했는데, 거기 닿은 사람은 평균 4.6편을 정독했고, 체류는 홈의 1.9배가 됐습니다.</p>
+    </div>
+    <div class="row"><div class="bars reveal" id="bars">
+      <div class="fbar" style="--w:53%"><span class="flab">홈 · 슬로건</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">22.5<small>초</small></span></div>
+      <div class="fbar key" style="--w:100%"><span class="flab">보도자료</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">42.8<small>초</small></span></div>
+    </div></div>
+    <div class="row"><p class="viz-kicker reveal">사람을 머물게 한 건 더 많은 말이 아니라, 믿을 만한 ‘증거’였다.</p></div>
+  </section>
+
+  <!-- 다음 케이스 -->
+  <nav class="next theme-paper">
+    <a href="case-samsung.html">
+      <span><span class="lab">Next</span><br /><span class="nm">Samsung Care+</span></span>
+      <span class="nm ar">→</span>
+    </a>
+  </nav>
+
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function once(sel, cb, th){
+    var els=[].slice.call(document.querySelectorAll(sel));
+    if(RM || !('IntersectionObserver' in window)){ els.forEach(cb); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ cb(e.target); io.unobserve(e.target); } }); },{threshold:th||.16, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  once('.reveal', function(el){ el.classList.add('in'); });
+  once('#bars', function(el){ el.classList.add('filled'); }, .35);
+
+  function countUp(el){
+    var to=parseFloat(el.dataset.to), suf=el.dataset.suffix||'';
+    function fmt(n){ return n.toLocaleString('en-US'); }
+    if(RM){ el.textContent=fmt(to)+suf; return; }
+    var s=null,d=900;
+    function step(t){ if(!s)s=t; var p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(to*e))+suf; if(p<1)requestAnimationFrame(step); else el.textContent=fmt(to)+suf; }
+    requestAnimationFrame(step);
+  }
+  once('[data-to]', countUp, .8);
+})();
+</script>
+</body>
+</html>

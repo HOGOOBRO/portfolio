@@ -3,8 +3,10 @@
 - 작업 위치: `개인_Resume/portfolio-repo`, 브랜치 `redesign-editorial` (main=현 배포본, 손대지 말 것)
 - 로컬 프리뷰: `cd portfolio-repo/redesign && python3 -m http.server 8742` → home.html / case-railink.html
 - 헤드리스 검증: `chrome --headless=new --screenshot` (Theo는 CLI라 화면 못 봄 → 반드시 스크린샷 찍어 확인 후 보고)
-- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / 3 RaiLink 케이스(case-railink.html)
-- **다음 할 일: 케이스 5종 전개** (deokhong·Samsung·OPENPATH·Genesis·Korail) — case-railink.html을 템플릿으로, **원본 site/index.html의 내용·데이터·그래프를 그대로 이식(형식만 변경)**. 각 케이스 대표 이미지는 라이브/원본을 고DPR 재캡처.
+- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / 3 RaiLink 케이스(case-railink.html) / deokhong 케이스(case-deokhong.html)
+- **다음 할 일: 케이스 4종 전개** (Samsung·OPENPATH·Genesis·Korail) — case-railink.html / case-deokhong.html을 템플릿으로, **원본 index.html의 내용·데이터·그래프를 그대로 이식(형식만 변경)**. 각 케이스 대표 이미지는 라이브/원본을 고DPR 재캡처.
+- 원본 파일 경로는 repo 루트의 `index.html` (문서 다른 곳의 "site/index.html" 표기는 같은 파일을 가리킴)
+- 헤드리스 캡처 주의: macOS Chrome은 창 최소 폭이 있어 `--window-size=390`으로 찍으면 실제로는 더 넓게 렌더된 걸 390으로 잘라 낸다(글자 잘림처럼 보임). 모바일 확인은 430 이상으로 찍거나, iframe(width:430)에 물려서 캡처할 것. 실측 결과 케이스 페이지는 430px에서 가로 넘침 없음(scrollWidth=430).
 - 절대 원칙: (1) 형식만 개편, 내용/수치/그래프 창작·변경 금지. (2) 그리드 = 메타 col1-2, 콘텐츠 col3+ 여백 안. (3) 저해상 이미지 금지, 2x+ 재캡처. (4) 모션은 apple-design/emil 원칙(강한 ease-out·transform/opacity·reduced-motion).
 - 원본 케이스 데이터 출처: `site/index.html` (각 케이스 article[data-work]). deokhong/Samsung/OPENPATH/Genesis/Korail 섹션·그래프를 여기서 추출.
 
