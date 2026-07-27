@@ -89,11 +89,6 @@
   .windex a:active .wrow{background:var(--ink); color:var(--paper)}
 
   /* ── 타임라인 · 컨택트 ── */
-  .tl-row{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
-          padding:1.1rem var(--side); border-top:1px solid var(--rule)}
-  .tl-row .yr{grid-column:1 / span 2}
-  .tl-row h5{grid-column:3 / span 4; font-size:1rem; font-weight:600}
-  .tl-row p{grid-column:7 / span 5; font-size:var(--t-cap); color:var(--fg-soft); line-height:1.6}
   .contact-mail{font-family:var(--serif); font-weight:500; color:inherit; text-decoration:none;
                 font-size:clamp(1.6rem,4.2vw,4rem); letter-spacing:-.02em; line-height:1.1;
                 border-bottom:2px solid var(--rule)}
@@ -105,11 +100,10 @@
 
   @media (max-width:900px){
     .menu-list, .menu-foot{padding-left:0}
+    .tl{margin-top:2rem}
     .windex .wrow{grid-template-columns:1fr auto; padding:1.2rem var(--side)}
     .windex .no,.windex .one{display:none}
     .windex .nm,.windex .yr{grid-column:auto}
-    .tl-row{display:block}
-    .tl-row p{margin-top:.3rem}
     .hero{--cw:clamp(150px,44vw,220px); --ch:clamp(150px,44vw,220px)}
     /* 카드 안 글자가 데스크톱 크기 그대로라 좁은 카드에서 넘쳐 두 줄로 깨졌다 */
     .card{padding:.8rem .9rem; border-radius:18px}
@@ -120,6 +114,13 @@
     .hero .lockup{right:var(--side)}
     .hero .lockup p{max-width:none}
   }
+  /* 이력: 서사 옆 세로 열 */
+  .tl .tl-item{padding:.9rem 0; border-top:1px solid var(--rule)}
+  .tl .tl-item:last-child{border-bottom:1px solid var(--rule)}
+  .tl .yr{display:block; margin-bottom:.35rem}
+  .tl h5{font-size:.94rem; font-weight:600; line-height:1.35}
+  .tl .tl-item p{margin-top:.3rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.55}
+
   /* 기고 글 목록 */
   .wlist{list-style:none}
   .wlist li{border-top:1px solid var(--rule)}
@@ -263,7 +264,7 @@
       </div>
 
       <div class="row" style="margin-top:var(--sect)">
-        <p class="c s1 w2 label reveal">Career</p>
+        <p class="c s1 w2 label reveal">Path</p>
         <div class="c s3 w6">
           <h3 class="h1 reveal">거쳐 온 자리는 다 달랐지만,<br />결정하는 방식은 늘 같았어요.</h3>
         </div>
@@ -272,15 +273,16 @@
         <div class="c s3 w6 reveal d1">
           <p class="body">제주항공 승무원으로 사회생활을 시작했어요. 카페를 공동 창업하면서는 마케팅을 책이 아니라 매출로 배웠습니다. 네이버 광고를 A/B로 시험하고 잘 되는 쪽에 집중해, 5개월 만에 월매출을 <b>6.5배</b>로 키웠죠.</p>
           <p class="body" style="margin-top:1rem">IT로 옮긴 뒤엔 문제에 따라 방법을 바꿨어요. OPENPATH에서는 가설을 A/B로 검증해 결제 전환을 <b>3.4배</b>로 올렸고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해, 나라마다 다르던 가입 여정을 <b>100여 개국</b> 하나로 정리했습니다. 지금은 Genesis 유럽을 거쳐 LG의 B2B 글로벌 사이트를 기획하고 있습니다.</p>
-          <p class="cap reveal d1" style="margin-top:1.4rem"><b style="color:var(--fg-soft)">그 외:</b> Sketch·XD로 흩어져 있던 삼성 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch에 디자인 관련 글을 발행했습니다.</p>
+          <p class="cap" style="margin-top:1.4rem"><b style="color:var(--fg-soft)">그 외:</b> Sketch·XD로 흩어져 있던 삼성 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch에 디자인 관련 글을 발행했습니다.</p>
         </div>
-      </div>
-
-      <div style="margin-top:var(--sect)">
-        <div class="tl-row reveal"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아 마켓) 론칭 · 현재 LG B2B 글로벌 사이트 기획.</p></div>
-        <div class="tl-row reveal"><span class="yr label">2023–25</span><h5>듀오톤 · PM·UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화.</p></div>
-        <div class="tl-row reveal"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위.</p></div>
-        <div class="tl-row reveal"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행.</p></div>
+        <!-- 글을 읽는 동안 시간축이 옆에 보이도록, 아래에 따로 있던 이력을 이 자리로 올렸다 -->
+        <div class="c s9 w4 tl reveal d2">
+          <p class="label" style="margin-bottom:1rem">Career</p>
+          <div class="tl-item"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아 마켓) 론칭 · 현재 LG B2B 글로벌 사이트 기획.</p></div>
+          <div class="tl-item"><span class="yr label">2023–25</span><h5>듀오톤 · PM·UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화.</p></div>
+          <div class="tl-item"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위.</p></div>
+          <div class="tl-item"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행.</p></div>
+        </div>
       </div>
     </div>
   </main>
