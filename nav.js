@@ -23,7 +23,7 @@
 
   /* 현재 위치 표시. 케이스는 상위인 Work를 현재로 본다(케이스는 Work의 하위). */
   function markCurrent(){
-    var file = location.pathname.split('/').pop() || 'home.html';
+    var file = location.pathname.split('/').pop() || 'index.html';
     var key;
     if(/^case-/.test(file))            key = 'work';
     else if(file === 'deliverables.html')  key = 'deliverables';
@@ -130,7 +130,7 @@
   setTimeout(function(){ sh.className = 'shutter'; }, 500);
 
   function isHome(href){
-    return href === '#/' || href === 'home.html' || /home\.html#\/?$/.test(href);
+    return href === '#/' || href === 'index.html' || /index\.html#\/?$/.test(href) || href === './' || href === '/';
   }
   function close_then(fn, center){
     sh.className = (center ? 'shutter center' : 'shutter') + ' closing';
