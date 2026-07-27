@@ -97,6 +97,7 @@
   function onScroll(){
     if(menu && menu.classList.contains('open')){ chrome.classList.remove('hide'); return; }
     var y = scroller().scrollTop;
+    chrome.classList.toggle('solid', y > 24);   /* 배경 바: 겹침 방지 */
     if(y > last + 4 && y > 90) chrome.classList.add('hide');
     else if(y < last - 4 || y <= 90) chrome.classList.remove('hide');
     last = y;

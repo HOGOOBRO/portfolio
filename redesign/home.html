@@ -369,7 +369,10 @@
       if(on) p.scrollTop=0;
     });
     homeVisible = (target.id==='page-home');
-    document.body.className = target.classList.contains('theme-dark') ? 'theme-dark' : 'theme-paper';
+    /* className을 통째로 덮으면 lang-ko·i18n-ready 같은 클래스가 지워진다 */
+    var dark = target.classList.contains('theme-dark');
+    document.body.classList.toggle('theme-dark', dark);
+    document.body.classList.toggle('theme-paper', !dark);
     if(window.__setMenu) window.__setMenu(false);
     if(window.gtag) gtag('event','page_view',{
       page_title: (target.dataset.route||'index'),

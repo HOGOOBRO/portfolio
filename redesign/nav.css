@@ -103,3 +103,13 @@
 .chrome{transition:transform .28s var(--ease-snap), opacity .28s ease}
 .chrome.hide{transform:translateY(-140%); opacity:0}
 @media (prefers-reduced-motion:reduce){ .chrome{transition:none} }
+
+/* 스크롤을 시작하면 크롬에 배경 바가 생긴다. 배경 없이 얹혀 있으면 본문 글자와 겹쳐 읽히지 않는다.
+   맨 위(히어로 위)에서는 배경 없이 mix-blend-mode로 얹힌 상태를 유지한다. */
+.chrome.solid{mix-blend-mode:normal; background:var(--bg,#fff); color:var(--fg,#0A0A0A);
+              border-bottom:1px solid var(--rule,#E9E9E9);
+              transition:transform .28s var(--ease-snap), opacity .28s ease, background .2s ease}
+.chrome.solid .brand,.chrome.solid .menu-trigger{color:var(--fg,#0A0A0A)}
+.chrome.solid .up{color:var(--fg-faint,#8F8F8F)}
+.chrome.solid .lang button{color:var(--fg-faint,#8F8F8F)}
+.chrome.solid .lang button.on{color:var(--fg,#0A0A0A)}
