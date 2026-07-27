@@ -138,8 +138,10 @@ body{background:var(--bg)}
                   font-size:.76rem; color:var(--fg-soft)}
 .shots figcaption .n{font-family:var(--mono); font-size:.6rem; color:var(--fg-faint)}
 .shotset-lbl{grid-column:3 / span 10; margin-top:2.6rem; font-family:var(--mono); font-size:.6rem; letter-spacing:.1em;
-             text-transform:uppercase; color:var(--fg-faint); padding-bottom:.6rem; border-bottom:1px solid var(--rule)}
+             text-transform:uppercase; color:var(--fg-faint); padding-bottom:.6rem; border-bottom:1px solid var(--rule);
+             display:flex; justify-content:space-between; gap:1rem}
 .shotset-lbl.to{color:var(--fg); border-bottom-color:var(--ink)}
+.shotset-lbl .swipe{letter-spacing:.04em; text-transform:none; color:var(--fg-faint)}
 
 /* ── 이미지 도판 ── */
 .figwide{grid-column:3 / span 8; margin-top:1.2rem}
