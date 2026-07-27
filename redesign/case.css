@@ -25,7 +25,7 @@ body{background:var(--bg)}
 .live .ar{transition:transform .2s var(--ease-out)}
 @media (hover:hover) and (pointer:fine){ .live:hover .ar{transform:translate(2px,-2px)} }
 .spec{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem}
-.spec span{font-family:var(--mono); font-size:.64rem; letter-spacing:.05em; text-transform:uppercase;
+.spec > span{font-family:var(--mono); font-size:.64rem; letter-spacing:.05em; text-transform:uppercase;
            color:var(--fg-soft); border:1px solid var(--rule); border-radius:999px; padding:.32rem .66rem}
 
 /* ── 섹션 · 2단 조판 ── */
@@ -193,7 +193,10 @@ body{background:var(--bg)}
   .cols{columns:1}
   .split .txt,.split .fig{grid-column:auto}
   .split .fig{margin-top:2rem}
-  .fig .ftile{position:static; transform:none; margin-top:1rem; display:inline-block}
+  /* 틴트 박스가 flex라 타일이 static이 되면 이미지 옆에 붙는다. 모바일에선 세로로 쌓는다 */
+  .split .fig.tint{display:block; padding:1.6rem 1.6rem 1.6rem; text-align:center}
+  .split .fig.tint img{width:74%; max-width:320px}
+  .fig .ftile{position:static; transform:none; margin:1.2rem 0 0; display:block; text-align:left}
   .sm-row{grid-template-columns:1fr; width:auto} .sm-row .k,.sm-row .v{grid-column:auto} .sm-row .k{margin-bottom:.3rem}
   .sm-foot{margin-left:0}
   .metrics{grid-template-columns:1fr 1fr}

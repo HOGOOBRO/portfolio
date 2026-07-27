@@ -80,7 +80,7 @@
   .card .tag{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; opacity:.9}
   .card .bot .tag{display:block; margin-bottom:.5rem}
   .card .bot b{display:block; font-size:1.05rem; font-weight:700; letter-spacing:-.01em}
-  .card .bot span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
+  .card .bot > span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
   .hero .lockup{position:absolute; left:var(--side); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
   .hero .lockup h1{font-family:var(--serif); font-weight:600; color:#F5F5F5;
                    font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.08; letter-spacing:-.02em}
@@ -130,7 +130,7 @@
     /* 좁은 카드에 세 줄은 많다. 분야·연도 태그는 빼고 이름과 한 줄만 남긴다(연도는 아래 Work 목록에 있음) */
     .card .bot .tag{display:none}
     .card .bot b{font-size:.88rem}
-    .card .bot span{font-size:.68rem; margin-top:.15rem}
+    .card .bot > span{font-size:.68rem; margin-top:.15rem}
     .hero .lockup{right:var(--side)}
     .hero .lockup p{max-width:none}
   }
@@ -189,7 +189,6 @@
     </nav>
     <div class="menu-foot">
       <a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
-      <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
       <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
       <span>Seoul</span>
     </div>
