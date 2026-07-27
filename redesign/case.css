@@ -56,15 +56,20 @@ body{background:var(--bg)}
 .fig .ftile .n{font-family:var(--serif); font-size:1.9rem; line-height:1; font-variant-numeric:tabular-nums}
 .fig .ftile .l{margin-top:.35rem; font-size:.72rem; opacity:.8}
 
-/* ── 15초 요약 — 구분선도 페이지 여백 안에서(풀블리드 금지) ── */
-.summary{margin-top:clamp(4rem,9vh,7.5rem); padding:0 var(--side)}
-.sm-row{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap); padding:1.05rem 0; border-bottom:1px solid var(--rule)}
+/* ── 15초 요약 ──
+   구분선은 값 열이 끝나는 곳(8번째 컬럼 끝 = 본문 오른쪽 끝)까지만. 12컬럼 끝까지 그으면
+   오른쪽에 설명되지 않는 빈 공간이 생겨 그리드가 읽히지 않는다. 각주도 값과 같은 3컬럼에서 시작. */
+.summary{margin-top:clamp(4rem,9vh,7.5rem); padding:0 var(--side);
+         --colw:calc((100% - 11 * var(--gap)) / 12)}
+.sm-row{display:grid; grid-template-columns:repeat(8,1fr); column-gap:var(--gap);
+        width:calc(var(--colw) * 8 + var(--gap) * 7);
+        padding:1.05rem 0; border-bottom:1px solid var(--rule)}
 .sm-row:first-child{border-top:1px solid var(--rule)}
 .sm-row .k{grid-column:1 / span 2}
 .sm-row .v{grid-column:3 / span 6; font-size:1.02rem; line-height:1.5}
 .sm-row .v b{font-weight:600}
-.sm-foot{padding:1rem var(--side) 0; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
-.sm-foot span{display:block; margin-left:calc((100% - var(--side) * 0) * 0)}
+.sm-foot{margin:1rem 0 0; margin-left:calc(var(--colw) * 2 + var(--gap) * 2);
+         max-width:52ch; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
 
 /* ── 가로 막대(깔때기·비교) ── */
 .bars{grid-column:3 / span 6; margin-top:2.2rem}
@@ -192,7 +197,8 @@ body{background:var(--bg)}
   .split .txt,.split .fig{grid-column:auto}
   .split .fig{margin-top:2rem}
   .fig .ftile{position:static; transform:none; margin-top:1rem; display:inline-block}
-  .sm-row{grid-template-columns:1fr} .sm-row .k,.sm-row .v{grid-column:auto} .sm-row .k{margin-bottom:.3rem}
+  .sm-row{grid-template-columns:1fr; width:auto} .sm-row .k,.sm-row .v{grid-column:auto} .sm-row .k{margin-bottom:.3rem}
+  .sm-foot{margin-left:0}
   .metrics{grid-template-columns:1fr 1fr}
   .metric:nth-child(1),.metric:nth-child(2),.metric:nth-child(3),.metric:nth-child(4),
   .metrics.wide .metric:nth-child(1),.metrics.wide .metric:nth-child(2),.metrics.wide .metric:nth-child(3){grid-column:auto}
