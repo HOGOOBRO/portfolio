@@ -115,21 +115,32 @@
 (function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   var sh = document.createElement('div');
-  sh.className = 'shutter opening';
+  /* 직전 페이지가 'Home으로 간다'고 남겨두면, 열릴 때도 가운데에서 갈라지는 결로 맞춘다 */
+  var entryCenter = false;
+  try{
+    entryCenter = sessionStorage.getItem('shutter_center') === '1';
+    sessionStorage.removeItem('shutter_center');
+  }catch(e){}
+  var base = entryCenter ? 'shutter center' : 'shutter';
+  sh.className = base + ' opening';
   document.body.appendChild(sh);
   requestAnimationFrame(function(){
-    requestAnimationFrame(function(){ sh.className = 'shutter done'; });
+    requestAnimationFrame(function(){ sh.className = base + ' done'; });
   });
   setTimeout(function(){ sh.className = 'shutter'; }, 500);
 
-  function close_then(fn){
-    sh.className = 'shutter closing';
+  function isHome(href){
+    return href === '#/' || href === 'home.html' || /home\.html#\/?$/.test(href);
+  }
+  function close_then(fn, center){
+    sh.className = (center ? 'shutter center' : 'shutter') + ' closing';
     setTimeout(fn, 380);
   }
-  function open_now(){
-    sh.className = 'shutter opening';
+  function open_now(center){
+    var b = center ? 'shutter center' : 'shutter';
+    sh.className = b + ' opening';
     requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ sh.className = 'shutter done'; });
+      requestAnimationFrame(function(){ sh.className = b + ' done'; });
     });
     setTimeout(function(){ sh.className = 'shutter'; }, 500);
   }
@@ -144,14 +155,17 @@
       if(href === location.hash || (href === '#/' && !location.hash)) return;
       e.preventDefault();
       if(window.__setMenu) window.__setMenu(false);
+      var c = isHome(href);
       close_then(function(){
         location.hash = href.slice(1);
-        setTimeout(open_now, 60);
-      });
+        setTimeout(function(){ open_now(c); }, 60);
+      }, c);
       return;
     }
     if(!/\.html($|[#?])/.test(href) && !/^\/?$/.test(href)) return;   /* 같은 사이트 문서만 */
     e.preventDefault();
-    close_then(function(){ location.href = a.href; });
+    var toHome = isHome(href);
+    if(toHome){ try{ sessionStorage.setItem('shutter_center','1'); }catch(e){} }
+    close_then(function(){ location.href = a.href; }, toHome);
   });
 })();

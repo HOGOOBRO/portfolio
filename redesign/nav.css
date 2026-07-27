@@ -125,3 +125,8 @@
 .shutter.opening{transform:scaleY(1); transform-origin:50% 0}
 .shutter.done{transform:scaleY(0); transform-origin:50% 0}
 @media (prefers-reduced-motion:reduce){ .shutter{display:none} }
+
+/* Home(Index) 진입만 가운데에서 갈라지는 결. 메뉴 오버레이가 쓰는 원점과 같다 */
+.shutter.center.closing{transform:scaleY(1); transform-origin:50% 50%}
+.shutter.center.opening{transform:scaleY(1); transform-origin:50% 50%}
+.shutter.center.done{transform:scaleY(0); transform-origin:50% 50%}
