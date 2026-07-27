@@ -1,4 +1,13 @@
 # 포트폴리오 전면 개편 작업 문서
+## ▶ 이어서 시작하기 (새 세션용 인수인계 · 2026-07-27 기준)
+- 작업 위치: `개인_Resume/portfolio-repo`, 브랜치 `redesign-editorial` (main=현 배포본, 손대지 말 것)
+- 로컬 프리뷰: `cd portfolio-repo/redesign && python3 -m http.server 8742` → home.html / case-railink.html
+- 헤드리스 검증: `chrome --headless=new --screenshot` (Theo는 CLI라 화면 못 봄 → 반드시 스크린샷 찍어 확인 후 보고)
+- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / 3 RaiLink 케이스(case-railink.html)
+- **다음 할 일: 케이스 5종 전개** (deokhong·Samsung·OPENPATH·Genesis·Korail) — case-railink.html을 템플릿으로, **원본 site/index.html의 내용·데이터·그래프를 그대로 이식(형식만 변경)**. 각 케이스 대표 이미지는 라이브/원본을 고DPR 재캡처.
+- 절대 원칙: (1) 형식만 개편, 내용/수치/그래프 창작·변경 금지. (2) 그리드 = 메타 col1-2, 콘텐츠 col3+ 여백 안. (3) 저해상 이미지 금지, 2x+ 재캡처. (4) 모션은 apple-design/emil 원칙(강한 ease-out·transform/opacity·reduced-motion).
+- 원본 케이스 데이터 출처: `site/index.html` (각 케이스 article[data-work]). deokhong/Samsung/OPENPATH/Genesis/Korail 섹션·그래프를 여기서 추출.
+
 
 2026-07-24 시작. 며칠에 걸쳐 이 브랜치(redesign-editorial)에서 진행하고, 단계마다 커밋으로 저장한다.
 main(현재 배포본)은 개편이 끝나 승인될 때까지 건드리지 않는다.
