@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>try{if(sessionStorage.getItem('shutter_center')==='1'){document.documentElement.className+=' enter-center';sessionStorage.removeItem('shutter_center');}}catch(e){}</script>
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,6 +52,7 @@
 </style>
 </head>
 <body class="theme-paper lang-ko i18n-ready">
+  <div class="page-in" aria-hidden="true"></div>
 
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
 

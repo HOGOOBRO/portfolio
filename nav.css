@@ -110,7 +110,7 @@
 /* 문서 간 전환 셔터: 홈의 페이지 전환과 같은 결. View Transition에만 기대지 않고 직접 그린다 */
 .shutter{position:fixed; inset:0; z-index:300; background:#000; pointer-events:none;
          transform:scaleY(0); transform-origin:50% 100%;
-         transition:transform .42s cubic-bezier(.65,0,.20,1)}
+         transition:transform .3s cubic-bezier(.65,0,.20,1)}
 .shutter.closing{transform:scaleY(1); transform-origin:50% 100%}
 .shutter.opening{transform:scaleY(1); transform-origin:50% 0}
 .shutter.done{transform:scaleY(0); transform-origin:50% 0}
@@ -120,3 +120,11 @@
 .shutter.center.closing{transform:scaleY(1); transform-origin:50% 50%}
 .shutter.center.opening{transform:scaleY(1); transform-origin:50% 50%}
 .shutter.center.done{transform:scaleY(0); transform-origin:50% 50%}
+
+/* 진입 커버: JS가 아니라 마크업+CSS로 처리한다.
+   JS가 만들면 새 문서가 한 번 그려진 뒤에 덮여서 흰 깜빡임이 생긴다. */
+.page-in{position:fixed; inset:0; background:#000; z-index:290; pointer-events:none;
+         transform-origin:50% 0; animation:page-in .32s cubic-bezier(.65,0,.20,1) both}
+.enter-center .page-in{transform-origin:50% 50%}
+@keyframes page-in{ from{transform:scaleY(1)} to{transform:scaleY(0)} }
+@media (prefers-reduced-motion:reduce){ .page-in{display:none} }

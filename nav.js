@@ -115,19 +115,8 @@
 (function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   var sh = document.createElement('div');
-  /* 직전 페이지가 'Home으로 간다'고 남겨두면, 열릴 때도 가운데에서 갈라지는 결로 맞춘다 */
-  var entryCenter = false;
-  try{
-    entryCenter = sessionStorage.getItem('shutter_center') === '1';
-    sessionStorage.removeItem('shutter_center');
-  }catch(e){}
-  var base = entryCenter ? 'shutter center' : 'shutter';
-  sh.className = base + ' opening';
+  sh.className = 'shutter';           /* 나갈 때만 쓴다. 들어올 때는 .page-in(CSS)이 담당 */
   document.body.appendChild(sh);
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){ sh.className = base + ' done'; });
-  });
-  setTimeout(function(){ sh.className = 'shutter'; }, 500);
 
   function isHome(href){
     return href === '#/' || href === 'index.html' || /index\.html#\/?$/.test(href) || href === './' || href === '/';
@@ -136,7 +125,7 @@
   function close_then(fn, center){
     closedAt = Date.now();
     sh.className = (center ? 'shutter center' : 'shutter') + ' closing';
-    setTimeout(fn, 380);
+    setTimeout(fn, 280);
   }
   /* 이벤트(pageshow·pagehide)는 브라우저·상황에 따라 안 오는 경우가 있다.
      닫힌 셔터가 일정 시간 이상 남아 있으면 스스로 풀리게 해 검은 화면이 남지 않도록 한다.
@@ -150,7 +139,7 @@
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){ sh.className = b + ' done'; });
     });
-    setTimeout(function(){ sh.className = 'shutter'; }, 500);
+    setTimeout(function(){ sh.className = 'shutter'; }, 380);
   }
   /* 뒤로가기로 돌아온 페이지가 bfcache에서 복원되면 셔터가 닫힌 채로 남아 검은 화면이 된다.
      복원·표시 시점마다 셔터를 반드시 열어둔다. */
@@ -172,12 +161,19 @@
     var href = a.getAttribute('href') || '';
     if(a.hostname && a.hostname !== location.hostname) return;
 
-    /* 같은 문서 안의 해시 이동(홈의 Index·Work·About·Contact)도 문서 이동과 같은 셔터로 */
+    var menuOpen = menu && menu.classList.contains('open');
+
+    /* 같은 문서 안의 해시 이동(홈의 Index·Work·About·Contact) */
     if(/^#/.test(href)){
       if(href === location.hash || (href === '#/' && !location.hash)) return;
       e.preventDefault();
-      if(window.__setMenu) window.__setMenu(false);
       var c = isHome(href);
+      if(menuOpen){
+        /* 메뉴가 이미 화면을 덮고 있다. 그 뒤에서 페이지를 바꾸고 메뉴만 걷어낸다(모션 하나) */
+        location.hash = href.slice(1);
+        setTimeout(function(){ if(window.__setMenu) window.__setMenu(false); }, 80);
+        return;
+      }
       close_then(function(){
         location.hash = href.slice(1);
         setTimeout(function(){ open_now(c); }, 60);
@@ -188,11 +184,7 @@
     e.preventDefault();
     var toHome = isHome(href);
     if(toHome){ try{ sessionStorage.setItem('shutter_center','1'); }catch(e){} }
-    close_then(function(){
-      location.href = a.href;
-      /* 이동을 건 직후 곧바로 셔터를 연다. 새 문서가 그려지므로 눈에 띄지 않고,
-         이 페이지가 bfcache에 저장될 때도 '열린 상태'로 저장돼 뒤로가기에서 검은 화면이 남지 않는다 */
-      resetShutter();
-    }, toHome);
+    if(menuOpen){ location.href = a.href; return; }   /* 메뉴가 이미 검은 화면이므로 바로 이동 */
+    close_then(function(){ location.href = a.href; }, toHome);
   });
 })();
