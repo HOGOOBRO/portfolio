@@ -97,3 +97,9 @@
 .lang button.on{color:#fff}
 .chrome .right{display:flex; align-items:baseline}
 @media (max-width:900px){ .lang{margin-right:.8rem} }
+
+/* 크롬은 배경 없이 mix-blend-mode로 얹혀 있어, 본문이 그 아래를 지나면 글자가 겹쳐 보인다.
+   내려 읽는 동안에는 숨기고, 올리면 바로 되돌린다. 메뉴가 열려 있으면 항상 보인다. */
+.chrome{transition:transform .28s var(--ease-snap), opacity .28s ease}
+.chrome.hide{transform:translateY(-140%); opacity:0}
+@media (prefers-reduced-motion:reduce){ .chrome{transition:none} }

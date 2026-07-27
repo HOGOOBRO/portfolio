@@ -83,3 +83,28 @@
   ko.onclick = function(){ setLang('ko'); };
   en.onclick = function(){ setLang('en'); };
 })();
+
+/* 스크롤 방향에 따라 크롬 감추기/보이기.
+   rAF는 보이지 않는 프레임에서 지연될 수 있어 쓰지 않는다. */
+(function(){
+  var chrome = document.querySelector('.chrome');
+  var menu = document.getElementById('menu');
+  if(!chrome) return;
+  var last = 0;
+  function scroller(){
+    return document.querySelector('.page.visible.scrolly') || document.scrollingElement;
+  }
+  function onScroll(){
+    if(menu && menu.classList.contains('open')){ chrome.classList.remove('hide'); return; }
+    var y = scroller().scrollTop;
+    if(y > last + 4 && y > 90) chrome.classList.add('hide');
+    else if(y < last - 4 || y <= 90) chrome.classList.remove('hide');
+    last = y;
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  document.addEventListener('scroll', onScroll, {passive:true, capture:true});
+  window.addEventListener('hashchange', function(){ chrome.classList.remove('hide'); last = 0; });
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('#menuBtn')) chrome.classList.remove('hide');
+  });
+})();
