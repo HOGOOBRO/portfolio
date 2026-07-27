@@ -72,17 +72,7 @@
   .menu-overlay.open{opacity:1; pointer-events:auto}
 }
 
-/* ── 문서 간 전환 ──
-   홈 안의 페이지 전환(세로 셔터)과 같은 결을 문서 사이에도 준다.
-   지원하지 않는 브라우저는 그냥 즉시 이동한다(깨지지 않음). */
-@view-transition{ navigation:auto }
-@media (prefers-reduced-motion:no-preference){
-  ::view-transition-old(root){ animation:nav-out .34s cubic-bezier(.65,0,.20,1) both }
-  ::view-transition-new(root){ animation:nav-in .46s cubic-bezier(.65,0,.20,1) both }
-}
-@keyframes nav-out{ to{ opacity:0; transform:scale(.985) } }
-@keyframes nav-in{ from{ opacity:0; clip-path:inset(45% 0 45% 0) }
-                   to{ opacity:1; clip-path:inset(0 0 0 0) } }
+/* 문서 간 전환은 nav.js의 셔터가 담당한다(브라우저 View Transition과 겹치면 모션이 두 번 재생됨) */
 
 /* ── 스크롤 진행 표시: 페이지 상단 1.5px 선 ── */
 .scroll-progress{position:fixed; inset:0 0 auto 0; height:1.5px; z-index:210; pointer-events:none}

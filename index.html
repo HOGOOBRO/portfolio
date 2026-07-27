@@ -448,7 +448,8 @@
     if(moved) return;
     var el=document.elementFromPoint(e.clientX, e.clientY);
     var card=el && el.closest ? el.closest('.card') : null;
-    if(card && card.href) location.href=card.href;
+    /* 직접 이동하지 않고 링크 클릭을 흉내 낸다. 그래야 nav.js의 셔터 전환을 똑같이 탄다 */
+    if(card && card.href) card.dispatchEvent(new MouseEvent('click', {bubbles:true, cancelable:true}));
   });
   wrap.addEventListener('pointercancel', release);
 

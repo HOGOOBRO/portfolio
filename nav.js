@@ -132,10 +132,18 @@
   function isHome(href){
     return href === '#/' || href === 'index.html' || /index\.html#\/?$/.test(href) || href === './' || href === '/';
   }
+  var closedAt = 0;
   function close_then(fn, center){
+    closedAt = Date.now();
     sh.className = (center ? 'shutter center' : 'shutter') + ' closing';
     setTimeout(fn, 380);
   }
+  /* 이벤트(pageshow·pagehide)는 브라우저·상황에 따라 안 오는 경우가 있다.
+     닫힌 셔터가 일정 시간 이상 남아 있으면 스스로 풀리게 해 검은 화면이 남지 않도록 한다.
+     bfcache에서 복원되면 이 검사가 곧바로 통과해 즉시 열린다. */
+  setInterval(function(){
+    if(/closing/.test(sh.className) && Date.now() - closedAt > 1500) resetShutter();
+  }, 300);
   function open_now(center){
     var b = center ? 'shutter center' : 'shutter';
     sh.className = b + ' opening';
@@ -144,6 +152,20 @@
     });
     setTimeout(function(){ sh.className = 'shutter'; }, 500);
   }
+  /* 뒤로가기로 돌아온 페이지가 bfcache에서 복원되면 셔터가 닫힌 채로 남아 검은 화면이 된다.
+     복원·표시 시점마다 셔터를 반드시 열어둔다. */
+  function resetShutter(){ sh.className = 'shutter'; }
+  function resetIfStuck(){ if(/closing/.test(sh.className)) resetShutter(); }
+  /* bfcache에서 복원된 경우에만 초기화한다(최초 로드에서 초기화하면 진입 애니메이션이 지워진다) */
+  window.addEventListener('pageshow', function(e){ if(e.persisted) resetShutter(); });
+  /* 페이지가 얼려지기 직전에 셔터를 비운다. 닫힌 채로 bfcache에 들어가면 뒤로가기 때 검은 화면이 남는다 */
+  window.addEventListener('pagehide', resetShutter);
+  window.addEventListener('popstate', resetIfStuck);
+  window.addEventListener('hashchange', function(){ setTimeout(resetIfStuck, 560); });
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) resetIfStuck();
+  });
+
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a');
     if(!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
@@ -166,6 +188,11 @@
     e.preventDefault();
     var toHome = isHome(href);
     if(toHome){ try{ sessionStorage.setItem('shutter_center','1'); }catch(e){} }
-    close_then(function(){ location.href = a.href; }, toHome);
+    close_then(function(){
+      location.href = a.href;
+      /* 이동을 건 직후 곧바로 셔터를 연다. 새 문서가 그려지므로 눈에 띄지 않고,
+         이 페이지가 bfcache에 저장될 때도 '열린 상태'로 저장돼 뒤로가기에서 검은 화면이 남지 않는다 */
+      resetShutter();
+    }, toHome);
   });
 })();
