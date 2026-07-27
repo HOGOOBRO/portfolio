@@ -122,14 +122,36 @@
   });
   setTimeout(function(){ sh.className = 'shutter'; }, 500);
 
+  function close_then(fn){
+    sh.className = 'shutter closing';
+    setTimeout(fn, 380);
+  }
+  function open_now(){
+    sh.className = 'shutter opening';
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ sh.className = 'shutter done'; });
+    });
+    setTimeout(function(){ sh.className = 'shutter'; }, 500);
+  }
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a');
     if(!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
     var href = a.getAttribute('href') || '';
-    if(!/\.html($|[#?])/.test(href) && !/^\/?$/.test(href)) return;   /* 같은 사이트 문서만 */
     if(a.hostname && a.hostname !== location.hostname) return;
+
+    /* 같은 문서 안의 해시 이동(홈의 Index·Work·About·Contact)도 문서 이동과 같은 셔터로 */
+    if(/^#/.test(href)){
+      if(href === location.hash || (href === '#/' && !location.hash)) return;
+      e.preventDefault();
+      if(window.__setMenu) window.__setMenu(false);
+      close_then(function(){
+        location.hash = href.slice(1);
+        setTimeout(open_now, 60);
+      });
+      return;
+    }
+    if(!/\.html($|[#?])/.test(href) && !/^\/?$/.test(href)) return;   /* 같은 사이트 문서만 */
     e.preventDefault();
-    sh.className = 'shutter closing';
-    setTimeout(function(){ location.href = a.href; }, 380);
+    close_then(function(){ location.href = a.href; });
   });
 })();
