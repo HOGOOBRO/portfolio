@@ -7,6 +7,9 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 body{background:var(--bg)}
 
+/* ── 키보드 포커스: 마우스 클릭에는 안 뜨고 탭 이동에만 뜬다 ── */
+:focus-visible{outline:2px solid var(--fg,#0A0A0A); outline-offset:3px; border-radius:2px}
+
 /* ── 상단 고정 크롬 ── */
 .chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex; justify-content:space-between;
         align-items:center; padding:1.15rem var(--side); mix-blend-mode:difference; color:#fff}

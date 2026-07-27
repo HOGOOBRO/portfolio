@@ -15,10 +15,12 @@
   /* 페이지 제목은 한글 문장이라 케이스 제목(라틴 고유명사)보다 작게 — 원문 그대로 2줄로 */
   .dtitle{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4vw,3.4rem);
           line-height:1.16; letter-spacing:-.02em; text-wrap:balance}
-  .grp{grid-column:1 / span 12; margin-top:clamp(3.4rem,8vh,6rem); padding-bottom:.7rem;
-       border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; gap:2rem; align-items:baseline}
-  .grp .gk{font-family:var(--mono); font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; color:var(--fg)}
-  .grp .gd{font-size:var(--t-cap); color:var(--fg-faint)}
+  /* 그룹 밴드: 라벨은 메타 열(1–2), 설명은 본문 원점(3)부터. 선은 도판 오른쪽 끝(10컬럼)에서 끝난다 */
+  .grp{grid-column:1 / span 10; margin-top:clamp(3.4rem,8vh,6rem); padding-bottom:.7rem;
+       border-bottom:1px solid var(--ink);
+       display:grid; grid-template-columns:repeat(10,1fr); column-gap:var(--gap); align-items:baseline}
+  .grp .gk{grid-column:1 / span 2; font-family:var(--mono); font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; color:var(--fg)}
+  .grp .gd{grid-column:3 / span 8; font-size:var(--t-cap); color:var(--fg-faint)}
 
   .dhead{grid-column:3 / span 6; display:flex; align-items:baseline; gap:1rem; margin-top:2.6rem}
   .dhead .num{font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--fg-faint)}
@@ -51,7 +53,9 @@
 
   @media (max-width:900px){
     .grp,.dhead,.dmeta,.dlead,.dfig,.prove,.dtags,.nda{grid-column:auto}
-    .grp{flex-direction:column; gap:.3rem}
+    .grp{display:block}
+    .grp .gk,.grp .gd{grid-column:auto; display:block}
+    .grp .gd{margin-top:.3rem}
     .dmeta{margin-top:.6rem}
   }
 </style>

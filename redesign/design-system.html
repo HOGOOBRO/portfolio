@@ -64,6 +64,20 @@
   .demo .fbar{margin:.5rem 0}
   .demo .ffill{width:var(--w)}
 
+  /* 견본 안에서 쓰는 축소판 */
+  .dsum .dsr{display:grid; grid-template-columns:7rem 1fr; gap:1.2rem; align-items:baseline;
+             padding:.8rem 0; border-bottom:1px solid var(--rule)}
+  .dsum .dsr:first-child{border-top:1px solid var(--rule)}
+  .dsum .v{font-size:.98rem; line-height:1.5}
+  .dsum .v b{font-weight:600}
+  .dmet{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+  .dmet .num{display:block; font-size:clamp(1.8rem,3vw,2.8rem)}
+  .dmet .lab{display:block; margin-top:.5rem}
+  .dfw .ph{aspect-ratio:16/4; border:1px solid var(--rule); background:rgba(10,10,10,.03);
+           display:flex; align-items:center; justify-content:center;
+           font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; color:var(--fg-faint)}
+  .dfw figcaption{margin-top:.8rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; max-width:52ch}
+
   /* 보이스: keep-all 비교 */
   .kacmp{grid-column:3 / span 8; margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
   .kacmp div{border:1px solid var(--rule); padding:1rem}
@@ -196,7 +210,13 @@
       <i data-n="3"></i><i data-n="4"></i><i data-n="5"></i><i data-n="6"></i><i data-n="7"></i><i data-n="8"></i>
       <i data-n="9"></i><i data-n="10"></i><i data-n="11"></i><i data-n="12"></i>
     </div></div>
-    <div class="row"><p class="gnote reveal">진한 두 칸이 메타 열입니다. 본문·요약·수치·구분선은 3번에서 시작해 8번에서 끝나고(6컬럼), 도판처럼 넓게 봐야 하는 것만 10~12번까지 씁니다. 오프셋은 <code>100vw/12</code> 단위로 계산해 화면 폭이 변해도 비율이 유지됩니다.</p></div>
+    <div class="row"><p class="gnote reveal">진한 두 칸이 메타 열입니다. 오프셋은 <code>100vw/12</code> 단위로 계산해 화면 폭이 변해도 비율이 유지됩니다.</p></div>
+    <div class="row"><div class="tok reveal" style="margin-top:1.6rem">
+      <div class="tr"><span class="tk">메타 라벨</span><span class="tv">col 1 – 2</span><span class="td">섹션 번호·이름, 역할, 연도처럼 본문을 거드는 정보</span></div>
+      <div class="tr"><span class="tk">본문 · 요약 · 수치</span><span class="tv">col 3 – 8</span><span class="td">읽는 글이 들어가는 자리. 한 줄이 너무 길어지지 않는 폭입니다.</span></div>
+      <div class="tr"><span class="tk">도판 · 표</span><span class="tv">col 3 – 10</span><span class="td">넓게 봐야 읽히는 것만. 시작점은 본문과 같습니다.</span></div>
+      <div class="tr"><span class="tk">구분선</span><span class="tv">콘텐츠 오른쪽 끝까지</span><span class="td">화면 끝까지 긋지 않습니다. 선이 내용보다 길면 오른쪽에 빈 공간이 생겨 그리드가 읽히지 않아요.</span></div>
+    </div></div>
   </section>
 
   <!-- 05 모션 -->
@@ -217,10 +237,24 @@
     <div class="row"><p class="viz-kicker reveal">움직임은 transform·opacity로만 만듭니다. 레이아웃을 다시 계산하게 만드는 속성(width·top 같은)은 쓰지 않아요. 그래야 저사양 기기에서도 끊기지 않습니다.</p></div>
   </section>
 
-  <!-- 06 컴포넌트 -->
+  <!-- 06 상태 -->
   <section class="sec theme-paper">
     <div class="row">
-      <div class="sn reveal"><p class="no">06</p><p class="nm">컴포넌트</p></div>
+      <div class="sn reveal"><p class="no">06</p><p class="nm">상태</p></div>
+      <p class="sec-lead reveal d1">누르면 즉시 반응하고, 마우스가 없는 기기에는 호버를 걸지 않습니다.</p>
+    </div>
+    <div class="row"><div class="tok reveal">
+      <div class="tr"><span class="tk">누름(:active)</span><span class="tv">scale(.94–.97) · .16s</span><span class="td">손가락이 닿는 순간 눌린 게 보입니다. 서버 응답을 기다리지 않아요.</span></div>
+      <div class="tr"><span class="tk">호버</span><span class="tv">(hover:hover) and (pointer:fine)</span><span class="td">마우스가 있는 기기에만. 터치에서 호버가 남아 붙는 문제를 없앱니다.</span></div>
+      <div class="tr"><span class="tk">키보드 포커스</span><span class="tv">:focus-visible · 2px 외곽선</span><span class="td">마우스 클릭에는 뜨지 않고 탭으로 이동할 때만 보입니다.</span></div>
+      <div class="tr"><span class="tk">링크 화살표</span><span class="tv">translateX(4–8px)</span><span class="td">어디로 가는지 방향을 미리 보여주는 정도로만</span></div>
+    </div></div>
+  </section>
+
+  <!-- 07 컴포넌트 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">07</p><p class="nm">컴포넌트</p></div>
       <p class="sec-lead reveal d1">앞의 토큰을 조립하면 이런 부품이 됩니다. 케이스 6종이 이걸 공유해요.</p>
     </div>
 
@@ -262,12 +296,51 @@
         <figure class="voice"><blockquote>“상단에 있는 건 광고처럼 보여서 안 봤어요.”</blockquote><figcaption class="who">62세 · 현장직</figcaption></figure>
       </div>
     </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">15초 요약 — .summary / .sm-row</p>
+      <div class="dsum">
+        <div class="dsr"><span class="k label">Role</span><span class="v">혼자 0부터 1까지 전부 · <b>기여도 100%</b></span></div>
+        <div class="dsr"><span class="k label">Impact</span><span class="v">광고 한 푼 없이 <b>44명 가입</b></span></div>
+      </div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">수치 밴드 — .metric</p>
+      <div class="dmet">
+        <div><span class="num">44</span><span class="lab label">가입 · 광고 0원</span></div>
+        <div><span class="num">2/3</span><span class="lab label">초대 수락률</span></div>
+        <div><span class="num">35%</span><span class="lab label">재방문</span></div>
+      </div>
+    </div></div>
+
+    <div class="row"><div class="demo reveal">
+      <p class="dl">이미지 도판 — .figwide (캡션은 본문 폭 안에서)</p>
+      <figure class="dfw">
+        <div class="ph">이미지</div>
+        <figcaption>도판은 3–10컬럼, 캡션은 52자 안쪽으로 묶어 한 줄이 길어지지 않게 합니다.</figcaption>
+      </figure>
+    </div></div>
   </section>
 
-  <!-- 07 보이스 -->
+  <!-- 08 접근성 -->
   <section class="sec theme-paper">
     <div class="row">
-      <div class="sn reveal"><p class="no">07</p><p class="nm">보이스</p></div>
+      <div class="sn reveal"><p class="no">08</p><p class="nm">접근성</p></div>
+      <p class="sec-lead reveal d1">기본으로 지키는 네 가지입니다.</p>
+    </div>
+    <div class="row"><div class="tok reveal">
+      <div class="tr"><span class="tk">움직임 줄이기</span><span class="tv">prefers-reduced-motion</span><span class="td">기기 설정을 켜면 등장·그래프·페이지 전환이 모두 꺼지고 최종 상태로 바로 보입니다.</span></div>
+      <div class="tr"><span class="tk">이미지 설명</span><span class="tv">alt</span><span class="td">장식용은 비워 두고, 내용을 담은 도판에는 무엇을 보여주는 그림인지 문장으로 적습니다.</span></div>
+      <div class="tr"><span class="tk">가로 스크롤</span><span class="tv">없음</span><span class="td">430px에서 실측해 페이지가 가로로 밀리지 않는 것을 확인합니다. 넓은 표·도판만 자기 상자 안에서 스크롤합니다.</span></div>
+      <div class="tr"><span class="tk">키보드</span><span class="tv">:focus-visible</span><span class="td">탭만으로 모든 링크에 닿을 수 있고, 지금 어디에 있는지 외곽선으로 보입니다.</span></div>
+    </div></div>
+  </section>
+
+  <!-- 09 보이스 -->
+  <section class="sec theme-paper">
+    <div class="row">
+      <div class="sn reveal"><p class="no">09</p><p class="nm">보이스</p></div>
       <p class="sec-lead reveal d1">글도 디자인만큼 규칙이 있어요.</p>
     </div>
     <div class="row"><div class="cols reveal">
