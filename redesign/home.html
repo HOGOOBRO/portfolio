@@ -104,9 +104,6 @@
   .hero .lockup p{margin-top:.9rem; max-width:34ch; font-weight:500;
                   font-size:clamp(.92rem,1.15vw,1.05rem); line-height:1.55; color:rgba(245,245,245,.55)}
   .hero .eyebrow{position:absolute; top:4.4rem; left:var(--side); z-index:3}
-  .hero .drag-hint{position:absolute; right:var(--side); bottom:clamp(1.8rem,6vh,3.6rem); z-index:3;
-                   font-family:var(--mono); font-size:.6rem; letter-spacing:.12em;
-                   text-transform:uppercase; color:rgba(245,245,245,.4)}
 
   /* ── 프로젝트 인덱스 ── */
   .windex a{display:block; color:inherit; text-decoration:none}
@@ -150,7 +147,15 @@
     .windex .nm,.windex .yr{grid-column:auto}
     .tl-row{display:block}
     .tl-row p{margin-top:.3rem}
-    .hero{--cw:clamp(150px,38vw,220px); --ch:clamp(150px,38vw,220px)}
+    .hero{--cw:clamp(150px,44vw,220px); --ch:clamp(150px,44vw,220px)}
+    /* 카드 안 글자가 데스크톱 크기 그대로라 좁은 카드에서 넘쳐 두 줄로 깨졌다 */
+    .card{padding:.8rem .9rem; border-radius:18px}
+    /* 좁은 카드에 세 줄은 많다. 분야·연도 태그는 빼고 이름과 한 줄만 남긴다(연도는 아래 Work 목록에 있음) */
+    .card .bot .tag{display:none}
+    .card .bot b{font-size:.88rem}
+    .card .bot span{font-size:.68rem; margin-top:.15rem}
+    .hero .lockup{right:var(--side)}
+    .hero .lockup p{max-width:none}
   }
   /* 산출물 링크 버튼 */
   .pill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem;
@@ -222,7 +227,6 @@
         <h1>Design less,<br />solve more.</h1>
         <p>The more complex the problem,<br />the more it calls for subtraction.</p>
       </div>
-      <p class="drag-hint">드래그해서 돌리고 · 카드를 눌러 케이스로</p>
     </section>
   </main>
 
@@ -369,7 +373,15 @@
     if(moved){ e.preventDefault(); e.stopPropagation(); }
   }, true);
   function release(){ dragging=false; wrap.classList.remove('grabbing'); }
-  wrap.addEventListener('pointerup', release);
+  /* pointerdown에서 setPointerCapture를 걸면 이후 click의 타깃이 카드(a)가 아니라 캐러셀이 된다.
+     그래서 카드를 눌러도 이동이 안 됐다. 끌지 않았으면 눌린 카드를 직접 찾아 이동시킨다. */
+  wrap.addEventListener('pointerup', function(e){
+    release();
+    if(moved) return;
+    var el=document.elementFromPoint(e.clientX, e.clientY);
+    var card=el && el.closest ? el.closest('.card') : null;
+    if(card && card.href) location.href=card.href;
+  });
   wrap.addEventListener('pointercancel', release);
 
   (function loop(){
