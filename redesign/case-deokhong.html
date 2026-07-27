@@ -34,7 +34,7 @@
   .bars{max-width:40rem}
 </style>
 </head>
-<body class="theme-paper">
+<body class="theme-paper lang-ko">
 
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
@@ -44,7 +44,7 @@
       <a class="brand" href="home.html#/">©kimjinhyeon</a>
       <a class="up" href="home.html#/work">Work</a>
     </span>
-    <button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <span class="right"><span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span><button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button></span>
   </header>
 
   <div class="menu-overlay" id="menu" aria-hidden="true">
@@ -67,7 +67,7 @@
   <!-- 히어로 -->
   <section class="case-hero theme-paper">
     <div class="row">
-      <div class="c s1 w2 reveal"><p class="label">Case 02</p><p class="cap" style="margin-top:.5rem">직접 만든 것<br />1인 빌드</p></div>
+      <div class="c s1 w2 reveal"><p class="label">Case 02</p><p class="cap" style="margin-top:.5rem"><span class="ko">직접 만든 것</span><span class="en">Built solo</span><br />1인 빌드</p></div>
       <div class="c s3 w7"><h1 class="case-title long reveal">deokhong.com</h1></div>
     </div>
     <div class="row" style="margin-top:2.6rem">
@@ -86,15 +86,15 @@
   <!-- 15초 요약 -->
   <section class="summary theme-paper">
     <div class="sm-row"><span class="k label">Role</span><span class="v">혼자 전부 (기획·카피·디자인·개발) · <b>기여도 100%</b></span></div>
-    <div class="sm-row"><span class="k label">Problem</span><span class="v">조직도 예산도 없는 무소속 후보를 빠르고 싸게 알려야 했다</span></div>
-    <div class="sm-row"><span class="k label">Decision</span><span class="v">‘읽게’가 아니라 ‘훑어도 남게’, 한 페이지를 위에서 아래로 설득 순서로</span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">조직도 예산도 없는 무소속 후보를 빠르고 싸게 알려야 했다</span><span class="en">Get an independent candidate (no org, no budget) known fast and cheap</span></span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">‘읽게’가 아니라 ‘훑어도 남게’, 한 페이지를 위에서 아래로 설득 순서로</span><span class="en">Not “make them read” but “stick at a glance”: one page, top-down persuasion</span></span></div>
     <div class="sm-row"><span class="k label">Impact</span><span class="v">후보 <b>당선</b>, 한 달 새 실방문 1,300명·조회 4,000회</span></div>
-    <div class="sm-row"><span class="k label">Output</span><span class="v">deokhong.com 라이브 (지금은 당선인 공식 페이지)</span></div>
+    <div class="sm-row"><span class="k label">Output</span><span class="v"><span class="ko">deokhong.com 라이브 (지금은 당선인 공식 페이지)</span><span class="en">deokhong.com live (now the official page)</span></span></div>
   </section>
 
   <!-- 문제 -->
   <section class="sec theme-paper">
-    <div class="row"><div class="sec-head reveal"><p class="label">문제</p></div></div>
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">문제</span><span class="en">Problem</span></p></div></div>
     <div class="row"><div class="single reveal">
       <p>2026년 지방선거, 제주 조천읍에 출마한 무소속 도의원 후보였습니다. 정당 후보는 현수막도, 조직도, 콜센터도 갖추고 시작하지만 무소속에겐 그게 전부 없어요. 가진 건 후보의 38년 행정 경력과 '말보다 실천'이라는 메시지뿐이었죠. 그래서 풀어야 할 문제는 분명했습니다. 짧은 선거 기간 동안, 적은 비용으로, 이름을 처음 듣는 유권자에게도 <b>'이 사람이 누구고 왜 찍어야 하는지'를 한 번에 납득</b>시키는 것.</p>
     </div></div>
@@ -102,7 +102,7 @@
 
   <!-- 구조 -->
   <section class="sec theme-paper">
-    <div class="row"><div class="sec-head reveal"><p class="label">구조</p></div>
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">구조</span><span class="en">Structure</span></p></div>
       <h2 class="sec-subhead reveal d1">훑어도 남게</h2>
     </div>
     <div class="row"><div class="cols reveal">
@@ -115,7 +115,7 @@
   <section class="sec theme-paper">
     <div class="row split">
       <div class="txt reveal">
-        <p class="label" style="margin-bottom:1.4rem">실행</p>
+        <p class="label" style="margin-bottom:1.4rem"><span class="ko">실행</span><span class="en">Execution</span></p>
         <div class="single" style="grid-column:auto">
           <p>카피는 표준어 대신 제주 방언('한번 써 봅서!')으로 풀어, 지역 사람에게 옆집 어른의 말처럼 들리게 했습니다.</p>
           <p>구현은 유세 현장에서 공유되는 링크라 대부분 휴대폰으로 열린다는 전제로, <b>모바일을 먼저 설계하고 PC를 맞췄어요.</b> 카카오톡·인스타그램에 붙어도 깨지지 않도록 OG 이미지와 메타까지 직접 챙겼고요. 정보구조·카피·디자인·퍼블리싱·SEO를 전부 혼자, Next.js로 만들었습니다.</p>
@@ -130,7 +130,7 @@
 
   <!-- 결과 -->
   <section class="sec theme-paper">
-    <div class="row"><div class="sec-head reveal"><p class="label">결과</p></div>
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">결과</span><span class="en">Impact</span></p></div>
       <h2 class="sec-subhead reveal d1">그리고 후보는<br />당선됐어요</h2>
     </div>
     <div class="row"><div class="single reveal">
@@ -138,19 +138,19 @@
     </div></div>
 
     <div class="metrics wide" style="margin-top:clamp(3rem,6vh,5rem)">
-      <div class="metric reveal"><span class="num" data-to="1300" data-suffix="+">1,300+</span><span class="lab label">선거기간 실방문자</span></div>
-      <div class="metric reveal d1"><span class="num" data-to="4000" data-suffix="+">4,000+</span><span class="lab label">누적 조회</span></div>
-      <div class="metric reveal d2"><span class="num" data-to="8">8</span><span class="lab label">온·오프 유입 채널</span></div>
+      <div class="metric reveal"><span class="num" data-to="1300" data-suffix="+">1,300+</span><span class="lab label"><span class="ko">선거기간 실방문자</span><span class="en">real visitors</span></span></div>
+      <div class="metric reveal d1"><span class="num" data-to="4000" data-suffix="+">4,000+</span><span class="lab label"><span class="ko">누적 조회</span><span class="en">page views</span></span></div>
+      <div class="metric reveal d2"><span class="num" data-to="8">8</span><span class="lab label"><span class="ko">온·오프 유입 채널</span><span class="en">inbound channels</span></span></div>
     </div>
 
     <div class="row" style="margin-top:clamp(3.4rem,7vh,6rem)">
       <p class="lead-note reveal">‘거점’이 될 수 있었던 건, 사람들이 실제로 머물렀기 때문이에요. 체류를 늘리려고 캠페인 중반에 <b>보도자료 섹션</b>을 투입했는데, 거기 닿은 사람은 평균 4.6편을 정독했고, 체류는 홈의 1.9배가 됐습니다.</p>
     </div>
     <div class="row"><div class="bars reveal" id="bars">
-      <div class="fbar" style="--w:53%"><span class="flab">홈 · 슬로건</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">22.5<small>초</small></span></div>
-      <div class="fbar key" style="--w:100%"><span class="flab">보도자료</span><span class="ftrack"><span class="ffill"></span></span><span class="fval">42.8<small>초</small></span></div>
+      <div class="fbar" style="--w:53%"><span class="flab"><span class="ko">홈 · 슬로건</span><span class="en">Home</span></span><span class="ftrack"><span class="ffill"></span></span><span class="fval">22.5<small>초</small></span></div>
+      <div class="fbar key" style="--w:100%"><span class="flab"><span class="ko">보도자료</span><span class="en">Press</span></span><span class="ftrack"><span class="ffill"></span></span><span class="fval">42.8<small>초</small></span></div>
     </div></div>
-    <div class="row"><p class="viz-kicker reveal">사람을 머물게 한 건 더 많은 말이 아니라, 믿을 만한 ‘증거’였다.</p></div>
+    <div class="row"><p class="viz-kicker reveal"><span class="ko">사람을 머물게 한 건 더 많은 말이 아니라, 믿을 만한 ‘증거’였다.</span><span class="en">What kept people wasn’t more talk; it was credible proof.</span></p></div>
   </section>
 
   <!-- 다음 케이스 -->

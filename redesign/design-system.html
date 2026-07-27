@@ -114,7 +114,7 @@
   }
 </style>
 </head>
-<body class="theme-paper">
+<body class="theme-paper lang-ko">
 
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
@@ -123,7 +123,7 @@
     <span class="left">
       <a class="brand" href="home.html#/">©kimjinhyeon</a>
     </span>
-    <button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <span class="right"><span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span><button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button></span>
   </header>
 
   <div class="menu-overlay" id="menu" aria-hidden="true">
@@ -146,7 +146,7 @@
   <!-- 히어로 -->
   <section class="case-hero theme-paper">
     <div class="row">
-      <div class="c s1 w2 reveal"><p class="label">Design System</p><p class="cap" style="margin-top:.5rem">디자인 시스템</p></div>
+      <div class="c s1 w2 reveal"><p class="label">Design System</p><p class="cap" style="margin-top:.5rem"><span class="ko">디자인 시스템</span><span class="en">Design System</span></p></div>
       <div class="c s3 w7"><h1 class="ds-title reveal">디자인도 감이 아니라,<br />규칙으로.</h1></div>
     </div>
     <div class="row" style="margin-top:2.4rem">
@@ -160,7 +160,7 @@
   <section class="sec theme-paper">
     <div class="row">
       <div class="sn reveal"><p class="no">00</p><p class="nm">원칙</p></div>
-      <p class="sec-lead reveal d1">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</p>
+      <p class="sec-lead reveal d1"><span class="ko">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</span><span class="en">Decide these four, and every other rule falls into place.</span></p>
     </div>
     <div class="row"><div class="nlist reveal">
       <div class="ni"><i>01</i><b>색 대신 위계로 말한다</b><p>UI는 흑백만 씁니다. 강조는 색이 아니라 크기·굵기·여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</p></div>
@@ -189,7 +189,7 @@
   <!-- 02 타이포그래피 -->
   <section class="sec theme-paper">
     <div class="row">
-      <div class="sn reveal"><p class="no">02</p><p class="nm">타이포그래피</p></div>
+      <div class="sn reveal"><p class="no">02</p><p class="nm"><span class="ko">타이포그래피</span><span class="en">Typography</span></p></div>
       <p class="sec-lead reveal d1">여섯 단계. 그 사이 크기는 쓰지 않습니다.</p>
     </div>
     <div class="row"><div class="spec-row reveal">
@@ -292,13 +292,13 @@
   <!-- 07 컴포넌트 -->
   <section class="sec theme-paper">
     <div class="row">
-      <div class="sn reveal"><p class="no">07</p><p class="nm">컴포넌트</p></div>
+      <div class="sn reveal"><p class="no">07</p><p class="nm"><span class="ko">컴포넌트</span><span class="en">Components</span></p></div>
       <p class="sec-lead reveal d1">앞의 토큰을 조립하면 이런 컴포넌트가 됩니다. 케이스 6종이 이걸 공유해요.</p>
     </div>
 
     <div class="row"><div class="demo reveal">
       <p class="dl">칩 / 태그 — .spec</p>
-      <div class="spec" style="margin-top:0"><span>1인 운영</span><span>가입 44 · 광고 0</span><span>PWA</span></div>
+      <div class="spec" style="margin-top:0"><span><span class="ko">1인 운영</span><span class="en">Run solo</span></span><span><span class="ko">가입 44 · 광고 0</span><span class="en">44 sign-ups · 0 ads</span></span><span>PWA</span></div>
     </div></div>
 
     <div class="row"><div class="demo reveal">
@@ -317,21 +317,21 @@
     <div class="row"><div class="demo reveal">
       <p class="dl">전후 비교 — .compare</p>
       <div class="compare">
-        <div class="col"><h6>AS-IS</h6><ol><li>기기 선택</li><li>플랜 선택</li><li>가입 가능 확인</li></ol></div>
-        <div class="col to"><h6>TO-BE</h6><ol><li>가입 가능 확인</li><li>플랜 선택</li><li>가입 완료</li></ol></div>
+        <div class="col"><h6>AS-IS</h6><ol><li><span class="ko">기기 선택</span><span class="en">Device</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li></ol></div>
+        <div class="col to"><h6>TO-BE</h6><ol><li><span class="ko">가입 가능 확인</span><span class="en">Eligibility</span></li><li><span class="ko">플랜 선택</span><span class="en">Plan</span></li><li><span class="ko">가입 완료</span><span class="en">Done</span></li></ol></div>
       </div>
     </div></div>
 
     <div class="row"><div class="demo reveal">
       <p class="dl">단계 흐름 — .flow</p>
-      <div class="flow"><b>휴리스틱 평가</b><i>→</i><b>아이트래킹</b><i>→</i><b>인터뷰</b></div>
+      <div class="flow"><b><span class="ko">휴리스틱 평가</span><span class="en">Heuristic</span></b><i>→</i><b><span class="ko">아이트래킹</span><span class="en">Eye-tracking</span></b><i>→</i><b><span class="ko">인터뷰</span><span class="en">Interviews</span></b></div>
     </div></div>
 
     <div class="row"><div class="demo reveal">
       <p class="dl">인용 — .voices</p>
       <div class="voices">
-        <figure class="voice"><blockquote>“일정은 아예 못 보고, 차를 먼저 봤어요.”</blockquote><figcaption class="who">46세 · 회사원</figcaption></figure>
-        <figure class="voice"><blockquote>“상단에 있는 건 광고처럼 보여서 안 봤어요.”</blockquote><figcaption class="who">62세 · 현장직</figcaption></figure>
+        <figure class="voice"><blockquote><span class="ko">“일정은 아예 못 보고, 차를 먼저 봤어요.”</span><span class="en">“I never even saw the dates. I went straight to cars.”</span></blockquote><figcaption class="who"><span class="ko">46세 · 회사원</span><span class="en">46 · office worker</span></figcaption></figure>
+        <figure class="voice"><blockquote><span class="ko">“상단에 있는 건 광고처럼 보여서 안 봤어요.”</span><span class="en">“The bar up top looked like an ad, so I ignored it.”</span></blockquote><figcaption class="who"><span class="ko">62세 · 현장직</span><span class="en">62 · field worker</span></figcaption></figure>
       </div>
     </div></div>
 

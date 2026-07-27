@@ -57,3 +57,29 @@
   window.addEventListener('hashchange', function(){ setTimeout(update, 60); });
   update();
 })();
+
+/* 한/영 전환: 선택은 브라우저에 저장되고 모든 페이지에서 유지된다 */
+(function(){
+  var ko = document.getElementById('ko-btn'), en = document.getElementById('en-btn');
+  if(!ko || !en) return;
+  /* 영문이 아직 다 채워지지 않은 페이지에서는 토글을 감춘다.
+     한 페이지 안에서 한글과 영문이 섞여 보이는 것보다 한국어만 보이는 편이 낫다. */
+  if(!document.body.classList.contains('i18n-ready')){
+    var box = ko.parentElement; if(box) box.style.display='none';
+    document.body.classList.add('lang-ko'); return;
+  }
+  function setLang(l){
+    var isEn = (l === 'en');
+    document.body.classList.toggle('lang-en', isEn);
+    document.body.classList.toggle('lang-ko', !isEn);
+    document.documentElement.lang = isEn ? 'en' : 'ko';
+    ko.classList.toggle('on', !isEn);
+    en.classList.toggle('on', isEn);
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  var saved = 'ko';
+  try{ saved = localStorage.getItem('lang') || 'ko'; }catch(e){}
+  setLang(saved);
+  ko.onclick = function(){ setLang('ko'); };
+  en.onclick = function(){ setLang('en'); };
+})();

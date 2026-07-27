@@ -86,3 +86,14 @@
 .scroll-progress i{display:block; height:100%; width:0; background:var(--fg,#0A0A0A);
                    transform-origin:0 50%; transition:width .08s linear}
 @media (prefers-reduced-motion:reduce){ .scroll-progress i{transition:none} }
+
+/* ── 한/영 전환 (현행 사이트와 같은 방식: body 클래스로 한쪽만 보인다) ── */
+.lang-ko .en{display:none}
+.lang-en .ko{display:none}
+.lang{display:inline-flex; gap:.45rem; align-items:baseline; margin-right:1.1rem}
+.lang button{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+             background:none; border:0; padding:0; cursor:pointer; color:rgba(255,255,255,.45);
+             transition:color var(--nav-fast)}
+.lang button.on{color:#fff}
+.chrome .right{display:flex; align-items:baseline}
+@media (max-width:900px){ .lang{margin-right:.8rem} }
