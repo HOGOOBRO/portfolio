@@ -466,25 +466,43 @@
   });
   wrap.addEventListener('pointercancel', release);
 
+  /* 매 프레임 카드 6장의 blur 값을 새로 쓰면 그때마다 다시 래스터화돼 휴대폰에서 버벅인다.
+     값을 단계로 끊고, 바뀔 때만 쓴다. 작은 화면에서는 블러 폭도 줄인다. */
+  var SMALL = matchMedia('(max-width:900px)').matches;
+  var BLUR_MAX = SMALL ? 6 : 12;
+  var last = cards.map(function(){ return {f:'', o:'', z:''}; });
+  function paintCards(){
+    cards.forEach(function(c,i){
+      var a=((rot+i*360/N)%360+360)%360;
+      var facing=Math.cos(a*Math.PI/180);
+      var back=(1-facing)/2;
+      var t=Math.max(0,(back-.45))/.55;
+      var blur=Math.round(t*BLUR_MAX*2)/2;                 /* 0.5px 단위 */
+      var bright=Math.round((1-t*.78)*20)/20;              /* 0.05 단위 */
+      var f='blur('+blur+'px) brightness('+bright+')';
+      var o=(Math.round((1-t*.12)*20)/20).toFixed(2);
+      var z=String(Math.round(100+facing*100));
+      var L=last[i];
+      if(f!==L.f){ c.style.filter=f; L.f=f; }
+      if(o!==L.o){ c.style.opacity=o; L.o=o; }
+      if(z!==L.z){ c.style.zIndex=z; L.z=z; }
+    });
+  }
+  var spinning = false;
   (function loop(){
     requestAnimationFrame(loop);
-    if(!homeVisible) return;                 /* 다른 페이지에선 연산 중단 */
+    if(!homeVisible || !spinning) return;    /* 다른 페이지·진입 전환 중에는 연산 중단 */
     if(!dragging){
       vel+=(0-vel)*.02;
       rot+=vel + autoVel;
       tilt+=(REST_TILT-tilt)*.06;
     }
     ring.style.transform='rotateX('+tilt+'deg) rotateY('+rot+'deg)';
-    cards.forEach(function(c,i){
-      var a=((rot+i*360/N)%360+360)%360;
-      var facing=Math.cos(a*Math.PI/180);
-      var back=(1-facing)/2;
-      var t=Math.max(0,(back-.45))/.55;
-      c.style.filter='blur('+(t*12)+'px) brightness('+(1-t*.78)+')';
-      c.style.opacity=String(1-t*.12);
-      c.style.zIndex=String(Math.round(100+facing*100));
-    });
+    paintCards();
   })();
+  /* 진입 커버가 걷힌 뒤에 돌기 시작한다. 전환과 3D 연산이 겹치면 버벅인다 */
+  paintCards();
+  setTimeout(function(){ spinning = true; }, 380);
 })();
 </script>
 <script src="nav.js"></script>
