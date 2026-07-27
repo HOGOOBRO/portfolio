@@ -120,6 +120,25 @@
     .hero .lockup{right:var(--side)}
     .hero .lockup p{max-width:none}
   }
+  /* 기고 글 목록 */
+  .wlist{list-style:none}
+  .wlist li{border-top:1px solid var(--rule)}
+  .wlist li:last-child{border-bottom:1px solid var(--rule)}
+  .wlist a{display:flex; justify-content:space-between; gap:1rem; align-items:baseline;
+           padding:.85rem 0; color:var(--fg-soft); text-decoration:none; font-size:.98rem;
+           transition:color var(--t-fast)}
+  .wlist .ar{color:var(--fg-faint); transition:transform .2s var(--ease-snap)}
+  @media (hover:hover) and (pointer:fine){
+    .wlist a:hover{color:var(--fg)} .wlist a:hover .ar{transform:translate(2px,-2px)}
+  }
+
+  /* 리빌: 케이스 페이지와 같은 결(16px 아래에서 .6s, 묶음은 .05s씩) */
+  .reveal{opacity:0; transform:translateY(16px);
+          transition:opacity .6s var(--ease-snap), transform .6s var(--ease-snap)}
+  .reveal.in{opacity:1; transform:none}
+  .reveal.d1{transition-delay:.05s} .reveal.d2{transition-delay:.10s}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none} }
+
   /* 산출물 링크 버튼 */
   .pill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem;
         letter-spacing:.06em; text-transform:uppercase; font-weight:500; color:var(--bg); background:var(--fg);
@@ -223,22 +242,46 @@
   <main class="page scrolly theme-paper" id="page-about" data-route="about" aria-hidden="true">
     <div class="page-inner">
       <div class="row">
-        <p class="c s1 w2 label">About</p>
-        <div class="c s3 w8">
-          <h2 class="display" style="font-size:clamp(2rem,4.2vw,4.2rem)">감이 아니라,<br />근거로 결정합니다.</h2>
-          <p class="body" style="margin-top:1.6rem">항공 승무원으로 시작해, 카페를 창업해 매출로 마케팅을 배웠고, 지금은 IT에서 서비스를 기획합니다. 자리는 계속 달라졌지만 방식은 같았습니다. <b>가설을 세우고, 실험하고, 숫자로 확인한 다음에 움직입니다.</b></p>
+        <p class="c s1 w2 label reveal">About</p>
+        <div class="c s3 w7">
+          <h2 class="display reveal" style="font-size:clamp(2rem,4.2vw,4.2rem)">감이 아니라, 근거로</h2>
+          <p class="lead reveal d1" style="margin-top:1.4rem">카페 매출부터 100개국 서비스까지,<br />문제는 달라도 결정의 기준은 같았습니다.</p>
         </div>
       </div>
+
       <div class="row" style="margin:var(--sect) 0">
-        <div class="c s3 w2"><p class="num">6.5×</p><p class="label" style="margin-top:.6rem">카페 월매출 · 5개월</p></div>
-        <div class="c s5 w2"><p class="num">3.4×</p><p class="label" style="margin-top:.6rem">결제 전환 · OPENPATH</p></div>
-        <div class="c s7 w2"><p class="num">100+</p><p class="label" style="margin-top:.6rem">가입 통일 · Samsung</p></div>
-        <div class="c s9 w2"><p class="num">44</p><p class="label" style="margin-top:.6rem">가입 · RaiLink · 광고 0</p></div>
+        <div class="c s3 w2 reveal"><p class="num">6.5×</p><p class="label" style="margin-top:.6rem">카페 월매출 · 5개월</p></div>
+        <div class="c s5 w2 reveal d1"><p class="num">3.4×</p><p class="label" style="margin-top:.6rem">결제 전환 · OPENPATH</p></div>
+        <div class="c s7 w2 reveal d1"><p class="num">100+</p><p class="label" style="margin-top:.6rem">가입 경험 통일 · Samsung Care+</p></div>
+        <div class="c s9 w2 reveal d2"><p class="num">NOW</p><p class="label" style="margin-top:.6rem">LG B2B 글로벌 사이트 · 기획 중</p></div>
       </div>
-      <div class="tl-row"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아) 론칭 · 현재 LG B2B 글로벌 사이트 기획</p></div>
-      <div class="tl-row"><span class="yr label">2023–25</span><h5>듀오톤 · PM · UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화</p></div>
-      <div class="tl-row"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위</p></div>
-      <div class="tl-row"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행</p></div>
+
+      <div class="row">
+        <div class="c s3 w6 reveal">
+          <p class="body">카페와 OPENPATH에서는 광고를 A/B로 시험해 답을 찾았고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해 가입 여정을 다시 설계했어요. 도구는 달랐지만, 감이 아니라 근거로 정한다는 원칙은 같았습니다.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:var(--sect)">
+        <p class="c s1 w2 label reveal">Career</p>
+        <div class="c s3 w6">
+          <h3 class="h1 reveal">거쳐 온 자리는 다 달랐지만,<br />결정하는 방식은 늘 같았어요.</h3>
+        </div>
+      </div>
+      <div class="row" style="margin-top:1.8rem">
+        <div class="c s3 w6 reveal d1">
+          <p class="body">제주항공 승무원으로 사회생활을 시작했어요. 카페를 공동 창업하면서는 마케팅을 책이 아니라 매출로 배웠습니다. 네이버 광고를 A/B로 시험하고 잘 되는 쪽에 집중해, 5개월 만에 월매출을 <b>6.5배</b>로 키웠죠.</p>
+          <p class="body" style="margin-top:1rem">IT로 옮긴 뒤엔 문제에 따라 방법을 바꿨어요. OPENPATH에서는 가설을 A/B로 검증해 결제 전환을 <b>3.4배</b>로 올렸고, Samsung Care+에서는 사람들이 실제로 어디서 가입을 결정하는지 데이터로 확인해, 나라마다 다르던 가입 여정을 <b>100여 개국</b> 하나로 정리했습니다. 지금은 Genesis 유럽을 거쳐 LG의 B2B 글로벌 사이트를 기획하고 있습니다.</p>
+          <p class="cap reveal d1" style="margin-top:1.4rem"><b style="color:var(--fg-soft)">그 외:</b> Sketch·XD로 흩어져 있던 삼성 디자인 시스템을 Figma 라이브러리로 일원화했고, Brunch에 디자인 관련 글을 발행했습니다.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--sect)">
+        <div class="tl-row reveal"><span class="yr label">2025 –</span><h5>Concentrix Catalyst · UX 기획</h5><p>Genesis 유럽(이탈리아 마켓) 론칭 · 현재 LG B2B 글로벌 사이트 기획.</p></div>
+        <div class="tl-row reveal"><span class="yr label">2023–25</span><h5>듀오톤 · PM·UX 기획</h5><p>신규 교육 플랫폼 출시 · Korail 사용성 테스트 · Samsung Care+ 가입 여정 표준화.</p></div>
+        <div class="tl-row reveal"><span class="yr label">2022–23</span><h5>ex WHITE · 카페 공동 창업</h5><p>광고 A/B로 월매출 6.5배 · 네이버 플레이스 3위.</p></div>
+        <div class="tl-row reveal"><span class="yr label">2019–21</span><h5>제주항공 · 객실 승무원</h5><p>2년간 국내·국제선 비행.</p></div>
+      </div>
     </div>
   </main>
 
@@ -246,20 +289,41 @@
   <main class="page scrolly theme-dark" id="page-contact" data-route="contact" aria-hidden="true">
     <div class="page-inner">
       <div class="row">
-        <p class="c s1 w2 label">Contact</p>
-        <div class="c s3 w9">
-          <p class="body" style="margin-bottom:1.6rem">다음 문제를 함께 풀고 싶습니다.</p>
-          <a class="contact-mail" href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
-          <div class="clinks">
-            <a href="https://railink.app" target="_blank" rel="noopener">RaiLink ↗</a>
-            <a href="https://deokhong.com" target="_blank" rel="noopener">deokhong.com ↗</a>
+        <p class="c s1 w2 label reveal">Contact</p>
+        <div class="c s3 w7">
+          <h2 class="h1 reveal">다음 문제를<br />함께 풀고 싶습니다.</h2>
+          <a class="contact-mail reveal d1" href="mailto:wlsgus11117@gmail.com" style="margin-top:1.8rem; display:inline-block">wlsgus11117@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:var(--sect)">
+        <p class="c s1 w2 label reveal">Writing</p>
+        <div class="c s3 w6 reveal d1">
+          <div class="clinks" style="margin-bottom:1.1rem">
             <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+          </div>
+          <p class="label" style="margin-bottom:.7rem">Duotone 블로그 · 기고</p>
+          <ul class="wlist">
+            <li><a href="https://brunch.co.kr/@duotoneofficial/45" target="_blank" rel="noopener">디자이너에게 필요한 건 창의성보다 논리예요 <span class="ar">↗</span></a></li>
+            <li><a href="https://brunch.co.kr/@duotoneofficial/44" target="_blank" rel="noopener">시선을 사로잡는 디자인, 3가지면 됩니다 <span class="ar">↗</span></a></li>
+            <li><a href="https://brunch.co.kr/@duotoneofficial/47" target="_blank" rel="noopener">디자인과 생성 AI, 미래의 디자이너는 어떤 일을 할까 <span class="ar">↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(3rem,7vh,5.5rem)">
+        <p class="c s1 w2 label reveal">Build</p>
+        <div class="c s3 w6 reveal d1">
+          <div class="clinks">
+            <a href="https://railink.app/?utm_source=portfolio&amp;utm_medium=referral&amp;utm_campaign=portfolio&amp;utm_content=contact" target="_blank" rel="noopener">railink.app ↗</a>
+            <a href="https://deokhong.com/?utm_source=portfolio&amp;utm_medium=referral&amp;utm_campaign=portfolio&amp;utm_content=contact" target="_blank" rel="noopener">deokhong.com ↗</a>
           </div>
         </div>
       </div>
+
       <div class="row" style="margin-top:var(--sect)">
         <p class="c s1 w4 label">© 2026 Kim Jinhyeon</p>
-        <p class="c s9 w4 label" style="grid-column-end:13; text-align:right">From Seoul</p>
+        <p class="c s9 w4 label" style="grid-column-end:13; text-align:right">서울에서</p>
       </div>
     </div>
   </main>
@@ -287,6 +351,27 @@
   }
   window.addEventListener('hashchange', route);
   route();
+
+  /* 리빌: 각 페이지가 자기 스크롤 영역을 root로 관찰한다.
+     페이지가 닫혀 있을 땐 관찰이 안 되므로, 전환 직후 보이는 페이지를 다시 관찰한다. */
+  var RMOTION=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function watchReveals(page){
+    var els=[].slice.call(page.querySelectorAll('.reveal:not(.in)'));
+    if(!els.length) return;
+    if(RMOTION || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {root: page.classList.contains('scrolly') ? page : null, threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  function revealVisible(){
+    var vis=document.querySelector('.page.visible');
+    if(vis) setTimeout(function(){ watchReveals(vis); }, 60);
+  }
+  revealVisible();
+  window.addEventListener('hashchange', revealVisible);
 
   /* ── 확정 캐러셀 (수치 고정: GAP 1.24 · FLARE 1.5 · 속도 .17) ── */
   var ring=document.getElementById('ring'), wrap=document.getElementById('carousel');
