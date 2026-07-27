@@ -3,7 +3,8 @@
 - 작업 위치: `개인_Resume/portfolio-repo`, 브랜치 `redesign-editorial` (main=현 배포본, 손대지 말 것)
 - 로컬 프리뷰: `cd portfolio-repo/redesign && python3 -m http.server 8742` → home.html / case-railink.html
 - 헤드리스 검증: `chrome --headless=new --screenshot` (Theo는 CLI라 화면 못 봄 → 반드시 스크린샷 찍어 확인 후 보고)
-- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / **3 케이스 6종 전부**(railink·deokhong·samsung·openpath·genesis·korail) + 공통 조판 CSS(case.css)
+- 완료: 0 세팅 / 1 그리드시스템(grid.css) / 2 홈 SPA(home.html) / **3 케이스 6종 전부**(railink·deokhong·samsung·openpath·genesis·korail) + 공통 조판 CSS(case.css) / 산출물(deliverables.html) / 디자인 시스템(design-system.html, 개편 시스템 기준으로 재작성)
+- 페이지 전체: home.html(Index·Work·About·Contact SPA) + case-*.html 6 + deliverables.html + design-system.html. 메뉴는 6항목.
 - **다음 할 일: 4 이미지 경량화(WebP)·성능·접근성 → 5 모바일 → 6 최종 검수 후 main 머지(G2)**
 - 조판 공통 규칙은 `case.css`에 있음. 케이스별 1회성 그래프만 각 파일 `<style>`에.
   공통 컴포넌트: sec/cols/single · split+fig+ftile · summary(sm-row) · compare · flow · voices · shots(필름스트립) · figwide/figpair · metrics · next · reveal
