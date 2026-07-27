@@ -1,0 +1,132 @@
+/* ─────────────────────────────────────────────────────────
+   공통 내비게이션: 고정 크롬 + 전체화면 메뉴 + 문서 간 전환
+   9개 페이지가 같은 파일을 쓴다. 페이지마다 다른 링크를 심지 않는다.
+   자리 규칙: 왼쪽 끝 = 로고(홈으로), 오른쪽 끝 = Menu.
+   계층이 있는 페이지(케이스)만 로고 옆에 'Work /'를 붙인다.
+   ───────────────────────────────────────────────────────── */
+:root{
+  --nav-speed:.7s;  --nav-curve:cubic-bezier(.80,0,.20,1);
+  --nav-fast:.2s ease; --nav-base:.3s ease; --nav-slow:.4s ease;
+}
+
+.chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex;
+        justify-content:space-between; align-items:flex-start;
+        padding:1.15rem var(--side); mix-blend-mode:difference; color:#fff;
+        pointer-events:none}
+.chrome > *{pointer-events:auto}
+.chrome a{color:inherit; text-decoration:none}
+.chrome .left{display:flex; align-items:baseline; gap:.9rem}
+.chrome .brand{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+               text-transform:uppercase; color:#fff}
+/* 계층 표시 겸 상위로 가는 링크 */
+.chrome .up{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+            text-transform:uppercase; color:rgba(255,255,255,.55);
+            transition:color var(--nav-fast)}
+.chrome .up::after{content:" /"; opacity:.5}
+@media (hover:hover) and (pointer:fine){ .chrome .up:hover{color:#fff} }
+.menu-trigger{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+              text-transform:uppercase; color:#fff; background:none; border:0; cursor:pointer;
+              padding:0; transition:opacity var(--nav-slow), transform .16s var(--ease-snap)}
+.menu-trigger:active{transform:scale(.94)}
+
+/* ── 전체화면 메뉴 오버레이 ── */
+.menu-overlay{position:fixed; inset:0; z-index:150; background:#000;
+              transform:scaleY(0); transition:transform var(--nav-speed) var(--nav-curve);
+              padding:clamp(80px,11vh,150px) var(--side) var(--side);
+              display:flex; flex-direction:column; justify-content:space-between}
+.menu-overlay.open{transform:scaleY(1)}
+.menu-list{padding-left:calc(100vw / 6); display:flex; flex-direction:column;
+           opacity:0; transition:opacity var(--nav-base)}
+.menu-overlay.open .menu-list{opacity:1; transition:opacity var(--nav-slow) .35s}
+.menu-list a{font-family:var(--serif); font-weight:500; color:#F5F5F5; text-decoration:none;
+             font-size:clamp(2rem,5.4vw,4.6rem); line-height:1.34; letter-spacing:-.02em;
+             padding:.06em 0 .06em 1.5em; position:relative;
+             display:inline-block; width:fit-content; transition:opacity var(--nav-fast)}
+/* 번호는 제목의 캡 라인에 맞춰 좌상단에 고정한다. em 단위라 글자 크기가 변해도 같이 따라간다 */
+.menu-list a .idx{position:absolute; left:0; top:.62em;
+                  font-family:var(--mono); font-size:.145em; letter-spacing:.14em;
+                  color:rgba(245,245,245,.4)}
+/* 지금 어디에 있는지 */
+.menu-list a[aria-current]{opacity:1}
+.menu-list a[aria-current] .idx{color:#F5F5F5}
+.menu-list a[aria-current]::after{content:"—"; margin-left:1rem; font-family:var(--mono);
+                                  font-size:.9rem; vertical-align:middle; opacity:.55}
+@media (hover:hover) and (pointer:fine){
+  .menu-list:hover a{opacity:.35}
+  .menu-list a:hover{opacity:1}
+}
+.menu-foot{padding-left:calc(100vw / 6); display:flex; gap:2rem; flex-wrap:wrap;
+           opacity:0; transition:opacity var(--nav-base)}
+.menu-overlay.open .menu-foot{opacity:1; transition:opacity var(--nav-slow) .5s}
+.menu-foot > a, .menu-foot > span{font-family:var(--mono); font-size:var(--t-label);
+           letter-spacing:.13em; text-transform:uppercase; color:rgba(245,245,245,.45);
+           text-decoration:none}
+.menu-foot a:hover{color:#F5F5F5}
+
+@media (max-width:900px){
+  .menu-list, .menu-foot{padding-left:0}
+  .chrome .left{gap:.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .menu-overlay{transition:opacity var(--nav-base); transform:none; opacity:0; pointer-events:none}
+  .menu-overlay.open{opacity:1; pointer-events:auto}
+}
+
+/* ── 문서 간 전환 ──
+   홈 안의 페이지 전환(세로 셔터)과 같은 결을 문서 사이에도 준다.
+   지원하지 않는 브라우저는 그냥 즉시 이동한다(깨지지 않음). */
+@view-transition{ navigation:auto }
+@media (prefers-reduced-motion:no-preference){
+  ::view-transition-old(root){ animation:nav-out .34s cubic-bezier(.65,0,.20,1) both }
+  ::view-transition-new(root){ animation:nav-in .46s cubic-bezier(.65,0,.20,1) both }
+}
+@keyframes nav-out{ to{ opacity:0; transform:scale(.985) } }
+@keyframes nav-in{ from{ opacity:0; clip-path:inset(45% 0 45% 0) }
+                   to{ opacity:1; clip-path:inset(0 0 0 0) } }
+
+/* ── 스크롤 진행 표시: 페이지 상단 1.5px 선 ── */
+.scroll-progress{position:fixed; inset:0 0 auto 0; height:1.5px; z-index:210; pointer-events:none}
+.scroll-progress i{display:block; height:100%; width:0; background:var(--fg,#0A0A0A);
+                   transform-origin:0 50%; transition:width .08s linear}
+@media (prefers-reduced-motion:reduce){ .scroll-progress i{transition:none} }
+
+/* ── 한/영 전환 (현행 사이트와 같은 방식: body 클래스로 한쪽만 보인다) ── */
+.lang-ko .en{display:none}
+.lang-en .ko{display:none}
+.lang{display:inline-flex; gap:.45rem; align-items:baseline; margin-right:1.1rem}
+.lang button{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+             background:none; border:0; padding:0; cursor:pointer; color:rgba(255,255,255,.45);
+             transition:color var(--nav-fast)}
+.lang button.on{color:#fff}
+.chrome .right{display:flex; align-items:baseline}
+@media (max-width:900px){ .lang{margin-right:.8rem} }
+
+/* 크롬은 배경 없이 mix-blend-mode로 얹혀 있어, 본문이 그 아래를 지나면 글자가 겹쳐 보인다.
+   내려 읽는 동안에는 숨기고, 올리면 바로 되돌린다. 메뉴가 열려 있으면 항상 보인다. */
+.chrome{transition:transform .28s var(--ease-snap), opacity .28s ease}
+.chrome.hide{transform:translateY(-140%); opacity:0}
+@media (prefers-reduced-motion:reduce){ .chrome{transition:none} }
+
+/* 스크롤을 시작하면 크롬에 배경 바가 생긴다. 배경 없이 얹혀 있으면 본문 글자와 겹쳐 읽히지 않는다.
+   맨 위(히어로 위)에서는 배경 없이 mix-blend-mode로 얹힌 상태를 유지한다. */
+.chrome.solid{mix-blend-mode:normal; background:var(--bg,#fff); color:var(--fg,#0A0A0A);
+              border-bottom:1px solid var(--rule,#E9E9E9);
+              transition:transform .28s var(--ease-snap), opacity .28s ease, background .2s ease}
+.chrome.solid .brand,.chrome.solid .menu-trigger{color:var(--fg,#0A0A0A)}
+.chrome.solid .up{color:var(--fg-faint,#8F8F8F)}
+.chrome.solid .lang button{color:var(--fg-faint,#8F8F8F)}
+.chrome.solid .lang button.on{color:var(--fg,#0A0A0A)}
+
+/* 문서 간 전환 셔터: 홈의 페이지 전환과 같은 결. View Transition에만 기대지 않고 직접 그린다 */
+.shutter{position:fixed; inset:0; z-index:300; background:#000; pointer-events:none;
+         transform:scaleY(0); transform-origin:50% 100%;
+         transition:transform .42s cubic-bezier(.65,0,.20,1)}
+.shutter.closing{transform:scaleY(1); transform-origin:50% 100%}
+.shutter.opening{transform:scaleY(1); transform-origin:50% 0}
+.shutter.done{transform:scaleY(0); transform-origin:50% 0}
+@media (prefers-reduced-motion:reduce){ .shutter{display:none} }
+
+/* Home(Index) 진입만 가운데에서 갈라지는 결. 메뉴 오버레이가 쓰는 원점과 같다 */
+.shutter.center.closing{transform:scaleY(1); transform-origin:50% 50%}
+.shutter.center.opening{transform:scaleY(1); transform-origin:50% 50%}
+.shutter.center.done{transform:scaleY(0); transform-origin:50% 50%}

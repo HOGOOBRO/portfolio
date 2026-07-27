@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script src="analytics.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OPENPATH · 김진현 포트폴리오</title>
+<meta name="description" content=""무료로 써본 사람이 결제한다"를 31일 A/B로 검증. 가입 3배, 결제 전환 3.4배." />
+<link rel="canonical" href="https://hogoobro.github.io/portfolio/case-openpath.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0A0A0A" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hogoobro.github.io/portfolio/case-openpath.html" />
+<meta property="og:title" content="OPENPATH · 김진현 포트폴리오" />
+<meta property="og:description" content=""무료로 써본 사람이 결제한다"를 31일 A/B로 검증. 가입 3배, 결제 전환 3.4배." />
+<meta property="og:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="OPENPATH · 김진현 포트폴리오" />
+<meta name="twitter:description" content=""무료로 써본 사람이 결제한다"를 31일 A/B로 검증. 가입 3배, 결제 전환 3.4배." />
+<meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<link rel="stylesheet" href="case.css" />
+<link rel="stylesheet" href="nav.css" />
+<style>
+  /* AARRR 퍼널 — 원본 폴리곤을 그대로 쓰고 색만 흑백으로 */
+  .funnelviz{grid-column:3 / span 5; margin-top:1.4rem}
+  .funnelviz svg{display:block; width:100%; max-width:30rem; height:auto}
+  .funnelviz .st{fill:#EDEDED; stroke:#FFF; stroke-width:1.5; opacity:0;
+                 transition:opacity .5s var(--ease-out)}
+  .funnelviz.in .st{opacity:1}
+  .funnelviz .st:nth-of-type(2){transition-delay:.06s}
+  .funnelviz .st:nth-of-type(3){transition-delay:.12s}
+  .funnelviz .st:nth-of-type(4){transition-delay:.18s}
+  .funnelviz .st:nth-of-type(5){transition-delay:.24s}
+  .funnelviz .st.hi{fill:#0A0A0A}
+  .funnelviz .t{font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:500; fill:#8F8F8F; text-anchor:start}
+  .funnelviz .g{font-family:'Pretendard Variable',Pretendard,sans-serif; font-size:12px; fill:#B4B4B4; text-anchor:start}
+  .funnelviz .t.on{fill:#0A0A0A; font-weight:600} .funnelviz .g.on2{fill:#4A4A4A}
+  .funnel-note{grid-column:9 / span 4; margin-top:1.4rem; font-size:.92rem; line-height:1.7; color:var(--fg-soft)}
+  .funnel-note b{color:var(--fg); font-weight:600}
+
+  /* A/B 결과 표 */
+  .ab{grid-column:3 / span 6; margin-top:2rem; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
+  .ab .col{border-top:1px solid var(--rule); padding-top:1rem}
+  .ab .col.win{border-top:2px solid var(--ink)}
+  .ab .tag-ab{font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase;
+               color:var(--fg-faint); margin-bottom:1rem}
+  .ab .col.win .tag-ab{color:var(--fg)}
+  .ab .r{display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+         padding:.62rem 0; border-bottom:1px solid var(--rule); font-size:.9rem; color:var(--fg-soft)}
+  .ab .r b{font-family:var(--serif); font-size:1.25rem; font-variant-numeric:tabular-nums; color:var(--fg-faint)}
+  .ab .col.win .r b{color:var(--fg); font-weight:600}
+
+  /* 폰 자산이 546px 원본이라, 2x 밀도를 지키려 표시 폭을 줄임 */
+  .split .fig.tint img{width:60%}
+
+  @media (prefers-reduced-motion:reduce){ .funnelviz .st{transition:none; opacity:1} }
+  @media (max-width:900px){
+    .funnelviz,.funnel-note,.ab{grid-column:auto}
+    .funnelviz svg{margin:0 auto}
+    .ab{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body class="theme-paper lang-ko i18n-ready">
+
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+  <!-- ── 공통: 고정 크롬 + 전체화면 메뉴 (nav.css / nav.js) ── -->
+  <header class="chrome">
+    <span class="left">
+      <a class="brand" href="index.html#/">©kimjinhyeon</a>
+      <a class="up" href="index.html#/work">Work</a>
+    </span>
+    <span class="right"><span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span><button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button></span>
+  </header>
+
+  <div class="menu-overlay" id="menu" aria-hidden="true">
+    <nav class="menu-list">
+      <a data-nav="index" href="index.html#/"><span class="idx">01</span>Index</a>
+      <a data-nav="work" href="index.html#/work"><span class="idx">02</span>Work</a>
+      <a data-nav="deliverables" href="deliverables.html"><span class="idx">03</span>Deliverables</a>
+      <a data-nav="design-system" href="design-system.html"><span class="idx">04</span>Design System</a>
+      <a data-nav="about" href="index.html#/about"><span class="idx">05</span>About</a>
+      <a data-nav="contact" href="index.html#/contact"><span class="idx">06</span>Contact</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
+      <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+      <span>Seoul</span>
+    </div>
+  </div>
+
+  <!-- 히어로 -->
+  <section class="case-hero theme-paper">
+    <div class="row">
+      <div class="c s1 w2 reveal"><p class="label">Case 04</p><p class="cap" style="margin-top:.5rem"><span class="ko">듀오톤<br />Product Manager</span><span class="en">Duotone<br />Product Manager</span></p></div>
+      <div class="c s3 w7"><h1 class="case-title reveal">OPENPATH</h1></div>
+    </div>
+    <div class="row" style="margin-top:2.6rem">
+      <div class="c s3 w5">
+        <p class="case-essence reveal d1"><span class="ko">"무료 강의를 써본 사람이 결제한다"는<br />가설을 31일간 검증했습니다.</span><span class="en">“People who try a free lesson convert”:<br />a hypothesis I tested over 31 days.</span></p>
+        <div class="spec reveal d1"><span><span class="ko">단독 그로스 PM</span><span class="en">Sole Growth PM</span></span><span><span class="ko">팀 6명 · PM2·영상감독2·디자인2</span><span class="en">Team of 6</span></span><span>GA4</span></div>
+      </div>
+      <div class="c s9 w3 reveal d2">
+        <p class="label">Role</p>
+        <p class="cap" style="margin-top:.4rem"><span class="ko">IT 디자인 교육 플랫폼 0→1<br />2023.06–12 · 기여도 60%</span><span class="en">Design edtech platform 0→1<br />2023.06–12 · 60% mine</span></p>
+        <a class="live" href="https://openpath.kr" target="_blank" rel="noopener">openpath.kr <span class="ar">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15초 요약 -->
+  <section class="summary theme-paper">
+    <div class="sm-row"><span class="k label">Role</span><span class="v"><span class="ko">그로스 실험 주도 (팀 6명) · <b>기여도 60%</b></span><span class="en">Led the growth experiment (team of 6) · <b>60% mine</b></span></span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">사람은 들어오는데 결제까지 안 간다 (가입 5%, 가입자의 결제 1.6%)</span><span class="en">People arrive but don’t pay (5% sign-up, 1.6% of sign-ups paying)</span></span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">광고를 더 잘 만드는 대신, ‘제품을 먼저 써보면 결제한다’를 무료 강의로 실험</span><span class="en">Not better ads but a test of “try it first, then you pay,” via a free lesson</span></span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">31일 실험으로 <b>가입 3배, 결제 3.4배</b></span><span class="en">A 31-day test: <b>3× sign-ups, 3.4× payments</b></span></span></div>
+    <div class="sm-row"><span class="k label">Output</span><span class="v"><span class="ko">openpath.kr 라이브</span><span class="en">openpath.kr live</span></span></div>
+    <p class="sm-foot"><span class="ko">*기여도 60%: 단독 그로스 PM으로 실험 가설·A/B 설계·데이터 분석을 주도, 구현·디자인은 6인 팀</span><span class="en">*60% — as sole Growth PM I drove the hypothesis, A/B design, and analysis; build and design by the team of 6</span></p>
+  </section>
+
+  <!-- 문제 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">문제</span><span class="en">Problem</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">트래픽은 있는데<br />전환이 없다</span><span class="en">Traffic,<br />no conversion</span></h2>
+    </div>
+    <div class="row split">
+      <div class="txt reveal">
+        <div class="single" style="grid-column:auto">
+          <p><span class="ko">OPENPATH는 디자인 에이전시 듀오톤이 만든 IT 디자인 교육 플랫폼입니다. 여섯 명이 함께 만들었고, 저는 PM으로 론칭과 그로스를 맡았어요. 신규 서비스라 아는 사람이 없으니, 먼저 Meta 광고로 사람을 모았습니다. 들어오긴 했어요. 2023년 9월 2주 동안 <b>2,550명</b>. 그런데 대부분 그냥 나갔습니다.</span><span class="en">OPENPATH is an IT-design education platform built by Duotone, a design agency. A team of six built it; as PM, I owned the launch and growth. A brand-new service starts unknown, so we brought people in with Meta ads first. And they came: <b>2,550</b> over two weeks in Sep 2023. But most just left.</span></p>
+          <p><span class="ko">퍼널을 AARRR로 끊어 보니 막힌 곳은 유입이 아니라 그다음이었어요. <b>가입 전환 5%, 가입자의 결제 전환 1.6%.</b> 트래픽을 더 사는 건 밑 빠진 독에 물 붓기였고, 진짜 풀어야 할 곳은 들어온 사람을 붙잡는 Activation 단계였습니다.</span><span class="en">Cutting the funnel with AARRR, the blockage wasn't acquisition; it was everything after: <b>5% sign-up, 1.6% of sign-ups paying.</b> Buying more traffic was pouring water into a leaky bucket. The real thing to fix was Activation: holding the people who already arrived.</span></p>
+        </div>
+      </div>
+      <figure class="fig tint reveal d1">
+        <img src="openpath-phone.webp" alt="OPENPATH 서비스 화면" loading="lazy" />
+        <div class="ftile"><p class="n">2,550</p><p class="l"><span class="ko">2023.09 · 2주간 유입</span><span class="en">Sep 2023 · 2 weeks</span></p></div>
+      </figure>
+    </div>
+
+    <div class="row"><p class="viz-lbl reveal"><span class="ko">AARRR 퍼널 · 어디서 막혔나</span><span class="en">AARRR funnel · where it blocked</span></p></div>
+    <div class="row">
+      <div class="funnelviz reveal" id="funnelviz">
+        <svg viewBox="0 0 500 348" role="img" aria-label="AARRR 퍼널: Acquisition, Activation, Retention, Referral, Revenue 5단계 중 Activation과 Revenue가 막힌 단계">
+          <polygon class="st" points="140,8 500,8 467.5,68 172.5,68"/>
+          <polygon class="st hi" points="176.9,76 463.1,76 430.7,136 209.3,136"/>
+          <polygon class="st" points="213.6,144 426.4,144 393.9,204 246.1,204"/>
+          <polygon class="st" points="250.4,212 389.6,212 357.2,272 282.8,272"/>
+          <polygon class="st hi" points="287.4,280 352.6,280 320,340"/>
+          <text class="t" x="0" y="34">Acquisition</text>
+          <text class="g ko" x="0" y="52">유입</text><text class="g en" x="0" y="52">Traffic in</text>
+          <text class="t on" x="0" y="102">Activation</text>
+          <text class="g on2 ko" x="0" y="120">가입 · 첫 경험</text><text class="g on2 en" x="0" y="120">Sign-up · first value</text>
+          <text class="t" x="0" y="170">Retention</text>
+          <text class="g ko" x="0" y="188">재방문</text><text class="g en" x="0" y="188">Coming back</text>
+          <text class="t" x="0" y="238">Referral</text>
+          <text class="g ko" x="0" y="256">추천</text><text class="g en" x="0" y="256">Word of mouth</text>
+          <text class="t on" x="0" y="306">Revenue</text>
+          <text class="g on2 ko" x="0" y="324">결제</text><text class="g on2 en" x="0" y="324">Payment</text>
+        </svg>
+      </div>
+      <p class="funnel-note reveal d1"><span class="ko">여정을 다섯 단계로 끊어 보면 막힌 곳이 보여요. 유입(Acquisition)은 충분했는데, 가입(Activation)에서 <b>100명 중 95명이 새고</b>, 결제(Revenue)까지 간 사람은 가입자의 <b>1.6%</b>였습니다.</span><span class="en">Cut the journey into five stages and the blockage shows itself: traffic was fine, but <b>95 of every 100 leaked at Activation</b>, and only <b>1.6%</b> of sign-ups reached Revenue.</span></p>
+    </div>
+  </section>
+
+  <!-- 가설 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">가설</span><span class="en">Hypothesis</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">광고가 아니라 경험</span><span class="en">Not ads but experience</span></h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p><span class="ko">흔한 답은 '광고 소재를 더 잘 만들자'입니다. 하지만 클릭률은 이미 나쁘지 않았어요. 그래서 질문을 뒤집었습니다. 들어온 사람이 결제까지 안 가는 이유가 관심이 부족해서가 아니라, 제품을 충분히 겪어보지 못해서라면?</span><span class="en">The usual answer is “make better ads.” But click-through was already fine. So I flipped the question: what if people don't convert for lack of interest, but because they never really experienced the product?</span></p>
+      <p><span class="ko">무료 강의를 한 번이라도 들어본 사람은 가치를 머리로 이해한 게 아니라 몸으로 느꼈을 테니 결제로 이어질 거라고 봤습니다. 가설을 두 줄로 좁혔어요.</span><span class="en">Someone who takes even one free lesson has felt the value, not just understood it, so they should convert. I narrowed it to two claims.</span></p>
+    </div></div>
+    <div class="row"><div class="flow reveal">
+      <b class="on"><span class="ko">① 무료 강의는 가입을 유도한다</span><span class="en">① free lessons drive sign-up</span></b><b class="on"><span class="ko">② 수강 경험은 결제로 이어진다</span><span class="en">② the experience drives payment</span></b>
+    </div></div>
+  </section>
+
+  <!-- 실험 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">실험: 31일 A/B</span><span class="en">Experiment: 31-day A/B</span></p></div></div>
+    <div class="row"><div class="single reveal">
+      <p><span class="ko">검증은 단순하게 설계했습니다. Meta 광고를 두 갈래로 나눠, 한쪽(A)은 일반적인 서비스 소개로, 다른 쪽(B)은 무료 강의 자체를 미끼로 유입을 받았어요. <b>2023년 10월, 31일간, 7,130명</b>을 GA4 이벤트로 추적했고, 두 집단의 유일한 차이는 '제품을 먼저 경험했는가'였습니다.</span><span class="en">I kept the test simple. I split Meta ads two ways: group A entered through a standard service pitch, group B through the free lesson itself as the hook. <b>31 days, N=7,130</b> (Oct 2023), tracked via GA4. The only difference between the groups was whether they'd experienced the product first.</span></p>
+    </div></div>
+    <div class="row"><div class="flow reveal">
+      <b>Problem</b><i>→</i><b>Hypothesis</b><i>→</i><b>Experiment</b><i>→</i><b>Validation</b>
+    </div></div>
+  </section>
+
+  <!-- 결과 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">결과</span><span class="en">Impact</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">경험이 전환을 만들었다</span><span class="en">Experience converts</span></h2>
+    </div>
+    <div class="row"><div class="single reveal">
+      <p><span class="ko">결과는 가설대로였습니다. 무료 강의를 거쳐 들어온 B 집단이 가입과 결제 모두 크게 앞섰어요.</span><span class="en">The result matched the hypothesis: group B, entering through the free lesson, led on both sign-up and payment.</span></p>
+    </div></div>
+    <div class="row"><div class="ab reveal">
+      <div class="col">
+        <div class="tag-ab"><span class="ko">A · 일반 유입</span><span class="en">A · standard</span></div>
+        <div class="r"><span><span class="ko">방문자</span><span class="en">visitors</span></span><b>4,650</b></div>
+        <div class="r"><span><span class="ko">가입 전환</span><span class="en">sign-up</span></span><b>5.0%</b></div>
+        <div class="r"><span><span class="ko">결제 전환</span><span class="en">payment</span></span><b>3.2%</b></div>
+      </div>
+      <div class="col win">
+        <div class="tag-ab"><span class="ko">B · 무료 강의 유입</span><span class="en">B · free-lesson</span></div>
+        <div class="r"><span><span class="ko">방문자</span><span class="en">visitors</span></span><b>2,480</b></div>
+        <div class="r"><span><span class="ko">가입 전환</span><span class="en">sign-up</span></span><b>15.0%</b></div>
+        <div class="r"><span><span class="ko">결제 전환</span><span class="en">payment</span></span><b>10.9%</b></div>
+      </div>
+    </div></div>
+    <div class="row"><p class="viz-note reveal"><span class="ko">결제 전환율은 방문자가 아니라 <b>가입자 대비</b>예요. 진단(9월)과 실험(10월)은 측정 기간이 다르고, 3.4배는 같은 10월 안의 A와 B를 비교한 값입니다.</span><span class="en">Payment conversion is measured against <b>sign-ups</b>, not visitors. The September diagnosis and the October test are separate windows; the 3.4× compares A and B within the same run.</span></p></div>
+
+    <div class="metrics" style="margin-top:clamp(3rem,6vh,5rem)">
+      <div class="metric reveal"><span class="num">3×</span><span class="lab label"><span class="ko">가입 전환 (5.0→15.0%)</span><span class="en">sign-up (5.0→15.0%)</span></span></div>
+      <div class="metric reveal d1"><span class="num">3.4×</span><span class="lab label"><span class="ko">결제 전환 (3.2→10.9%)</span><span class="en">payment (3.2→10.9%)</span></span></div>
+    </div>
+
+    <div class="row" style="margin-top:clamp(3rem,6vh,5rem)"><div class="single reveal">
+      <p><span class="ko">'경험이 전환을 만든다'가 숫자로 증명된 거죠. 이 결과를 근거로 광고 소재와 무료 강의 동선(랜딩)을 다시 짰고, 네이티브 앱·OPEN WIKI·ALIVE CONTENT(영상 소재)로 이어 붙였습니다. 예산을 늘리는 대신, 같은 예산을 '경험을 먼저 주는' 쪽으로 옮긴 의사결정이었습니다.</span><span class="en">"Experience drives conversion," proven in numbers. I used it to rebuild the ad creative and the free-lesson landing flow, then carried it into the native app, OPEN WIKI, and ALIVE CONTENT. The decision wasn't to spend more; it was to move the same budget toward giving people the experience first.</span></p>
+    </div></div>
+  </section>
+
+  <!-- 다음 케이스 -->
+  <nav class="next theme-paper">
+    <a href="case-genesis.html">
+      <span><span class="lab">Next</span><br /><span class="nm">Genesis</span></span>
+      <span class="nm ar">→</span>
+    </a>
+  </nav>
+
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function once(sel, cb, th){
+    var els=[].slice.call(document.querySelectorAll(sel));
+    if(RM || !('IntersectionObserver' in window)){ els.forEach(cb); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ cb(e.target); io.unobserve(e.target); } }); },{threshold:th||.16, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  once('.reveal', function(el){ el.classList.add('in'); });
+  once('#funnelviz', function(el){ el.classList.add('in'); }, .3);
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

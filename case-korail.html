@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script src="analytics.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Korail-talk · 김진현 포트폴리오</title>
+<meta name="description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<link rel="canonical" href="https://hogoobro.github.io/portfolio/case-korail.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0A0A0A" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hogoobro.github.io/portfolio/case-korail.html" />
+<meta property="og:title" content="Korail-talk · 김진현 포트폴리오" />
+<meta property="og:description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<meta property="og:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Korail-talk · 김진현 포트폴리오" />
+<meta name="twitter:description" content="한 화면이 너무 많이 물어 사용자가 차부터 골랐다. 아이트래킹으로 확인하고 한 화면에 하나씩 묻도록 재설계." />
+<meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.webp" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="grid.css" />
+<link rel="stylesheet" href="case.css" />
+<link rel="stylesheet" href="nav.css" />
+<style>
+  /* 아이트래킹 도판은 원본이 640px이라 표시 폭을 절반 이하로 (2x 밀도 유지) */
+  .figpair img{max-width:320px}
+  /* 두 발견 */
+  .finds{grid-column:3 / span 6; margin-top:2rem}
+  .finds .fi{display:grid; grid-template-columns:1.9rem 1fr; column-gap:1rem; align-items:baseline;
+             padding:.9rem 0; border-bottom:1px solid var(--rule); font-size:.98rem; line-height:1.65; color:var(--fg-soft)}
+  .finds .fi:first-child{border-top:1px solid var(--rule)}
+  .finds .fi i{font-style:normal; font-family:var(--serif); font-size:1.15rem; color:var(--fg)}
+  .finds .fi b{color:var(--fg); font-weight:600}
+  @media (max-width:900px){ .finds{grid-column:auto} .figpair img{max-width:none} }
+</style>
+</head>
+<body class="theme-paper lang-ko i18n-ready">
+
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+  <!-- ── 공통: 고정 크롬 + 전체화면 메뉴 (nav.css / nav.js) ── -->
+  <header class="chrome">
+    <span class="left">
+      <a class="brand" href="index.html#/">©kimjinhyeon</a>
+      <a class="up" href="index.html#/work">Work</a>
+    </span>
+    <span class="right"><span class="lang"><button id="ko-btn" class="on">KO</button><button id="en-btn">EN</button></span><button class="menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button></span>
+  </header>
+
+  <div class="menu-overlay" id="menu" aria-hidden="true">
+    <nav class="menu-list">
+      <a data-nav="index" href="index.html#/"><span class="idx">01</span>Index</a>
+      <a data-nav="work" href="index.html#/work"><span class="idx">02</span>Work</a>
+      <a data-nav="deliverables" href="deliverables.html"><span class="idx">03</span>Deliverables</a>
+      <a data-nav="design-system" href="design-system.html"><span class="idx">04</span>Design System</a>
+      <a data-nav="about" href="index.html#/about"><span class="idx">05</span>About</a>
+      <a data-nav="contact" href="index.html#/contact"><span class="idx">06</span>Contact</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:wlsgus11117@gmail.com">wlsgus11117@gmail.com</a>
+      <a href="https://brunch.co.kr/@389621a80487494" target="_blank" rel="noopener">Brunch ↗</a>
+      <span>Seoul</span>
+    </div>
+  </div>
+
+  <!-- 히어로 -->
+  <section class="case-hero theme-paper">
+    <div class="row">
+      <div class="c s1 w2 reveal"><p class="label">Case 06</p><p class="cap" style="margin-top:.5rem"><span class="ko">듀오톤<br />UX 기획·디자인</span><span class="en">Duotone<br />UX Design</span></p></div>
+      <div class="c s3 w7"><h1 class="case-title long reveal">Korail-talk</h1></div>
+    </div>
+    <div class="row" style="margin-top:2.6rem">
+      <div class="c s3 w5">
+        <p class="case-essence reveal d1"><span class="ko">여러 공이 날아오면, 받으려다<br />다 놓쳐요. 선택지도 똑같아요.</span><span class="en">When several balls come at you,<br />you catch none. Choices are no different.</span></p>
+        <div class="spec reveal d1"><span><span class="ko">UT 모더레이터</span><span class="en">UT moderator</span></span><span><span class="ko">20–60대 사용성 테스트</span><span class="en">Usability test, ages 20–60</span></span><span>Eye-tracking</span></div>
+      </div>
+      <div class="c s9 w3 reveal d2">
+        <p class="label">Role</p>
+        <p class="cap" style="margin-top:.4rem"><span class="ko">MaaS 렌터카 예약 흐름·UX 개선<br />2024.01–02 · 기여도 40%</span><span class="en">MaaS car-rental flow &amp; UX<br />2024.01–02 · 40% mine</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15초 요약 -->
+  <section class="summary theme-paper">
+    <div class="sm-row"><span class="k label">Role</span><span class="v"><span class="ko">사용성 테스트 진행·UX 기획 · <b>기여도 40%</b></span><span class="en">Ran the usability testing &amp; UX planning · <b>40% mine</b></span></span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">렌터카 예약에서 한 화면이 너무 많이 물어, 사용자가 차부터 고르고 떠난다</span><span class="en">In car-rental booking, one screen asked too much, so users picked a car first and left</span></span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">추측 대신 사용성 테스트로 확인하고, ‘한 화면에 하나만 묻기’로 장소·날짜·차량을 나눔</span><span class="en">Verified with usability testing instead of guessing; “one question per screen,” splitting place, date, and car</span></span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">사용자가 자연히 따라가는 흐름으로 재설계, <b>이후 팀의 설계 기준</b>이 됨</span><span class="en">Rebuilt into a flow users naturally follow; <b>it became a team design principle</b></span></span></div>
+    <div class="sm-row"><span class="k label">Output</span><span class="v"><span class="ko">프로토타입, 사용성 테스트 리포트, 화면 재설계안</span><span class="en">Prototype, usability-test report, redesigned screens</span></span></div>
+    <p class="sm-foot"><span class="ko">*기여도 40%: 사용성 테스트 설계·진행·분석과 재설계 제안을 주도, 일부 리서치·구현은 팀과 협업</span><span class="en">*40% — I led the test design, moderation, analysis, and redesign proposal; some research and build with the team</span></p>
+  </section>
+
+  <!-- 맥락 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">맥락</span><span class="en">Context</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">기차 앱이<br />이동 전체로 넓어지다</span><span class="en">A rail app widens<br />to all mobility</span></h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p><span class="ko">코레일톡은 기차표를 예매하는 국민 앱이에요. 이 앱이 기차표를 넘어 렌터카·짐배송·관광택시까지 잇는 <b>MaaS</b>로 넓어지면서, 새로 그린 화면들이 실제로 쓸 만한지 확인이 필요했습니다.</span><span class="en">Korail-talk is Korea's national rail-ticketing app. As it widened beyond train tickets into <b>MaaS</b> (linking rental cars, luggage delivery, and tour taxis), its newly designed screens needed a real usability check.</span></p>
+      <p><span class="ko">듀오톤에서 맡은 이 UX 컨설팅에서 저는 코레일톡 Home·MaaS의 신규 디자인 프로토타입을 <b>3단계 평가</b>로 사용성 테스트하고, 개선 인사이트를 냈어요. 그중 장단점이 가장 또렷하게 드러난 <b>렌터카 예약 흐름</b>을 여기서 자세히 풉니다.</span><span class="en">In this UX consulting project at Duotone, I usability-tested the new Home·MaaS design prototypes through a <b>three-stage evaluation</b> and delivered improvement insights. Here I dig into the <b>rental-car booking flow</b>, where the strengths and problems came through most clearly.</span></p>
+    </div></div>
+  </section>
+
+  <!-- 리서치 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">리서치</span><span class="en">Research</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">세 가지로 교차 검증</span><span class="en">Triangulated</span></h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p><span class="ko">렌터카 예약 흐름을 다시 그리기 전에, 무엇이 진짜 문제인지부터 확인했어요. 추측으로 고치지 않으려고, 세 가지 방법이 같은 결론을 가리키는지 봤습니다. 먼저 닐슨 노먼 그룹(NNG)의 10대 사용성 휴리스틱을 기준으로 점검해, 대여 조건(기간·장소)의 시각적 위계가 낮아 지나치기 쉽고 바텀시트 '닫기' 버튼의 동작이 불분명하다는 점을 짚었어요.</span><span class="en">Before redrawing the rental flow, I first pinned down where the real problem was. To avoid fixing by guesswork, I checked whether three methods pointed to the same conclusion. A pass against the Nielsen Norman Group's 10 usability heuristics flagged that the rental conditions ranked too low to notice and the bottom-sheet close button behaved unclearly.</span></p>
+      <p><span class="ko">이어 아이트래킹 히트맵·시선 흐름으로 사람들이 실제로 어디를 먼저 보는지 확인하고, 인터뷰로 왜 그렇게 행동했는지 들었어요. 20–60대를 대상으로 제가 직접 모더레이터로 설계·진행했고, <b>세 방법 모두 같은 곳을 가리켰습니다.</b></span><span class="en">Then eye-tracking heatmaps and gaze paths showed where people actually looked first, and interviews told me why. I designed and moderated it myself across ages 20–60, and <b>all three pointed to the same place.</b></span></p>
+    </div></div>
+    <div class="row"><div class="flow reveal">
+      <b><span class="ko">휴리스틱 평가</span><span class="en">Heuristic</span></b><i>→</i><b><span class="ko">아이트래킹</span><span class="en">Eye-tracking</span></b><i>→</i><b><span class="ko">인터뷰</span><span class="en">Interviews</span></b>
+    </div></div>
+  </section>
+
+  <!-- 발견 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">발견</span><span class="en">Finding</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">한 화면이 한꺼번에<br />너무 많이 물었다</span><span class="en">One screen asked<br />too much at once</span></h2>
+    </div>
+    <div class="row"><div class="single reveal">
+      <p><span class="ko">문제는 기능이 아니라, 한 화면이 한꺼번에 너무 많은 걸 물어본다는 데 있었어요. 대여 조건(장소·일정)과 차량 리스트가 같은 화면에 쏟아지니, 사람들은 전부 살피지 못하고 눈에 띄는 <b>차부터</b> 골랐습니다. 조건 없이 고른 차라 뒤에서 다시 어긋나고, 흐름이 거기서 끊겼어요. 날아오는 공이 많을수록 더 못 받는 것처럼요.</span><span class="en">The problem wasn't features; it was that one screen asked for too much at once. With the rental conditions (place, dates) and the car list dumped onto the same screen, people couldn't take it all in and went straight to the most eye-catching part: the <b>cars.</b> A car chosen without conditions clashed later, and the flow broke right there. The more balls thrown at once, the fewer you catch.</span></p>
+    </div></div>
+    <div class="row"><div class="figpair reveal">
+      <figure>
+        <img src="korail-heatmap.webp" alt="롯데렌터카 차량선택 화면 아이트래킹 히트맵: 시선이 상단 대여 조건이 아니라 차량 이미지·가격에 집중된 것을 보여주는 열지도" loading="lazy" />
+        <figcaption><span class="etag"><span class="ko">히트맵</span><span class="en">Heatmap</span></span><span class="ko">조건은 건너뛰고, 시선이 차·가격부터 갔어요.</span><span class="en">Conditions skipped: gaze went to cars and prices first.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="korail-scanpath.webp" alt="대여 조건 입력 화면 아이트래킹 시선 흐름(스캔패스): 출발·반납·기간 사이를 오가며 시선이 흩어진 경로" loading="lazy" />
+        <figcaption><span class="etag"><span class="ko">시선 흐름</span><span class="en">Scan path</span></span><span class="ko">확인 버튼이 없어, X가 저장인지 몰라 다음으로 못 갔어요.</span><span class="en">No confirm button, so users couldn't tell if X saved, and stalled.</span></figcaption>
+      </figure>
+    </div></div>
+    <div class="row"><div class="finds reveal">
+      <div class="fi"><i>①</i><span><span class="ko">먼저 보여야 할 <b>대여 조건이 시각적으로 강조되지 않았다.</b></span><span class="en"><b>The conditions that should lead weren't visually emphasized.</b></span></span></div>
+      <div class="fi"><i>②</i><span><span class="ko">저장 버튼 없이 '닫기(X)'만 있어, <b>입력이 반영됐는지·다음으로 어떻게 가는지 알 수 없었다.</b></span><span class="en">Only a “close” (X) and no save, <b>so no way to tell if input registered or how to proceed.</b></span></span></div>
+    </div></div>
+
+    <div class="row"><p class="viz-lbl reveal"><span class="ko">인터뷰</span><span class="en">Interviews</span></p></div>
+    <div class="row"><div class="voices reveal">
+      <figure class="voice"><blockquote><span class="ko">“일정은 아예 못 보고, 차를 먼저 봤어요.”</span><span class="en">“I never even saw the dates. I went straight to cars.”</span></blockquote><figcaption class="who"><span class="ko">46세 · 회사원</span><span class="en">46 · office worker</span></figcaption></figure>
+      <figure class="voice"><blockquote><span class="ko">“상단에 있는 건 광고처럼 보여서 안 봤어요.”</span><span class="en">“The bar up top looked like an ad, so I ignored it.”</span></blockquote><figcaption class="who"><span class="ko">62세 · 현장직</span><span class="en">62 · field worker</span></figcaption></figure>
+      <figure class="voice"><blockquote><span class="ko">“확인 버튼이 없으니까, X를 누르면 입력이 리셋될까 봐 헷갈렸어요.”</span><span class="en">“No confirm button, so I worried X would reset what I’d entered.”</span></blockquote><figcaption class="who"><span class="ko">24세 · 대학생</span><span class="en">24 · student</span></figcaption></figure>
+    </div></div>
+  </section>
+
+  <!-- 제안 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">제안</span><span class="en">Proposal</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">한 화면, 하나의 결정</span><span class="en">One screen, one decision</span></h2>
+    </div>
+    <div class="row"><div class="cols reveal">
+      <p><span class="ko">해법은 화면을 더하는 게 아니라 결정을 쪼개는 것이었습니다. 한 화면에 몰려 있던 입력을 <b>장소 → 날짜 → 차량</b> 순서로 나눠, 화면마다 하나씩만 고르게 했어요.</span><span class="en">The fix wasn't to add screens but to split decisions. I broke the crowded single screen into a clear order (<b>place → date → car</b>), one choice per screen.</span></p>
+      <p><span class="ko">조건을 먼저 정하면 그게 차량을 고르는 기준이 되니, 사용자가 순서를 고민할 일이 사라집니다. 같은 기능을, 자연스럽게 따라가는 흐름으로 다시 세운 제안이었습니다.</span><span class="en">Set the conditions first and they become the frame for choosing a car, so there's no order left to puzzle over. Same features, rebuilt into a flow the user naturally follows.</span></p>
+    </div></div>
+    <div class="row"><div class="compare reveal">
+      <div class="col"><h6>AS-IS · Everything at once</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">렌터카 진입</span><span class="en">Enter rental</span></li><li><span class="ko">조건 설정</span><span class="en">Conditions</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">일정 설정</span><span class="en">Dates</span></li><li><span class="ko">조건 재설정</span><span class="en">Conditions again</span></li></ol></div>
+      <div class="col to"><h6>TO-BE · A simpler way</h6><ol><li><span class="ko">홈</span><span class="en">Home</span></li><li><span class="ko">장소 선택</span><span class="en">Place</span></li><li><span class="ko">날짜 선택</span><span class="en">Date</span></li><li><span class="ko">차량 선택</span><span class="en">Car</span></li></ol></div>
+    </div></div>
+
+    <div class="row"><p class="shotset-lbl reveal"><span><span class="ko">AS-IS · 실제 화면</span><span class="en">AS-IS · actual screens</span></span><span class="swipe"><span class="ko">옆으로 넘겨보세요 →</span><span class="en">swipe →</span></span></p></div>
+    <div class="row"><div class="shots reveal">
+      <figure><img src="korail-asis-1.webp" alt="Korail-talk 홈: 승차권 예매와 '이런 서비스는 어떠세요?'의 렌터카 진입" loading="lazy" /><figcaption><span class="n">1</span><span><span class="ko">홈</span><span class="en">Home</span></span></figcaption></figure>
+      <figure><img src="korail-asis-2.webp" alt="렌터카 진입 화면" loading="lazy" /><figcaption><span class="n">2</span><span><span class="ko">렌터카 진입</span><span class="en">Enter rental</span></span></figcaption></figure>
+      <figure><img src="korail-asis-3.webp" alt="대여 조건 설정 화면" loading="lazy" /><figcaption><span class="n">3</span><span><span class="ko">조건 설정</span><span class="en">Conditions</span></span></figcaption></figure>
+      <figure><img src="korail-asis-4.webp" alt="장소 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span><span class="ko">장소 선택</span><span class="en">Place</span></span></figcaption></figure>
+      <figure><img src="korail-asis-5.webp" alt="일정 설정 화면" loading="lazy" /><figcaption><span class="n">5</span><span><span class="ko">일정 설정</span><span class="en">Dates</span></span></figcaption></figure>
+      <figure><img src="korail-asis-6.webp" alt="조건 재설정 화면" loading="lazy" /><figcaption><span class="n">6</span><span><span class="ko">조건 재설정</span><span class="en">Conditions again</span></span></figcaption></figure>
+    </div></div>
+
+    <div class="row"><p class="shotset-lbl to reveal"><span><span class="ko">TO-BE · 한 화면, 하나의 결정</span><span class="en">TO-BE · one screen, one decision</span></span><span class="swipe"><span class="ko">옆으로 넘겨보세요 →</span><span class="en">swipe →</span></span></p></div>
+    <div class="row"><div class="shots reveal">
+      <figure><img src="korail-tobe-1.webp" alt="Korail-talk 홈: 재설계 흐름의 시작점" loading="lazy" /><figcaption><span class="n">1</span><span><span class="ko">홈</span><span class="en">Home</span></span></figcaption></figure>
+      <figure><img src="korail-tobe-2.webp" alt="장소 선택: 한 화면에서 타는 장소만 고르는 단계" loading="lazy" /><figcaption><span class="n">2</span><span><span class="ko">장소 선택</span><span class="en">Place</span></span></figcaption></figure>
+      <figure><img src="korail-tobe-3.webp" alt="날짜 선택 화면" loading="lazy" /><figcaption><span class="n">3</span><span><span class="ko">날짜 선택</span><span class="en">Date</span></span></figcaption></figure>
+      <figure><img src="korail-tobe-4.webp" alt="차량 선택 화면" loading="lazy" /><figcaption><span class="n">4</span><span><span class="ko">차량 선택</span><span class="en">Car</span></span></figcaption></figure>
+    </div></div>
+
+    <div class="row" style="margin-top:clamp(3rem,6vh,5rem)"><div class="single reveal">
+      <p><span class="ko">추측이 아니라 세 갈래 근거가 같은 곳을 가리켰기에, 무엇을 어떻게 고칠지가 분명했습니다. 여기서 얻은 <b>'한 화면엔 하나의 결정'</b>은 이후 다른 화면을 설계할 때도 제 기준이 됐어요.</span><span class="en">Because three independent methods pointed to the same place, what to fix, and how, was unambiguous. <b>“One decision per screen”</b> became a principle I carried into every screen after.</span></p>
+    </div></div>
+  </section>
+
+  <!-- 다음 케이스 -->
+  <nav class="next theme-paper">
+    <a href="case-railink.html">
+      <span><span class="lab">Next</span><br /><span class="nm">RaiLink</span></span>
+      <span class="nm ar">→</span>
+    </a>
+  </nav>
+
+<script>
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function once(sel, cb, th){
+    var els=[].slice.call(document.querySelectorAll(sel));
+    if(RM || !('IntersectionObserver' in window)){ els.forEach(cb); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ cb(e.target); io.unobserve(e.target); } }); },{threshold:th||.16, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  once('.reveal', function(el){ el.classList.add('in'); });
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

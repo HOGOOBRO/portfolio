@@ -1,0 +1,95 @@
+/* ─────────────────────────────────────────────────────────
+   포폴 개편 파운데이션 v1
+   12컬럼 뷰포트 그리드(julianjakob.at 실측 기반) + 타이포 스케일 + 테마
+   ───────────────────────────────────────────────────────── */
+:root{
+  /* 그리드 */
+  --col: calc(100vw / 12);                    /* 오프셋 계산의 기본 단위 */
+  --side: clamp(1.25rem, 2.3vw, 2.75rem);     /* 화면 양옆 패딩 */
+  --gap: clamp(.75rem, 1.1vw, 1.25rem);       /* 컬럼 사이 거터 */
+  --sect: clamp(80px, 11vh, 150px);           /* 섹션 상하 호흡 (레퍼런스 실측) */
+
+  /* 팔레트 v2: 흑백 위주. UI는 무채색, 컬러는 작업물 이미지에서만 나온다 */
+  --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#4A4A4A; --ink-faint:#8F8F8F;
+  --line:#E9E9E9; --line-strong:#D4D4D4;
+  --black:#000;
+
+  /* 폰트 */
+  --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+
+  /* 타이포 스케일 (편집디자인 6단) */
+  --t-display: clamp(2.8rem, 6.2vw, 6.6rem);  /* 표제: 세리프 */
+  --t-h1: clamp(1.9rem, 3.4vw, 3.4rem);       /* 섹션 표제 */
+  --t-lead: clamp(1.12rem, 1.6vw, 1.45rem);   /* 리드문 */
+  --t-body: clamp(.98rem, 1.12vw, 1.1rem);    /* 본문 */
+  --t-cap: .84rem;                            /* 캡션 */
+  --t-label: .68rem;                          /* 모노 라벨(메타 열) */
+
+  /* 모션 (본편 폴리시 계승) */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --ease-snap: cubic-bezier(.23,1,.32,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-break:keep-all;
+     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+
+/* ── 테마: 섹션 단위로 스왑. 히어로=다크, 본문=페이퍼 ── */
+.theme-paper{ --bg:var(--paper); --fg:var(--ink); --fg-soft:var(--ink-soft);
+              --fg-faint:var(--ink-faint); --rule:var(--line) }
+.theme-dark { --bg:var(--black); --fg:#F5F5F5; --fg-soft:rgba(245,245,245,.6);
+              --fg-faint:rgba(245,245,245,.36); --rule:rgba(245,245,245,.14) }
+.theme-paper, .theme-dark{ background:var(--bg); color:var(--fg) }
+
+/* ── 12컬럼 로우 ──
+   사용법: <div class="row"><div class="c s1 w2">…</div><div class="c s3 w7">…</div></div>
+   s{n}=시작 컬럼, w{n}=차지하는 컬럼 수. 본문 기본 = s3 w7 (2컬럼 들여쓰기) */
+.row{ display:grid; grid-template-columns:repeat(12, 1fr); column-gap:var(--gap);
+      padding-left:var(--side); padding-right:var(--side) }
+.s1{grid-column-start:1}.s2{grid-column-start:2}.s3{grid-column-start:3}.s4{grid-column-start:4}
+.s5{grid-column-start:5}.s6{grid-column-start:6}.s7{grid-column-start:7}.s8{grid-column-start:8}
+.s9{grid-column-start:9}.s10{grid-column-start:10}.s11{grid-column-start:11}.s12{grid-column-start:12}
+.w1{grid-column-end:span 1}.w2{grid-column-end:span 2}.w3{grid-column-end:span 3}
+.w4{grid-column-end:span 4}.w5{grid-column-end:span 5}.w6{grid-column-end:span 6}
+.w7{grid-column-end:span 7}.w8{grid-column-end:span 8}.w9{grid-column-end:span 9}
+.w10{grid-column-end:span 10}.w11{grid-column-end:span 11}.w12{grid-column-end:span 12}
+.bleed{ padding-left:0; padding-right:0 }        /* 풀블리드 로우 */
+
+/* ── 타이포 클래스 ── */
+.display{ font-family:var(--serif); font-weight:600;  /* KO는 Pretendard로 폴백(확정), EN만 Fraunces */ font-size:var(--t-display);
+          line-height:1.06; letter-spacing:-.024em; text-wrap:balance }
+.h1{ font-family:var(--serif); font-weight:500; font-size:var(--t-h1);
+     line-height:1.12; letter-spacing:-.02em; text-wrap:balance }
+.lead{ font-size:var(--t-lead); line-height:1.55; font-weight:500; color:var(--fg);
+       letter-spacing:-.01em; text-wrap:pretty }
+.body{ font-size:var(--t-body); color:var(--fg-soft); max-width:62ch; text-wrap:pretty }
+.body b{ color:var(--fg); font-weight:600 }
+.cap{ font-size:var(--t-cap); line-height:1.5; color:var(--fg-faint) }
+.label{ font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+        text-transform:uppercase; color:var(--fg-faint) }
+.num{ font-family:var(--serif); font-weight:500; font-variant-numeric:tabular-nums;
+      font-size:clamp(2.4rem,4.6vw,4.4rem); line-height:1; letter-spacing:-.02em }
+
+/* ── 섹션 리듬 ── */
+.sect{ padding-top:var(--sect); padding-bottom:var(--sect) }
+.rule-top{ border-top:1px solid var(--rule) }
+
+/* ── 미디어 ── */
+.media{ width:100%; display:block }
+.media img{ width:100%; height:auto; display:block }
+
+/* ── 모바일: 12컬럼 해제, 문서 흐름 ── */
+@media (max-width:900px){
+  .row{ display:block }
+  .row > *{ margin-bottom:1.2rem }
+  .body{ max-width:none }
+}
+
+/* ── 그리드 오버레이 (G 키 토글, 스펙 확인용) ── */
+.grid-overlay{ position:fixed; inset:0; z-index:999; pointer-events:none; display:none;
+               padding:0 var(--side) }
+.grid-overlay.on{ display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap) }
+.grid-overlay i{ background:rgba(220,60,60,.07); border-left:1px solid rgba(220,60,60,.25);
+                 border-right:1px solid rgba(220,60,60,.25) }
