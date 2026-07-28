@@ -96,6 +96,11 @@
   .hero .eyebrow{position:absolute; top:4.4rem; left:var(--side); z-index:3}
 
   /* ── 프로젝트 인덱스 ── */
+  /* Work 목록 묶음 머리표. 직접 만든 것과 회사에서 맡은 것을 갈라 세운다.
+     본문·구분선과 같은 페이지 여백(--side) 안에 두고, 메타 자리인 1번 컬럼에서 시작한다. */
+  .wgroup{padding:2.6rem var(--side) .7rem; opacity:.55}
+  .wgroup:first-of-type{padding-top:0}
+  .windex + .wgroup{padding-top:3.2rem}
   .windex a{display:block; color:inherit; text-decoration:none}
   .windex .wrow{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
                 align-items:baseline; padding:1.5rem var(--side); border-top:1px solid var(--rule);
@@ -206,11 +211,15 @@
   <main class="page visible theme-dark" id="page-home" data-route="">
     <section class="hero theme-dark">
       <p class="eyebrow label" style="color:rgba(245,245,245,.45)">Product Strategy · UX Research · 0→1 Build</p>
-      <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
+      <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, 까먹지마, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
         <div class="ring" id="ring">
           <a class="card photo" href="case-railink.html" style="--img:url('card-railink.webp')">
             <span class="scrim"></span>
             <span class="bot"><span class="tag"><span class="ko">근무 스케줄 서비스 · 2026 →</span><span class="en">Shift-schedule service · 2026 →</span></span><b>RaiLink</b><span><span class="ko">같이 쉬는 날을 찾아줘요.</span><span class="en">Finds the days you’re both off.</span></span></span>
+          </a>
+          <a class="card photo" href="case-saerok.html" style="--img:url('card-saerok.webp')">
+            <span class="scrim"></span>
+            <span class="bot"><span class="tag"><span class="ko">영어 학습 앱 · 2026 →</span><span class="en">Vocabulary app · 2026 →</span></span><b><span class="ko">까먹지마</span><span class="en">Kkamokjima</span></b><span><span class="ko">잊을 때쯤 다시 물어봐요.</span><span class="en">Asks again right when you’d forget.</span></span></span>
           </a>
           <a class="card photo" href="case-deokhong.html" style="--img:url('card-deokhong.webp')">
             <span class="scrim"></span>
@@ -245,16 +254,21 @@
   <main class="page scrolly theme-paper" id="page-work" data-route="work" aria-hidden="true">
     <div class="page-inner">
       <div class="row" style="margin-bottom:2.4rem">
-        <p class="c s1 w2 label">Work · 6</p>
-        <p class="c s3 w7 lead"><span class="ko">직접 만든 것 둘, 회사에서 맡은 것 넷.</span><span class="en">Two I built myself, four I led at work.</span></p>
+        <p class="c s1 w2 label">Work · 7</p>
+        <p class="c s3 w7 lead"><span class="ko">직접 만든 것 셋, 회사에서 맡은 것 넷.</span><span class="en">Three I built myself, four I led at work.</span></p>
       </div>
+      <p class="wgroup label"><span class="ko">직접 만든 것: 기획부터 배포·운영까지 혼자</span><span class="en">Built myself — strategy through ship and run, solo</span></p>
       <div class="windex">
         <a href="case-railink.html"><div class="wrow"><span class="no label">01</span><span class="nm">RaiLink<span class="ar">→</span></span><span class="one"><span class="ko">근무표를 겹쳐, 같이 쉬는 날을 찾는다</span><span class="en">Stack the rosters, find the shared day off</span></span><span class="yr label">2026</span></div></a>
-        <a href="case-deokhong.html"><div class="wrow"><span class="no label">02</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one"><span class="ko">무소속 캠페인을 한 페이지로</span><span class="en">An independent campaign, on one page</span></span><span class="yr label">2026</span></div></a>
-        <a href="case-samsung.html"><div class="wrow"><span class="no label">03</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one"><span class="ko">100여 개국 가입 여정 통일</span><span class="en">One sign-up journey across 100+ markets</span></span><span class="yr label">2024</span></div></a>
-        <a href="case-openpath.html"><div class="wrow"><span class="no label">04</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one"><span class="ko">체험을 앞세워 결제 전환 3.4배</span><span class="en">Experience first: 3.4× payment conversion</span></span><span class="yr label">2023</span></div></a>
-        <a href="case-genesis.html"><div class="wrow"><span class="no label">05</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one"><span class="ko">법적 문구를 고르는 시스템</span><span class="en">A system for picking legal copy</span></span><span class="yr label">2025</span></div></a>
-        <a href="case-korail.html"><div class="wrow"><span class="no label">06</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one"><span class="ko">한꺼번에 묻지 않기로 했다</span><span class="en">Stopped asking everything at once</span></span><span class="yr label">2024</span></div></a>
+        <a href="case-saerok.html"><div class="wrow"><span class="no label">02</span><span class="nm"><span class="ko">까먹지마</span><span class="en">Kkamokjima</span><span class="ar">→</span></span><span class="one"><span class="ko">잊을 때쯤 다시 묻는 단어 앱</span><span class="en">A vocabulary app that asks right when you’d forget</span></span><span class="yr label">2026</span></div></a>
+        <a href="case-deokhong.html"><div class="wrow"><span class="no label">03</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one"><span class="ko">무소속 캠페인을 한 페이지로</span><span class="en">An independent campaign, on one page</span></span><span class="yr label">2026</span></div></a>
+      </div>
+      <p class="wgroup label"><span class="ko">회사에서 맡은 것</span><span class="en">Led at work</span></p>
+      <div class="windex">
+        <a href="case-samsung.html"><div class="wrow"><span class="no label">04</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one"><span class="ko">100여 개국 가입 여정 통일</span><span class="en">One sign-up journey across 100+ markets</span></span><span class="yr label">2024</span></div></a>
+        <a href="case-openpath.html"><div class="wrow"><span class="no label">05</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one"><span class="ko">체험을 앞세워 결제 전환 3.4배</span><span class="en">Experience first: 3.4× payment conversion</span></span><span class="yr label">2023</span></div></a>
+        <a href="case-genesis.html"><div class="wrow"><span class="no label">06</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one"><span class="ko">법적 문구를 고르는 시스템</span><span class="en">A system for picking legal copy</span></span><span class="yr label">2025</span></div></a>
+        <a href="case-korail.html"><div class="wrow"><span class="no label">07</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one"><span class="ko">한꺼번에 묻지 않기로 했다</span><span class="en">Stopped asking everything at once</span></span><span class="yr label">2024</span></div></a>
       </div>
       <div class="row" style="margin-top:clamp(3rem,7vh,5.5rem)">
         <p class="c s1 w2 label">Deliverables</p>
