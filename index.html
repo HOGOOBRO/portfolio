@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <script>window.__GA_MANUAL__=true;</script>
-<script>try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -188,12 +188,13 @@
     .wlist a:hover{color:var(--fg)} .wlist a:hover .ar{transform:translate(2px,-2px)}
   }
 
-  /* 리빌: 케이스 페이지와 같은 결(16px 아래에서 .6s, 묶음은 .05s씩) */
-  .reveal{opacity:0; transform:translateY(16px);
+  /* 리빌: 케이스 페이지와 같은 결(16px 아래에서 .6s, 묶음은 .05s씩)
+     숨김은 html.js에서만: JS가 죽으면 게이트가 안 걸려 콘텐츠가 그대로 보인다 */
+  html.js .reveal{opacity:0; transform:translateY(16px);
           transition:opacity .6s var(--ease-snap), transform .6s var(--ease-snap)}
-  .reveal.in{opacity:1; transform:none}
+  html.js .reveal.in{opacity:1; transform:none}
   .reveal.d1{transition-delay:.05s} .reveal.d2{transition-delay:.10s}
-  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none} }
+  @media (prefers-reduced-motion:reduce){ html.js .reveal{opacity:1; transform:none; transition:none} }
 
   /* 산출물 링크 버튼 */
   .pill{display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem;

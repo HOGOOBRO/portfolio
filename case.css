@@ -185,12 +185,13 @@ body{background:var(--bg)}
 .next .ar{display:inline-block; transition:transform .2s var(--ease-out)}
 @media (hover:hover) and (pointer:fine){ .next a:hover .ar{transform:translateX(8px)} }
 
-/* ── 리빌 ── */
-.reveal{opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
-.reveal.in{opacity:1; transform:none}
+/* ── 리빌 ──
+   숨김은 html.js에서만: JS가 죽으면 게이트가 안 걸려 콘텐츠가 그대로 보인다 */
+html.js .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out)}
+html.js .reveal.in{opacity:1; transform:none}
 .reveal.d1{transition-delay:.05s}.reveal.d2{transition-delay:.10s}
 @media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1; transform:none; transition:none}
+  html.js .reveal{opacity:1; transform:none; transition:none}
   .bars .ffill{transition:none}
 }
 

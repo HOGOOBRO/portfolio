@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,9 +34,9 @@
   /* AARRR 퍼널 — 원본 폴리곤을 그대로 쓰고 색만 흑백으로 */
   .funnelviz{grid-column:3 / span 5; margin-top:1.4rem}
   .funnelviz svg{display:block; width:100%; max-width:30rem; height:auto}
-  .funnelviz .st{fill:#EDEDED; stroke:#FFF; stroke-width:1.5; opacity:0;
-                 transition:opacity .5s var(--ease-out)}
-  .funnelviz.in .st{opacity:1}
+  .funnelviz .st{fill:#EDEDED; stroke:#FFF; stroke-width:1.5}
+  html.js .funnelviz .st{opacity:0; transition:opacity .5s var(--ease-out)}
+  html.js .funnelviz.in .st{opacity:1}
   .funnelviz .st:nth-of-type(2){transition-delay:.06s}
   .funnelviz .st:nth-of-type(3){transition-delay:.12s}
   .funnelviz .st:nth-of-type(4){transition-delay:.18s}
@@ -63,7 +63,7 @@
   /* 폰 자산이 546px 원본이라, 2x 밀도를 지키려 표시 폭을 줄임 */
   .split .fig.tint img{width:60%}
 
-  @media (prefers-reduced-motion:reduce){ .funnelviz .st{transition:none; opacity:1} }
+  @media (prefers-reduced-motion:reduce){ html.js .funnelviz .st{transition:none; opacity:1} }
   @media (max-width:900px){
     .funnelviz,.funnel-note,.ab{grid-column:auto}
     .funnelviz svg{margin:0 auto}

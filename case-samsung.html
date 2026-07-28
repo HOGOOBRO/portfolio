@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('enter_menu')==='1'){document.documentElement.className+=' enter-menu';sessionStorage.removeItem('enter_menu');}}catch(e){}</script>
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,8 +35,8 @@
   /* 채널별 판매 비중 파이 */
   .pie{grid-column:3 / span 3; margin-top:1.4rem}
   .pie svg{display:block; width:100%; max-width:15rem; height:auto}
-  .pie svg path{transition:opacity .5s var(--ease-out); opacity:0}
-  .pie.in svg path{opacity:1}
+  html.js .pie svg path{transition:opacity .5s var(--ease-out); opacity:0}
+  html.js .pie.in svg path{opacity:1}
   .pie.in svg path:nth-child(2){transition-delay:.06s}
   .leg{grid-column:6 / span 4; margin-top:1.4rem}
   .leg-grp + .leg-grp{margin-top:1.5rem}
@@ -53,13 +53,13 @@
   /* 가입 단계·페이지 수 막대 */
   .barchart{grid-column:3 / span 4; margin-top:1.6rem}
   .barchart svg{display:block; width:100%; height:auto}
-  .barchart .bar{transform-origin:50% 168px; transform:scaleY(0); transition:transform .8s var(--ease-out)}
-  .barchart.in .bar{transform:none}
+  html.js .barchart .bar{transform-origin:50% 168px; transform:scaleY(0); transition:transform .8s var(--ease-out)}
+  html.js .barchart.in .bar{transform:none}
   .barchart .bar:nth-of-type(2){transition-delay:.08s}
   .barchart .bar:nth-of-type(3){transition-delay:.16s}
   .barchart .bar:nth-of-type(4){transition-delay:.24s}
-  .barchart .val{opacity:0; transition:opacity .4s ease .5s}
-  .barchart.in .val{opacity:1}
+  html.js .barchart .val{opacity:0; transition:opacity .4s ease .5s}
+  html.js .barchart.in .val{opacity:1}
   .bc-leg{display:flex; gap:1.2rem; margin-top:.8rem; font-family:var(--mono); font-size:.6rem;
           letter-spacing:.06em; text-transform:uppercase; color:var(--fg-faint)}
   .bc-k{display:inline-flex; align-items:center; gap:.4rem}
@@ -68,7 +68,7 @@
   .bc-note b{color:var(--fg); font-weight:600}
 
   @media (prefers-reduced-motion:reduce){
-    .pie svg path,.barchart .bar,.barchart .val{transition:none; opacity:1; transform:none}
+    html.js .pie svg path,html.js .barchart .bar,html.js .barchart .val{transition:none; opacity:1; transform:none}
   }
   @media (max-width:900px){
     .pie,.leg,.barchart,.bc-note{grid-column:auto}
