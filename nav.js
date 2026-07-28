@@ -127,6 +127,23 @@
     sh.className = (center ? 'shutter center' : 'shutter') + ' closing';
     setTimeout(fn, 280);
   }
+  /* Home으로 갈 때는 덮는 동작을 애니메이션 없이 즉시 끝낸다.
+     덮는 모션과 갈라지는 모션이 이어지면 방향이 바뀌어 두 박자로 읽힌다. */
+  function cover_now(fn){
+    closedAt = Date.now();
+    sh.style.transition = 'none';
+    sh.className = 'shutter closing';
+    void sh.offsetHeight;
+    setTimeout(function(){ sh.style.transition = ''; fn(); }, 20);
+  }
+  /* 같은 문서 안에서 갈라지며 여는 커버 */
+  function playSplit(){
+    var c = document.createElement('div');
+    c.className = 'split-cover';
+    c.innerHTML = '<i></i><i></i>';
+    document.body.appendChild(c);
+    setTimeout(function(){ c.remove(); }, 520);
+  }
   /* 이벤트(pageshow·pagehide)는 브라우저·상황에 따라 안 오는 경우가 있다.
      닫힌 셔터가 일정 시간 이상 남아 있으면 스스로 풀리게 해 검은 화면이 남지 않도록 한다.
      bfcache에서 복원되면 이 검사가 곧바로 통과해 즉시 열린다. */
@@ -169,16 +186,27 @@
       e.preventDefault();
       var c = isHome(href);
       if(menuOpen){
-        /* 메뉴가 이미 화면을 덮고 있다. 그 뒤에서 페이지를 바꾸고 메뉴만 걷어낸다(모션 하나) */
+        /* 메뉴가 이미 화면을 덮고 있다. 그 뒤에서 페이지를 바꾼다 */
         location.hash = href.slice(1);
-        setTimeout(function(){ if(window.__setMenu) window.__setMenu(false); }, 80);
+        if(c){
+          /* Home이면 메뉴를 즉시 걷고 갈라지는 커버로 연다(모션 하나) */
+          var mo = document.getElementById('menu');
+          if(mo){ mo.style.transition='none'; if(window.__setMenu) window.__setMenu(false); void mo.offsetHeight; mo.style.transition=''; }
+          playSplit();
+        } else {
+          setTimeout(function(){ if(window.__setMenu) window.__setMenu(false); }, 80);
+        }
         return;
       }
       /* 나갈 때는 항상 같은 방향으로 닫는다. 가운데 분할은 들어올 때만 쓴다.
          둘 다 가운데면 모였다 갈라지는 대칭이 되어 두 박자로 읽힌다. */
+      if(c){
+        cover_now(function(){ location.hash = href.slice(1); setTimeout(function(){ resetShutter(); playSplit(); }, 20); });
+        return;
+      }
       close_then(function(){
         location.hash = href.slice(1);
-        setTimeout(function(){ open_now(c); }, 60);
+        setTimeout(function(){ open_now(false); }, 60);
       });
       return;
     }
@@ -187,6 +215,7 @@
     var toHome = isHome(href);
     if(toHome){ try{ sessionStorage.setItem('shutter_center','1'); }catch(e){} }
     if(menuOpen){ location.href = a.href; return; }   /* 메뉴가 이미 검은 화면이므로 바로 이동 */
+    if(toHome){ cover_now(function(){ location.href = a.href; }); return; }
     close_then(function(){ location.href = a.href; });
   });
 })();

@@ -119,16 +119,25 @@
 .shutter.done{transform:scaleY(0); transform-origin:50% 0}
 @media (prefers-reduced-motion:reduce){ .shutter{display:none} }
 
-/* Home(Index) 진입만 가운데에서 갈라지는 결. 메뉴 오버레이가 쓰는 원점과 같다 */
-.shutter.center.closing{transform:scaleY(1); transform-origin:50% 50%}
-.shutter.center.opening{transform:scaleY(1); transform-origin:50% 50%}
-.shutter.center.done{transform:scaleY(0); transform-origin:50% 50%}
+/* Home 진입: 위아래 두 판이 갈라지며 열린다. scaleY로 줄이면 '가운데로 모이는' 반대 인상이 된다 */
+.split-cover{position:fixed; inset:0; z-index:300; pointer-events:none; background:none}
+.split-cover i{position:absolute; left:0; right:0; height:50.5%; background:#000; display:block}
+.split-cover i:first-child{top:0;    animation:split-up   .42s cubic-bezier(.65,0,.20,1) both}
+.split-cover i:last-child {bottom:0; animation:split-down .42s cubic-bezier(.65,0,.20,1) both}
+@keyframes split-up{   from{transform:translateY(0)} to{transform:translateY(-100%)} }
+@keyframes split-down{ from{transform:translateY(0)} to{transform:translateY(100%)} }
+@media (prefers-reduced-motion:reduce){ .split-cover{display:none} }
 
 /* 진입 커버: JS가 아니라 마크업+CSS로 처리한다.
    JS가 만들면 새 문서가 한 번 그려진 뒤에 덮여서 흰 깜빡임이 생긴다. */
 .page-in{position:fixed; inset:0; background:#000; z-index:290; pointer-events:none;
          transform-origin:50% 0; animation:page-in .32s cubic-bezier(.65,0,.20,1) both}
-.enter-center .page-in{transform-origin:50% 50%}
+/* Home 진입 커버: 위아래 두 판이 갈라진다 */
+.enter-center .page-in{animation:none; background:none}
+.enter-center .page-in::before,
+.enter-center .page-in::after{content:''; position:absolute; left:0; right:0; height:50.5%; background:#000}
+.enter-center .page-in::before{top:0;    animation:split-up   .42s cubic-bezier(.65,0,.20,1) both}
+.enter-center .page-in::after {bottom:0; animation:split-down .42s cubic-bezier(.65,0,.20,1) both}
 @keyframes page-in{ from{transform:scaleY(1)} to{transform:scaleY(0)} }
 @media (prefers-reduced-motion:reduce){ .page-in{display:none} }
 
