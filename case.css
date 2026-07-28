@@ -49,7 +49,7 @@ body{background:var(--bg)}
 .split .txt{grid-column:3 / span 5}
 .split .fig{grid-column:9 / span 4; position:relative}
 .split .fig.tint{background:#F0F0F0; padding:2.2rem 2.2rem 0; display:flex; justify-content:center; align-items:flex-end}
-.split .fig.tint img{width:74%; display:block; margin:0 auto; filter:drop-shadow(0 20px 40px rgba(0,0,0,.16))}
+.split .fig.tint img{width:74%; height:auto; display:block; margin:0 auto; filter:drop-shadow(0 20px 40px rgba(0,0,0,.16))}
 /* 실화면 캡처(기기 목업 아님)에 기기 프레임을 입힐 때 */
 /* img가 inline이면 아래에 베이스라인 여백이 생겨 프레임 아래쪽만 두꺼워 보인다 */
 .split .fig.tint img.framed{display:block; margin:0 auto; border:3px solid #111;
