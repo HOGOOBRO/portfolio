@@ -34,7 +34,7 @@
 <style>
   /* ── 모션 토큰 (레퍼런스 실측) ── */
   :root{
-    --page-speed:.2s;  --page-curve:cubic-bezier(.65,0,.20,1);
+    --page-speed:0s;   --page-curve:cubic-bezier(.65,0,.20,1);  /* 전환은 메뉴·커버가 담당. 컨테이너까지 세로로 펼치면 모션이 겹친다 */
     --anim-speed:.7s;   --anim-curve:cubic-bezier(.80,0,.20,1);
     --t-fast:.2s ease;  --t-base:.3s ease;  --t-slow:.4s ease;
   }
@@ -386,13 +386,7 @@
     });
   }
   window.addEventListener('hashchange', route);
-  /* 첫 진입에서는 페이지 컨테이너 전환을 끈다.
-     진입 커버(.page-in)가 이미 열리는 동작을 하고 있어서, 여기서 또 펼치면 모션이 두 번이 된다. */
-  pages.forEach(function(p){ p.style.transition = 'none'; });
   route();
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){ pages.forEach(function(p){ p.style.transition = ''; }); });
-  });
 
   /* 리빌: 각 페이지가 자기 스크롤 영역을 root로 관찰한다.
      페이지가 닫혀 있을 땐 관찰이 안 되므로, 전환 직후 보이는 페이지를 다시 관찰한다. */
