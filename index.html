@@ -6,24 +6,24 @@
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>김진현 · 서비스 기획자 · Kim Jinhyeon</title>
+<title>김진현 · Product Strategy · UX · 0→1</title>
 <meta name="description" content="영향력의 스케일을 좇는 서비스 기획자 김진현. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
 <link rel="canonical" href="https://hogoobro.github.io/portfolio/" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
 <meta name="theme-color" content="#0A0A0A" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hogoobro.github.io/portfolio/" />
-<meta property="og:title" content="김진현 · 서비스 기획자 · Kim Jinhyeon" />
+<meta property="og:title" content="김진현 · Product Strategy · UX · 0→1" />
 <meta property="og:description" content="영향력의 스케일을 좇는 서비스 기획자 김진현. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
 <meta property="og:image" content="https://hogoobro.github.io/portfolio/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="ko_KR" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="김진현 · 서비스 기획자 · Kim Jinhyeon" />
+<meta name="twitter:title" content="김진현 · Product Strategy · UX · 0→1" />
 <meta name="twitter:description" content="영향력의 스케일을 좇는 서비스 기획자 김진현. 매장 월매출 6.5배에서 100여 개국 가입 여정까지." />
 <meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"김진현","alternateName":"Kim Jinhyeon","jobTitle":"서비스 기획자","url":"https://hogoobro.github.io/portfolio/","email":"wlsgus11117@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://railink.app","https://deokhong.com","https://brunch.co.kr/@389621a80487494"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"김진현","alternateName":"Kim Jinhyeon","jobTitle":"PM · Product Designer","url":"https://hogoobro.github.io/portfolio/","email":"wlsgus11117@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://railink.app","https://deokhong.com","https://brunch.co.kr/@389621a80487494"]}}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,6 +94,10 @@
      이 화면에서 동시에 보이는 기준선은 고정 크롬뿐이고, 히어로는 유일하게 풀블리드를 허용한
      화면이라 콘텐츠 그리드가 아니라 화면 프레임을 기준으로 삼는다 */
   .hero .eyebrow{position:absolute; top:4.4rem; left:var(--side); z-index:3}
+  /* 직무 축(eyebrow) 아래 한 문장. 같은 세로선에 붙여 라벨-부연으로 읽히게 */
+  .hero .eyebrow-sub{position:absolute; top:calc(4.4rem + 1.35rem); left:var(--side); z-index:3;
+                     max-width:44ch; font-size:clamp(.85rem,1vw,.95rem); line-height:1.5;
+                     color:rgba(245,245,245,.6)}
 
   /* ── 프로젝트 인덱스 ── */
   /* Work 목록 묶음 머리표. 직접 만든 것과 회사에서 맡은 것을 갈라 세운다.
@@ -235,6 +239,7 @@
   <main class="page visible theme-dark" id="page-home" data-route="">
     <section class="hero theme-dark">
       <p class="eyebrow label" style="color:rgba(245,245,245,.45)">Product Strategy · UX Research · 0→1 Build</p>
+      <p class="eyebrow-sub"><span class="ko">문제를 찾고, 근거로 결정하고, 제품으로 직접 만듭니다.</span><span class="en">Strategy, research, design, and build&mdash;whatever the product needs.</span></p>
       <div class="carousel" id="carousel" aria-label="프로젝트 카드: RaiLink, 까먹지마, deokhong.com, OPENPATH, Samsung Care+, Genesis, Korail-talk">
         <div class="ring" id="ring">
           <a class="card photo" href="case-railink.html" style="--img:url('card-railink.webp')">
@@ -281,8 +286,8 @@
         <p class="c s1 w2 label">Work · 7</p>
       </div>
       <div class="wgroup">
-        <span class="g-lab"><span class="ko">직접 만든 것</span><span class="en">Built myself</span><i>3</i></span>
-        <span class="g-desc"><span class="ko">기획부터 배포·운영까지 혼자</span><span class="en">Strategy through ship and run, solo</span></span>
+        <span class="g-lab"><span class="ko">직접 만들고 운영한 제품</span><span class="en">Products I built and run</span><i>3</i></span>
+        <span class="g-desc"><span class="ko">문제 정의부터 UX·구현·배포·운영까지 End-to-end</span><span class="en">End-to-end: from problem definition to UX, build, ship, and run</span></span>
       </div>
       <div class="windex">
         <a href="case-ringsabell.html"><div class="wrow"><span class="no label">01</span><span class="nm"><span class="ko">까먹지마</span><span class="en">Rings a Bell</span><span class="ar">→</span></span><span class="one"><span class="ko">잊을 때쯤 다시 묻는 영단어 앱</span><span class="en">A vocabulary app that asks right when you’d forget</span></span><span class="yr label">2026</span></div></a>
@@ -290,8 +295,8 @@
         <a href="case-deokhong.html"><div class="wrow"><span class="no label">03</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one"><span class="ko">무소속 캠페인을 한 페이지로</span><span class="en">An independent campaign, on one page</span></span><span class="yr label">2026</span></div></a>
       </div>
       <div class="wgroup">
-        <span class="g-lab"><span class="ko">회사에서 맡은 것</span><span class="en">Led at work</span><i>4</i></span>
-        <span class="g-desc"><span class="ko">기획·리서치·디자인으로 참여</span><span class="en">As strategy, research, and design lead</span></span>
+        <span class="g-lab"><span class="ko">조직에서 해결한 문제</span><span class="en">Problems solved in organizations</span><i>4</i></span>
+        <span class="g-desc"><span class="ko">대규모 서비스에서 리서치·정책·시스템을 맡아 협업</span><span class="en">Research, policy, and systems for large-scale services, with teams</span></span>
       </div>
       <div class="windex">
         <a href="case-genesis.html"><div class="wrow"><span class="no label">04</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one"><span class="ko">법적 문구를 고르는 시스템</span><span class="en">A system for picking legal copy</span></span><span class="yr label">2025</span></div></a>
