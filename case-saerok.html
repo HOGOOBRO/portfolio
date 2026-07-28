@@ -5,28 +5,28 @@
 <script src="analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>까먹지마 · 김진현 포트폴리오</title>
-<meta name="description" content="찍은 지문 속 단어를 잊을 때쯤 다시 묻는 학습 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
+<title>까먹지마 Rings a Bell · 김진현 포트폴리오</title>
+<meta name="description" content="찍은 IELTS 지문 속 단어를 잊을 때쯤 다시 묻는 영단어 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
 <link rel="canonical" href="https://hogoobro.github.io/portfolio/case-saerok.html" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
 <meta name="theme-color" content="#0A0A0A" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hogoobro.github.io/portfolio/case-saerok.html" />
-<meta property="og:title" content="까먹지마 · 김진현 포트폴리오" />
-<meta property="og:description" content="찍은 지문 속 단어를 잊을 때쯤 다시 묻는 학습 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
+<meta property="og:title" content="까먹지마 Rings a Bell · 김진현 포트폴리오" />
+<meta property="og:description" content="찍은 IELTS 지문 속 단어를 잊을 때쯤 다시 묻는 영단어 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
 <meta property="og:image" content="https://hogoobro.github.io/portfolio/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="ko_KR" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="까먹지마 · 김진현 포트폴리오" />
-<meta name="twitter:description" content="찍은 지문 속 단어를 잊을 때쯤 다시 묻는 학습 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
+<meta name="twitter:title" content="까먹지마 Rings a Bell · 김진현 포트폴리오" />
+<meta name="twitter:description" content="찍은 IELTS 지문 속 단어를 잊을 때쯤 다시 묻는 영단어 앱. 화면마다 어느 학습 연구에서 나왔는지 말할 수 있게 만들었다." />
 <meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="grid.css" />
 <link rel="stylesheet" href="case.css" />
 <link rel="stylesheet" href="nav.css" />
@@ -48,10 +48,17 @@
     .rung .use{grid-column:2; text-align:left}
   }
 
-  /* 근거 각주. 주장 바로 아래 붙어서 어디서 왔는지 말한다. */
-  .src{grid-column:3 / span 6; margin-top:1rem; padding-left:.9rem; border-left:2px solid var(--line);
-       font-family:var(--mono); font-size:.7rem; line-height:1.6; opacity:.72}
-  @media (max-width:760px){ .src{grid-column:1 / -1} }
+  /* 참고한 연구. 서지정보를 한 줄에 몰아 적으면 읽는 사람에게는 글자 덩어리일 뿐이다.
+     저자·연도만 남기고, 그 연구가 무슨 말을 했는지를 한국어 한 줄로 붙인다. */
+  .reflist{grid-column:3 / span 7; margin-top:2rem; display:grid; gap:1.4rem}
+  .ref{display:grid; grid-template-columns:14rem 1fr; column-gap:var(--gap); align-items:baseline;
+       padding-top:1.1rem; border-top:1px solid var(--line)}
+  .ref b{font-weight:600; font-size:.92rem; letter-spacing:-.01em}
+  .ref p{font-size:var(--t-cap); line-height:1.65; color:var(--fg-faint); margin:0}
+  @media (max-width:760px){
+    .reflist{grid-column:1 / -1}
+    .ref{grid-template-columns:1fr; row-gap:.35rem}
+  }
 
   /* 실제 화면에 나가는 문구를 그대로 보여주는 자리 */
   .screencopy{grid-column:3 / span 6; margin-top:1.8rem; padding:1.1rem 1.3rem;
@@ -101,7 +108,7 @@
   <section class="case-hero theme-paper">
     <div class="row">
       <div class="c s1 w2 reveal"><p class="label">Case 07</p><p class="cap" style="margin-top:.5rem"><span class="ko">직접 만든 것<br />1인 빌드·운영</span><span class="en">Built solo<br />built &amp; run 0→1</span></p></div>
-      <div class="c s3 w7"><h1 class="case-title reveal"><span class="ko">까먹지마</span><span class="en">Kkamokjima</span></h1></div>
+      <div class="c s3 w7"><h1 class="case-title reveal"><span class="ko">까먹지마</span><span class="en">Rings a Bell</span></h1></div>
     </div>
     <div class="row" style="margin-top:2.6rem">
       <div class="c s3 w5">
@@ -119,7 +126,7 @@
   <section class="summary theme-paper">
     <div class="sm-row"><span class="k label">Role</span><span class="v"><span class="ko">혼자 0부터 1까지 전부 · <b>기여도 100%</b></span><span class="en">Everything from 0 to 1, solo · <b>100% mine</b></span></span></div>
     <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">외워도 며칠이면 날아가는데, 복습 앱은 카드를 직접 만들어야 해서 손이 간다</span><span class="en">Memorized words fade in days, and review apps make you build every card by hand</span></span></div>
-    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">카드 만들기를 AI에 넘긴다. 읽던 지문을 찍으면 <b>내가 막힌 단어</b>가 그대로 문제가 된다</span><span class="en">Hand card-making to AI. Photograph the passage you were reading and <b>the words that tripped you up</b> become the questions</span></span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">카드 만들기를 AI에 넘긴다. 풀던 영어 시험 지문을 찍으면 <b>내가 막힌 단어</b>가 그대로 문제가 된다</span><span class="en">Hand card-making to AI. Photograph the test passage you were working through and <b>the words that tripped you up</b> become the questions</span></span></div>
     <div class="sm-row"><span class="k label">Structure</span><span class="v"><span class="ko">시험이 나눠 놓은 네 영역 대신, <b>어휘가 실제로 자라는 축</b>으로 앱을 나눴다</span><span class="en">Split the app not by the exam's four skills but by <b>the axis vocabulary actually grows along</b></span></span></div>
     <div class="sm-row"><span class="k label">Principle</span><span class="v"><span class="ko">화면마다 어느 연구에서 나왔는지 말할 수 있다. <b>그리고 뺀 것마다 뺀 이유가 있다</b></span><span class="en">Every screen traces to a study. <b>And every omission has a reason</b></span></span></div>
   </section>
@@ -128,7 +135,7 @@
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">문제</span><span class="en">Problem</span></p></div></div>
     <div class="row"><div class="single reveal">
-      <p><span class="ko">영어 공부를 해도 며칠 지나면 외운 단어를 다시 까먹었습니다. 복습을 해야 한다는 건 아는데, 뭘 언제 다시 봐야 하는지가 관리되지 않았어요. 이미 나와 있는 도구들은 두 군데가 걸립니다. 간격 반복 앱은 카드를 직접 만들어야 해서, 공부를 시작하기 전에 할 일이 하나 더 있습니다. 시중 단어장은 실린 단어가 남이 고른 단어라, 정작 내가 막힌 단어와 어긋납니다. 그래서 두 가지를 뒤집기로 했습니다. <b>카드는 사람이 만들지 않는다. 단어는 남이 고르지 않는다.</b></span><span class="en">However much English I studied, the words were gone again within days. I knew I had to review, but nothing kept track of what to revisit and when. The tools that already exist snag in two places. Spaced-repetition apps make you build every card yourself, so there's a chore standing between you and studying. Off-the-shelf wordlists are somebody else's picks, which is rarely the word that actually stopped you. So I inverted both. <b>People don't make the cards. Other people don't pick the words.</b></span></p>
+      <p><span class="ko">국제 공인 영어 시험 <b>IELTS</b>를 준비하면서 계속 같은 자리에서 막혔습니다. 영어 공부를 해도 며칠 지나면 외운 단어를 다시 까먹었어요. 복습을 해야 한다는 건 아는데, 뭘 언제 다시 봐야 하는지가 관리되지 않았습니다. 이미 나와 있는 도구들은 두 군데가 걸립니다. 복습 간격을 자동으로 잡아주는 앱들은 외울 카드를 하나하나 직접 만들어야 해서, 공부를 시작하기 전에 할 일이 하나 더 생깁니다. 시중 단어장은 실린 단어가 남이 고른 단어라, 정작 시험 지문에서 내가 막힌 단어와 어긋납니다. 그래서 두 가지를 뒤집기로 했습니다. <b>카드는 사람이 만들지 않는다. 단어는 남이 고르지 않는다.</b></span><span class="en">Preparing for <b>IELTS</b>, an international English proficiency test, I kept getting stuck in the same place. However much English I studied, the words were gone again within days. I knew I had to review, but nothing kept track of what to revisit and when. The tools that already exist snag in two places. Spaced-repetition apps make you build every card yourself, so there's a chore standing between you and studying. Off-the-shelf wordlists are somebody else's picks, rarely the word that actually stopped you in a test passage. So I inverted both. <b>People don't make the cards. Other people don't pick the words.</b></span></p>
     </div></div>
   </section>
 
@@ -136,8 +143,8 @@
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">만든 것</span><span class="en">What I built</span></p></div></div>
     <div class="row"><div class="cols reveal">
-      <p><span class="ko">읽던 지문을 사진으로 찍으면 AI가 그 안의 단어와 구동사, 관용구를 뽑습니다. 뜻만이 아니라 지문 속 문장, 발음기호, 헷갈리는 오답 보기까지 함께 만들어요. 사람이 하는 일은 이미 아는 것을 빼고 <b>모르는 것만 고르는 것</b>뿐입니다.</span><span class="en">Photograph the passage you were reading and the AI pulls out the words, phrasal verbs, and idioms inside it. Not just meanings: the sentence they appeared in, the pronunciation, and a set of plausibly confusable wrong options. All you do is drop what you already know and <b>keep what you don't</b>.</span></p>
-      <p><span class="ko">저장된 단어는 잊을 때쯤 문제로 다시 나옵니다. 익숙해질수록 문제가 어려워지고, 충분히 익은 단어는 쓰기 연습으로 넘어갑니다. 여기까지가 겉모습입니다. <b>이 케이스에서 하고 싶은 이야기는 그 아래에 있습니다.</b></span><span class="en">Saved words come back as questions around the time you'd forget them. The more familiar a word gets, the harder its question; once a word is solid it graduates into writing practice. That's the surface. <b>What this case is actually about sits underneath it.</b></span></p>
+      <p><span class="ko">풀던 IELTS 리딩 지문을 사진으로 찍으면 AI가 그 안의 단어와 구동사, 관용구를 뽑습니다. 뜻만이 아니라 지문 속 문장, 발음기호, 헷갈리는 오답 보기까지 함께 만들어요. 사람이 하는 일은 이미 아는 것을 빼고 <b>모르는 것만 고르는 것</b>뿐입니다.</span><span class="en">Photograph the IELTS reading passage you were working through and the AI pulls out the words, phrasal verbs, and idioms inside it. Not just meanings: the sentence they appeared in, the pronunciation, and a set of plausibly confusable wrong options. All you do is drop what you already know and <b>keep what you don't</b>.</span></p>
+      <p><span class="ko">저장된 단어는 잊을 때쯤 문제로 다시 나옵니다. 익숙해질수록 문제가 어려워지고, 충분히 익은 단어는 쓰기 연습으로 넘어갑니다. 여기까지가 무엇을 만들었는지입니다. <b>이 케이스에서 할 이야기는 왜 그렇게 만들었는지입니다.</b></span><span class="en">Saved words come back as questions around the time you'd forget them. The more familiar a word gets, the harder its question; once a word is solid it graduates into writing practice. That's what I built. <b>What this case is about is why it's built that way.</b></span></p>
     </div></div>
   </section>
 
@@ -149,7 +156,7 @@
     <div class="row"><div class="cols reveal">
       <p><span class="ko">IELTS는 듣기, 읽기, 쓰기, 말하기 네 영역입니다. 영어 학습 앱을 만들면 누구나 그 넷으로 나눕니다. 저도 처음엔 단어마다 어느 영역인지 딱지를 붙이려 했어요. 그런데 붙이려는 순간 막혔습니다. <b>deteriorate</b>(악화되다)는 읽기 지문에서 만났지만 정작 쓰는 자리는 쓰기 에세이입니다. <b>controversial</b>(논란이 많은)도 마찬가지고요. 단어는 영역에 속하지 않았습니다. 시험이 네 영역으로 나뉘어 있다고 해서 단어도 네 종류인 건 아니었어요.</span><span class="en">IELTS has four sections: listening, reading, writing, speaking. Build an English app and everyone splits it that way. I started to, tagging each word with the skill it belonged to. Then the tagging stalled. <b>deteriorate</b> turned up in a reading passage, but the place you actually need it is a writing essay. Same for <b>controversial</b>. Words don't belong to sections. The exam being split four ways doesn't make vocabulary four kinds of thing.</span></p>
       <p><span class="ko">그래서 축을 바꿨습니다. 하나가 아니라 둘로요. <b>첫째, 어디서 들어왔나.</b> 글로 만난 단어와 소리로 만난 단어는 다르게 익혀야 합니다. 그래서 읽기와 쓰기를 문어로, 듣기와 말하기를 구어로 묶었습니다. 단어마다 정하는 게 아니라 사진을 찍을 때 지문 단위로 한 번만 고릅니다. 소리로 들어온 단어에는 소리로 듣고 푸는 문제가 붙습니다. 들어온 경로가 다르면 꺼내는 경로도 달라야 하니까요.</span><span class="en">So I changed the axis, and used two instead of one. <b>First: how did it come in?</b> A word you met on the page and a word you met in speech have to be practiced differently, so reading and writing group into "written" and listening and speaking into "spoken." You don't tag word by word; you pick once per passage, when you take the photo. Words that came in as sound get questions you answer by ear. If the way in was different, the way out should be too.</span></p>
-      <p><span class="ko"><b>둘째, 어느 방향으로 아는가.</b> 여기가 핵심입니다. 알아보는 것과 꺼내 쓰는 것은 같은 단어에 대한 다른 능력입니다. 이 축에는 참고한 틀이 있습니다. 2004년에 어휘 지식을 난이도 순으로 네 단계로 나눈 연구예요.</span><span class="en"><b>Second: which direction do you know it in?</b> This is the load-bearing one. Recognizing a word and producing it are different abilities attached to the same word. There's an existing frame for this axis: a 2004 study that sorts vocabulary knowledge into four levels by difficulty.</span></p>
+      <p><span class="ko"><b>둘째, 어디까지 아는가.</b> 여기가 핵심입니다. 읽을 때는 뜻이 바로 떠오르는데 막상 쓰려고 하면 안 나오는 단어가 있습니다. 알아보는 것과 직접 꺼내 쓰는 것은 다른 능력이거든요. 2004년에 이걸 네 단계로 나눈 연구가 있습니다. 쉬운 쪽에서 어려운 쪽 순서로요.</span><span class="en"><b>Second: how far do you know it?</b> This is the load-bearing one. Some words come to you the moment you read them but won't surface when you try to write them. Recognizing a word and producing it are different abilities. A 2004 study sorts this into four levels, easiest to hardest.</span></p>
     </div></div>
 
     <div class="row"><div class="ladder reveal">
@@ -159,14 +166,13 @@
       <div class="rung"><i>04</i><b><span class="ko">뜻을 보고 단어를 직접 쓴다</span><span class="en">See the meaning, write the word</span></b><span class="use"><span class="ko">스펠링 타이핑</span><span class="en">type the spelling</span></span></div>
     </div></div>
 
-    <div class="row"><p class="viz-kicker reveal"><span class="ko">네 칸 중 셋을 밟습니다. 셋째 칸은 뺐고, 뺀 이유가 있습니다.</span><span class="en">Three of the four rungs. The third is left out, on purpose.</span></p></div>
+    <div class="row"><p class="viz-kicker reveal"><span class="ko">네 단계 중 셋을 문제로 만들었습니다. 셋째 단계는 일부러 뺐습니다.</span><span class="en">Three of the four levels became question types. The third was left out on purpose.</span></p></div>
 
     <div class="row"><div class="cols reveal">
-      <p><span class="ko">셋째 칸은 한국어 뜻을 직접 쓰게 하는 자리입니다. 뺀 이유가 셋이에요. 한국어 답은 표현이 무한해서 채점이 안 됩니다. AI로 채점하면 문제마다 돈이 나가는데, 복습은 매일 도는 기능이라 비용이 사용량에 그대로 붙습니다. 그리고 목표가 영어를 써내는 것이라, 한국어 뜻을 정확히 쓰는 능력은 목적지가 아니라 옆길입니다.</span><span class="en">The third rung would ask you to write the Korean meaning out. Three reasons it isn't there. Korean answers have unbounded phrasings, so they can't be graded by string match. Grading them with AI costs money per question, and review runs every day, so the bill scales directly with use. And the goal is producing English; writing a precise Korean gloss is a side road, not the destination.</span></p>
-      <p><span class="ko">뺄 수 있었던 건 그 네 단계가 <b>가르치는 순서가 아니라 얼마나 단단히 아는지 재는 눈금</b>이기 때문입니다. 다 밟아야 하는 계단이 아니었어요. 축을 이렇게 바꾸니 쓰기와 말하기의 위치도 달라졌습니다. 단어를 따로 모으는 영역이 아니라 <b>이미 모은 단어가 졸업하는 코스</b>가 된 겁니다. 충분히 익은 단어만 쓰기 연습으로 넘어가고, 거기서 문장 조각을 맞추는 것에서 시작해 직접 문장을 쓰는 데까지 갑니다. 활용 연습이 옆에 붙은 별도 기능이 아니라 사다리의 마지막 칸인 이유가 여기 있습니다.</span><span class="en">Leaving it out was available because those four levels are <b>a scale for measuring how firmly you know a word, not a syllabus you must climb</b>. Changing the axis also moved writing and speaking. They stopped being sections that collect their own words and became <b>the course where collected words graduate</b>. Only words that are solid cross over into writing practice, which starts with assembling sentence fragments and ends with writing sentences outright. That's why practice isn't a feature bolted on beside the app but the last rung of the same ladder.</span></p>
+      <p><span class="ko">셋째 단계는 단어를 보고 한국어 뜻을 직접 쓰게 하는 것입니다. 뺀 이유가 셋이에요. 한국어 답은 표현이 무한해서 채점이 안 됩니다. AI로 채점하면 문제마다 돈이 나가는데, 복습은 매일 도는 기능이라 비용이 사용량에 그대로 붙습니다. 그리고 목표가 영어를 써내는 것이라, 한국어 뜻을 정확히 쓰는 능력은 목적지가 아니라 샛길입니다.</span><span class="en">The third level would ask you to write out the Korean meaning. Three reasons it isn't there. Korean answers have unbounded phrasings, so they can't be graded by string match. Grading them with AI costs money per question, and review runs every day, so the bill scales directly with use. And the goal is producing English; writing a precise Korean gloss is a side road, not the destination.</span></p>
+      <p><span class="ko">뺄 수 있었던 건 그 네 단계가 <b>가르치는 순서가 아니라 얼마나 아는지 재려고 만든 것</b>이기 때문입니다. 차례대로 다 거쳐야 하는 건 아니었어요. 축을 이렇게 바꾸니 쓰기와 말하기의 위치도 달라졌습니다. 단어를 따로 모으는 영역이 아니라 <b>이미 모은 단어를 쓸 수 있게 만드는 마지막 단계</b>가 된 겁니다. 충분히 익은 단어만 쓰기 연습으로 넘어가고, 거기서 문장 조각을 맞추는 것에서 시작해 직접 문장을 쓰는 데까지 갑니다. 활용 연습이 옆에 붙은 별도 기능이 아니라 이 단계들의 마지막에 놓인 이유가 여기 있습니다.</span><span class="en">Leaving it out was available because those four levels are <b>a way to measure how well a word is known, not a teaching sequence</b>. You don't have to go through all of them in order. Changing the axis also moved writing and speaking. They stopped being sections that collect their own words and became <b>the last step that turns collected words into ones you can use</b>. Only words that are solid cross over into writing practice, which starts with assembling sentence fragments and ends with writing sentences outright. That's why practice isn't a feature bolted on beside the app but the last step of the same progression.</span></p>
     </div></div>
 
-    <div class="row"><p class="src reveal">Laufer, B., &amp; Goldstein, Z. (2004). Testing Vocabulary Knowledge: Size, Strength, and Computer Adaptiveness. <em>Language Learning</em>, 54(3), 399–436.</p></div>
   </section>
 
   <!-- 원리 → 화면 -->
@@ -177,26 +183,26 @@
     <div class="row"><div class="nlist reveal">
       <div class="ni"><i>01</i><b><span class="ko">다시 읽는 것보다 꺼내 보는 게 남는다</span><span class="en">Retrieving beats rereading</span></b><p><span class="ko">한쪽은 글을 여러 번 다시 읽고, 다른 쪽은 책을 덮고 기억나는 대로 써봤습니다. 5분 뒤 시험은 다시 읽은 쪽이 이겼고, 2일과 1주일 뒤에는 뒤집혔어요. 중요한 건 <b>공부하는 본인은 반대로 느낀다</b>는 겁니다. 다시 읽으면 술술 읽혀 잘 되는 것 같고, 기억해내려 하면 괴롭거든요. 그래서 복습을 전부 문제로 만들고 카드 넘겨보기를 넣지 않았습니다. 편한 쪽을 알고 뺐습니다.</span><span class="en">One group reread a passage several times; the other closed the book and wrote down what they could recall. Tested five minutes later, rereading won. Tested two days and a week later, it flipped. The part that matters: <b>the learner feels the opposite</b>. Rereading is fluent and feels productive; retrieving is uncomfortable. So review here is entirely questions, with no flip-the-card mode. The comfortable option was left out knowingly.</span></p></div>
       <div class="ni"><i>02</i><b><span class="ko">몰아서 말고 나눠서, 잊을 때쯤에</span><span class="en">Spaced, not massed, timed to forgetting</span></b><p><span class="ko">2013년에 연구자 다섯 명이 학생들이 실제로 쓰는 공부법 열 가지를 효과 순으로 매겼습니다. 밑줄 긋기, 요약하기, 다시 읽기 같은 것들이었고, 최고 등급은 열 개 중 둘뿐이었어요. <b>스스로 문제 풀어보기와 나눠서 여러 번 하기.</b> 이 앱은 그 둘로만 만들어져 있습니다. 간격은 고정하지 않고 단어마다 따로 계산합니다. 잘 외워지는 단어와 자꾸 틀리는 단어가 같은 속도로 잊힐 리 없으니까요.</span><span class="en">In 2013 five researchers ranked ten study techniques students actually use by how well they work: highlighting, summarizing, rereading, and so on. Only two of the ten earned the top rating. <b>Practice testing and distributed practice.</b> This app is built out of exactly those two. Intervals aren't fixed but computed per word, because a word that sticks and a word you keep missing don't fade at the same rate.</span></p></div>
-      <div class="ni"><i>03</i><b><span class="ko">조금 어려워야 는다</span><span class="en">It has to be a little hard</span></b><p><span class="ko">기억에는 두 가지 힘이 따로 있습니다. 지금 얼마나 쉽게 떠오르는가, 그리고 얼마나 깊이 박혀 있는가. <b>깊이 박히는 건 꺼내기 어려울 때 꺼내야 늘어납니다.</b> 쉽게 다시 보여주는 걸로는 안 늘어요. 01의 5분과 1주일 역전이 이걸로 설명됩니다. 그래서 앞의 사다리를 실제로 올립니다. 익숙해질수록 문제가 어려워지고, 마지막에는 보기 없이 직접 타이핑합니다.</span><span class="en">Memory has two separate strengths: how easily something comes to mind right now, and how deeply it's stored. <b>Storage only grows when retrieval was hard and still succeeded.</b> Re-presenting the answer cheaply doesn't move it. That's what explains the five-minute versus one-week reversal in 01. So the ladder above is actually climbed: the more familiar a word, the harder its question, until you're typing it with no options at all.</span></p></div>
+      <div class="ni"><i>03</i><b><span class="ko">조금 어려워야 는다</span><span class="en">It has to be a little hard</span></b><p><span class="ko">기억에는 두 가지 힘이 따로 있습니다. 지금 얼마나 쉽게 떠오르는가, 그리고 얼마나 깊이 박혀 있는가. <b>깊이 박히는 건 꺼내기 어려울 때 꺼내야 늘어납니다.</b> 쉽게 다시 보여주는 걸로는 안 늘어요. 01의 5분과 1주일 역전이 이걸로 설명됩니다. 그래서 앞에서 나눈 단계를 실제로 순서대로 냅니다. 같은 단어라도 익숙해질수록 문제가 어려워지고, 마지막에는 보기 없이 직접 타이핑합니다.</span><span class="en">Memory has two separate strengths: how easily something comes to mind right now, and how deeply it's stored. <b>Storage only grows when retrieval was hard and still succeeded.</b> Re-presenting the answer cheaply doesn't move it. That's what explains the five-minute versus one-week reversal in 01. So those levels are handed out in order: the more familiar a word, the harder its question, until you're typing it with no options at all.</span></p></div>
       <div class="ni"><i>04</i><b><span class="ko">진짜 위험한 건 안다고 착각하는 단어</span><span class="en">The dangerous word is the one you think you know</span></b><p><span class="ko">답을 고르기 전에 먼저 묻습니다. "떠오르나요?" 그리고 자신 있게 골랐는데 틀린 단어를 따로 모아 보여줍니다. 이게 기록용이 아닙니다. <b>자신 있게 틀린 답은 정답을 알려줬을 때 오히려 더 잘 교정됩니다.</b> 예상하지 못한 피드백이라 주의가 확 쏠리기 때문이에요. 조건이 하나 붙는데, 정답 피드백이 반드시 있어야 합니다. 이 앱은 틀리면 즉시 정답을 보여주니 조건을 만족합니다. 그러니 확신도를 묻는 건 통계 수집이 아니라 <b>가장 크게 교정될 수 있는 순간을 찾아내는 장치</b>입니다.</span><span class="en">Before you pick an answer it asks: does it come to mind? Then it collects the words you were confident about and got wrong. That isn't bookkeeping. <b>Errors made with high confidence get corrected better once you're shown the right answer</b>, because unexpected feedback captures attention. There's a condition: corrective feedback has to be given. This app shows the answer immediately on a miss, so the condition holds. Asking for confidence isn't data collection, then. It's <b>a way to find the moment where correction lands hardest</b>.</span></p></div>
     </div></div>
 
-    <div class="row"><div class="single reveal" style="margin-top:2.4rem">
-      <p><span class="ko">그리고 이 질문을 <b>없앤 자리</b>도 있습니다. 빈칸 문제에서는 묻지 않기로 했어요. 문장에 빈칸만 뚫려 있는 시점에는 어떤 단어를 묻는지조차 모르는 상태라, 기억에 대한 답이 아니라 유추 가능성에 대한 추측이 됩니다. 답할 수 없는 걸 묻고 있었던 겁니다. 빈 자리는 기본값으로 채우지 않고 비워 뒀습니다. 값을 채워 넣으면 사용자가 실제로 "애매해요"를 고른 기록과 영원히 구분되지 않으니까요. <b>기록하지 않은 것과 사용자가 그렇게 답한 것은 다릅니다.</b></span><span class="en">There's also a place where that question was <b>removed</b>. Cloze items don't ask it. With only a gap in a sentence on screen you don't yet know which word is being asked about, so the answer isn't about memory but a guess at how inferable the blank is. It was asking something unanswerable. And the empty field is left empty rather than filled with a default, because a filled-in value would be permanently indistinguishable from a user who actually chose "not sure." <b>Not recorded and answered that way are different facts.</b></span></p>
+    
+    <div class="row"><div class="single reveal" style="margin-top:2.2rem">
+      <p><span class="ko">여기까지가 설계입니다. <b>그런데 설계대로 만들었다고 그대로 작동하는 건 아니었습니다.</b></span><span class="en">That was the design. <b>But building to a design doesn&rsquo;t mean it behaves that way.</b></span></p>
     </div></div>
 
-    <div class="row"><p class="src reveal">Roediger, H. L., &amp; Karpicke, J. D. (2006). <em>Psychological Science</em>, 17(3), 249–255. · Dunlosky, J., et al. (2013). <em>Psychological Science in the Public Interest</em>, 14(1), 4–58. · Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. · Butterfield, B., &amp; Metcalfe, J. (2001). <em>JEP: Learning, Memory, and Cognition</em>, 27(6), 1491–1494.</p></div>
   </section>
 
   <!-- 설계대로 안 되던 것 -->
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">부딪힌 것</span><span class="en">What broke</span></p></div>
-      <h2 class="sec-subhead reveal d1"><span class="ko">학습에 좋은 것이<br />확인을 망치고 있었다</span><span class="en">What helped learning<br />was ruining the check</span></h2>
+      <h2 class="sec-subhead reveal d1"><span class="ko">학습에 좋은 것이<br />평가를 망치고 있었다</span><span class="en">What helped learning<br />was wrecking the assessment</span></h2>
     </div>
     <div class="row"><div class="cols reveal">
-      <p><span class="ko">여기까지가 설계입니다. 그런데 설계대로 만들었다고 그대로 작동하는 건 아니었습니다. 단어는 문장 안에서 배워야 합니다. 그래서 지문 속 문장을 단어와 함께 저장했어요. 뜻만 외우는 것보다 어떤 자리에서 쓰이는지 같이 봐야 진짜로 아는 거니까요. 그런데 복습에서 그 문장을 같이 보여주면 문제가 생깁니다. <b>단어 뜻을 몰라도 문장 분위기로 답이 좁혀집니다.</b> 배우는 데 좋은 것이 확인하는 걸 망치고 있었습니다.</span><span class="en">That was the design. Building to the design doesn't mean it behaves that way. Words should be learned inside sentences, so each word is stored with the sentence it appeared in; knowing where a word sits is part of knowing it. But showing that sentence during review creates a problem. <b>Even without knowing the word, the shape of the sentence narrows the answer.</b> What helped the learning was ruining the check.</span></p>
+      <p><span class="ko">단어는 문장 안에서 배워야 합니다. 그래서 지문 속 문장을 단어와 함께 저장했어요. 뜻만 외우는 것보다 어떤 자리에서 쓰이는지 같이 봐야 진짜로 아는 거니까요. 그런데 복습에서 그 문장을 같이 보여주면 문제가 생깁니다. <b>단어 뜻을 몰라도 문장 분위기로 답이 좁혀집니다.</b> 배우는 데 좋은 것이 평가를 망치고 있었습니다.</span><span class="en">Words should be learned inside sentences, so each word is stored with the sentence it appeared in; knowing where a word sits is part of knowing it. But showing that sentence during review creates a problem. <b>Even without knowing the word, the shape of the sentence narrows the answer.</b> What helped the learning was wrecking the assessment.</span></p>
       <p><span class="ko">그래서 나눴습니다. 처음 보는 단어는 문장과 함께 보여줍니다. 아직 배우는 중이니 맥락이 필요해요. 한 번이라도 만난 단어는 문장을 숨기고 "문장 힌트 보기" 버튼 뒤에 둡니다. 이제는 확인하는 단계니까요.</span><span class="en">So it splits. A word you're seeing for the first time comes with its sentence, because you're still learning it and context is what you need. A word you've met before has the sentence hidden behind a "show sentence hint" button, because now you're being checked.</span></p>
-      <p><span class="ko"><b>여기서 한 번 더 접힙니다.</b> 힌트를 열고 맞히면 그 단어는 아직 단어만으로는 안 떠오른다는 뜻이니, 더 자주 나오게 해야 합니다. 그런데 그걸 감점처럼 말하면 어떻게 될까요. <b>학습자는 힌트를 안 열고 그냥 찍습니다.</b> 힌트도 안 쓰고, 기록도 거짓이 됩니다. 그래서 벌이 아니라 재출제로 말했습니다.</span><span class="en"><b>Then it folds once more.</b> If you open the hint and get it right, the word clearly doesn't surface on its own yet, so it should come back sooner. But phrase that as a penalty and what happens? <b>Learners stop opening the hint and guess instead.</b> The hint goes unused and the record becomes a lie. So it's phrased as rescheduling, not punishment.</span></p>
+      <p><span class="ko"><b>그런데 여기서 끝이 아니었습니다.</b> 힌트를 열고 맞히면 그 단어는 아직 단어만으로는 안 떠오른다는 뜻이니, 더 자주 나오게 해야 합니다. 그런데 그걸 감점처럼 말하면 어떻게 될까요. <b>학습자는 힌트를 안 열고 그냥 찍습니다.</b> 힌트도 안 쓰고, 기록도 거짓이 됩니다. 그래서 벌이 아니라 재출제로 말했습니다.</span><span class="en"><b>But that wasn't the end of it.</b> If you open the hint and get it right, the word clearly doesn't surface on its own yet, so it should come back sooner. But phrase that as a penalty and what happens? <b>Learners stop opening the hint and guess instead.</b> The hint goes unused and the record becomes a lie. So it's phrased as rescheduling, not punishment.</span></p>
     </div></div>
 
     <div class="row"><div class="screencopy reveal">
@@ -212,19 +218,32 @@
   <!-- 지금 -->
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">지금</span><span class="en">Now</span></p></div>
-      <h2 class="sec-subhead reveal d1"><span class="ko">넣을 이유가 없어서가 아니라,<br />넣으면 안 되는 이유가 있어서 뺐다</span><span class="en">Not left out for lack of a reason to add,<br />but for a reason not to</span></h2>
+      <h2 class="sec-subhead reveal d1"><span class="ko">넣은 것에도 뺀 것에도<br />이유를 댈 수 있다</span><span class="en">Everything in, and everything out,<br />has a reason behind it</span></h2>
     </div>
     <div class="row"><div class="cols reveal">
-      <p><span class="ko">쓰는 사람은 저 하나입니다. 그러니 이 케이스에서 사용자 수를 말할 수는 없습니다. 대신 말할 수 있는 게 있어요. <b>이 앱에는 근거 없이 들어간 화면이 없습니다.</b> 복습을 문제로 만든 것, 간격을 단어마다 다르게 잡은 것, 문제가 점점 어려워지는 것, 답 전에 확신도를 묻는 것, 익은 단어를 쓰기로 넘기는 것. 다 어떤 연구에서 나왔는지 말할 수 있습니다.</span><span class="en">I'm the only user, so this case can't talk about user counts. It can talk about something else. <b>No screen in this app is there without a reason.</b> Review as questions, per-word intervals, questions that harden as you improve, the confidence prompt before answering, solid words graduating into writing. Each of them traces to a study I can name.</span></p>
-      <p><span class="ko">그리고 <b>뺀 것들</b>도 말할 수 있습니다. 카드 넘겨보기, 한국어 뜻 쓰기, 빈칸에서의 확신도 질문, 시험 네 영역으로 나누기. 넣을 이유가 없어서가 아니라 넣으면 안 되는 이유가 있어서 뺐습니다. 만드는 일에서 어려운 쪽은 늘 후자였어요.</span><span class="en">And I can account for <b>what was left out</b>: flip-the-card review, writing Korean glosses, the confidence prompt on cloze items, splitting by the exam's four sections. None of them were dropped for lack of a reason to include them; each had a reason not to. The second kind of decision was always the harder one.</span></p>
+      <p><span class="ko">쓰는 사람은 저 하나입니다. 그러니 이 케이스에서 사용자 수를 말할 수는 없습니다. 대신 말할 수 있는 게 있어요. <b>넣은 화면은 전부 어디서 나왔는지 말할 수 있습니다.</b> 복습을 문제로 만든 것, 간격을 단어마다 다르게 잡은 것, 문제가 점점 어려워지는 것, 답 전에 확신도를 묻는 것, 익은 단어를 쓰기로 넘기는 것. 다 어떤 연구에서 나왔는지 말할 수 있습니다.</span><span class="en">I'm the only user, so this case can't talk about user counts. It can talk about something else. <b>Every screen that made it in, I can say where it came from.</b> Review as questions, per-word intervals, questions that harden as you improve, the confidence prompt before answering, solid words graduating into writing. Each of them traces to a study I can name.</span></p>
+      <p><span class="ko"><b>뺀 것도 마찬가지입니다.</b> 카드 넘겨보기, 한국어 뜻 쓰기, 빈칸에서의 확신도 질문, 시험 네 영역으로 나누기. 넣을 이유가 없어서가 아니라 넣으면 안 되는 이유가 있어서 뺐습니다. 만드는 일에서 어려운 쪽은 늘 후자였어요.</span><span class="en"><b>The same goes for what was left out.</b> flip-the-card review, writing Korean glosses, the confidence prompt on cloze items, splitting by the exam's four sections. None of them were dropped for lack of a reason to include them; each had a reason not to. The second kind of decision was always the harder one.</span></p>
     </div></div>
     <div class="row"><p class="livefoot reveal"><span class="ko">직접 만들어 쓰고 있는 앱입니다 · </span><span class="en">Built it, use it daily · </span><a href="https://saerok-five.vercel.app" target="_blank" rel="noopener">saerok-five.vercel.app ↗</a></p></div>
   </section>
 
+  <!-- 참고한 연구 -->
+  <section class="sec theme-paper">
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">참고한 연구</span><span class="en">What I read</span></p></div>
+    </div>
+    <div class="row"><div class="reflist reveal">
+      <div class="ref"><b>Roediger &amp; Karpicke (2006)</b><p><span class="ko">다시 읽은 집단과 기억해서 써본 집단을 비교했다. 5분 뒤에는 다시 읽은 쪽이 나았지만 1주일 뒤에는 뒤집혔다.</span><span class="en">Compared rereading against recalling from memory. Rereading won after five minutes; after a week it had flipped.</span></p></div>
+      <div class="ref"><b>Dunlosky 외 (2013)</b><p><span class="ko">학생들이 쓰는 공부법 열 가지를 효과 순으로 매겼다. 최고 등급은 문제 풀기와 나눠서 하기 둘뿐이었다.</span><span class="en">Ranked ten study techniques students actually use. Only two earned the top rating: practice testing and spacing.</span></p></div>
+      <div class="ref"><b>Bjork (1994)</b><p><span class="ko">기억에는 지금 떠오르는 정도와 깊이 박힌 정도가 따로 있고, 뒤엣것은 꺼내기 어려울 때 꺼내야 늘어난다.</span><span class="en">Memory has separate retrieval and storage strengths; the second only grows when retrieval was hard.</span></p></div>
+      <div class="ref"><b>Laufer &amp; Goldstein (2004)</b><p><span class="ko">어휘를 얼마나 아는지를 난이도 순으로 네 단계로 나눴다. 이 앱이 문제를 어렵게 만드는 순서가 이 틀을 따른다.</span><span class="en">Sorted how firmly a word is known into four levels by difficulty. The order this app hardens its questions in follows that frame.</span></p></div>
+      <div class="ref"><b>Butterfield &amp; Metcalfe (2001)</b><p><span class="ko">자신 있게 틀린 답은 정답을 알려줬을 때 오히려 더 잘 교정된다. 예상 못 한 피드백이라 주의가 쏠리기 때문이다.</span><span class="en">Errors made with high confidence get corrected better once the answer is shown, because unexpected feedback captures attention.</span></p></div>
+    </div></div>
+  </section>
+
   <!-- 다음 케이스 -->
   <nav class="next theme-paper">
-    <a href="case-railink.html">
-      <span><span class="lab">Next</span><br /><span class="nm">RaiLink</span></span>
+    <a href="case-deokhong.html">
+      <span><span class="lab">Next</span><br /><span class="nm">deokhong.com</span></span>
       <span class="nm ar">→</span>
     </a>
   </nav>

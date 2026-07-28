@@ -16,7 +16,10 @@
 
   /* 폰트 */
   --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
-  --serif:'Fraunces','Pretendard Variable',Georgia,serif;
+  /* 영문은 Fraunces가 잡고, Fraunces에 없는 한글은 본명조로 넘어간다.
+     Pretendard는 본명조를 못 받았을 때의 뒷받침(산세리프라 모양은 다르지만 통제 가능).
+     'Pretendard Variable'은 CDN이 등록하지 않는 이름이라 뒤로 뺀다. */
+  --serif:'Fraunces','Noto Serif KR',Pretendard,'Pretendard Variable',Georgia,serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
 
   /* 타이포 스케일 (편집디자인 6단) */
@@ -33,6 +36,12 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+/* 줄바꿈: 마지막 줄에 단어 하나만 떨어지는 것(고아 줄)을 막는다.
+   본문은 pretty(끝줄 단어 하나 방지), 제목은 balance(줄 길이를 고르게).
+   지원하지 않는 브라우저는 이 속성을 무시하므로 지금과 똑같이 보인다. */
+p, li, figcaption, .lead, .cap{text-wrap:pretty}
+h1, h2, h3, .display, .h1, .h2, .sec-subhead, .case-title, .case-essence, .lead{text-wrap:balance}
+
 body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-break:keep-all;
      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
 

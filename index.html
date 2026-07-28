@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="grid.css" />
 <link rel="stylesheet" href="nav.css" />
 <style>
@@ -97,20 +97,38 @@
 
   /* ── 프로젝트 인덱스 ── */
   /* Work 목록 묶음 머리표. 직접 만든 것과 회사에서 맡은 것을 갈라 세운다.
-     본문·구분선과 같은 페이지 여백(--side) 안에 두고, 메타 자리인 1번 컬럼에서 시작한다. */
-  .wgroup{padding:2.6rem var(--side) .7rem; opacity:.55}
-  .wgroup:first-of-type{padding-top:0}
-  .windex + .wgroup{padding-top:3.2rem}
+     아래 .wrow와 같은 12칸에 얹어 표의 머리행처럼 읽히게 한다. 왼쪽 끝에 글자만
+     놓고 가운데를 비우면 구분선이 아니라 구멍으로 보인다. */
+  /* 그룹은 선이 아니라 여백과 라벨로 가른다. 굵은 잉크선을 그으면 확실히 갈리기는 하는데,
+     페이지에서 가장 검은 것이 프로젝트 이름이 아니라 구분선이 되어 시선을 먼저 뺏는다.
+     큰 여백 + 굵은 라벨이면 조용하게도 충분히 두 묶음으로 읽힌다.
+     개수는 연도 열에 두면 연도처럼 읽혀서 이름 옆에 붙인다. */
+  .wgroup{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
+          align-items:baseline; padding:0 var(--side) 1rem}
+  .windex + .wgroup{margin-top:clamp(4.5rem,9vh,7rem)}
+  .wgroup .g-lab{grid-column:1 / span 4; font-size:1rem; font-weight:700;
+                 letter-spacing:-.01em; color:var(--ink)}
+  .wgroup .g-lab i{font-style:normal; font-family:var(--mono); font-size:.7rem;
+                   font-weight:500; margin-left:.5rem; color:var(--fg-faint)}
+  .wgroup .g-desc{grid-column:8 / span 5; font-size:var(--t-cap); color:var(--fg-faint)}
+  @media (max-width:760px){
+    .wgroup .g-lab{grid-column:1 / span 12}
+    .wgroup .g-desc{display:none}
+  }
   .windex a{display:block; color:inherit; text-decoration:none}
   .windex .wrow{display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap);
                 align-items:baseline; padding:1.5rem var(--side); border-top:1px solid var(--rule);
                 transition:background var(--t-fast), color var(--t-fast)}
   .windex .wrow:last-child{border-bottom:1px solid var(--rule)}
-  .windex .no{grid-column:1 / span 1}
-  .windex .nm{grid-column:3 / span 5; font-family:var(--serif); font-weight:500;
+  /* 한 행에 번호·이름·설명·연도를 12칸에 흩어 놓으면 사이가 전부 공백이 되고
+     행이 하나의 단위로 안 읽힌다. 설명을 이름 바로 아래로 내려 한 덩어리로 묶는다.
+     남는 건 왼쪽 번호와 오른쪽 연도 둘뿐이라, 덩어리가 넷에서 셋으로 준다. */
+  .windex .no{grid-column:1 / span 1; grid-row:1}
+  .windex .nm{grid-column:3 / span 7; grid-row:1; font-family:var(--serif); font-weight:500;
               font-size:clamp(1.5rem,2.6vw,2.5rem); letter-spacing:-.02em; line-height:1.1}
-  .windex .one{grid-column:8 / span 3; font-size:var(--t-cap); color:var(--fg-faint); align-self:center}
-  .windex .yr{grid-column:12 / span 1; text-align:right}
+  .windex .one{grid-column:3 / span 6; grid-row:2; margin-top:.45rem;
+               font-size:var(--t-cap); color:var(--fg-faint)}
+  .windex .yr{grid-column:12 / span 1; grid-row:1; text-align:right}
   .windex .ar{display:inline-block; margin-left:.5rem; opacity:0; transform:translateX(-6px);
               transition:opacity var(--t-fast), transform .2s var(--ease-snap)}
   @media (hover:hover) and (pointer:fine){
@@ -134,9 +152,14 @@
     .menu-list, .menu-foot{padding-left:0}
     .tl{margin-top:2rem}
     .windex .wrow{grid-template-columns:1fr auto; padding:1.2rem var(--side)}
-    .windex .no,.windex .one{display:none}
+    /* 설명이 이름 아래로 붙었으니 좁은 화면에서도 살린다(예전엔 옆에 있어 자리가 없었다) */
+    .windex .no{display:none}
+    .windex .one{grid-column:1 / -1; grid-row:2}
     .windex .nm,.windex .yr{grid-column:auto}
-    .hero{--cw:clamp(150px,44vw,220px); --ch:clamp(150px,44vw,220px)}
+    /* 링 반지름 = 카드폭 × GAP/2 ÷ tan(π/N). 카드가 6장에서 7장이 되면 같은 폭에서도
+       반지름이 약 20% 커져 좁은 화면에서 가장자리 카드가 잘렸다. 데스크톱 확정값은
+       그대로 두고, 좁은 화면에서만 폭을 줄여 예전 반지름 수준으로 되돌린다. */
+    .hero{--cw:clamp(140px,38vw,190px); --ch:clamp(140px,38vw,190px)}
     /* 카드 안 글자가 데스크톱 크기 그대로라 좁은 카드에서 넘쳐 두 줄로 깨졌다 */
     .card{padding:.8rem .9rem; border-radius:18px}
     /* 좁은 카드에 세 줄은 많다. 분야·연도 태그는 빼고 이름과 한 줄만 남긴다(연도는 아래 Work 목록에 있음) */
@@ -219,7 +242,7 @@
           </a>
           <a class="card photo" href="case-saerok.html" style="--img:url('card-saerok.webp')">
             <span class="scrim"></span>
-            <span class="bot"><span class="tag"><span class="ko">영어 학습 앱 · 2026 →</span><span class="en">Vocabulary app · 2026 →</span></span><b><span class="ko">까먹지마</span><span class="en">Kkamokjima</span></b><span><span class="ko">잊을 때쯤 다시 물어봐요.</span><span class="en">Asks again right when you’d forget.</span></span></span>
+            <span class="bot"><span class="tag"><span class="ko">영어 학습 앱 · 2026 →</span><span class="en">Vocabulary app · 2026 →</span></span><b><span class="ko">까먹지마</span><span class="en">Rings a Bell</span></b><span><span class="ko">잊을 때쯤 다시 물어봐요.</span><span class="en">Asks again right when you’d forget.</span></span></span>
           </a>
           <a class="card photo" href="case-deokhong.html" style="--img:url('card-deokhong.webp')">
             <span class="scrim"></span>
@@ -254,21 +277,28 @@
   <main class="page scrolly theme-paper" id="page-work" data-route="work" aria-hidden="true">
     <div class="page-inner">
       <div class="row" style="margin-bottom:2.4rem">
+        <!-- 리드 문장("직접 만든 것 셋, 회사에서 맡은 것 넷")은 뺐다.
+             바로 아래 묶음 라벨이 이름과 개수를 그대로 말하고 있어 같은 말을 두 번 하고 있었다. -->
         <p class="c s1 w2 label">Work · 7</p>
-        <p class="c s3 w7 lead"><span class="ko">직접 만든 것 셋, 회사에서 맡은 것 넷.</span><span class="en">Three I built myself, four I led at work.</span></p>
       </div>
-      <p class="wgroup label"><span class="ko">직접 만든 것: 기획부터 배포·운영까지 혼자</span><span class="en">Built myself — strategy through ship and run, solo</span></p>
+      <div class="wgroup">
+        <span class="g-lab"><span class="ko">직접 만든 것</span><span class="en">Built myself</span><i>3</i></span>
+        <span class="g-desc"><span class="ko">기획부터 배포·운영까지 혼자</span><span class="en">Strategy through ship and run, solo</span></span>
+      </div>
       <div class="windex">
-        <a href="case-railink.html"><div class="wrow"><span class="no label">01</span><span class="nm">RaiLink<span class="ar">→</span></span><span class="one"><span class="ko">근무표를 겹쳐, 같이 쉬는 날을 찾는다</span><span class="en">Stack the rosters, find the shared day off</span></span><span class="yr label">2026</span></div></a>
-        <a href="case-saerok.html"><div class="wrow"><span class="no label">02</span><span class="nm"><span class="ko">까먹지마</span><span class="en">Kkamokjima</span><span class="ar">→</span></span><span class="one"><span class="ko">잊을 때쯤 다시 묻는 단어 앱</span><span class="en">A vocabulary app that asks right when you’d forget</span></span><span class="yr label">2026</span></div></a>
+        <a href="case-saerok.html"><div class="wrow"><span class="no label">01</span><span class="nm"><span class="ko">까먹지마</span><span class="en">Rings a Bell</span><span class="ar">→</span></span><span class="one"><span class="ko">잊을 때쯤 다시 묻는 영단어 앱</span><span class="en">A vocabulary app that asks right when you’d forget</span></span><span class="yr label">2026</span></div></a>
+        <a href="case-railink.html"><div class="wrow"><span class="no label">02</span><span class="nm">RaiLink<span class="ar">→</span></span><span class="one"><span class="ko">근무표를 겹쳐, 같이 쉬는 날을 찾는다</span><span class="en">Stack the rosters, find the shared day off</span></span><span class="yr label">2026</span></div></a>
         <a href="case-deokhong.html"><div class="wrow"><span class="no label">03</span><span class="nm">deokhong.com<span class="ar">→</span></span><span class="one"><span class="ko">무소속 캠페인을 한 페이지로</span><span class="en">An independent campaign, on one page</span></span><span class="yr label">2026</span></div></a>
       </div>
-      <p class="wgroup label"><span class="ko">회사에서 맡은 것</span><span class="en">Led at work</span></p>
+      <div class="wgroup">
+        <span class="g-lab"><span class="ko">회사에서 맡은 것</span><span class="en">Led at work</span><i>4</i></span>
+        <span class="g-desc"><span class="ko">기획·리서치·디자인으로 참여</span><span class="en">As strategy, research, and design lead</span></span>
+      </div>
       <div class="windex">
-        <a href="case-samsung.html"><div class="wrow"><span class="no label">04</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one"><span class="ko">100여 개국 가입 여정 통일</span><span class="en">One sign-up journey across 100+ markets</span></span><span class="yr label">2024</span></div></a>
-        <a href="case-openpath.html"><div class="wrow"><span class="no label">05</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one"><span class="ko">체험을 앞세워 결제 전환 3.4배</span><span class="en">Experience first: 3.4× payment conversion</span></span><span class="yr label">2023</span></div></a>
-        <a href="case-genesis.html"><div class="wrow"><span class="no label">06</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one"><span class="ko">법적 문구를 고르는 시스템</span><span class="en">A system for picking legal copy</span></span><span class="yr label">2025</span></div></a>
-        <a href="case-korail.html"><div class="wrow"><span class="no label">07</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one"><span class="ko">한꺼번에 묻지 않기로 했다</span><span class="en">Stopped asking everything at once</span></span><span class="yr label">2024</span></div></a>
+        <a href="case-genesis.html"><div class="wrow"><span class="no label">04</span><span class="nm">Genesis<span class="ar">→</span></span><span class="one"><span class="ko">법적 문구를 고르는 시스템</span><span class="en">A system for picking legal copy</span></span><span class="yr label">2025</span></div></a>
+        <a href="case-samsung.html"><div class="wrow"><span class="no label">05</span><span class="nm">Samsung Care+<span class="ar">→</span></span><span class="one"><span class="ko">100여 개국 가입 여정 통일</span><span class="en">One sign-up journey across 100+ markets</span></span><span class="yr label">2024</span></div></a>
+        <a href="case-korail.html"><div class="wrow"><span class="no label">06</span><span class="nm">Korail-talk<span class="ar">→</span></span><span class="one"><span class="ko">한꺼번에 묻지 않기로 했다</span><span class="en">Stopped asking everything at once</span></span><span class="yr label">2024</span></div></a>
+        <a href="case-openpath.html"><div class="wrow"><span class="no label">07</span><span class="nm">OPENPATH<span class="ar">→</span></span><span class="one"><span class="ko">체험을 앞세워 결제 전환 3.4배</span><span class="en">Experience first: 3.4× payment conversion</span></span><span class="yr label">2023</span></div></a>
       </div>
       <div class="row" style="margin-top:clamp(3rem,7vh,5.5rem)">
         <p class="c s1 w2 label">Deliverables</p>

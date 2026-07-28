@@ -16,6 +16,9 @@ body{background:var(--bg)}
 .case-hero{padding-top:clamp(6rem,15vh,10rem); padding-bottom:clamp(2.4rem,5vh,4rem)}
 .case-title{font-family:var(--serif); font-weight:500; font-size:clamp(3.4rem,10vw,9rem); line-height:.94; letter-spacing:-.03em}
 .case-title.long{font-size:clamp(2.6rem,7.6vw,6.8rem); line-height:.96}
+/* 이탤릭은 영문에만. 한글에는 이탤릭 자체가 없어서 브라우저가 억지로 눕히는데(가짜 기울임),
+   획이 뭉개지고 글자가 뒤로 넘어간 것처럼 보인다. 한글은 세워 두고 세리프만 쓴다. */
+.case-essence .ko{font-style:normal}
 .case-essence{font-family:var(--serif); font-weight:400; font-style:italic; font-size:clamp(1.4rem,2.6vw,2.2rem);
               line-height:1.32; color:var(--fg-soft); text-wrap:balance}
 .live{display:inline-flex; align-items:center; gap:.5rem; margin-top:1.4rem; font-family:var(--mono); font-size:.72rem;
@@ -88,7 +91,10 @@ body{background:var(--bg)}
 .bar-grp:first-child{margin-top:0}
 
 /* ── 그래프 캡션 / 킥커 ── */
-.viz-kicker{grid-column:3 / span 5; margin-top:1.6rem; font-size:.98rem; font-weight:500; color:var(--fg);
+/* 그림 아래 "이 그림이 말하는 것". 왼쪽 2px 잉크 막대는 유지(Theo 확정).
+   답답했던 원인은 막대가 아니라 아래 본문과 붙어 있던 것이라, 아래 여백만 확실히 준다. */
+.viz-kicker{grid-column:3 / span 5; margin-top:1.6rem; margin-bottom:clamp(2.4rem,4vh,3.4rem);
+            font-size:.98rem; font-weight:500; color:var(--fg);
             line-height:1.6; border-left:2px solid var(--ink); padding-left:1rem}
 .viz-note{grid-column:3 / span 6; margin-top:1.2rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
 .viz-note b{color:var(--fg-soft); font-weight:600}
