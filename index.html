@@ -425,10 +425,18 @@
     document.body.classList.toggle('theme-dark', dark);
     document.body.classList.toggle('theme-paper', !dark);
     if(window.__setMenu) window.__setMenu(false);
-    if(window.gtag) gtag('event','page_view',{
-      page_title: (target.dataset.route||'index'),
-      page_location: location.href, page_path: location.pathname + (location.hash||'#/')
-    });
+    /* GA4는 page_location의 '#' 뒤를 경로로 치지 않는다. 그대로 두면 Work·About·Contact가
+       전부 홈 한 줄로 합쳐지므로, 해시 라우트에만 경로형 주소를 지어 보고한다.
+       홈은 실제 주소와 같은 '/portfolio/'를 그대로 쓴다. (page_path는 GA4 파라미터가 아니라 뺀다) */
+    if(window.gtag){
+      var r = target.dataset.route || '';
+      var base = location.origin + location.pathname.replace(/index\.html$/, '');
+      var names = { work:'Work', about:'About', contact:'Contact' };
+      gtag('event','page_view',{
+        page_title: r ? (names[r] || r) + ' · 김진현 포트폴리오' : document.title,
+        page_location: base + r
+      });
+    }
   }
   window.addEventListener('hashchange', route);
   route();
