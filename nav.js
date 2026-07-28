@@ -174,10 +174,12 @@
         setTimeout(function(){ if(window.__setMenu) window.__setMenu(false); }, 80);
         return;
       }
+      /* 나갈 때는 항상 같은 방향으로 닫는다. 가운데 분할은 들어올 때만 쓴다.
+         둘 다 가운데면 모였다 갈라지는 대칭이 되어 두 박자로 읽힌다. */
       close_then(function(){
         location.hash = href.slice(1);
         setTimeout(function(){ open_now(c); }, 60);
-      }, c);
+      });
       return;
     }
     if(!/\.html($|[#?])/.test(href) && !/^\/?$/.test(href)) return;   /* 같은 사이트 문서만 */
@@ -185,6 +187,6 @@
     var toHome = isHome(href);
     if(toHome){ try{ sessionStorage.setItem('shutter_center','1'); }catch(e){} }
     if(menuOpen){ location.href = a.href; return; }   /* 메뉴가 이미 검은 화면이므로 바로 이동 */
-    close_then(function(){ location.href = a.href; }, toHome);
+    close_then(function(){ location.href = a.href; });
   });
 })();
