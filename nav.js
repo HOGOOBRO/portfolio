@@ -5,11 +5,21 @@
   var btn  = document.getElementById('menuBtn');
   if(!menu || !btn) return;
 
+  /* 닫힌 메뉴는 inert로 탭 순서에서도 빠진다(aria-hidden만으로는 포커스가 남는다) */
+  if('inert' in menu) menu.inert = true;
+
   function setMenu(open){
     menu.classList.toggle('open', open);
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if('inert' in menu) menu.inert = !open;
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.textContent = open ? 'Close' : 'Menu';
+    if(open){
+      var first = menu.querySelector('.menu-list a');
+      if(first) first.focus();
+    }else if(document.activeElement && menu.contains(document.activeElement)){
+      btn.focus();                              /* 메뉴 안에 있던 포커스를 버튼으로 되돌린다 */
+    }
   }
   window.__setMenu = setMenu;                 /* 홈 라우터가 페이지 전환 때 닫는다 */
 

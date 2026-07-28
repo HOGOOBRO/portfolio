@@ -275,7 +275,7 @@
   </main>
 
   <!-- ── 02 · Work ── -->
-  <main class="page scrolly theme-paper" id="page-work" data-route="work" aria-hidden="true">
+  <main class="page scrolly theme-paper" id="page-work" data-route="work" aria-hidden="true" inert>
     <div class="page-inner">
       <div class="row" style="margin-bottom:2.4rem">
         <p class="c s1 w2 label">Work · 7</p>
@@ -311,7 +311,7 @@
   </main>
 
   <!-- ── 03 · About ── -->
-  <main class="page scrolly theme-paper" id="page-about" data-route="about" aria-hidden="true">
+  <main class="page scrolly theme-paper" id="page-about" data-route="about" aria-hidden="true" inert>
     <div class="page-inner">
       <div class="row">
         <p class="c s1 w2 label reveal">About</p>
@@ -359,7 +359,7 @@
   </main>
 
   <!-- ── 04 · Contact ── -->
-  <main class="page scrolly theme-dark" id="page-contact" data-route="contact" aria-hidden="true">
+  <main class="page scrolly theme-dark" id="page-contact" data-route="contact" aria-hidden="true" inert>
     <div class="page-inner">
       <div class="row">
         <p class="c s1 w2 label reveal">Contact</p>
@@ -416,6 +416,7 @@
       var on=(p===target);
       p.classList.toggle('visible', on);
       p.setAttribute('aria-hidden', on?'false':'true');
+      if('inert' in p) p.inert = !on;   /* 숨은 화면의 링크가 탭 순서에 남지 않게 */
       if(on) p.scrollTop=0;
     });
     homeVisible = (target.id==='page-home');

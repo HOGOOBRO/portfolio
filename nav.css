@@ -21,6 +21,13 @@
 .chrome .left{display:flex; align-items:baseline; gap:.9rem}
 .chrome .brand{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
                text-transform:uppercase; color:var(--fg,#0A0A0A)}
+/* 건너뛰기 링크: 키보드 포커스가 오기 전에는 화면 밖에 있다 */
+.skip{position:fixed; top:.8rem; left:var(--side,1.5rem); z-index:300;
+      font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+      background:var(--fg,#0A0A0A); color:var(--bg,#FFF); padding:.55rem .9rem;
+      transform:translateY(calc(-100% - 1.2rem))}
+.skip:focus-visible{transform:none}
+
 /* 계층 표시 겸 상위로 가는 링크 */
 .chrome .up{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
             text-transform:uppercase; color:var(--fg-faint,#8F8F8F);
@@ -29,7 +36,9 @@
 @media (hover:hover) and (pointer:fine){ .chrome .up:hover{color:var(--fg,#0A0A0A)} }
 .menu-trigger{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
               text-transform:uppercase; color:var(--fg,#0A0A0A); background:none; border:0; cursor:pointer;
-              padding:0; transition:opacity var(--nav-slow), transform .16s var(--ease-snap)}
+              /* 히트 영역만 키운다: 패딩만큼 음수 마진으로 상쇄해 보이는 위치는 그대로 */
+              padding:.7rem .6rem; margin:-.7rem -.6rem;
+              transition:opacity var(--nav-slow), transform .16s var(--ease-snap)}
 .menu-trigger:active{transform:scale(.94)}
 
 /* ── 전체화면 메뉴 오버레이 ── */
@@ -88,7 +97,9 @@
 .lang-en .ko{display:none}
 .lang{display:inline-flex; gap:.45rem; align-items:baseline; margin-right:1.1rem}
 .lang button{font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
-             background:none; border:0; padding:0; cursor:pointer; color:var(--fg-faint,#8F8F8F);
+             background:none; border:0; cursor:pointer; color:var(--fg-faint,#8F8F8F);
+             /* 히트 영역만 확장. 가로는 두 버튼 사이 간격(.45rem)을 넘지 않게 좁게 */
+             padding:.7rem .2rem; margin:-.7rem -.2rem;
              transition:color var(--nav-fast)}
 .lang button.on{color:var(--fg,#0A0A0A)}
 .chrome .right{display:flex; align-items:baseline}
