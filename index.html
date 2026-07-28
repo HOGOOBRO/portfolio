@@ -84,18 +84,16 @@
   .card .bot .tag{display:block; margin-bottom:.5rem}
   .card .bot b{display:block; font-size:1.05rem; font-weight:700; letter-spacing:-.01em}
   .card .bot > span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
-  /* 헤드라인은 다른 페이지 본문과 같은 3번 컬럼에서 시작한다(eyebrow는 메타라 1번 컬럼 유지) */
-  .hero .lockup{position:absolute; left:calc(var(--side) + 2 * (var(--colw) + var(--gap)));
+  .hero .lockup{position:absolute; left:var(--side);
                 bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
   .hero .lockup h1{font-family:var(--serif); font-weight:600; color:#F5F5F5;
                    font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.08; letter-spacing:-.02em}
   .hero .lockup p{margin-top:.9rem; max-width:34ch; font-weight:500;
                   font-size:clamp(.92rem,1.15vw,1.05rem); line-height:1.55; color:rgba(245,245,245,.55)}
-  /* 히어로 카피는 헤드라인과 같은 세로선(3번 컬럼)에 맞춘다.
-     케이스 페이지처럼 메타와 본문이 한 줄에서 짝을 이루는 구조가 아니라, 여기서는
-     eyebrow와 헤드라인이 각각 혼자 있기 때문에 어긋나 보이기만 한다 */
-  .hero .eyebrow{position:absolute; top:4.4rem;
-                 left:calc(var(--side) + 2 * (var(--colw) + var(--gap))); z-index:3}
+  /* 히어로 카피는 내비게이션(로고)과 같은 세로선에 맞춘다.
+     이 화면에서 동시에 보이는 기준선은 고정 크롬뿐이고, 히어로는 유일하게 풀블리드를 허용한
+     화면이라 콘텐츠 그리드가 아니라 화면 프레임을 기준으로 삼는다 */
+  .hero .eyebrow{position:absolute; top:4.4rem; left:var(--side); z-index:3}
 
   /* ── 프로젝트 인덱스 ── */
   .windex a{display:block; color:inherit; text-decoration:none}
@@ -134,7 +132,6 @@
     .windex .no,.windex .one{display:none}
     .windex .nm,.windex .yr{grid-column:auto}
     .hero{--cw:clamp(150px,44vw,220px); --ch:clamp(150px,44vw,220px)}
-    .hero .lockup,.hero .eyebrow{left:var(--side)}
     /* 카드 안 글자가 데스크톱 크기 그대로라 좁은 카드에서 넘쳐 두 줄로 깨졌다 */
     .card{padding:.8rem .9rem; border-radius:18px}
     /* 좁은 카드에 세 줄은 많다. 분야·연도 태그는 빼고 이름과 한 줄만 남긴다(연도는 아래 Work 목록에 있음) */
