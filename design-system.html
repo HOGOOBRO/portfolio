@@ -168,7 +168,7 @@
       <p class="sec-lead reveal d1"><span class="ko">이 네 가지만 정해두면, 나머지 규칙은 저절로 따라와요.</span><span class="en">Decide these four, and every other rule falls into place.</span></p>
     </div>
     <div class="row"><div class="nlist reveal">
-      <div class="ni"><i>01</i><b><span class="ko">색 대신 위계로 말한다</span><span class="en">Hierarchy, not color</span></b><p><span class="ko">UI는 흑백만 씁니다. 강조는 색이 아니라 크기, 굵기, 여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지Image 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</span><span class="en">The UI is black and white. Emphasis comes from size, weight, and space, not hue. The only color on screen comes from the work itself, so the work never gets lost in the background.</span></p></div>
+      <div class="ni"><i>01</i><b><span class="ko">색 대신 위계로 말한다</span><span class="en">Hierarchy, not color</span></b><p><span class="ko">UI는 흑백만 씁니다. 강조는 크기와 굵기, 여백의 차이로 만들어요. 화면에서 유일하게 색을 내는 건 작업물 이미지Image 자체입니다. 그래야 작업이 배경에 묻히지 않아요.</span><span class="en">The UI is black and white. Emphasis comes from size, weight, and space, not hue. The only color on screen comes from the work itself, so the work never gets lost in the background.</span></p></div>
       <div class="ni"><i>02</i><b><span class="ko">한국어를 먼저 생각한 타이포</span><span class="en">Typography that starts with Korean</span></b><p><span class="ko">한글은 단어 중간에서 줄이 끊기면 읽기 불편해요. 그래서 띄어쓰기 단위로만 넘어가게(word-break:keep-all) 해뒀습니다. 라틴 제목은 Fraunces, 본문과 한글은 Pretendard, 라벨과 수치는 JetBrains Mono로 역할을 나눴어요.</span><span class="en">Korean is hard to read when a line breaks mid-word, so lines break only at spaces (word-break:keep-all). Roles are split by face: Fraunces for Latin headings, Pretendard for body and all Korean, JetBrains Mono for labels and figures.</span></p></div>
       <div class="ni"><i>03</i><b><span class="ko">여백은 화면 크기를 따라간다</span><span class="en">Space scales with the screen</span></b><p><span class="ko">고정 px 대신 clamp()로 최소, 유동, 최대를 함께 정합니다. 작은 화면에서는 답답하지 않을 만큼만 줄고, 큰 화면에서는 끝없이 벌어지지 않아요.</span><span class="en">Instead of fixed pixels, clamp() sets a minimum, a fluid middle, and a maximum. Small screens tighten only so far; large ones stop spreading.</span></p></div>
       <div class="ni"><i>04</i><b><span class="ko">그리드의 원점은 하나</span><span class="en">One origin for the grid</span></b><p><span class="ko">12컬럼 중 1–2번은 메타 정보(라벨) 자리, 본문, 수치, 구분선Rules은 전부 3번 컬럼에서 시작합니다. 무엇 하나만 왼쪽으로 튀어나오지 않게, 원점을 하나로 고정했어요.</span><span class="en">Of twelve columns, 1–2 hold meta labels; body text, figures, and rules all start at column 3. One fixed origin so nothing juts out to the left on its own.</span></p></div>
@@ -232,7 +232,7 @@
   <section class="sec theme-paper">
     <div class="row">
       <div class="sn reveal"><p class="no">03</p><p class="nm"><span class="ko">간격</span><span class="en">Spacing</span></p></div>
-      <p class="sec-lead reveal d1"><span class="ko">고정값이 아니라 범위로 정합니다.</span><span class="en">Set as a range, not a fixed value.</span></p>
+      <p class="sec-lead reveal d1"><span class="ko">하나의 값 대신 범위로 정합니다.</span><span class="en">Set as a range, not a single value.</span></p>
     </div>
     <div class="row"><div class="tok reveal">
       <div class="tr"><span class="tk">--side</span><span class="tv">clamp(1.25rem, 2.3vw, 2.75rem)</span><span class="td"><span class="ko">화면 양옆 여백. 모든 콘텐츠가 이 안에서만 움직여요.</span><span class="en">Side padding. All content stays inside it.</span></span></div>
@@ -269,7 +269,7 @@
       <p class="sec-lead reveal d1"><span class="ko">움직임은 거들 뿐, 주인공은 아니에요.</span><span class="en">Motion supports; it never leads.</span></p>
     </div>
     <div class="row"><div class="tok reveal">
-      <div class="tr"><span class="tk"><span class="ko">페이지 전환</span><span class="en">Page transition</span></span><span class="tv">.85s cubic-bezier(.65,0,.20,1)</span><span class="td"><span class="ko">홈은 스크롤 나열이 아니라 페이지 전환입니다. 세로로 열리고 닫히는 셔터 움직임이에요.</span><span class="en">The home isn’t a scroll list but a page transition: a shutter opening and closing vertically.</span></span></div>
+      <div class="tr"><span class="tk"><span class="ko">페이지 전환</span><span class="en">Page transition</span></span><span class="tv">.85s cubic-bezier(.65,0,.20,1)</span><span class="td"><span class="ko">홈은 스크롤로 이어붙이지 않고 페이지로 넘깁니다. 세로로 열리고 닫히는 셔터 움직임이에요.</span><span class="en">The home isn’t a scroll list but a page transition: a shutter opening and closing vertically.</span></span></div>
       <div class="tr"><span class="tk"><span class="ko">메뉴 오버레이</span><span class="en">Menu overlay</span></span><span class="tv">.7s cubic-bezier(.80,0,.20,1)</span><span class="td"><span class="ko">검은 면이 먼저 열리고, 메뉴 항목이 .4s 뒤따라 나타나요.</span><span class="en">The black plane opens first; menu items follow .4s behind.</span></span></div>
       <div class="tr"><span class="tk">--t-fast / base / slow</span><span class="tv">.2s / .3s / .4s ease</span><span class="td"><span class="ko">링크, 버튼 등 작은 상태 변화</span><span class="en">Small state changes on links and buttons</span></span></div>
       <div class="tr"><span class="tk">--ease-snap</span><span class="tv">cubic-bezier(.23,1,.32,1)</span><span class="td"><span class="ko">강한 감속이에요. 등장과 그래프가 이 곡선 하나를 공유합니다.</span><span class="en">Hard deceleration. Reveals and charts share this one curve.</span></span></div>
