@@ -112,7 +112,7 @@
     </div>
     <div class="row" style="margin-top:2.6rem">
       <div class="c s3 w5">
-        <p class="case-essence reveal d1"><span class="ko">"무료 강의를 써본 사람이 결제한다"는<br />가설을 31일간 검증했습니다.</span><span class="en">“People who try a free lesson convert”:<br />a hypothesis I tested over 31 days.</span></p>
+        <p class="case-essence reveal d1"><span class="ko">무료 강의를 앞세운 유입 경로의 전환 차이를<br />31일간 A/B 테스트</span><span class="en">A 31-day A/B test on the conversion gap<br />between entry paths led by the free lesson</span></p>
         <div class="spec reveal d1"><span><span class="ko">단독 그로스 PM</span><span class="en">Sole Growth PM</span></span><span><span class="ko">팀 6명(PM 2, 영상감독 2, 디자인 2)</span><span class="en">Team of 6</span></span><span>GA4</span></div>
       </div>
       <div class="c s9 w3 reveal d2">
@@ -126,9 +126,9 @@
   <!-- 15초 요약 -->
   <section class="summary theme-paper">
     <div class="sm-row"><span class="k label">Role</span><span class="v"><span class="ko">그로스 실험 주도(팀 6명), <b>기여도 60%</b></span><span class="en">Led the growth experiment (team of 6), <b>60% mine</b></span></span></div>
-    <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">사람은 들어오는데 결제까지 안 갑니다(가입 5%, 가입자의 결제 1.6%)</span><span class="en">People arrive but don’t pay (5% sign-up, 1.6% of sign-ups paying)</span></span></div>
-    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">광고를 더 잘 만드는 대신, ‘제품을 먼저 써보면 결제한다’를 무료 강의로 실험했어요</span><span class="en">Not better ads but a test of “try it first, then you pay,” via a free lesson</span></span></div>
-    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">31일 실험으로 <b>가입 3배, 결제 3.4배</b>가 됐습니다</span><span class="en">A 31-day test: <b>3× sign-ups, 3.4× payments</b></span></span></div>
+    <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">유입 대비 가입 전환율 5.0%, 가입자 대비 결제 전환율 1.6%였습니다</span><span class="en">Sign-up conversion was 5.0% of traffic, and payment conversion 1.6% of sign-ups</span></span></div>
+    <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">무료 강의 중심 유입 경로가 전환에 영향을 줄 것으로 가정하고 광고를 A/B로 나눠 검증했습니다</span><span class="en">Assuming an entry path led by the free lesson would affect conversion, ads were split A/B</span></span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">31일 실험 결과 B그룹의 가입 전환율은 3배, 결제 전환율은 3.4배였습니다</span><span class="en">Over 31 days, group B converted 3× on sign-up and 3.4× on payment</span></span></div>
     <div class="sm-row"><span class="k label">Output</span><span class="v"><span class="ko">openpath.kr 라이브</span><span class="en">openpath.kr live</span></span></div>
     <p class="sm-foot"><span class="ko">*기여도 60%: 단독 그로스 PM으로 실험 가설, A/B 설계, 데이터 분석을 주도, 구현과 디자인은 6인 팀</span><span class="en">*60%: as sole Growth PM I drove the hypothesis, A/B design, and analysis; build and design by the team of 6</span></p>
   </section>
@@ -136,13 +136,13 @@
   <!-- 문제 -->
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">문제</span><span class="en">Problem</span></p></div>
-      <h2 class="sec-subhead reveal d1"><span class="ko">트래픽은 있는데<br />전환이 없다</span><span class="en">Traffic,<br />no conversion</span></h2>
+      <h2 class="sec-subhead reveal d1"><span class="ko">유입 대비 가입과<br />결제 전환율이 낮았습니다</span><span class="en">Sign-up and payment conversion<br />were low relative to traffic</span></h2>
     </div>
     <div class="row split">
       <div class="txt reveal">
         <div class="single" style="grid-column:auto">
-          <p><span class="ko">OPENPATH는 디자인 에이전시 듀오톤이 만든 IT 디자인 교육 플랫폼입니다. 여섯 명이 함께 만들었고, 저는 PM으로 론칭과 그로스를 맡았어요. 신규 서비스라 아는 사람이 없으니, 먼저 Meta 광고로 사람을 모았습니다. 들어오긴 했어요. 2023년 9월 2주 동안 <b>2,550명</b>. 그런데 대부분 그냥 나갔습니다.</span><span class="en">OPENPATH is an IT-design education platform built by Duotone, a design agency. A team of six built it; as PM, I owned the launch and growth. A brand-new service starts unknown, so we brought people in with Meta ads first. And they came: <b>2,550</b> over two weeks in Sep 2023. But most just left.</span></p>
-          <p><span class="ko">퍼널을 AARRR로 끊어 보니 막힌 곳은 유입이 아니라 그다음이었어요. <b>가입 전환 5%, 가입자의 결제 전환 1.6%.</b> 트래픽을 더 산다고 풀릴 문제가 아니었고, 진짜 풀어야 할 곳은 들어온 사람을 붙잡는 Activation 단계였습니다.</span><span class="en">Cutting the funnel with AARRR, the blockage wasn't acquisition; it was everything after: <b>5% sign-up, 1.6% of sign-ups paying.</b> More traffic wouldn't fix that. The real thing to fix was Activation: holding the people who already arrived.</span></p>
+          <p><span class="ko">OPENPATH는 디자인 에이전시 듀오톤이 만든 IT 디자인 교육 플랫폼입니다. 6인 팀에서 PM으로 론칭과 그로스를 담당했습니다. 신규 서비스라 인지도가 없어 Meta 광고로 유입을 확보했고, 2023년 9월 2주간 <b>2,550명</b>이 유입됐습니다.</span><span class="en">OPENPATH is a design education platform built by the agency Duotone. I was PM for launch and growth on a six-person team. With no brand awareness, traffic came from Meta ads: <b>2,550</b> visitors over two weeks in September 2023.</span></p>
+          <p><span class="ko">퍼널을 AARRR로 구분해 확인한 결과, 가입 전환율은 5.0%, 가입자 대비 결제 전환율은 1.6%였습니다. 주요 이탈 구간은 유입이 아니라 Activation과 Revenue였습니다.</span><span class="en">Breaking the funnel down by AARRR gave 5.0% sign-up conversion and 1.6% payment conversion among sign-ups. The main drop-offs were at Activation and Revenue, not acquisition.</span></p>
         </div>
       </div>
       <figure class="fig tint reveal d1">
@@ -172,21 +172,21 @@
           <text class="g on2 ko" x="0" y="324">결제</text><text class="g on2 en" x="0" y="324">Payment</text>
         </svg>
       </div>
-      <p class="funnel-note reveal d1"><span class="ko">여정을 다섯 단계로 끊어 보면 막힌 곳이 보여요. 유입(Acquisition)은 충분했는데, 가입(Activation)에서 <b>100명 중 95명이 새고</b>, 결제(Revenue)까지 간 사람은 가입자의 <b>1.6%</b>였습니다.</span><span class="en">Cut the journey into five stages and the blockage shows itself: traffic was fine, but <b>95 of every 100 leaked at Activation</b>, and only <b>1.6%</b> of sign-ups reached Revenue.</span></p>
+      <p class="funnel-note reveal d1"><span class="ko">여정을 다섯 단계로 구분하면 이탈 구간이 드러납니다. 유입(Acquisition)은 확보됐으나 가입(Activation)에서 100명 중 95명이 이탈했고, 결제(Revenue)까지 도달한 비율은 가입자의 <b>1.6%</b>였습니다.</span><span class="en">Split into five stages, the drop-off is visible: acquisition was sufficient, but 95 of every 100 left at Activation, and only <b>1.6%</b> of sign-ups reached Revenue.</span></p>
     </div>
   </section>
 
   <!-- 가설 -->
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">가설</span><span class="en">Hypothesis</span></p></div>
-      <h2 class="sec-subhead reveal d1"><span class="ko">광고가 아니라 경험</span><span class="en">Not ads but experience</span></h2>
+      <h2 class="sec-subhead reveal d1"><span class="ko">무료 강의 중심 유입 경로가<br />전환에 영향을 줄 것으로 가정했습니다</span><span class="en">Assumed an entry path led by the free lesson<br />would affect conversion</span></h2>
     </div>
     <div class="row"><div class="cols reveal">
-      <p><span class="ko">흔한 답은 '광고 소재를 더 잘 만들자'입니다. 하지만 클릭률은 이미 나쁘지 않았어요. 그래서 질문을 뒤집었습니다. 들어온 사람이 결제까지 안 가는 이유가 관심이 부족해서가 아니라, 제품을 충분히 겪어보지 못해서라면?</span><span class="en">The usual answer is “make better ads.” But click-through was already fine. So I flipped the question: what if people don't convert for lack of interest, but because they never really experienced the product?</span></p>
-      <p><span class="ko">무료 강의를 한 번이라도 들어본 사람은 가치를 머리로 이해한 게 아니라 몸으로 느꼈을 테니 결제로 이어질 거라고 봤습니다. 가설을 두 줄로 좁혔어요.</span><span class="en">Someone who takes even one free lesson has felt the value, not just understood it, so they should convert. I narrowed it to two claims.</span></p>
+      <p><span class="ko">광고 소재 개선도 검토할 수 있었지만, 클릭률은 이미 기준 이상이었습니다. 그래서 전환이 발생하지 않는 원인을 관심 부족이 아니라 제품 경험 부재로 가정했습니다.</span><span class="en">Improving the ad creative was one option, but click-through was already above benchmark. So I assumed the lack of conversion came from an absence of product experience rather than a lack of interest.</span></p>
+      <p><span class="ko">서비스 소개보다 무료 강의를 먼저 보여주면 방문자가 제품을 확인할 기회를 먼저 갖게 되므로, 전환율이 높아질 것으로 봤습니다. 가설은 둘입니다.</span><span class="en">Leading with the free lesson rather than a service pitch gives a visitor a chance to see the product first, so conversion should be higher. Two claims follow.</span></p>
     </div></div>
     <div class="row"><div class="flow reveal">
-      <b class="on"><span class="ko">① 무료 강의는 가입을 유도한다</span><span class="en">① free lessons drive sign-up</span></b><b class="on"><span class="ko">② 수강 경험은 결제로 이어진다</span><span class="en">② the experience drives payment</span></b>
+      <b class="on"><span class="ko">① 무료 강의를 먼저 보여주면 가입이 늘어난다</span><span class="en">① Showing the free lesson first increases sign-ups</span></b><b class="on"><span class="ko">② 무료 강의를 먼저 보여주면 결제가 늘어난다</span><span class="en">② Showing the free lesson first increases payments</span></b>
     </div></div>
   </section>
 
@@ -194,7 +194,7 @@
   <section class="sec theme-paper">
     <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">실험: 31일 A/B</span><span class="en">Experiment: 31-day A/B</span></p></div></div>
     <div class="row"><div class="single reveal">
-      <p><span class="ko">검증은 단순하게 설계했습니다. Meta 광고를 두 갈래로 나눠, 한쪽(A)은 일반적인 서비스 소개로, 다른 쪽(B)은 무료 강의 자체를 미끼로 유입을 받았어요. <b>2023년 10월, 31일간, 7,130명</b>을 GA4 이벤트로 추적했고, 두 집단의 유일한 차이는 '제품을 먼저 경험했는가'였습니다.</span><span class="en">I kept the test simple. I split Meta ads two ways: group A entered through a standard service pitch, group B through the free lesson itself as the hook. <b>31 days, N=7,130</b> (Oct 2023), tracked via GA4. The only difference between the groups was whether they'd experienced the product first.</span></p>
+      <p><span class="ko">Meta 광고를 A/B로 나눠 A그룹은 일반 서비스 소개 광고와 랜딩으로, B그룹은 무료 강의를 앞세운 광고와 랜딩으로 연결했습니다. 2023년 10월 31일간 7,130명의 행동을 GA4 이벤트로 측정했습니다. 두 집단의 차이는 유입 경로입니다.</span><span class="en">Meta ads were split A/B: group A entered through a standard service pitch and landing page, group B through an ad and landing page led by the free lesson. Over 31 days in October 2023 I measured 7,130 users’ behavior with GA4 events. What differed between the groups was the entry path.</span></p>
     </div></div>
     <div class="row"><div class="flow reveal">
       <b>Problem</b><i>→</i><b>Hypothesis</b><i>→</i><b>Experiment</b><i>→</i><b>Validation</b>
@@ -203,11 +203,11 @@
 
   <!-- 결과 -->
   <section class="sec theme-paper">
-    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">결과</span><span class="en">Impact</span></p></div>
-      <h2 class="sec-subhead reveal d1"><span class="ko">경험이 전환을 만들었다</span><span class="en">Experience converts</span></h2>
+    <div class="row"><div class="sec-head reveal"><p class="label"><span class="ko">결과</span><span class="en">Outcome</span></p></div>
+      <h2 class="sec-subhead reveal d1"><span class="ko">무료 강의 유입군의<br />가입과 결제 전환율이 더 높았습니다</span><span class="en">The free-lesson group converted higher<br />on both sign-up and payment</span></h2>
     </div>
     <div class="row"><div class="single reveal">
-      <p><span class="ko">결과는 가설대로였어요. 무료 강의를 거쳐 들어온 B 집단이 가입과 결제 모두 크게 앞섰어요.</span><span class="en">The result matched the hypothesis: group B, entering through the free lesson, led on both sign-up and payment.</span></p>
+      <p><span class="ko">B그룹의 가입 전환율은 15.0%로 A그룹 5.0%의 3배였고, 결제 전환율은 10.9%로 A그룹 3.2%의 3.4배였습니다.</span><span class="en">Group B’s sign-up conversion was 15.0% against group A’s 5.0%, three times higher; payment conversion was 10.9% against 3.2%, 3.4 times higher.</span></p>
     </div></div>
     <div class="row"><div class="ab reveal">
       <div class="col">
@@ -223,7 +223,7 @@
         <div class="r"><span><span class="ko">결제 전환</span><span class="en">payment</span></span><b>10.9%</b></div>
       </div>
     </div></div>
-    <div class="row"><p class="viz-note reveal"><span class="ko">결제 전환율은 방문자가 아니라 <b>가입자 대비</b>예요. 진단(9월)과 실험(10월)은 측정 기간이 다르고, 3.4배는 같은 10월 안의 A와 B를 비교한 값입니다.</span><span class="en">Payment conversion is measured against <b>sign-ups</b>, not visitors. The September diagnosis and the October test are separate windows; the 3.4× compares A and B within the same run.</span></p></div>
+    <div class="row"><p class="viz-note reveal"><span class="ko">결제 전환율은 방문자가 아니라 <b>가입자 대비</b>입니다. 9월 진단 수치와 10월 실험 수치는 측정 기간이 달라 직접 비교하지 않았습니다. 실험 효과는 같은 기간인 10월의 A와 B 비교로 판단했습니다.</span><span class="en">Payment conversion is measured against <b>sign-ups</b>, not visitors. The September diagnosis and the October experiment cover different periods and were not compared directly; the effect was judged from the October A/B comparison within the same period.</span></p></div>
 
     <div class="metrics" style="margin-top:clamp(3rem,6vh,5rem)">
       <div class="metric reveal"><span class="num">3×</span><span class="lab label"><span class="ko">가입 전환 (5.0→15.0%)</span><span class="en">sign-up (5.0→15.0%)</span></span></div>
@@ -231,7 +231,7 @@
     </div>
 
     <div class="row" style="margin-top:clamp(3rem,6vh,5rem)"><div class="single reveal">
-      <p><span class="ko">'경험이 전환을 만든다'가 숫자로 증명된 거죠. 이 결과를 근거로 광고 소재와 무료 강의 동선(랜딩)을 다시 짰고, 네이티브 앱, OPEN WIKI, ALIVE CONTENT(영상 소재)로 이어 붙였습니다. 예산을 늘리는 대신, 같은 예산을 '경험을 먼저 주는' 쪽으로 옮긴 의사결정이었어요.</span><span class="en">"Experience drives conversion," proven in numbers. I used it to rebuild the ad creative and the free-lesson landing flow, then carried it into the native app, OPEN WIKI, and ALIVE CONTENT. The decision wasn't to spend more; it was to move the same budget toward giving people the experience first.</span></p>
+      <p><span class="ko">이 결과를 바탕으로 광고 소재와 랜딩에서 무료 강의를 우선 노출하도록 변경했습니다. 이후 네이티브 앱, OPEN WIKI, ALIVE CONTENT(영상 소재)로 확장했습니다. 예산 증액 없이 동일한 예산의 배분을 변경한 결정입니다.</span><span class="en">On that result, the ad creative and landing flow were changed to lead with the free lesson, and the approach was extended into the native app, OPEN WIKI, and ALIVE CONTENT. The budget was reallocated rather than increased.</span></p>
     </div></div>
   </section>
 
