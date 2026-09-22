@@ -48,7 +48,18 @@
   /* 폰 자산이 546px 원본이라, 2x 밀도를 지키려 표시 폭을 줄임 */
   .split .fig.tint img{width:60%}
 
-  @media (max-width:900px){ .reuse{grid-column:auto} }
+  .ginv{grid-column:3 / span 6; margin-top:2.2rem; display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+  .ginv .gcol{border-top:1px solid var(--rule); padding-top:.9rem}
+  .ginv .gh{display:flex; justify-content:space-between; align-items:baseline; gap:.5rem}
+  .ginv .gh span{font-family:var(--label); font-size:.7rem; letter-spacing:.09em; text-transform:uppercase; color:var(--fg-soft)}
+  .ginv .gh b{font-family:var(--serif); font-size:1.45rem; font-weight:500; color:var(--fg); font-variant-numeric:tabular-nums; line-height:1}
+  .ginv ul{list-style:none; margin:.75rem 0 0; padding:0}
+  .ginv li{display:flex; justify-content:space-between; gap:.6rem; font-size:.88rem; color:var(--fg-soft);
+           padding:.38rem 0; border-bottom:1px solid var(--rule)}
+  .ginv li b{color:var(--fg); font-weight:500; font-variant-numeric:tabular-nums}
+  .gcap{grid-column:3 / span 6; margin-top:1.3rem; font-size:.92rem; line-height:1.6; color:var(--fg-soft)}
+  .gcap b{color:var(--fg); font-weight:600}
+  @media (max-width:900px){ .reuse{grid-column:auto} .ginv{grid-column:auto; grid-template-columns:1fr} .gcap{grid-column:auto} }
 </style>
 </head>
 <body class="theme-paper lang-ko i18n-ready">
@@ -109,7 +120,7 @@
     <div class="sm-row"><span class="k label">Role</span><span class="v"><span class="ko">이탈리아 마켓 단독 오너(팀 9명), <b>기여도 70%</b></span><span class="en">Sole owner of the Italy market (team of 9), <b>70% mine</b></span></span></div>
     <div class="sm-row"><span class="k label">Problem</span><span class="v"><span class="ko">법적 고지가 페이지마다 개별 관리돼 수정과 법무 검토가 반복됐습니다</span><span class="en">Legal notices were managed per page, so edits and legal review repeated every time</span></span></div>
     <div class="sm-row"><span class="k label">Decision</span><span class="v"><span class="ko">고지 문구를 페이지 유형별로 정의하고 AEM Content Fragment로 전환했습니다</span><span class="en">Notices were defined by page type and converted into AEM Content Fragments</span></span></div>
-    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">운영자가 필요한 고지를 선택해 재사용하고, 원본 수정 시 연결된 페이지에 일괄 반영됩니다</span><span class="en">Operators select and reuse the notice they need, and editing the source updates every linked page</span></span></div>
+    <div class="sm-row"><span class="k label">Impact</span><span class="v"><span class="ko">고지 문구 17건을 유형별로 정리해 재사용 구조로 만들었고, 원본을 고치면 연결된 페이지에 일괄 반영됩니다</span><span class="en">17 notices grouped by type into a reusable structure; editing the source updates every linked page</span></span></div>
     <div class="sm-row"><span class="k label">Output</span><span class="v"><span class="ko">genesis.com/it 라이브, 고지 문구 인벤토리</span><span class="en">genesis.com/it live; disclaimer inventory</span></span></div>
     <p class="sm-foot"><span class="ko">*기여도 70%: 9인 팀이지만 이탈리아 마켓 고지 시스템(인벤토리와 재사용 구조)은 단독 설계와 소유, 개발과 법무 검토는 협업</span><span class="en">*70%: in a team of 9, I solely designed and owned the Italy disclaimer system (inventory and reuse structure); dev and legal review in collaboration</span></p>
   </section>
@@ -155,6 +166,34 @@
       <div class="col"><h6>Before</h6><ol><li><span class="ko">페이지마다 개별 작성</span><span class="en">Written per page</span></li><li><span class="ko">고지 변경 시 전 페이지 수작업</span><span class="en">Manual edits across pages</span></li><li><span class="ko">매번 법무 재검토</span><span class="en">Legal re-review each time</span></li></ol></div>
       <div class="col to"><h6>After</h6><ol><li><span class="ko">페이지 유형별 기준 정립</span><span class="en">Standard by page type</span></li><li><span class="ko">골라서 재사용</span><span class="en">Select &amp; reuse</span></li><li><span class="ko">변경은 시스템 단위 일괄</span><span class="en">Update once, everywhere</span></li></ol></div>
     </div></div>
+
+    <div class="row"><p class="viz-lbl reveal"><span class="ko">고지 문구 17건의 분류</span><span class="en">The 17 notices, grouped</span></p></div>
+    <div class="row"><div class="ginv reveal">
+      <div class="gcol">
+        <p class="gh"><span><span class="ko">차량</span><span class="en">Vehicle</span></span><b>7</b></p>
+        <ul>
+          <li><span class="ko">차량 이미지</span><span class="en">Vehicle image</span><b>1</b></li>
+          <li><span class="ko">가격</span><span class="en">Price</span><b>2</b></li>
+          <li><span class="ko">제원</span><span class="en">Specs</span><b>1</b></li>
+          <li><span class="ko">충전 시간</span><span class="en">Charging time</span><b>3</b></li>
+        </ul>
+      </div>
+      <div class="gcol">
+        <p class="gh"><span>WLTP</span><b>8</b></p>
+        <ul>
+          <li><span class="ko">공통</span><span class="en">Common</span><b>1</b></li>
+          <li><span class="ko">에너지와 배출</span><span class="en">Energy &amp; emission</span><b>6</b></li>
+          <li><span class="ko">전기 주행거리</span><span class="en">Electric range</span><b>1</b></li>
+        </ul>
+      </div>
+      <div class="gcol">
+        <p class="gh"><span><span class="ko">기타</span><span class="en">Others</span></span><b>2</b></p>
+        <ul>
+          <li><span class="ko">추가 안내</span><span class="en">Additional info</span><b>2</b></li>
+        </ul>
+      </div>
+    </div></div>
+    <div class="row"><p class="gcap reveal"><span class="ko">WLTP는 유럽이 쓰는 배출가스와 연비 측정 기준입니다. 에너지와 배출 6건 중 <b>5건은 트림마다 수치가 달라</b> 트림 단위로 따로 만들었고, 나머지 12건은 여러 페이지가 함께 쓰는 공용 블록입니다. 라인업이 바뀌면 트림 5건만 손보면 됩니다.</span><span class="en">WLTP is Europe&#8217;s standard for measuring emissions and consumption. Five of the six energy and emission notices <b>carry per-trim figures</b>, so each trim gets its own block; the other twelve are shared across pages. When the lineup changes, only those five need editing.</span></p></div>
 
     <div class="row"><p class="viz-lbl reveal"><span class="ko">디스클레이머 인벤토리: 페이지 유형별 전체</span><span class="en">Disclaimer Inventory: full sheet, by page type</span></p></div>
     <div class="row"><figure class="figwide reveal">
