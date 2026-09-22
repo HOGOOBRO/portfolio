@@ -43,7 +43,7 @@
   .gauge.in .gfill{width:var(--gv)}
   .gfill b{color:var(--paper); font-family:var(--serif); font-size:1.05rem}
   .gmark{position:absolute; left:var(--gm,100%); top:-6px; bottom:-6px; border-left:2px dashed var(--ink)}
-  .gmark span{position:absolute; top:-1.35rem; right:0; font-family:var(--mono); font-size:.58rem; letter-spacing:.05em; color:var(--fg); white-space:nowrap}
+  .gmark span{position:absolute; top:-1.35rem; right:0; font-family:var(--label); font-size:.7rem; letter-spacing:.05em; color:var(--fg); white-space:nowrap}
 
   /* 스파크 (블라인드 유입) */
   .spark{grid-column:3 / span 6; margin-top:2rem; max-width:38rem}
@@ -55,8 +55,8 @@
                stroke-dasharray:760; stroke-dashoffset:760; transition:stroke-dashoffset 1.4s ease .1s}
   .spark.in .line{stroke-dashoffset:0}
   .spark .peak{fill:var(--ink)}
-  .spark .peaklab{font-family:var(--mono); font-size:12px; font-weight:600; fill:var(--ink)}
-  .spark .sxlab{display:flex; justify-content:space-between; margin-top:.5rem; font-family:var(--mono); font-size:.6rem; text-transform:uppercase; color:var(--fg-faint)}
+  .spark .peaklab{font-family:var(--label); font-size:12px; font-weight:600; fill:var(--ink)}
+  .spark .sxlab{display:flex; justify-content:space-between; margin-top:.5rem; font-family:var(--label); font-size:.7rem; text-transform:uppercase; color:var(--fg-faint)}
 
   @media (prefers-reduced-motion:reduce){ .funnel .ffill,.gauge .gfill,.spark .line{transition:none} }
   @media (max-width:900px){ .funnel,.gauge,.spark{grid-column:auto} }

@@ -35,7 +35,7 @@
   .ds-title{font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4vw,3.4rem);
             line-height:1.16; letter-spacing:-.02em; text-wrap:balance}
   .sn{grid-column:1 / span 2}
-  .sn .no{font-family:var(--mono); font-size:.68rem; letter-spacing:.13em; color:var(--fg-faint)}
+  .sn .no{font-family:var(--label); font-size:.68rem; letter-spacing:.13em; color:var(--fg-faint)}
   .sn .nm{margin-top:.3rem; font-size:.95rem; font-weight:600}
   .sec-lead{grid-column:3 / span 6; font-size:var(--t-lead); line-height:1.5; font-weight:500; color:var(--fg); margin-bottom:1.8rem}
 
@@ -55,29 +55,29 @@
   .sw .chip{height:5.2rem; display:block}
   .sw .meta{padding:.7rem .8rem}
   .sw .nm{font-size:.82rem; font-weight:600}
-  .sw .hex{font-family:var(--mono); font-size:.66rem; color:var(--fg-faint); margin-top:.2rem}
+  .sw .hex{font-family:var(--mono); font-size:.7rem; color:var(--fg-faint); margin-top:.2rem}
   .sw .use{font-size:.74rem; color:var(--fg-faint); margin-top:.35rem; line-height:1.5}
 
   /* 타이포 견본 */
   .spec-row{grid-column:3 / span 8; display:grid; grid-template-columns:9rem 1fr; gap:1.4rem;
             align-items:baseline; padding:1.1rem 0; border-bottom:1px solid var(--rule)}
   .spec-row:first-of-type{border-top:1px solid var(--rule)}
-  .spec-row .k{font-family:var(--mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-faint)}
-  .spec-row .k small{display:block; margin-top:.3rem; text-transform:none; letter-spacing:0; font-size:.62rem}
+  .spec-row .k{font-family:var(--label); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-faint)}
+  .spec-row .k small{display:block; margin-top:.3rem; text-transform:none; letter-spacing:0; font-size:.7rem}
 
   /* 그리드 시연 */
   .gdemo{grid-column:3 / span 10; margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr);
          gap:var(--gap); border:1px solid var(--rule); padding:.5rem}
   .gdemo i{background:rgba(10,10,10,.05); border-radius:2px; height:3.4rem; display:block; position:relative}
   .gdemo i::after{content:attr(data-n); position:absolute; inset:auto 0 .3rem 0; text-align:center;
-                  font-family:var(--mono); font-size:.55rem; color:var(--fg-faint)}
+                  font-family:var(--mono); font-size:.7rem; color:var(--fg-faint)}
   .gdemo i.meta{background:rgba(10,10,10,.18)}
   .gnote{grid-column:3 / span 6; margin-top:.9rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
 
   /* 컴포넌트 견본 상자 */
   .demo{grid-column:3 / span 8; margin-top:1rem; border:1px solid var(--rule); padding:1.6rem}
   .demo + .demo{margin-top:var(--gap)}
-  .demo .dl{font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase;
+  .demo .dl{font-family:var(--label); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
             color:var(--fg-faint); margin-bottom:1.1rem}
   .demo .bars,.demo .compare,.demo .flow,.demo .voices{grid-column:auto; margin-top:0}
   .demo .voices{grid-template-columns:repeat(2,1fr)}
@@ -95,13 +95,13 @@
   .dmet .lab{display:block; margin-top:.5rem}
   .dfw .ph{aspect-ratio:16/4; border:1px solid var(--rule); background:rgba(10,10,10,.03);
            display:flex; align-items:center; justify-content:center;
-           font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; color:var(--fg-faint)}
+           font-family:var(--label); font-size:.7rem; letter-spacing:.1em; color:var(--fg-faint)}
   .dfw figcaption{margin-top:.8rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; max-width:52ch}
 
   /* 보이스: keep-all 비교 */
   .kacmp{grid-column:3 / span 8; margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
   .kacmp div{border:1px solid var(--rule); padding:1rem}
-  .kacmp .h{font-family:var(--mono); font-size:.6rem; letter-spacing:.06em; color:var(--fg-faint); margin-bottom:.6rem}
+  .kacmp .h{font-family:var(--label); font-size:.7rem; letter-spacing:.06em; color:var(--fg-faint); margin-bottom:.6rem}
   .kacmp p{font-size:.92rem; line-height:1.7; width:11em}
   .kacmp .bad p{word-break:break-all}
   .kacmp .good p{word-break:keep-all}

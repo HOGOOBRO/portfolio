@@ -12,6 +12,8 @@
   /* 팔레트 v2: 흑백 위주. UI는 무채색, 컬러는 작업물 이미지에서만 나온다 */
   --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#4A4A4A; --ink-faint:#8F8F8F;
   --line:#E9E9E9; --line-strong:#D4D4D4;
+  --chrome-dim:#6E6E6E;   /* 고정 크롬의 비활성 글자. 흰 바탕 5.1:1로 AA 통과 */
+  --shot-w:15rem;         /* 폰 스크린 렌더 폭. 케이스마다 달랐던 것을 하나로 묶는다 */
   --black:#000;
 
   /* 폰트 */
@@ -21,6 +23,10 @@
      'Pretendard Variable'은 CDN이 등록하지 않는 이름이라 뒤로 뺀다. */
   --serif:'Fraunces','Noto Serif KR',Pretendard,'Pretendard Variable',Georgia,serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
+  /* 라벨 레지스터. 모노는 코드와 값의 서체인데 이 사이트에서는 장식으로 쓰이고 있었다.
+     라틴과 숫자는 Fraunces가 잡고, 한글은 Pretendard로 간다(본명조로 떨어지면 라벨이 무거워진다).
+     진짜 값을 보여주는 곳(디자인 시스템의 토큰·헥사·그리드 번호)만 --mono로 남긴다. */
+  --label:'Fraunces','Pretendard Variable',Pretendard,Georgia,serif;
 
   /* 타이포 스케일 (편집디자인 6단) */
   --t-display: clamp(2.8rem, 6.2vw, 6.6rem);  /* 표제: 세리프 */
@@ -28,7 +34,8 @@
   --t-lead: clamp(1.12rem, 1.6vw, 1.45rem);   /* 리드문 */
   --t-body: clamp(.98rem, 1.12vw, 1.1rem);    /* 본문 */
   --t-cap: .84rem;                            /* 캡션 */
-  --t-label: .68rem;                          /* 모노 라벨(메타 열) */
+  --t-label: .7rem;                           /* 라벨(메타 열). 11.2px가 라벨 하한 */
+  --t-chrome: .78rem;                         /* 고정 크롬의 조작 요소. 라벨보다 한 단 크게 */
 
   /* 모션 (본편 폴리시 계승) */
   --ease: cubic-bezier(.2,.7,.2,1);
@@ -76,7 +83,7 @@ body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-bre
 .body{ font-size:var(--t-body); color:var(--fg-soft); max-width:62ch; text-wrap:pretty }
 .body b{ color:var(--fg); font-weight:600 }
 .cap{ font-size:var(--t-cap); line-height:1.5; color:var(--fg-faint) }
-.label{ font-family:var(--mono); font-size:var(--t-label); letter-spacing:.13em;
+.label{ font-family:var(--label); font-size:var(--t-label); letter-spacing:.13em;
         text-transform:uppercase; color:var(--fg-faint) }
 .num{ font-family:var(--serif); font-weight:500; font-variant-numeric:tabular-nums;
       font-size:clamp(2.4rem,4.6vw,4.4rem); line-height:1; letter-spacing:-.02em }

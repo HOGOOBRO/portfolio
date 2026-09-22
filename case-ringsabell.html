@@ -37,9 +37,9 @@
   .ladder{grid-column:3 / span 8; margin-top:2.4rem; display:grid; gap:.5rem}
   .rung{display:grid; grid-template-columns:2.2rem 1fr auto; align-items:baseline; gap:1rem;
         padding:.85rem 1rem; border:1px solid var(--line); background:var(--paper)}
-  .rung i{font-family:var(--mono); font-size:.7rem; font-style:normal; opacity:.5}
+  .rung i{font-family:var(--label); font-size:.7rem; font-style:normal; opacity:.5}
   .rung b{font-weight:600; font-size:.95rem}
-  .rung .use{font-family:var(--mono); font-size:.68rem; letter-spacing:.04em; opacity:.75; text-align:right}
+  .rung .use{font-family:var(--label); font-size:.68rem; letter-spacing:.04em; opacity:.75; text-align:right}
   .rung.skip{opacity:.42; border-style:dashed}
   .rung.skip .use{text-decoration:line-through}
   @media (max-width:760px){
@@ -65,16 +65,22 @@
   .phone img{width:100%; height:auto; display:block; border:3px solid #111;
              border-radius:1.5rem; background:#111}
   .phone figcaption{margin-top:.8rem; font-size:.8rem; line-height:1.55; color:var(--fg-soft)}
-  .phone figcaption .etag{display:block; font-family:var(--mono); font-size:.58rem;
+  .phone figcaption .etag{display:block; font-family:var(--label); font-size:.7rem;
                           letter-spacing:.09em; text-transform:uppercase;
                           color:var(--fg-faint); margin-bottom:.3rem}
 
   /* 한 장짜리: 본문 옆에 세워 둔다 */
-  .phone-one{grid-column:9 / span 3; margin-top:.4rem}
+  /* 3칸은 화면이 넓어질수록 함께 벌어지는데, 폰 캡처는 세로비가 2.17이라 폭이 커지면
+     세로가 1,000px을 넘어 왼쪽 8칸이 통째로 빈다. 실제 기기 폭 정도에서 끊는다. */
+  .phone-one{grid-column:9 / span 3; margin-top:.4rem; max-width:var(--shot-w);
+             position:sticky; top:5.5rem; align-self:start}
 
   /* 세 장 흐름: 숨김 → 열림 → 맞힌 뒤. 순서가 곧 이야기라 가로로 늘어놓는다. */
+  /* 폰 캡처는 세로비가 2.17이라 폭이 커지면 세로가 같이 폭발한다. 실제 기기 폭에서 끊고
+     남는 자리는 왼쪽으로 흘려보낸다(도판이 본문보다 커지면 읽는 순서가 뒤집힌다). */
   .phoneseq{grid-column:3 / span 9; margin-top:2.2rem;
             display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+  .phoneseq .phone{max-width:var(--shot-w)}
   @media (max-width:900px){
     .phone-one{grid-column:1 / -1; max-width:22rem}
     .phoneseq{grid-column:1 / -1; grid-template-columns:1fr; gap:2.4rem}
@@ -84,13 +90,13 @@
   /* 실제 화면에 나가는 문구를 그대로 보여주는 자리 */
   .screencopy{grid-column:3 / span 6; margin-top:1.8rem; padding:1.1rem 1.3rem;
               border:1px solid var(--line); background:var(--paper)}
-  .screencopy .lab{display:block; font-family:var(--mono); font-size:.62rem; letter-spacing:.09em;
+  .screencopy .lab{display:block; font-family:var(--label); font-size:.7rem; letter-spacing:.09em;
                    text-transform:uppercase; opacity:.55; margin-bottom:.5rem}
   .screencopy p{font-size:1rem; line-height:1.65; margin:0}
   @media (max-width:760px){ .screencopy{grid-column:1 / -1} }
 
   /* 본문 끝의 조용한 라이브 링크 */
-  .livefoot{grid-column:3 / span 6; margin-top:2.6rem; font-family:var(--mono); font-size:.72rem; opacity:.7}
+  .livefoot{grid-column:3 / span 6; margin-top:2.6rem; font-family:var(--label); font-size:.72rem; opacity:.7}
   .livefoot a{border-bottom:1px solid currentColor}
   @media (max-width:760px){ .livefoot{grid-column:1 / -1} }
 </style>
@@ -209,9 +215,7 @@
       <div class="ni"><i>02</i><b><span class="ko">분산 학습과 연습 시험을 복습 구조에 적용</span><span class="en">Spaced practice and practice testing applied to review</span></b><p><span class="ko">2013년 연구는 학생들이 사용하는 학습법 열 가지를 효과 순으로 평가했습니다. 밑줄 긋기, 요약하기, 다시 읽기 등이 포함됐고, 최고 등급은 연습 시험과 분산 학습 둘이었습니다. 이 앱의 복습은 이 둘로 구성했습니다. 복습 간격은 고정값이 아니라 단어별로 계산합니다.</span><span class="en">A 2013 review rated ten study techniques students actually use. Highlighting, summarizing, and rereading were among them; only two earned the top rating: practice testing and distributed practice. Review here is built from those two, with intervals computed per word rather than fixed.</span></p></div>
       <div class="ni"><i>03</i><b><span class="ko">숙련도에 따라 인출 난이도를 단계적으로 높임</span><span class="en">Retrieval difficulty raised in steps as proficiency rises</span></b><p><span class="ko">기억은 인출 강도와 저장 강도로 구분됩니다. 저장 강도는 인출이 어려운 상태에서 인출할 때 증가하고, 쉽게 다시 보는 방식으로는 증가하지 않습니다. 01의 5분과 1주일 결과 차이가 이 구분으로 설명됩니다. 이에 따라 앞에서 구분한 단계를 순서대로 출제하고, 같은 단어라도 숙련도가 올라가면 문제 유형이 어려워지며, 마지막 단계에서는 보기 없이 직접 입력합니다.</span><span class="en">Memory separates into retrieval strength and storage strength. Storage strength grows when retrieval is effortful and still succeeds, not when material is simply re-presented. This accounts for the five-minute versus one-week gap in 01. Accordingly the levels above are issued in order: as proficiency rises the question type hardens, and the final level requires typing without options.</span></p></div>
       <div class="ni"><i>04</i><b><span class="ko">확신도와 실제 정답을 비교해 과신한 단어를 구분</span><span class="en">Confidence compared against outcome to isolate overestimated words</span></b><p><span class="ko">보기를 제시하기 전에 "떠오르나요?"를 먼저 묻고, 확신했으나 오답인 단어를 따로 모아 표시합니다. 확신도가 높은 오답은 정답을 제시했을 때 교정 효과가 더 큽니다. 예상과 다른 피드백이라 주의가 집중되기 때문입니다. 단, 정답 피드백이 반드시 제공돼야 한다는 조건이 붙습니다. 이 앱은 오답 즉시 정답을 표시하므로 조건을 충족합니다. 확신도 질문은 통계 수집이 아니라 교정 효과가 큰 항목을 식별하기 위한 장치입니다.</span><span class="en">Before options appear, the app asks whether the word comes to mind, then collects the words answered with confidence but wrong. High-confidence errors are corrected more strongly when the right answer is shown, because unexpected feedback draws attention. This holds only if correct-answer feedback is given; the app shows the answer immediately on a miss, so the condition is met. The confidence question identifies the items most open to correction rather than collecting statistics.</span></p></div>
-    </div></div>
-
-    <div class="row">
+    </div>
       <figure class="phone phone-one reveal d1">
         <img src="rb-confidence.webp" alt="복습 화면. 단어와 발음기호 아래에 '답이 떠오르나요?'와 모르겠어요, 애매해요, 알 것 같아요 세 버튼" loading="lazy" width="760" height="1646" />
         <figcaption><span class="etag"><span class="ko">확신도</span><span class="en">Confidence</span></span><span class="ko">보기 제시 전에 먼저 묻습니다. 이 응답과 실제 정답을 비교해 과신한 단어를 구분합니다.</span><span class="en">Asked before options appear. Comparing the response with the actual result isolates overestimated words.</span></figcaption>
@@ -269,9 +273,8 @@
     <div class="row"><div class="cols reveal">
       <p><span class="ko">현재 사용자는 본인 1명이므로 사용자 수 지표는 제시하지 않습니다. 대신 각 기능의 설계 근거를 기록했습니다. 복습을 문제 형태로 구성한 것, 복습 간격을 단어별로 계산한 것, 숙련도에 따라 문제 난이도를 높인 것, 답변 전 확신도를 묻는 것, 일정 숙련도 이상인 단어를 쓰기 단계로 넘기는 것이 각각 어떤 연구에 근거하는지 정리했습니다.</span><span class="en">I am currently the only user, so there are no usage metrics to report. What is recorded instead is the basis for each feature: review as questions, per-word intervals, difficulty rising with proficiency, the confidence prompt before answering, and moving proficient words to writing practice, each traced to a specific study.</span></p>
       <p><span class="ko">제외한 기능도 같습니다. 카드 넘겨보기, 한국어 뜻 쓰기, 빈칸 문제의 확신도 질문, 시험 네 영역 기준 분류는 넣지 않을 이유가 있어 제외했습니다.</span><span class="en">The same applies to what was left out: flip cards, writing the Korean meaning, the confidence prompt on cloze questions, and classification by the exam’s four skills were each excluded for a stated reason.</span></p>
-    </div></div>
-    <div class="row">
-      <figure class="phone phone-one reveal" style="margin-top:2.4rem">
+    </div>
+      <figure class="phone phone-one reveal">
         <img src="rb-stats.webp" alt="통계 화면. 장기 기억 306/595, 안다고 착각한 단어 목록, 이번 주 '알 것 같아요' 적중률 96%" loading="lazy" width="760" height="1646" />
         <figcaption><span class="etag"><span class="ko">확신도 누적 화면</span><span class="en">Accumulated confidence</span></span><span class="ko">확신했으나 오답인 단어를 모아 표시합니다. 주간 "알 것 같아요" 적중률(96%)도 함께 표시됩니다.</span><span class="en">Words answered with confidence but wrong are collected here, with the weekly hit rate for “I think I know it” (96%).</span></figcaption>
       </figure>
