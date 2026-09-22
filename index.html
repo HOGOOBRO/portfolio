@@ -87,13 +87,13 @@
   .hero .lockup{position:absolute; left:var(--side);
                 bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
   .hero .lockup h1{font-family:var(--serif); color:#F5F5F5;
-                   font-size:clamp(1.9rem,3.1vw,3rem); line-height:1.22; letter-spacing:-.02em}
+                   font-size:clamp(1.8rem,2.7vw,2.5rem); line-height:1.22; letter-spacing:-.02em}
   /* 한글 히어로는 Pretendard로 간다. --serif는 Fraunces가 먼저라 라틴과 숫자만 가져가고
      한글은 Noto Serif KR로 떨어져, 한 줄에 서로 다른 세리프 두 개가 섞인다.
      한글 스팬은 Pretendard 하나로 고정한다. 숫자까지 같은 서체로 와야 한 줄이 붙고,
      아래로 이어지는 본문도 전부 Pretendard라 히어로에서 본문으로 넘어가는 결이 끊기지 않는다.
      무게는 Light. 검은 바탕이라 200까지 내리면 획이 뭉개져 300에서 멈춘다. */
-  .hero .lockup h1 .ko{font-family:var(--sans); font-weight:300; letter-spacing:-.025em}
+  .hero .lockup h1 .ko{font-family:var(--display-ko); font-weight:300; letter-spacing:-.03em}
   .hero .lockup h1 .en{font-weight:300}
   /* 부제는 두 언어 모두 한 줄. 폭을 제한하면 엉뚱한 자리에서 쪼개진다(좁은 화면은 자연 줄바꿈). */
   .hero .lockup p{margin-top:.9rem; font-weight:500;
@@ -174,6 +174,13 @@
     .card .bot b{font-size:.88rem}
     .card .bot > span{font-size:.7rem; margin-top:.15rem}
     .hero .lockup{right:var(--side)}
+    /* 모바일에서 카드만 줄이고 제목은 그대로여서, 영문 4줄이 캐러셀까지 올라와 겹쳤다.
+       캐러셀은 그대로 두고, 제목을 줄이고 카피를 화면 아래로 더 붙인다. */
+    .hero .lockup{bottom:1.1rem}
+    .hero .lockup h1{font-size:clamp(1.25rem,5vw,1.6rem); line-height:1.26}
+    /* 강제 줄바꿈은 데스크톱 폭 기준이라 모바일에선 한 줄이 화면을 넘긴다. 자연 줄바꿈에 맡긴다. */
+    .hero .lockup h1 br{display:none}
+    .hero .lockup p{font-size:.84rem; margin-top:.6rem}
   }
   /* 이력: 서사 옆 세로 열 */
   .tl .tl-item{padding:.9rem 0; border-top:1px solid var(--rule)}
@@ -274,7 +281,7 @@
         </div>
       </div>
       <div class="lockup">
-        <h1><span class="ko">직접 만든 서비스부터<br />100여 개국 글로벌 제품까지</span><span class="en">From a service I built myself<br />to a global product in 100+ markets</span></h1>
+        <h1><span class="ko">직접 만든 서비스부터 <br />100여 개국 글로벌 제품까지</span><span class="en">From a service I built myself <br />to a global product in 100+ markets</span></h1>
         <p><span class="ko">문제를 확인하고, 데이터를 바탕으로 개선했습니다.</span><span class="en">I identify the problem and improve from the data.</span></p>
       </div>
     </section>

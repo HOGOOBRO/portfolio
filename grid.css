@@ -27,6 +27,10 @@
      라틴과 숫자는 Fraunces가 잡고, 한글은 Pretendard로 간다(본명조로 떨어지면 라벨이 무거워진다).
      진짜 값을 보여주는 곳(디자인 시스템의 토큰·헥사·그리드 번호)만 --mono로 남긴다. */
   --label:'Fraunces','Pretendard Variable',Pretendard,Georgia,serif;
+  /* 한글 표제. --serif는 Fraunces가 먼저라 한글이 본명조로 떨어지고 숫자·라틴만 Fraunces로
+     렌더돼 한 줄 안에서 무게가 어긋난다. 한글 스팬 전체를 이 서체로 넘겨 그 혼용을 없앤다.
+     본문과 같은 Pretendard라 제목에서 본문으로 넘어가는 결도 끊기지 않는다. */
+  --display-ko:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
 
   /* 타이포 스케일 (편집디자인 6단) */
   --t-display: clamp(2.8rem, 6.2vw, 6.6rem);  /* 표제: 세리프 */
@@ -109,3 +113,13 @@ body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-bre
 .grid-overlay.on{ display:grid; grid-template-columns:repeat(12,1fr); column-gap:var(--gap) }
 .grid-overlay i{ background:rgba(220,60,60,.07); border-left:1px solid rgba(220,60,60,.25);
                  border-right:1px solid rgba(220,60,60,.25) }
+
+
+/* ── 한글 표제 ────────────────────────────────────────────────
+   --serif는 Fraunces가 먼저라 한글이 본명조로 떨어지고, 숫자·라틴만 Fraunces로
+   렌더돼 한 줄 안에서 무게가 어긋났다. 한글 스팬만 따로 지정해 그 혼용을 없앤다.
+   숫자 전용(.num, .fval, .ni i)은 Fraunces 그대로 둔다. 거기서는 세리프 숫자가 맞다. */
+.display .ko, .h1 .ko, .sec-subhead .ko, .case-essence .ko,
+.voice blockquote .ko, .next .nm .ko, .windex .nm .ko,
+.dtitle .ko, .dhead h2 .ko, .ds-title .ko, .menu-list a .ko{
+  font-family:var(--display-ko); letter-spacing:-.03em}
