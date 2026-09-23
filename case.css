@@ -75,10 +75,10 @@ body{background:var(--bg)}
         padding:1.05rem 0; border-bottom:1px solid var(--rule)}
 .sm-row:first-child{border-top:1px solid var(--rule)}
 .sm-row .k{grid-column:1 / span 2}
-.sm-row .v{grid-column:3 / span 6; font-size:1.02rem; line-height:1.5}
+.sm-row .v{grid-column:3 / span 6; font-size:1.02rem; line-height:1.5; text-wrap:pretty}
 .sm-row .v b{font-weight:600}
 .sm-foot{margin:1rem 0 0; margin-left:calc(var(--colw) * 2 + var(--gap) * 2);
-         max-width:none; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
+         max-width:calc(var(--colw) * 6 + var(--gap) * 5); font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; text-wrap:pretty}
 
 /* ── 가로 막대(깔때기·비교) ── */
 .bars{grid-column:3 / span 6; margin-top:2.2rem}
