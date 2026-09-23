@@ -16,7 +16,11 @@
     /* 메뉴가 화면을 덮는 동안 뒤의 본문은 탭 순서와 보조기술에서 빠진다. 원래 inert였던 것(홈의 비활성 페이지)은 건드리지 않는다 */
     document.querySelectorAll('main, nav.next, .skip, .chrome .left, .chrome .lang').forEach(function(el){
       if(open){ if(!el.hasAttribute('inert')){ el.setAttribute('data-menu-inert','1'); el.inert = true; } }
-      else if(el.hasAttribute('data-menu-inert')){ el.removeAttribute('data-menu-inert'); el.inert = false; }
+      else if(el.hasAttribute('data-menu-inert')){
+        el.removeAttribute('data-menu-inert');
+        /* 메뉴에서 다른 페이지로 옮겨 간 경우, 이전 페이지는 라우터가 이미 숨겼으므로 그대로 둔다(숨은 화면에 포커스가 들어가지 않게) */
+        el.inert = el.classList.contains('page') && el.getAttribute('aria-hidden') === 'true';
+      }
     });
     btn.textContent = open ? 'Close' : 'Menu';
     if(open){
