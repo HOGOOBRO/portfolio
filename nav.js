@@ -13,6 +13,11 @@
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
     if('inert' in menu) menu.inert = !open;
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    /* 메뉴가 화면을 덮는 동안 뒤의 본문은 탭 순서와 보조기술에서 빠진다. 원래 inert였던 것(홈의 비활성 페이지)은 건드리지 않는다 */
+    document.querySelectorAll('main, nav.next').forEach(function(el){
+      if(open){ if(!el.hasAttribute('inert')){ el.setAttribute('data-menu-inert','1'); el.inert = true; } }
+      else if(el.hasAttribute('data-menu-inert')){ el.removeAttribute('data-menu-inert'); el.inert = false; }
+    });
     btn.textContent = open ? 'Close' : 'Menu';
     if(open){
       var first = menu.querySelector('.menu-list a');
