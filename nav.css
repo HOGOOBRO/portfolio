@@ -13,7 +13,7 @@
    전면 커버가 움직이는 전환마다 매 프레임 재합성이 일어나 휴대폰에서 버벅였다.
    블렌드 대신 현재 테마 색을 그대로 쓴다. */
 .chrome{position:fixed; inset:0 0 auto 0; z-index:200; display:flex;
-        justify-content:space-between; align-items:flex-start;
+        justify-content:space-between; align-items:baseline;
         padding:1.15rem var(--side); color:var(--fg,#0A0A0A);
         pointer-events:none}
 .chrome > *{pointer-events:auto}
