@@ -31,6 +31,8 @@
 <link rel="stylesheet" href="case.css" />
 <link rel="stylesheet" href="nav.css" />
 <style>
+.figfade img{-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+
   /* 이 페이지 전용: 한 번 정의 → 여러 페이지 재사용 다이어그램 */
   .reuse{grid-column:3 / span 6; margin-top:2rem}
   .reuse .rrow{display:flex; align-items:center; gap:.55rem; flex-wrap:wrap}
@@ -234,9 +236,9 @@
     </div></div>
 
     <div class="row"><p class="viz-lbl reveal"><span class="ko">Authoring 확인표</span><span class="en">Authoring tracker</span></p></div>
-    <div class="row"><figure class="figwide reveal">
-      <img src="genesis-authoring-sheet.webp" alt="페이지 99개의 영문과 이탈리아어 주소 연결 여부와 Authoring 완료 여부를 O와 X로 관리한 표 전체" loading="lazy" width="1815" height="3572" />
-      <figcaption><span class="ko">페이지별 영문과 이탈리아어 주소 연결 여부와 Authoring 완료 여부를 한 표로 관리했습니다. X는 향후 사용 예정 메뉴입니다. <a href="genesis-authoring-sheet.webp" target="_blank" rel="noopener">원본 크게 보기 ↗</a></span><span class="en">One table tracked, per page, whether the English and Italian addresses were linked and whether authoring was complete. X marks menus reserved for later use. <a href="genesis-authoring-sheet.webp" target="_blank" rel="noopener">Open full size ↗</a></span></figcaption>
+    <div class="row"><figure class="figwide reveal figfade">
+      <img src="genesis-authoring-sheet.webp" alt="페이지별 영문과 이탈리아어 주소 연결 여부와 Authoring 완료 여부를 O와 X로 관리한 표의 앞부분" loading="lazy" width="1815" height="1560" />
+      <figcaption><span class="ko">페이지별 영문과 이탈리아어 주소 연결 여부와 Authoring 완료 여부를 한 표로 관리했습니다. X는 향후 사용 예정 메뉴이고, 전체 99행 중 앞부분입니다. <a href="genesis-authoring-sheet-full.webp" target="_blank" rel="noopener">전체 표 보기 ↗</a></span><span class="en">One table tracked, per page, whether the English and Italian addresses were linked and whether authoring was complete. X marks menus reserved for later use; this is the top of 99 rows. <a href="genesis-authoring-sheet-full.webp" target="_blank" rel="noopener">Open the full table ↗</a></span></figcaption>
     </figure></div>
 
     <div class="row"><p class="viz-lbl reveal"><span class="ko">테스트 시나리오: 시승 신청</span><span class="en">Test scenario: test-drive request</span></p></div>
