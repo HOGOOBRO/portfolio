@@ -59,7 +59,19 @@
   .ginv li b{color:var(--fg); font-weight:500; font-variant-numeric:tabular-nums}
   .gcap{grid-column:3 / span 6; margin-top:1.3rem; font-size:.92rem; line-height:1.6; color:var(--fg-soft)}
   .gcap b{color:var(--fg); font-weight:600}
-  @media (max-width:900px){ .reuse{grid-column:auto} .ginv{grid-column:auto; grid-template-columns:1fr} .gcap{grid-column:auto} }
+  .atrk{grid-column:3 / span 6; margin-top:2.2rem; overflow-x:auto}
+  .atrk table{border-collapse:collapse; width:100%; min-width:560px; font-size:.86rem; line-height:1.4}
+  .atrk th{font-family:var(--label); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-faint);
+           font-weight:500; text-align:left; padding:.45rem .6rem .45rem 0; border-bottom:1px solid var(--ink)}
+  .atrk td{padding:.5rem .6rem .5rem 0; border-bottom:1px solid var(--rule); color:var(--fg-soft); white-space:nowrap}
+  .atrk td:first-child{white-space:normal; color:var(--fg)}
+  .atrk th.c,.atrk td.c{text-align:center; padding-left:.6rem; width:14%}
+  .atrk td.c{font-variant-numeric:tabular-nums}
+  .atrk td.x{color:var(--fg-faint)}
+  .atrk .mute{color:var(--fg-faint)}
+  .atrk tr.more td{color:var(--fg-faint); border-bottom:0; padding-top:.7rem}
+  .atrk .acap{margin-top:1rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; max-width:none}
+  @media (max-width:900px){ .reuse{grid-column:auto} .ginv{grid-column:auto; grid-template-columns:1fr} .gcap{grid-column:auto} .atrk{grid-column:auto} }
 </style>
 </head>
 <body class="theme-paper lang-ko i18n-ready">
@@ -233,11 +245,14 @@
       <div class="ni"><i>04</i><b><span class="ko">문의 폼은 경계값 입력까지 확인했습니다</span><span class="en">Contact form checked down to edge-case input</span></b><p><span class="ko">같은 입력 세트 8가지를 영문과 이탈리아어 사이트에 각각 넣어 16케이스를 돌렸습니다. 이름에 든 하이픈, 악센트 문자, 우편번호의 하이픈과 알파벳, 이메일 128자 제한 같은 경계값이고 입력 칸은 모두 176개입니다. 결과는 정상 접수 4건, 제출 차단 12건으로 기록했습니다.</span><span class="en">Eight input sets were submitted to both the English and Italian sites, 16 cases in all, covering edge values such as hyphens in names, accented characters, hyphens and letters in postal codes, and the 128-character email limit, across 176 fields. Results were recorded as 4 accepted and 12 blocked.</span></p></div>
     </div></div>
 
-    <div class="row"><p class="viz-lbl reveal"><span class="ko">Authoring 확인표</span><span class="en">Authoring tracker</span></p></div>
-    <div class="row"><figure class="figwide reveal">
-      <img src="genesis-authoring-sheet.webp" alt="페이지별 영문과 이탈리아어 주소, Authoring 완료 여부, 마켓 확인 여부를 관리한 표. 오른쪽 위에 완료, 해당 없음, 미완 집계" loading="lazy" width="3230" height="2354" />
-      <figcaption><span class="ko">페이지마다 영문과 이탈리아어의 주소, Authoring 완료 여부, 마켓 확인 여부를 한 표에서 관리했습니다. 오른쪽 위가 완료, 해당 없음, 미완 집계이고 미완 32건은 향후 사용 메뉴입니다.</span><span class="en">One table tracked, per page, the English and Italian address, authoring status, and market confirmation. The tally at top right separates done, not applicable, and pending; the 32 pending items are menus for future use.</span></figcaption>
-    </figure></div>
+    <div class="row"><p class="viz-lbl reveal"><span class="ko">Authoring 확인표 발췌</span><span class="en">Authoring tracker, excerpt</span></p></div>
+    <div class="row"><div class="atrk reveal">
+      <table>
+        <thead><tr><th><span class="ko">페이지</span><span class="en">Page</span></th><th class="c"><span class="ko">영문 주소</span><span class="en">EN address</span></th><th class="c"><span class="ko">영문 Authoring</span><span class="en">EN authoring</span></th><th class="c"><span class="ko">이탈리아어 주소</span><span class="en">IT address</span></th><th class="c"><span class="ko">이탈리아어 Authoring</span><span class="en">IT authoring</span></th></tr></thead>
+        <tbody><tr><td>Main</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › PLP(All)</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › PLP(All) › NEW GV60 › Discover More</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › PLP(All) › NEW GV60 › Configurator</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td></tr><tr><td>Models › PLP(All) › NEW ELECTRIFIED GV70 › Discover More</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › PLP(All) › NEW ELECTRIFIED GV70 › Configurator</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td></tr><tr><td>Models › PLP(All) › NEW ELECTRIFIED G80 › Discover More</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › PLP(All) › NEW ELECTRIFIED G80 › Configurator</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td><td class="c"><span class="mute">–</span></td><td class="c x">X</td></tr><tr><td>Models › Concept › About Concept Car</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › Concept › X Convertible Concept</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › Concept › X Concept</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr><td>Models › Concept › X Speedium Concept</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td><td class="c"><span class="ko">연결</span><span class="en">linked</span></td><td class="c">O</td></tr><tr class="more"><td><span class="ko">… 전체 99개 페이지</span><span class="en">… 99 pages in total</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr></tbody>
+      </table>
+      <p class="acap"><span class="ko">페이지별 영문과 이탈리아어 주소 연결 여부와 Authoring 완료 여부를 한 표로 관리했습니다. X는 향후 사용 예정 메뉴입니다.</span><span class="en">One table tracked, per page, whether the English and Italian addresses were linked and whether authoring was complete. X marks menus reserved for later use.</span></p>
+    </div></div>
 
     <div class="row"><p class="viz-lbl reveal"><span class="ko">테스트 시나리오: 시승 신청</span><span class="en">Test scenario: test-drive request</span></p></div>
     <div class="row"><figure class="figwide reveal">
@@ -261,7 +276,6 @@
     <div class="row"><p class="viz-lbl reveal"><span class="ko">라이브 사이트</span><span class="en">Live site</span></p></div>
     <div class="row"><figure class="figwide reveal">
       <img src="genesis-live-it.webp" alt="genesis.com/it 첫 화면. 이탈리아어 메뉴와 GV60 소개" loading="lazy" width="2880" height="1100" />
-      <figcaption><span class="ko">genesis.com/it 첫 화면. 2026년 9월 23일 캡처.</span><span class="en">genesis.com/it home, captured 23 September 2026.</span></figcaption>
     </figure></div>
 
     <div class="row" style="margin-top:clamp(2.6rem,5vh,4rem)"><div class="single reveal">
