@@ -10,7 +10,7 @@
   --sect: clamp(80px, 11vh, 150px);           /* 섹션 상하 호흡 (레퍼런스 실측) */
 
   /* 팔레트 v2: 흑백 위주. UI는 무채색, 컬러는 작업물 이미지에서만 나온다 */
-  --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#4A4A4A; --ink-faint:#8F8F8F;
+  --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#4A4A4A; --ink-faint:#737373;
   --line:#E9E9E9; --line-strong:#D4D4D4;
   --chrome-dim:#6E6E6E;   /* 고정 크롬의 비활성 글자. 흰 바탕 5.1:1로 AA 통과 */
   --shot-w:15rem;         /* 폰 스크린 렌더 폭. 케이스마다 달랐던 것을 하나로 묶는다 */
@@ -60,7 +60,7 @@ body{font-family:var(--sans); font-size:var(--t-body); line-height:1.7; word-bre
 .theme-paper{ --bg:var(--paper); --fg:var(--ink); --fg-soft:var(--ink-soft);
               --fg-faint:var(--ink-faint); --rule:var(--line) }
 .theme-dark { --bg:var(--black); --fg:#F5F5F5; --fg-soft:rgba(245,245,245,.6);
-              --fg-faint:rgba(245,245,245,.36); --rule:rgba(245,245,245,.14) }
+              --fg-faint:rgba(245,245,245,.5); --rule:rgba(245,245,245,.14) }
 .theme-paper, .theme-dark{ background:var(--bg); color:var(--fg) }
 
 /* ── 12컬럼 로우 ──

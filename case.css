@@ -154,7 +154,7 @@ body{background:var(--bg)}
 /* ── 이미지 도판 ── */
 .figwide{grid-column:3 / span 8; margin-top:1.2rem}
 .figwide img{width:100%; height:auto; display:block; border:1px solid var(--rule)}
-.figwide figcaption{margin-top:.8rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6; max-width:52ch}
+.figwide figcaption{margin-top:.8rem; font-size:var(--t-cap); color:var(--fg-faint); line-height:1.6}
 .figwide figcaption b{color:var(--fg-soft); font-weight:600}
 /* 2연 도판도 세로비가 2 이상이라 칼럼 폭을 그대로 따르면 세로가 900px을 넘고 왼쪽이 빈다.
    단독 스크린과 같은 --shot-w 기준으로 묶어 케이스 간 크기를 맞춘다. */
