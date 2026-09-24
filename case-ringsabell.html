@@ -40,8 +40,8 @@
   .rung i{font-family:var(--label); font-size:.7rem; font-style:normal; opacity:.5}
   .rung b{font-weight:600; font-size:.95rem}
   .rung .use{font-family:var(--label); font-size:.7rem; letter-spacing:.04em; opacity:.75; text-align:right}
-  .rung.skip{opacity:.42; border-style:dashed}
-  .rung.skip .use{text-decoration:line-through}
+  .rung.omit{opacity:.42; border-style:dashed}
+  .rung.omit .use{text-decoration:line-through}
   @media (max-width:760px){
     .ladder{grid-column:1 / -1}
     .rung{grid-template-columns:1.8rem 1fr; row-gap:.3rem}
@@ -194,7 +194,7 @@
     <div class="row"><div class="ladder reveal">
       <div class="rung"><i>01</i><b><span class="ko">단어를 보고 뜻을 알아본다</span><span class="en">See the word, recognize the meaning</span></b><span class="use"><span class="ko">뜻 고르기</span><span class="en">multiple-choice meaning</span></span></div>
       <div class="rung"><i>02</i><b><span class="ko">뜻을 보고 단어를 알아본다</span><span class="en">See the meaning, recognize the word</span></b><span class="use"><span class="ko">뜻 → 단어</span><span class="en">meaning → word</span></span></div>
-      <div class="rung skip"><i>03</i><b><span class="ko">단어를 보고 뜻을 직접 쓴다</span><span class="en">See the word, write the meaning</span></b><span class="use"><span class="ko">넣지 않음</span><span class="en">not built</span></span></div>
+      <div class="rung omit"><i>03</i><b><span class="ko">단어를 보고 뜻을 직접 쓴다</span><span class="en">See the word, write the meaning</span></b><span class="use"><span class="ko">넣지 않음</span><span class="en">not built</span></span></div>
       <div class="rung"><i>04</i><b><span class="ko">뜻을 보고 단어를 직접 쓴다</span><span class="en">See the meaning, write the word</span></b><span class="use"><span class="ko">스펠링 타이핑</span><span class="en">type the spelling</span></span></div>
     </div></div>
 
@@ -215,7 +215,7 @@
     <div class="row"><div class="nlist reveal">
       <div class="ni"><i>01</i><b><span class="ko">다시 읽기보다 꺼내보기를 복습 방식으로 채택</span><span class="en">Retrieval practice adopted over rereading</span></b><p><span class="ko">한 집단은 지문을 반복해 읽고 다른 집단은 지문을 덮고 기억나는 대로 썼습니다. 5분 뒤에는 다시 읽은 쪽이 높았고 2일과 1주일 뒤에는 뒤집혔어요. 정작 공부하는 본인은 반대로 느낍니다. 다시 읽으면 술술 읽혀 잘 되는 것 같고, 떠올리려 하면 괴롭거든요. 그래서 복습을 전부 문제로 만들고 카드 넘겨보기는 넣지 않았습니다.</span><span class="en">One group reread the passage; the other closed it and wrote what they recalled. After five minutes the rereaders scored higher; after two days and a week it reversed. Learners feel the opposite: rereading feels smooth, recalling feels hard. So all review is question-based, with no flip-card mode.</span></p></div>
       <div class="ni"><i>02</i><b><span class="ko">나눠서 여러 번, 스스로 풀어보게 구성</span><span class="en">Spaced practice and practice testing applied to review</span></b><p><span class="ko">2013년 연구는 학생들이 실제로 쓰는 공부법 열 가지를 효과 순으로 매겼습니다. 밑줄 긋기, 요약하기, 다시 읽기가 들어 있었고 최고 등급은 둘뿐이었어요. 스스로 문제 풀어보기와 나눠서 여러 번 하기입니다. 이 앱의 복습은 이 둘로만 만들었고 간격은 단어마다 따로 계산해요.</span><span class="en">A 2013 review rated ten techniques students actually use. Highlighting, summarizing, and rereading were among them; only two earned the top rating, practice testing and spaced practice. Review here is built from those two, with intervals computed per word.</span></p></div>
-      <div class="ni"><i>03</i><b><span class="ko">익숙해질수록 문제를 단계적으로 어렵게</span><span class="en">Retrieval difficulty raised in steps as proficiency rises</span></b><p><span class="ko">기억에는 두 힘이 따로 있습니다. 지금 얼마나 쉽게 떠오르는가, 그리고 얼마나 깊이 박혀 있는가. 깊이 박히는 쪽은 꺼내기 어려울 때 꺼내야 늘고, 쉽게 다시 보여주는 것으로는 늘지 않아요. 01에서 5분과 1주일 결과가 뒤집힌 이유입니다. 그래서 단계를 순서대로 내고, 같은 단어라도 익숙해질수록 문제가 어려워지며, 마지막에는 보기 없이 직접 칩니다.</span><span class="en">Memory has two separate strengths: how easily a word comes to mind now, and how deeply it is stored. Storage grows when retrieval is effortful and succeeds, not when material is simply shown again. That explains the five-minute versus one-week reversal in 01. So the levels are issued in order, questions harden as a word becomes familiar, and the last level is typed with no options.</span></p></div>
+      <div class="ni"><i>03</i><b><span class="ko">익숙해질수록 문제를 단계적으로 어렵게</span><span class="en">Retrieval difficulty raised in steps as proficiency rises</span></b><p><span class="ko">기억에는 두 힘이 따로 있습니다. 지금 얼마나 쉽게 떠오르는가, 그리고 얼마나 깊이 박혀 있는가. 깊이 박히는 쪽은 꺼내기 어려울 때 꺼내야 많이 늘고, 쉽게 다시 보여주면 조금밖에 늘지 않아요. 01에서 5분과 1주일 결과가 뒤집힌 이유입니다. 그래서 단계를 순서대로 내고, 같은 단어라도 익숙해질수록 문제가 어려워지며, 마지막에는 보기 없이 직접 칩니다.</span><span class="en">Memory has two separate strengths: how easily a word comes to mind now, and how deeply it is stored. Storage grows most when retrieval is effortful and succeeds, and only a little when material is simply shown again. That explains the five-minute versus one-week reversal in 01. So the levels are issued in order, questions harden as a word becomes familiar, and the last level is typed with no options.</span></p></div>
       <div class="ni"><i>04</i><b><span class="ko">확신도와 실제 정답을 비교해 과신한 단어를 구분</span><span class="en">Confidence compared against outcome to isolate overestimated words</span></b><p><span class="ko">보기를 보여주기 전에 "떠오르나요?"를 먼저 묻고, 확신했는데 틀린 단어를 따로 모읍니다. 확신이 높은 오답은 정답을 보여줄 때 교정 효과가 더 큽니다. 예상과 다른 피드백이라 주의가 쏠리기 때문이에요. 단, 정답 피드백이 반드시 따라와야 하는데 이 앱은 틀리면 바로 정답을 보여 줘서 조건을 채웁니다.</span><span class="en">Before options appear, the app asks whether the word comes to mind and collects words answered confidently but wrong. High-confidence errors are corrected more strongly when the answer is shown, because unexpected feedback draws attention. The condition is that correct-answer feedback must follow, and the app shows the answer on every miss.</span></p></div>
     </div>
       <figure class="phone phone-one reveal d1">
@@ -292,7 +292,7 @@
     <div class="row"><div class="reflist reveal">
       <div class="ref"><b>Roediger &amp; Karpicke (2006)</b><p><span class="ko">다시 읽은 집단과 기억해서 써본 집단을 비교했습니다. 5분 뒤에는 다시 읽은 쪽이 높았지만 1주일 뒤에는 결과가 반대였습니다.</span><span class="en">Compared rereading against recalling from memory. Rereading won after five minutes; after a week it had flipped.</span></p></div>
       <div class="ref"><b>Dunlosky 외 (2013)</b><p><span class="ko">학생들이 사용하는 학습법 열 가지를 효과 순으로 평가했습니다. 최고 등급은 연습 시험과 분산 학습 둘이었습니다.</span><span class="en">Ten study techniques students use were rated by effectiveness. Only two earned the top rating: practice testing and distributed practice.</span></p></div>
-      <div class="ref"><b>Bjork (1994)</b><p><span class="ko">기억은 인출 강도와 저장 강도로 구분되며, 저장 강도는 인출이 어려운 상태에서 인출할 때 증가합니다.</span><span class="en">Memory has separate retrieval and storage strengths; the second only grows when retrieval was hard.</span></p></div>
+      <div class="ref"><b>Bjork (1994)</b><p><span class="ko">기억은 인출 강도와 저장 강도로 구분되며, 저장 강도는 인출이 어려운 상태에서 인출할 때 증가합니다.</span><span class="en">Memory has separate retrieval and storage strengths; the second grows most when retrieval was hard.</span></p></div>
       <div class="ref"><b>Laufer &amp; Goldstein (2004)</b><p><span class="ko">어휘 지식을 난이도 순으로 네 단계로 구분했습니다. 이 앱의 문제 난이도 순서가 이 틀을 따릅니다.</span><span class="en">Sorted how firmly a word is known into four levels by difficulty. The order this app hardens its questions in follows that frame.</span></p></div>
       <div class="ref"><b>Butterfield &amp; Metcalfe (2001)</b><p><span class="ko">확신도가 높은 오답은 정답 제시 시 교정 효과가 더 큽니다. 예상과 다른 피드백이라 주의가 집중되기 때문입니다.</span><span class="en">Errors made with high confidence get corrected better once the answer is shown, because unexpected feedback captures attention.</span></p></div>
     </div></div>
