@@ -100,9 +100,10 @@
 .lang-en .ko{display:none}
 .lang{display:inline-flex; gap:.45rem; align-items:baseline; margin-right:1.1rem}
 .lang button{font-family:var(--label); font-size:var(--t-chrome); letter-spacing:.13em;
-             background:none; border:0; cursor:pointer; color:var(--chrome-dim,#6E6E6E);
+             background:none; border:0; cursor:pointer; color:var(--chrome-dim,#757575);
              /* 히트 영역만 확장. 세로 44px을 채우고, 가로는 두 버튼이 겹치지 않게 좁게 둔다.
-                색은 #8F8F8F였는데 흰 바탕에서 3.23:1로 AA(4.5:1) 미달이라 #6E6E6E(5.1:1)로 내렸다. */
+                색은 #8F8F8F(흰 바탕 3.23:1)에서 #6E6E6E로 내렸다가, 검은 히어로 위에서 4.12:1이라
+                다시 #757575로 맞췄다. 흰 바탕 4.61:1, 검은 바탕 4.56:1로 양쪽 다 AA를 넘는다. */
              padding:1rem .25rem; margin:-1rem -.25rem;
              transition:color var(--nav-fast)}
 .lang button.on{color:var(--fg,#0A0A0A)}
@@ -121,8 +122,8 @@
               border-bottom:1px solid var(--rule,#E9E9E9);
               transition:transform .28s var(--ease-snap), opacity .28s ease, background .2s ease}
 .chrome.solid .brand,.chrome.solid .menu-trigger{color:var(--fg,#0A0A0A)}
-.chrome.solid .up{color:var(--chrome-dim,#6E6E6E)}
-.chrome.solid .lang button{color:var(--chrome-dim,#6E6E6E)}
+.chrome.solid .up{color:var(--chrome-dim,#757575)}
+.chrome.solid .lang button{color:var(--chrome-dim,#757575)}
 .chrome.solid .lang button.on{color:var(--fg,#0A0A0A)}
 
 /* 문서 간 전환 셔터: 홈의 페이지 전환과 같은 결. View Transition에만 기대지 않고 직접 그린다 */
