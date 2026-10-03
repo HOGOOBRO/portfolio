@@ -94,7 +94,16 @@
     document.documentElement.lang = isEn ? 'en' : 'ko';
     ko.classList.toggle('on', !isEn);
     en.classList.toggle('on', isEn);
+    swapAttr('[data-alt-en]', 'alt', 'data-alt-ko', 'data-alt-en', isEn);
+    swapAttr('[data-label-en]', 'aria-label', 'data-label-ko', 'data-label-en', isEn);
     try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  /* 이미지 설명과 보조 라벨은 화면에 안 보이니 span 두 개로 못 나눈다. 속성을 직접 바꾼다. */
+  function swapAttr(sel, attr, koKey, enKey, isEn){
+    document.querySelectorAll(sel).forEach(function(el){
+      if(!el.hasAttribute(koKey)) el.setAttribute(koKey, el.getAttribute(attr) || '');
+      el.setAttribute(attr, el.getAttribute(isEn ? enKey : koKey) || '');
+    });
   }
   var saved = 'ko';
   try{ saved = localStorage.getItem('lang') || 'ko'; }catch(e){}
