@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="김진현 | Product Strategy, UX, 0→1" />
 <meta name="twitter:description" content="김진현 포트폴리오. 직접 만들어 운영한 제품 셋과 조직에서 해결한 문제 넷." />
 <meta name="twitter:image" content="https://hogoobro.github.io/portfolio/og.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"김진현","alternateName":"Kim Jinhyeon","jobTitle":"PM, Product Designer","url":"https://hogoobro.github.io/portfolio/","email":"wlsgus11117@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://railink.app","https://deokhong.com","https://brunch.co.kr/@389621a80487494"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"김진현","alternateName":"Kim Jinhyeon","jobTitle":"Product Manager","url":"https://hogoobro.github.io/portfolio/","email":"wlsgus11117@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://railink.app","https://deokhong.com","https://brunch.co.kr/@389621a80487494"]}}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -86,15 +86,11 @@
   .card .bot > span{font-size:.74rem; opacity:.85; line-height:1.4; display:block; margin-top:.22rem; word-break:keep-all}
   .hero .lockup{position:absolute; left:var(--side);
                 bottom:clamp(1.8rem,6vh,3.6rem); z-index:3}
-  .hero .lockup h1{font-family:var(--serif); color:#F5F5F5;
+  .hero .lockup h1{font-family:var(--serif); font-weight:300; color:#F5F5F5;
                    font-size:clamp(1.8rem,2.7vw,2.5rem); line-height:1.22; letter-spacing:-.02em}
-  /* 한글 히어로는 Pretendard로 간다. --serif는 Fraunces가 먼저라 라틴과 숫자만 가져가고
-     한글은 Noto Serif KR로 떨어져, 한 줄에 서로 다른 세리프 두 개가 섞인다.
-     한글 스팬은 Pretendard 하나로 고정한다. 숫자까지 같은 서체로 와야 한 줄이 붙고,
-     아래로 이어지는 본문도 전부 Pretendard라 히어로에서 본문으로 넘어가는 결이 끊기지 않는다.
+  /* 이름줄은 언어와 무관하게 영문으로 고정한다. 로고(©kimjinhyeon)와 같은 워드마크 역할이라
+     전환 시 움직이지 않는 고정점이 되고, 한글일 때 세리프가 섞여 Pretendard로 빼던 예외도 사라진다.
      무게는 Light. 검은 바탕이라 200까지 내리면 획이 뭉개져 300에서 멈춘다. */
-  .hero .lockup h1 .ko{font-family:var(--display-ko); font-weight:300; letter-spacing:-.03em}
-  .hero .lockup h1 .en{font-weight:300}
   /* 부제는 두 언어 모두 한 줄. 폭을 제한하면 엉뚱한 자리에서 쪼개진다(좁은 화면은 자연 줄바꿈). */
   .hero .lockup p{margin-top:.9rem; font-weight:500;
                   font-size:clamp(.92rem,1.15vw,1.05rem); line-height:1.55; color:rgba(245,245,245,.55)}
@@ -178,10 +174,6 @@
        캐러셀은 그대로 두고, 제목을 줄이고 카피를 화면 아래로 더 붙인다. */
     .hero .lockup{bottom:1.1rem}
     .hero .lockup h1{font-size:clamp(1.4rem,5.8vw,1.85rem); line-height:1.24}
-    /* 영문 둘째 줄은 강제 줄바꿈을 두면 모바일 폭을 넘겨서 자동 줄바꿈에 맡긴다.
-       한글은 두 줄 다 폭 안에 들어가므로 강제 줄바꿈을 그대로 둔다.
-       자동에 맡기면 '100여 / 개국'처럼 한 단위가 쪼개진다. */
-    .hero .lockup h1 .en br{display:none}
     .hero .lockup p{font-size:.84rem; margin-top:.6rem}
   }
   /* 이력: 서사 옆 세로 열 */
@@ -284,7 +276,7 @@
         </div>
       </div>
       <div class="lockup">
-        <h1><span class="ko">서비스 기획자 김진현입니다</span><span class="en">Jinhyeon Kim, product manager</span></h1>
+        <h1 lang="en">Jinhyeon Kim, Product Manager</h1>
         <p><span class="ko">글로벌 제품을 맡고, 직접 만든 서비스를 운영합니다.</span><span class="en">I work on global products and run the services I built myself.</span></p>
       </div>
     </section>
